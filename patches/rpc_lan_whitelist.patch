@@ -1,0 +1,11 @@
+--- transmission.h	2011-10-09 14:13:36.000000000 +0100
++++ new.h	2012-01-19 17:56:29.000000000 +0000
+@@ -148,7 +148,7 @@
+ 
+ #define TR_DEFAULT_BIND_ADDRESS_IPV4        "0.0.0.0"
+ #define TR_DEFAULT_BIND_ADDRESS_IPV6             "::"
+-#define TR_DEFAULT_RPC_WHITELIST          "127.0.0.1"
++#define TR_DEFAULT_RPC_WHITELIST          "127.0.0.1,192.168.*.*,10.*.*.*"
+ #define TR_DEFAULT_RPC_PORT_STR                "9091"
+ #define TR_DEFAULT_RPC_URL_STR       "/transmission/"
+ #define TR_DEFAULT_PEER_PORT_STR              "51413"

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#########################
+
+ARCH="i386"
+export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
+export DEVFOLDER="/Applications/Xcode.app/Contents/Developer"
+# an SDK prior to 6.0 is required if the target ARCH is armv6
+SDK_VERSION="5.1"
+PARALLEL_NUM=1
+
+CURL_VERSION=7.33.0
+LIBEVENT_VERSION="2.0.21-stable"
+OPENSSL_VERSION=1.0.1e
+TRANSMISSION_VERSION=2.76
+
+#########################
+
+if [ -z ${ARCH} ]; then ARCH="system"; fi

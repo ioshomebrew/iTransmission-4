@@ -1,0 +1,51 @@
+--- evdns.c	2012-01-22 00:46:14.000000000 +0000
++++ evdns-new.c	2012-01-22 00:45:21.000000000 +0000
+@@ -67,6 +67,9 @@
+ #endif
+ #include <shlobj.h>
+ #endif
++#ifdef __APPLE__
++#include "TargetConditionals.h"
++#endif
+ 
+ #include "event2/dns.h"
+ #include "event2/dns_struct.h"
+@@ -3556,6 +3559,29 @@
+ 	return evdns_base_resolv_conf_parse(current_base, flags, filename);
+ }
+ 
++#if TARGET_OS_IPHONE
++int
++evdns_base_ios_dns_conf(struct evdns_base *base)
++{
++	int r;
++	char *fname;
++	if (base == NULL)
++		base = current_base;
++	if (base == NULL)
++		return -1;
++	EVDNS_LOCK(base);
++	
++	evdns_base_nameserver_ip_add(base,"8.8.8.8");
++	evdns_base_nameserver_ip_add(base,"8.8.4.4");
++	fname = evdns_get_default_hosts_filename();
++	evdns_base_load_hosts(base, fname);
++	if (fname)
++		mm_free(fname);
++
++	EVDNS_UNLOCK(base);
++	return r;
++}
++#endif
+ 
+ #ifdef WIN32
+ /* Add multiple nameservers from a space-or-comma-separated list. */
+@@ -3839,6 +3865,8 @@
+ 		int r;
+ #ifdef WIN32
+ 		r = evdns_base_config_windows_nameservers(base);
++#elif TARGET_OS_IPHONE
++		r = evdns_base_ios_dns_conf(base);
+ #else
+ 		r = evdns_base_resolv_conf_parse(base, DNS_OPTIONS_ALL, "/etc/resolv.conf");
+ #endif
