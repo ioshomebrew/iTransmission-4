@@ -25,6 +25,16 @@
 {
     NSString *magnetEx = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"magnet_ex" ofType:@""]  encoding:NSASCIIStringEncoding error:nil];
     NSString *match = [self stringByMatching:magnetEx];
-    return ([match isEqualToString:self]);}
+    return ([match isEqualToString:self]);
+}
+
+- (BOOL)isTracker
+{
+    NSString *lowCased = [self lowercaseString];
+    if (![lowCased hasPrefix:@"http://"] && ![lowCased hasPrefix:@"https://"] && ![lowCased hasPrefix:@"udp://"]) return NO;
+    NSString *urlEx = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"url_ex" ofType:@""]  encoding:NSASCIIStringEncoding error:nil];
+    NSString *match = [self stringByMatching:urlEx];
+    return ([match isEqualToString:self]);
+}
 
 @end

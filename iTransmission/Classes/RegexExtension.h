@@ -12,4 +12,5 @@
 @interface NSString (RegexExtension)
 - (BOOL)isURL;
 - (BOOL)isMagnet;
+- (BOOL)isTracker;
 @end

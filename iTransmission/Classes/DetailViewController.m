@@ -198,13 +198,8 @@
     [fPeers addObjectsFromArray:[fTorrent peers]];
     int totalSeeder = 0;
     int totalPeers = 0;
-    for (NSDictionary *peer in fPeers) {
-        NSNumber *seeder = [peer objectForKey: @"Seed"];
-        if ([seeder boolValue]) {
-            totalSeeder = totalSeeder + 1;
-        } else {
-            totalPeers = totalPeers + 1;
-        }
+    for (id peer in fPeers) {
+        NSLog(@"%@", peer);
     }
     totalSeeder = totalSeeder + [fTorrent webSeedCount];
     [fTorrentSeedersLabel setText:[NSString stringWithFormat:@"%d", totalSeeder]];

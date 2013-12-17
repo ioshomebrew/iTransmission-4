@@ -8,20 +8,20 @@
 
 #import "TrackersViewController.h"
 
+#define ADD_FROM_URL 010
+#define ADD_TRACKER_BUTTON 1002
+#define REMOVE_TRACKER_BUTTON 1003
+
 @implementation TrackersViewController
 
 - (id)initWithTorrent:(Torrent*)t {
     self = [super initWithNibName:@"FileListViewController" bundle:nil];
     if (self) {
         fTorrent = t;
-        NSMutableArray *TrackersFromTorrent = [fTorrent allTrackerStats];
-        Trackers = [[NSMutableArray alloc] init];
-        for (id object in TrackersFromTorrent) {
-            if ([object isKindOfClass:[TrackerNode class]]) {
-                [Trackers addObject:object];
-            }
-        }
         self.title = @"Trackers";
+        SelectedItems = [[NSMutableArray alloc] init];
+        Trackers = [[NSMutableArray alloc] init];
+        [self reloadTrackers];
     }
     return self;
 }
@@ -33,23 +33,163 @@
     // Release any cached data, images, etc that aren't in use.
 }
 - (void)viewDidLoad {
+    UIBarButtonItem *editButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonTouched)] autorelease];
+    [self.navigationItem setRightBarButtonItem:editButton animated:YES];
+    
+    UIBarButtonItem *addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTouched)] autorelease];
+    UIBarButtonItem *removeButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeButtonTouched)] autorelease];
+    UIBarButtonItem *emptyButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:@selector(addButtonTouched)] autorelease];
+    [addButton setTag:ADD_TRACKER_BUTTON];
+    [removeButton setTag:REMOVE_TRACKER_BUTTON];
+    [addButton setEnabled:NO];
+    [removeButton setEnabled:NO];
+    [self setToolbarItems:[NSArray arrayWithObjects:emptyButton, addButton, emptyButton, removeButton, emptyButton, nil]];
     [super viewDidLoad];
 }
+
+- (void)reloadTrackers {
+    [Trackers removeAllObjects];
+    for (id object in [fTorrent allTrackerStats]) {
+        if ([object isKindOfClass:[TrackerNode class]]) {
+            [Trackers addObject:object];
+        }
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == ADD_FROM_URL) {
+        if (buttonIndex == 0)
+            return;
+        if (buttonIndex == 1) {
+            NSString *url = [[alertView textField] text];
+            BOOL exists = NO;
+            for (TrackerNode *node in Trackers) {
+                if (!exists) {
+                    if ([node fullAnnounceAddress] == url) {
+                        exists = YES;
+                    }
+                }
+            }
+            if (![url isTracker] || exists) {
+                if (!exists) {[[[UIAlertView alloc] initWithTitle:@"Error"
+                                           message:@"The URL you entered is invalid. Just where did you get it?"
+                                          delegate:nil
+                                                cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil] show];}
+                else {[[[UIAlertView alloc] initWithTitle:@"Error"
+                                                 message:@"A tracker with the same URL already exists, so both of them are the same trackers."
+                                                delegate:nil
+                                        cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil] show];}
+            } else {
+                [fTorrent addTrackerToNewTier:url];
+            }
+        }
+        [self reloadTrackers];
+        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]]
+                              withRowAnimation:UITableViewRowAnimationLeft];
+        [self.tableView reloadData];
+    }
+}
+
+- (void)addButtonTouched {
+    UIAlertView *dialog = [[[UIAlertView alloc] initWithTitle:@"Add Tracker"
+                                                      message:@"Enter the full tracker URL"
+                                                     delegate:self
+                                            cancelButtonTitle:@"Cancel"
+                                            otherButtonTitles:@"OK", nil] autorelease];
+    dialog.delegate = self;
+    dialog.tag = ADD_FROM_URL;
+    [dialog addTextFieldWithValue:@"" label:@"Enter tracker URL"];
+    UITextField *textField = [dialog textField];
+    textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    textField.enablesReturnKeyAutomatically = YES;
+    textField.keyboardAppearance = UIKeyboardAppearanceDefault;
+    textField.keyboardType = UIKeyboardTypeURL;
+    textField.returnKeyType = UIReturnKeyDone;
+    textField.secureTextEntry = NO;
+    [dialog show];
+}
+
+- (void)removeButtonTouched {
+    NSMutableArray *indexArray = [[NSMutableArray alloc] init];
+    for (TrackerCell *cell in SelectedItems) {
+        [fTorrent removeTrackers:[NSSet setWithObject: [[cell TrackerURL] text]]];
+        [indexArray addObject:[self.tableView indexPathForCell:(UITableViewCell*)cell]];
+    }
+    [self reloadTrackers];
+    [self.tableView deleteRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationLeft];
+    [self.tableView reloadData];
+}
+- (void)editButtonTouched {
+    for (UIBarButtonItem *item in self.toolbarItems) {
+        if (item.tag == ADD_TRACKER_BUTTON) {
+            [item setEnabled:YES];
+        }
+    }
+    [self.tableView setEditing:YES animated:YES];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                target:self
+                                                                                action:@selector(doneButtonTouched)];
+    [self.navigationItem setRightBarButtonItem:doneButton animated:YES];
+    [doneButton release];
+}
+
+- (void)doneButtonTouched {
+    for (UIBarButtonItem *item in self.toolbarItems) {
+        NSLog(@"Disabling all");
+        [item setEnabled:NO];
+    }
+    [self.tableView setEditing:NO animated:YES];
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+                                                                                target:self
+                                                                                action:@selector(editButtonTouched)];
+    [self.navigationItem setRightBarButtonItem:editButton animated:YES];
+    [editButton release];
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView.editing == NO) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    } else {
+        for (UIBarButtonItem *item in self.toolbarItems) {
+            if (item.tag == REMOVE_TRACKER_BUTTON) {
+                [item setEnabled:YES];
+            }
+        }
+        TrackerCell *cell = (TrackerCell*)[tableView cellForRowAtIndexPath:indexPath];
+        [SelectedItems addObject:cell];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    TrackerCell *cell = (TrackerCell*)[tableView cellForRowAtIndexPath:indexPath];
+    if ([SelectedItems containsObject:cell]) {
+        [SelectedItems removeObject:cell];
+    }
+    if ([SelectedItems count] == 0) {
+        for (UIBarButtonItem *item in self.toolbarItems) {
+            if (item.tag == REMOVE_TRACKER_BUTTON) {
+                NSLog(@"Disabling Delete");
+                [item setEnabled:NO];
+            }
+        }
+    }
+}
+
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
 - (void)dealloc {
     [_docController release];
     self.tableView = nil;
+    SelectedItems = nil;
     Trackers = nil;
     [super dealloc];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setToolbarHidden:YES animated:YES];
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -140,6 +280,9 @@
         NSLog(@"Total Leechers: %d", [node totalLeechers]);
     }
     return cell;
+}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return UITableViewCellAccessoryCheckmark;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

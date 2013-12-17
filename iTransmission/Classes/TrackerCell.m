@@ -30,7 +30,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     if (selected) {
-        self.TrackerURL.textColor = [UIColor whiteColor];
+        self.TrackerURL.textColor = [UIColor blackColor];
     } else {
         self.TrackerURL.textColor = [UIColor blackColor];
     }
@@ -44,7 +44,7 @@
     [super setHighlighted:highlighted animated:animated];
     
     if (highlighted) {
-        self.TrackerURL.textColor = [UIColor whiteColor];
+        self.TrackerURL.textColor = [UIColor blackColor];
     }
     else {
         self.TrackerURL.textColor =[UIColor blackColor] ;
