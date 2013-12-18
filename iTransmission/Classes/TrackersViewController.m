@@ -224,7 +224,7 @@
     cell.TrackerURL.text = node.fullAnnounceAddress;
     NSLog(@"Address: %@", node.fullAnnounceAddress);
     
-    cell.TrackerLastAnnounceTimeLabel.text = node.lastAnnounceStatusString;
+    cell.TrackerLastAnnounceTime.text = node.lastAnnounceStatusString;
     NSLog(@"Last Announce Status String: %@", node.lastAnnounceStatusString);
     
     if (!([node totalSeeders]) || [node totalSeeders] == -1) {
@@ -240,6 +240,7 @@
         cell.PeerNumber.text = [NSString stringWithFormat:@"%d", [node totalLeechers]];
         NSLog(@"Total Leechers: %d", [node totalLeechers]);
     }
+    [self.tableView reloadData];
 }
 
 - (void)updateUI {

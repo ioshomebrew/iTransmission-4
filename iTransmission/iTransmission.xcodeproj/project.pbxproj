@@ -118,6 +118,7 @@
 		7EDFDA5D1391DE09004E3BB0 /* MTStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDFDA5C1391DE09004E3BB0 /* MTStatusBarOverlay.m */; };
 		7EDFDA601391E128004E3BB0 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDFDA5F1391E127004E3BB0 /* StatisticsViewController.m */; };
 		892A254A18382BAE00ACE579 /* Insomnia.m in Sources */ = {isa = PBXBuildFile; fileRef = 8901136F18381C2F00303165 /* Insomnia.m */; };
+		893728871861E12400CFBF12 /* TrackersViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 893728861861E12300CFBF12 /* TrackersViewController_iPad.xib */; };
 		8985C10A18343078000783B8 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C0FD18343078000783B8 /* libcrypto.a */; };
 		8985C10B18343078000783B8 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C0FE18343078000783B8 /* libcurl.a */; };
 		8985C10C18343078000783B8 /* libdht.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C0FF18343078000783B8 /* libdht.a */; };
@@ -317,6 +318,7 @@
 		7EDFDA5F1391E127004E3BB0 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
 		8901136E18381C2F00303165 /* Insomnia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Insomnia.h; sourceTree = "<group>"; };
 		8901136F18381C2F00303165 /* Insomnia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Insomnia.m; sourceTree = "<group>"; };
+		893728861861E12300CFBF12 /* TrackersViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackersViewController_iPad.xib; sourceTree = "<group>"; };
 		8985C0FD18343078000783B8 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = libraries/armv6/lib/libcrypto.a; sourceTree = "<group>"; };
 		8985C0FE18343078000783B8 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = libraries/armv6/lib/libcurl.a; sourceTree = "<group>"; };
 		8985C0FF18343078000783B8 /* libdht.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdht.a; path = libraries/armv6/lib/libdht.a; sourceTree = "<group>"; };
@@ -704,6 +706,7 @@
 			isa = PBXGroup;
 			children = (
 				89ADFCD6184B339200122A67 /* TrackersViewController.xib */,
+				893728861861E12300CFBF12 /* TrackersViewController_iPad.xib */,
 				7E255BDB13CC3BFC009783B4 /* FileListViewController.xib */,
 				CE206DC116CCB4EE00F1F27B /* FileListController_iPad.xib */,
 				7E9B37EA13960ABF006D55C7 /* TorrentAutoDiscoveryController.xib */,
@@ -990,6 +993,7 @@
 				7448A6951258B025009BAF99 /* url_ex in Resources */,
 				74E1BCB81259836F00F8842E /* magnet_ex in Resources */,
 				74E1BCC512598E4100F8842E /* first_run_message in Resources */,
+				893728871861E12400CFBF12 /* TrackersViewController_iPad.xib in Resources */,
 				74861F731259DBA0005FDE74 /* gpl-3.0.txt in Resources */,
 				74244F8B1259E4D1003EACB1 /* cell-background.png in Resources */,
 				74244FAB1259EE73003EACB1 /* status-view-background.png in Resources */,

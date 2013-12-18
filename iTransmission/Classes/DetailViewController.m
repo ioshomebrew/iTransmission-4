@@ -198,8 +198,30 @@
     [fPeers addObjectsFromArray:[fTorrent peers]];
     int totalSeeder = 0;
     int totalPeers = 0;
-    for (id peer in fPeers) {
-        NSLog(@"%@", peer);
+    for (NSDictionary *peer in fPeers) {
+        /*
+        {
+            Client = "BitTorrent 7.7.3";
+            "DL From Rate" = "4.365";
+            Encryption = 0;
+            Flags = DU;
+            From = 5;
+            IP = "85.59.25.37";
+            Name = "XCOM Enemy Unknown Elite Edition [MULTI][MACOSX][MONEY][WwW.GamesTorrents.CoM]";
+            Port = 53346;
+            Progress = "0.9570978";
+            Seed = 0;
+            "UL To Rate" = "8.198";
+            uTP = 0;
+         
+        }
+        */
+        BOOL isSeed = [[peer valueForKey:@"Seed"] boolValue];
+        if (isSeed) {
+            totalSeeder = totalSeeder + 1;
+        } else {
+            totalPeers = totalPeers + 1;
+        }
     }
     totalSeeder = totalSeeder + [fTorrent webSeedCount];
     [fTorrentSeedersLabel setText:[NSString stringWithFormat:@"%d", totalSeeder]];
@@ -549,8 +571,8 @@
     int totalSeeder = 0;
     int totalPeers = 0;
     for (NSDictionary *peer in fPeers) {
-        NSNumber *seederProgress = [peer objectForKey: @"Progress"];
-        if ([seederProgress floatValue] == 100) {
+        BOOL isSeed = [[peer valueForKey:@"Seed"] boolValue];
+        if (isSeed) {
             totalSeeder = totalSeeder + 1;
         } else {
             totalPeers = totalPeers + 1;
