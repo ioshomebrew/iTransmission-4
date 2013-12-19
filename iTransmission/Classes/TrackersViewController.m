@@ -15,7 +15,7 @@
 @implementation TrackersViewController
 
 - (id)initWithTorrent:(Torrent*)t {
-    self = [super initWithNibName:@"FileListViewController" bundle:nil];
+    self = [super initWithNibName:@"TrackersViewController" bundle:nil];
     if (self) {
         fTorrent = t;
         self.title = @"Trackers";
@@ -51,7 +51,9 @@
     [Trackers removeAllObjects];
     for (id object in [fTorrent allTrackerStats]) {
         if ([object isKindOfClass:[TrackerNode class]]) {
-            [Trackers addObject:object];
+            if (object != nil) {
+                [Trackers addObject:object];
+            }
         }
     }
 }
@@ -112,13 +114,10 @@
 }
 
 - (void)removeButtonTouched {
-    NSMutableArray *indexArray = [[NSMutableArray alloc] init];
     for (TrackerCell *cell in SelectedItems) {
         [fTorrent removeTrackers:[NSSet setWithObject: [[cell TrackerURL] text]]];
-        [indexArray addObject:[self.tableView indexPathForCell:(UITableViewCell*)cell]];
     }
     [self reloadTrackers];
-    [self.tableView deleteRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationLeft];
     [self.tableView reloadData];
 }
 - (void)editButtonTouched {
@@ -137,7 +136,6 @@
 
 - (void)doneButtonTouched {
     for (UIBarButtonItem *item in self.toolbarItems) {
-        NSLog(@"Disabling all");
         [item setEnabled:NO];
     }
     [self.tableView setEditing:NO animated:YES];
@@ -161,6 +159,7 @@
         TrackerCell *cell = (TrackerCell*)[tableView cellForRowAtIndexPath:indexPath];
         [SelectedItems addObject:cell];
     }
+    [self reloadTrackers];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -213,6 +212,7 @@
 }
 
 - (void)updateCell:(TrackerCell *)cell {
+    /*
     if (cell == nil) {
         cell = [TrackerCell cellFromNib];
     }
@@ -222,28 +222,34 @@
     TrackerNode *node = [Trackers objectAtIndex:indexPath.row];
     
     cell.TrackerURL.text = node.fullAnnounceAddress;
-    NSLog(@"Address: %@", node.fullAnnounceAddress);
     
     cell.TrackerLastAnnounceTime.text = node.lastAnnounceStatusString;
-    NSLog(@"Last Announce Status String: %@", node.lastAnnounceStatusString);
     
     if (!([node totalSeeders]) || [node totalSeeders] == -1) {
         cell.SeedNumber.text = @"0";
     } else {
         cell.SeedNumber.text = [NSString stringWithFormat:@"%d", [node totalSeeders]];
-        NSLog(@"Total Seeders: %d", [node totalSeeders]);
     }
     
     if (!([node totalLeechers]) || [node totalLeechers] == -1) {
         cell.PeerNumber.text = @"0";
     } else {
         cell.PeerNumber.text = [NSString stringWithFormat:@"%d", [node totalLeechers]];
-        NSLog(@"Total Leechers: %d", [node totalLeechers]);
     }
+    if ((SelectedItems != nil) && ([SelectedItems count] > 0)) {
+        for (TrackerCell *cell in SelectedItems) {
+            [self.tableView selectRowAtIndexPath:[self.tableView indexPathForCell:(UITableViewCell*)cell]
+                                        animated:NO
+                                  scrollPosition:UITableViewScrollPositionNone];
+        }
+    }
+    
     [self.tableView reloadData];
+     */
 }
 
 - (void)updateUI {
+    
     [super updateUI];
     for (TrackerCell *cell in [self.tableView visibleCells]) {
         [self performSelector:@selector(updateCell:) withObject:cell afterDelay:0.0f];
@@ -262,23 +268,18 @@
     TrackerNode *node = [Trackers objectAtIndex:indexPath.row];
     
     cell.TrackerURL.text = node.fullAnnounceAddress;
-    NSLog(@"Address: %@", node.fullAnnounceAddress);
     
     cell.TrackerLastAnnounceTimeLabel.text = node.lastAnnounceStatusString;
-    NSLog(@"Last Announce Status String: %@", node.lastAnnounceStatusString);
     
     if (!([node totalSeeders]) || [node totalSeeders] == -1) {
-        cell.SeedNumber.text = @"0";
     } else {
         cell.SeedNumber.text = [NSString stringWithFormat:@"%d", [node totalSeeders]];
-        NSLog(@"Total Seeders: %d", [node totalSeeders]);
     }
     
     if (!([node totalLeechers]) || [node totalLeechers] == -1) {
         cell.PeerNumber.text = @"0";
     } else {
         cell.PeerNumber.text = [NSString stringWithFormat:@"%d", [node totalLeechers]];
-        NSLog(@"Total Leechers: %d", [node totalLeechers]);
     }
     return cell;
 }
