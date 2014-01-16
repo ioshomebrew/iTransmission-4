@@ -10,6 +10,7 @@ I've already added lots of stuff.
 Compiling libraries
 -----
 ~~You may wish to compile iTransmission libraries yourself~~
+
 There is no longer a need to compile iTransmission libraries yourself. I've already done that for you. The libraries include armv6, armv7, armv7s and arm64. They are in iTransmission/libraries folder, in zip format. Unzip them and you can run, build, etc. the project from XCode freely.
 
 Yet, if you still want to be adventurous, I have added the required files in a folder named 'compilation'.
@@ -19,7 +20,8 @@ Compiling app
 Compiling may be a bit hard, and depends upon your target. I will cover the basics below. I assume that you are using Mac OS X and have XCode.
 You can't compile the app without either of those. But, I've included a pre-compiled app. Use that with Installation Option I or II.
 
-1) The app will never be accepted in the app store. Therefore, we do not need codesigning. But XCode requires us to codesign each and every app. Assuming I use the iOS 5.1 SDK, I can disable this check by opening /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/SDKSettings.plist with XCode and change 
+1. The app will never be accepted in the app store. Therefore, we do not need codesigning. But XCode requires us to codesign each and every app. Assuming I use the iOS 5.1 SDK, I can disable this check by opening /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/SDKSettings.plist with a text editor (not XCode) and change the following values 
+
 ```
 <key>CODE_SIGNING_REQUIRED</key>
 <string>YES</string>
@@ -29,10 +31,11 @@ to
 <key>CODE_SIGNING_REQUIRED</key>
 <string>NO</string>
 ```
-and 
+
+
 ```
 <key>ENTITLEMENTS_REQUIRED</key>
-<string>NO</string>
+<string>YES</string>
 ```
 to 
 ```
@@ -40,39 +43,36 @@ to
 <string>NO</string>
 ```
 
-Mind that if you change this, XCode, from now on, will no longer prompt you to codesign ANY of your apps. If  you assign a codesignature to your app, it will be signed, but no errors or warnings will appear if you don't.
+2. This project uses IOKit framework , which is a private framework. But, I found it's headers. Decompress IOKit Headers.zip, and copy the resulting Headers folder to /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/IOKit.framework
 
-2) This project uses IOKit framework , which is a private framework. But, I found it's headers. Decompress IOKit Headers.zip, and copy the resulting Headers folder to /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/IOKit.framework
+3. I've added a build rule to compile the project using GCC 4.8, which I require for compiling this app for armv6. If you want to compile it for armv7s or arm64, remove it.
 
-3) I've added a build rule to compile the project using GCC 4.8, which I require for compiling this app for armv6. If you want to compile it for armv7s or arm64, remove it.
-
-4) You may also want to change the minimum deployment target to your choice and the base SDK to your choice also
+4. You may also want to change the minimum deployment target to your choice and the base SDK to your choice also
 
 Installation
 -----
 Installation is the easiest part.
 You will need a jailbroken iDevice.
 
-OPTION I\n
-1) Put the compiled .app in the /Applications folder of your iDevice.
-2) SSH into your device and execute the following command(without double-quotes):"cd /Applica*/iTransm*;chmod 777 ./iTransmission; cd ~/;"
+**OPTION I**
 
-OPTION II\n
-1) Make a folder. Name doesn't matter, but using "iTransmission" here.
-2) Open the folder.
-3) Make a folder named "Payload". Name matters here.
-4) Copy the compiled .app into the Payload folder.
-5) Compress(Zip only) the iTransmission folder to iTransmission.zip
-6) Rename iTransmission.zip to iTransmission.ipa
+1. Put the compiled .app in the /Applications folder of your iDevice.
+2. SSH into your device and execute the following command(without double-quotes):"cd /Applica*/iTransm*;chmod 777 ./iTransmission; cd ~/;"
+
+**OPTION II**
+
+1. Make a folder. Name doesn't matter, but using "iTransmission" here.
+2. Open the folder.
+3. Make a folder named "Payload". Name matters here.
+4. Copy the compiled .app into the Payload folder.
+5. Compress(Zip only) the iTransmission folder to iTransmission.zip
+6. Rename iTransmission.zip to iTransmission.ipa
 
 Credits
 -------
-[Transmission](http://www.transmissionbt.com/) - A Fast, Easy and Free BitTorrent Client
-
-[ccp0101](https://github.com/ccp0101)
-
-[ioshomebrew](https://github.com/ioshomebrew)
-
-[fopino](https://github.com/fopino)
+- [Transmission](http://www.transmissionbt.com/)
+- [ccp0101](https://github.com/ccp0101)
+- [ioshomebrew](https://github.com/ioshomebrew)
+- [fopino](https://github.com/fopino)
 
 Mail me if I missed somebody.
