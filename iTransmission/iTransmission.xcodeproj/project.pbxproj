@@ -447,7 +447,6 @@
 		8901136F18381C2F00303165 /* Insomnia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Insomnia.m; sourceTree = "<group>"; };
 		893728861861E12300CFBF12 /* TrackersViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackersViewController_iPad.xib; sourceTree = "<group>"; };
 		898124BA18884D2900DB955B /* iTransmission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTransmission.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		898124BB18884D2900DB955B /* iTransmission copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "iTransmission copy-Info.plist"; path = "/Users/dhruvitraithatha/GitHub/iTransmission/iTransmission/iTransmission copy-Info.plist"; sourceTree = "<absolute>"; };
 		8985C0FD18343078000783B8 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = libraries/armv6/lib/libcrypto.a; sourceTree = "<group>"; };
 		8985C0FE18343078000783B8 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = libraries/armv6/lib/libcurl.a; sourceTree = "<group>"; };
 		8985C0FF18343078000783B8 /* libdht.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdht.a; path = libraries/armv6/lib/libdht.a; sourceTree = "<group>"; };
@@ -677,7 +676,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				898124BB18884D2900DB955B /* iTransmission copy-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1430,10 +1428,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
+				ARCHS = armv6;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
@@ -1469,7 +1464,7 @@
 				SDKROOT = iphoneos5.1;
 				SHARED_PRECOMPS_DIR = "";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
-				VALID_ARCHS = "armv6 armv7";
+				VALID_ARCHS = armv6;
 			};
 			name = Debug;
 		};
@@ -1477,10 +1472,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
+				ARCHS = armv6;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
@@ -1515,7 +1507,7 @@
 				SHARED_PRECOMPS_DIR = "";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv6 armv7";
+				VALID_ARCHS = armv6;
 			};
 			name = Release;
 		};
@@ -1560,10 +1552,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
+				ARCHS = armv6;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
@@ -1598,7 +1587,7 @@
 				SHARED_PRECOMPS_DIR = "";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv6 armv7";
+				VALID_ARCHS = armv6;
 			};
 			name = Distribution;
 		};

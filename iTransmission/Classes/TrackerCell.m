@@ -12,7 +12,6 @@
 
 @synthesize TrackerLastAnnounceTime = fTime;
 @synthesize TrackerURL = fURL;
-@synthesize TrackerLastAnnounceTimeLabel = fTimeLabel;
 @synthesize SeedNumber = fSeedNumber;
 @synthesize SeedLabel = fSeedLabel;
 @synthesize PeerNumber = fPeerNumber;
@@ -61,7 +60,6 @@
 
 - (void)dealloc {
     self.TrackerLastAnnounceTime = nil;
-    self.TrackerLastAnnounceTimeLabel = nil;
     self.TrackerURL = nil;
     self.PeerLabel = nil;
     self.PeerNumber = nil;

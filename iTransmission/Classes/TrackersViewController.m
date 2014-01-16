@@ -201,7 +201,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
-            NSLog(@"Count: %d", [Trackers count]);
+            NSLog(@"Count: %lu", (unsigned long)[Trackers count]);
         case 0:
             return [Trackers count];
             break;
@@ -212,7 +212,6 @@
 }
 
 - (void)updateCell:(TrackerCell *)cell {
-    /*
     if (cell == nil) {
         cell = [TrackerCell cellFromNib];
     }
@@ -228,13 +227,13 @@
     if (!([node totalSeeders]) || [node totalSeeders] == -1) {
         cell.SeedNumber.text = @"0";
     } else {
-        cell.SeedNumber.text = [NSString stringWithFormat:@"%d", [node totalSeeders]];
+        cell.SeedNumber.text = [NSString stringWithFormat:@"%ld", (long)[node totalSeeders]];
     }
     
     if (!([node totalLeechers]) || [node totalLeechers] == -1) {
         cell.PeerNumber.text = @"0";
     } else {
-        cell.PeerNumber.text = [NSString stringWithFormat:@"%d", [node totalLeechers]];
+        cell.PeerNumber.text = [NSString stringWithFormat:@"%ld", (long)[node totalLeechers]];
     }
     if ((SelectedItems != nil) && ([SelectedItems count] > 0)) {
         for (TrackerCell *cell in SelectedItems) {
@@ -245,14 +244,13 @@
     }
     
     [self.tableView reloadData];
-     */
 }
 
 - (void)updateUI {
     
     [super updateUI];
     for (TrackerCell *cell in [self.tableView visibleCells]) {
-        [self performSelector:@selector(updateCell:) withObject:cell afterDelay:0.0f];
+        [self performSelector:@selector(updateCell:) withObject:cell afterDelay:1];
     }
 }
 
@@ -269,17 +267,18 @@
     
     cell.TrackerURL.text = node.fullAnnounceAddress;
     
-    cell.TrackerLastAnnounceTimeLabel.text = node.lastAnnounceStatusString;
+    cell.TrackerLastAnnounceTime.text = node.lastAnnounceStatusString;
     
     if (!([node totalSeeders]) || [node totalSeeders] == -1) {
+        cell.SeedNumber.text = @"0";
     } else {
-        cell.SeedNumber.text = [NSString stringWithFormat:@"%d", [node totalSeeders]];
+        cell.SeedNumber.text = [NSString stringWithFormat:@"%ld", (long)[node totalSeeders]];
     }
     
     if (!([node totalLeechers]) || [node totalLeechers] == -1) {
         cell.PeerNumber.text = @"0";
     } else {
-        cell.PeerNumber.text = [NSString stringWithFormat:@"%d", [node totalLeechers]];
+        cell.PeerNumber.text = [NSString stringWithFormat:@"%ld", (long)[node totalLeechers]];
     }
     return cell;
 }

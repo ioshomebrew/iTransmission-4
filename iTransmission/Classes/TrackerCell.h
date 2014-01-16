@@ -22,7 +22,6 @@
 
 @property (nonatomic, retain) IBOutlet UILabel *TrackerURL;
 @property (nonatomic, retain) IBOutlet UILabel *TrackerLastAnnounceTime;
-@property (nonatomic, retain) IBOutlet UILabel *TrackerLastAnnounceTimeLabel;
 @property (nonatomic, retain) IBOutlet UILabel *SeedLabel;
 @property (nonatomic, retain) IBOutlet UILabel *SeedNumber;
 @property (nonatomic, retain) IBOutlet UILabel *PeerLabel;
