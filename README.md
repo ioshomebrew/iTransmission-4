@@ -53,11 +53,11 @@ Installation
 Installation is the easiest part.
 You will need a jailbroken iDevice.
 
-OPTION I
+OPTION I\n
 1) Put the compiled .app in the /Applications folder of your iDevice.
 2) SSH into your device and execute the following command(without double-quotes):"cd /Applica*/iTransm*;chmod 777 ./iTransmission; cd ~/;"
 
-OPTION II
+OPTION II\n
 1) Make a folder. Name doesn't matter, but using "iTransmission" here.
 2) Open the folder.
 3) Make a folder named "Payload". Name matters here.
