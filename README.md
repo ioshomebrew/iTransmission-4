@@ -1,53 +1,72 @@
-transmission-os
+iTransmission 4
 ==========
-This is a set of scripts to make it easier to cross-compile transmission for iOS and package it (mainly to use in Apple TV 2nd gen, but also works on iPod/iPhone/iPad as well).
+iTransmission, basically, is a torrent client, which uses libtransmission as it's backend.
+So, what is iTransmission 4? iTransmission , originally, was developed by [ccp0101](https://github.com/ccp0101). It is no longer kept active. I plan on keeping iTransmision 4 active, as well as building it for older devices (currently as old as iOS 4/iPT 2).
+This is an extension to [ioshomebrew's](https://github.com/ioshomebrew) iTransmission 3, which is basically a torrent client for iOS, which I plan on keeping active and adding new features to as per my requirements and requests from you i.e. the user.
+I've already added lots of stuff.
 
-Usage
+Compiling libraries
 -----
+~~You may wish to compile iTransmission libraries yourself~~
+There is no longer a need to compile iTransmission libraries yourself. I've already done that for you. The libraries include armv6, armv7, armv7s and arm64. They are in iTransmission/libraries folder, in zip format. Unzip them and you can run, build, etc. the project from XCode freely.
+Yet, if you still want to be adventurous, I have added the required files in a folder named 'compilation'.
 
-If you want to compile transmission yourself, check sections _Compiling_ and _Installation_.  
-If you just want transmission running, you have two faster options:  
-
-- install it through Cydia/nikoTV/apt-get as the package is online in the [BigBoss](http://apt.thebigboss.org/onepackage.php?bundleid=cc.fopina.transmission) repository.  
-
-	if you're nikoTV-less apple tv 2g, simply do:
-
-		ssh root@YOUR_APPLETV_IP
-		apt-get update
-		apt-get install cc.fopina.transmission
-
-- [Download](https://github.com/fopina/transmission-ios/downloads) the .deb file and check the _Installation_ section.  
-
-
-Compiling
+Compiling app
 -----
+Compiling may be a bit hard, and depends upon your target. I will cover the basics below. I assume that you are using Mac OS X and have XCode.
+You can't compile the app without either of those. But, I've included a pre-compiled app. Use that with Installation Option I or II.
 
-Using the terminal (assuming you have a working installation of XCode and git):  
-clone this repository
+1) The app will never be accepted in the app store. Therefore, we do not need codesigning. But XCode requires us to codesign each and every app. Assuming I use the iOS 5.1 SDK, I can disable this check by opening /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/SDKSettings.plist with XCode and change 
+```
+<key>CODE_SIGNING_REQUIRED</key>
+<string>YES</string>
+```
+to 
+```
+<key>CODE_SIGNING_REQUIRED</key>
+<string>NO</string>
+```
+and 
+```
+<key>ENTITLEMENTS_REQUIRED</key>
+<string>NO</string>
+```
+to 
+```
+<key>ENTITLEMENTS_REQUIRED</key>
+<string>NO</string>
+```
 
-	git clone git@github.com:fopina/transmission-ios.git
-compile transmission and dependencies
+Mind that if you change this, XCode, from now on, will no longer prompt you to codesign ANY of your apps. If  you assign a codesignature to your app, it will be signed, but no errors or warnings will appear if you don't.
 
-	cd transmission-ios
-	./build.sh
-create the deb file
+2) This project uses IOKit framework , which is a private framework. But, I found it's headers. Decompress IOKit Headers.zip, and copy the resulting Headers folder to /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/IOKit.framework
 
-	./create_deb.sh
+3) I've added a build rule to compile the project using GCC 4.8, which I require for compiling this app for armv6. If you want to compile it for armv7s or arm64, remove it.
+
+4) You may also want to change the minimum deployment target to your choice and the base SDK to your choice also
 
 Installation
 -----
+Installation is the easiest part.
+You will need a jailbroken iDevice.
 
-copy it to jailbroken AppleTV 2G (or any other iOS device)
+OPTION I
+1) Put the compiled .app in the /Applications folder of your iDevice.
+2) SSH into your device and execute the following command(without double-quotes):"cd /Applica*/iTransm*;chmod 777 ./iTransmission; cd ~/;"
 
-	scp transmission-VERSION.deb root@YOUR_DEVICE_IP
-install it in the device
+OPTION II
+1) Make a folder. Name doesn't matter, but using "iTransmission" here.
+2) Open the folder.
+3) Make a folder named "Payload". Name matters here.
+4) Copy the compiled .app into the Payload folder.
+5) Compress(Zip only) the iTransmission folder to iTransmission.zip
+6) Rename iTransmission.zip to iTransmission.ipa
 
-	ssh root@YOUR_DEVICE_IP
-	dpkg -i transmission-VERSION.deb
-	
-It's done. The post installation script has set up transmission to run on boot and started it as well, so you can go straight ahead and connect to http://YOUR_DEVICE_IP:9091/ for the transmission WebUI.  
-Personally, regarding Apple TV usage, I like to install the XBMC Transmission plugin as well.
-
-Links
+Credits
 -------
 [Transmission](http://www.transmissionbt.com/) - A Fast, Easy and Free BitTorrent Client
+[ccp0101](https://github.com/ccp0101)
+[ioshomebrew](https://github.com/ioshomebrew)
+[fopino](https://github.com/fopino)
+
+Mail me if I missed somebody.
