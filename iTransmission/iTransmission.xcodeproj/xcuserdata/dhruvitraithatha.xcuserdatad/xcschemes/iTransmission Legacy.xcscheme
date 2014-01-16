@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8981243218884D2900DB955B"
-               BuildableName = "iTransmission copy.app"
-               BlueprintName = "iTransmission"
+               BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+               BuildableName = "iTransmission.app"
+               BlueprintName = "iTransmission Legacy"
                ReferencedContainer = "container:iTransmission.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8981243218884D2900DB955B"
-            BuildableName = "iTransmission copy.app"
-            BlueprintName = "iTransmission"
+            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BuildableName = "iTransmission.app"
+            BlueprintName = "iTransmission Legacy"
             ReferencedContainer = "container:iTransmission.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -51,9 +51,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8981243218884D2900DB955B"
-            BuildableName = "iTransmission copy.app"
-            BlueprintName = "iTransmission"
+            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BuildableName = "iTransmission.app"
+            BlueprintName = "iTransmission Legacy"
             ReferencedContainer = "container:iTransmission.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -69,9 +69,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8981243218884D2900DB955B"
-            BuildableName = "iTransmission copy.app"
-            BlueprintName = "iTransmission"
+            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BuildableName = "iTransmission.app"
+            BlueprintName = "iTransmission Legacy"
             ReferencedContainer = "container:iTransmission.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
