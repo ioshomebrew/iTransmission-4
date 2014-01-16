@@ -1,7 +1,9 @@
 iTransmission 4
 ==========
 iTransmission, basically, is a torrent client, which uses libtransmission as it's backend.
+
 So, what is iTransmission 4? iTransmission , originally, was developed by [ccp0101](https://github.com/ccp0101). It is no longer kept active. I plan on keeping iTransmision 4 active, as well as building it for older devices (currently as old as iOS 4/iPT 2).
+
 This is an extension to [ioshomebrew's](https://github.com/ioshomebrew) iTransmission 3, which is basically a torrent client for iOS, which I plan on keeping active and adding new features to as per my requirements and requests from you i.e. the user.
 I've already added lots of stuff.
 
@@ -9,6 +11,7 @@ Compiling libraries
 -----
 ~~You may wish to compile iTransmission libraries yourself~~
 There is no longer a need to compile iTransmission libraries yourself. I've already done that for you. The libraries include armv6, armv7, armv7s and arm64. They are in iTransmission/libraries folder, in zip format. Unzip them and you can run, build, etc. the project from XCode freely.
+
 Yet, if you still want to be adventurous, I have added the required files in a folder named 'compilation'.
 
 Compiling app
@@ -65,8 +68,11 @@ OPTION II
 Credits
 -------
 [Transmission](http://www.transmissionbt.com/) - A Fast, Easy and Free BitTorrent Client
+
 [ccp0101](https://github.com/ccp0101)
+
 [ioshomebrew](https://github.com/ioshomebrew)
+
 [fopino](https://github.com/fopino)
 
 Mail me if I missed somebody.
