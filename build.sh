@@ -9,7 +9,8 @@ export TEMP_DIR="$PWD/temp"
 export PATCH_DIR="$PWD/patches"
 export DEPENDENCY_DIR="$PWD/dependency"
 export BUILD_FILTER="ssl,curl,trans,libev"
-export GCC_DIR="/usr/local/Cellar/gcc48/4.8.2/bin"
+export TOOL_DIR="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin"
+export Min_IPHONE_OS=7.0
 
 function do_abort {
 	echo $1 >&2
@@ -29,6 +30,9 @@ function do_loadenv {
 	elif [ ${ARCH} = "armv7s" ]
 		then
 		PLATFORM="iPhoneOS"
+	elif [ ${ARCH} = "arm64" ]
+		then
+		PLATFORM="iPhoneOS"
 	elif [ ${ARCH} = "armv6" ]
 		then
 		PLATFORM="iPhoneOS"
@@ -46,21 +50,21 @@ function do_export {
 		export DEVROOT="${DEVELOPER_DIR}/Platforms/${PLATFORM}.platform/Developer"
 		export SDKROOT="${DEVELOPER_DIR}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}$SDK_VERSION.sdk"
 		export LD=${DEVROOT}/usr/bin/ld
-		export CPP="${DEVROOT}/usr/bin/cpp"
-		export CXX="${DEVROOT}/usr/bin/g++"
+		export CPP="${TOOL_DIR}/cpp"
+		export CXX="${TOOL_DIR}/clang++" 
 		unset AR
 		unset AS
 		export NM=${DEVROOT}/usr/bin/nm
-		export CXXCPP="${DEVROOT}/usr/bin/cpp"
-		export RANLIB="${DEVROOT}/usr/bin/ranlib"
-		export CFLAGS="-arch ${ARCH} -isysroot ${SDKROOT}"
+		export CXXCPP="${TOOL_DIR}/cpp"
+		export RANLIB="${TOOL_DIR}ranlib"
+		export CFLAGS="-arch ${ARCH} -isysroot ${SDKROOT} -miphoneos-version-min=${Min_IPHONE_OS}"
 		export LDFLAGS="-L${SDKROOT}/usr/lib -L${DEVROOT}/usr/lib -isysroot ${SDKROOT} -Wl,-syslibroot $SDKROOT"
 		export HAVE_CXX="yes"
 	fi
-	export CC="${DEVROOT}/usr/bin/gcc"
-	export CFLAGS="${CFLAGS} -I${BUILD_DIR}/include -I${SDKROOT}/usr/include -framework CoreFoundation -I${BUILD_DIR}/include -I${SDKROOT}/usr/include -pipe -no-cpp-precomp"
+	export CC="${TOOL_DIR}/clang"
+	export CFLAGS="${CFLAGS} -I${BUILD_DIR}/include -I${SDKROOT}/usr/include -pipe -no-cpp-precomp"
 	export CXXFLAGS="${CFLAGS}"
-	export LDFLAGS="-L${SDKROOT}/usr/lib -L${BUILD_DIR}/lib -liconv -L${BUILD_DIR}/lib -pipe -no-cpp-precomp ${LDFLAGS}"
+	export LDFLAGS="-L${SDKROOT}/usr/lib -L${BUILD_DIR}/lib -pipe -no-cpp-precomp ${LDFLAGS}"
 	export COMMON_OPTIONS="--disable-shared --enable-static --disable-ipv6 --disable-manual "
 	export HAVE_CXX="yes"
 	
@@ -197,14 +201,13 @@ function do_transmission {
 	popd
 	
 	do_export
-	
-	export LIBCURL_LIBS="-L${BUILD_DIR}/lib"
-	export LIBCURL_CFLAGS="-I${BUILD_DIR}/include/curl"
-	export LDFLAGS= "${LDFLAGS} -lcurl"
 
 	if [[ ! -z $DONT_OVERWRITE ]]; then
 		make clean
 	fi
+
+	export CFLAGS = "${CFLAGS} -framework CoreFoundation"
+	export LDFLAGS = "${LDFLAGS} -lcurl -liconv"
 
 	./configure --prefix="${BUILD_DIR}" ${COMMON_OPTIONS} --enable-utp --enable-largefile --disable-nls --enable-lightweight --enable-cli --enable-daemon --disable-mac --with-kqueue --with-gtk=no || do_abort "$FUNCNAME: configure failed "
 	
