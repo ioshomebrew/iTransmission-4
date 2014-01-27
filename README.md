@@ -43,7 +43,7 @@ to
 <string>NO</string>
 ```
 
-2. This project uses IOKit framework , which is a private framework. But, I found it's headers. Decompress IOKit Headers.zip, and copy the resulting Headers folder to /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/IOKit.framework
+2. This project uses IOKit framework , which is a private framework. But, I found it's headers. Decompress IOKit Headers.zip(present in "Project" directory), and copy the resulting Headers folder to /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/IOKit.framework
 
 3. I've added a build rule to compile the project using GCC 4.8, which I require for compiling this app for armv6. If you want to compile it for armv7s or arm64, remove it.
 
