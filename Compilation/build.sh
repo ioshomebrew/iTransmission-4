@@ -18,7 +18,7 @@ function do_abort {
 }
 
 function do_loadenv {
-	export BUILD_DIR="$PWD/iTransmission/libraries/${ARCH}"
+	export BUILD_DIR="$PWD/../Project/libraries/${ARCH}"
 	export TRANS_LINKER_FLAGS="-framework CoreFoundation "
 
 	if [ ${ARCH} = "i386" ]
