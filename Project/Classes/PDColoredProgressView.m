@@ -73,7 +73,6 @@ static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloa
 	CGGradientRelease(gradient);
 }
 
-
 @implementation PDColoredProgressView
 @synthesize progress = _progress;
 
@@ -93,42 +92,21 @@ static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloa
 - (void)drawRect:(CGRect)rect {	
 		CGContextRef ctx = UIGraphicsGetCurrentContext();
 		
-		//draw first white layer
-		addRoundedRectToPath(ctx, rect, 4, 4);
+		// draw rectangle
 		CGContextClip(ctx);
 		
-		CGContextSetRGBFillColor(ctx, 1, 1, 1, 1);
+        // fill empty progress bar with white
+		CGContextSetRGBFillColor(ctx, 102.0f/255.0f, 102.0f/255.0f, 102.0f/255.0f, 1);
 		CGContextFillRect(ctx, rect);
-		
-		//draw lower gray line
-		CGContextSetRGBStrokeColor(ctx, 178.0/255.0, 178.0/255.0, 178.0/255.0, 0.9);
-		CGContextSetLineWidth(ctx, 2);
-		CGContextMoveToPoint(ctx, 2.2, rect.size.height);
-		CGContextAddLineToPoint(ctx, rect.size.width - 2.2, rect.size.height);
-		CGContextStrokePath(ctx);
 		
 		//fill upperhalf with light grey
 		CGRect upperhalf = rect;
 		upperhalf.size.height /= 1.75;
 		upperhalf.origin.y = 0;
 		
-		CGContextSetRGBFillColor(ctx, 202.0/255.0, 202.0/255.0, 202.0/255.0, 0.9);
-		CGContextFillRect(ctx, upperhalf);
-		
-		//fill a part of the upper half with a somewhat darker grey
-		CGRect upperhalfTop = upperhalf;
-		upperhalfTop.size.height /= 2.7;
-		CGContextSetRGBFillColor(ctx, 163.0/255.0, 163.0/255.0, 163.0/255.0, 0.8);
-		CGContextFillRect(ctx, upperhalfTop);
-		
-		//fill the progress part with our tintcolor
-		//if(_tintColor == nil)
-		//	_tintColor = [UIColor colorWithRed: 43.0/255.0 green: 134.0/255.0 blue: 225.0/255.0 alpha: 1];
-		
 		CGRect progressRect = rect;
 		progressRect.size.width *= [self progress];
 		
-		addRoundedRectToPath(ctx, progressRect, 4, 4);
 		CGContextClip(ctx);
 		
 		CGContextSetFillColorWithColor(ctx, [_tintColor CGColor]);
@@ -138,20 +116,6 @@ static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloa
 		progressRect.origin.x += 0.625;
 		progressRect.size.height -= 1.25;
 		progressRect.origin.y += 0.625;
-		
-		addRoundedRectToPath(ctx, progressRect, 4, 4);
-		CGContextClip(ctx);
-		CGContextSetLineWidth(ctx, 1);
-		CGContextSetRGBStrokeColor(ctx, 20.0/255.0, 20.0/255.0, 20.0/255.0, 0.6);
-		CGContextStrokeRect(ctx, progressRect);
-		
-		//draw white linear gradient over upperhalf
-		CGFloat colors[8] = {
-			1, 1, 1, 0.45,
-			1, 1, 1, 0.65
-		};
-		
-		fillRectWithLinearGradient(ctx, upperhalf, colors, 2, nil);
 }
 
 - (void) setTintColor: (UIColor *) aColor {
@@ -170,9 +134,14 @@ static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloa
 	[self setTintColor:[UIColor colorWithRed:98.0f/255.0f green:183.0f/255.0f blue:240.0f/255.0f alpha:1.0f]];
 }
 
-- (void)useGrayColor
+- (void)useBlackColor
 {
-	[self setTintColor:[UIColor colorWithRed:160.0f/255.0f green:160.0f/255.0f blue:160.0f/255.0f alpha:1.0f]];
+    [self setTintColor:[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1.0f]];
+}
+
+- (void)useWhiteColor
+{
+    [self setTintColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f]];
 }
 
 - (void)dealloc {

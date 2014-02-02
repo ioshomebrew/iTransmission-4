@@ -190,7 +190,7 @@
 
 - (void)hide
 {
-    [self.parentViewController dismissModalViewControllerAnimated:YES];
+    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad

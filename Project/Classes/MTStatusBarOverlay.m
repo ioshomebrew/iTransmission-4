@@ -378,7 +378,7 @@ kDetailViewWidth, kHistoryTableRowHeight*kMaxHistoryTableRowCount + kStatusBarHe
 		finishedLabel_.backgroundColor = [UIColor clearColor];
 		finishedLabel_.hidden = YES;
 		finishedLabel_.text = kFinishedText;
-		finishedLabel_.textAlignment = UITextAlignmentCenter;
+		finishedLabel_.textAlignment = NSTextAlignmentCenter;
 		finishedLabel_.font = [UIFont boldSystemFontOfSize:kFinishedFontSize];
 		[self addSubviewToBackgroundView:finishedLabel_];
 
@@ -387,9 +387,9 @@ kDetailViewWidth, kHistoryTableRowHeight*kMaxHistoryTableRowCount + kStatusBarHe
 		statusLabel1_.backgroundColor = [UIColor clearColor];
 		statusLabel1_.shadowOffset = CGSizeMake(0, 1);
 		statusLabel1_.font = [UIFont boldSystemFontOfSize:kStatusLabelSize];
-		statusLabel1_.textAlignment = UITextAlignmentCenter;
+		statusLabel1_.textAlignment = NSTextAlignmentCenter;
 		statusLabel1_.numberOfLines = 1;
-		statusLabel1_.lineBreakMode = UILineBreakModeTailTruncation;
+		statusLabel1_.lineBreakMode = NSLineBreakByTruncatingTail;
 		statusLabel1_.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		[self addSubviewToBackgroundView:statusLabel1_];
 
@@ -398,9 +398,9 @@ kDetailViewWidth, kHistoryTableRowHeight*kMaxHistoryTableRowCount + kStatusBarHe
 		statusLabel2_.shadowOffset = CGSizeMake(0, 1);
 		statusLabel2_.backgroundColor = [UIColor clearColor];
 		statusLabel2_.font = [UIFont boldSystemFontOfSize:kStatusLabelSize];
-		statusLabel2_.textAlignment = UITextAlignmentCenter;
+		statusLabel2_.textAlignment = NSTextAlignmentCenter;
 		statusLabel2_.numberOfLines = 1;
-		statusLabel2_.lineBreakMode = UILineBreakModeTailTruncation;
+		statusLabel2_.lineBreakMode = NSLineBreakByTruncatingTail;
 		statusLabel2_.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		[self addSubviewToBackgroundView:statusLabel2_];
 

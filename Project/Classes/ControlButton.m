@@ -37,9 +37,9 @@
 {
 	self.gradientColors = [NSArray arrayWithObjects:
 						   [UIColor lightGrayColor],
-						   [UIColor darkGrayColor],
-						   [UIColor clearColor],
-						   [UIColor clearColor],
+						   [UIColor lightGrayColor],
+						   [UIColor lightGrayColor],
+						   [UIColor lightGrayColor],
 						   nil];
 	[self.textLabel setTextColor:[UIColor whiteColor]];	
 }
@@ -47,10 +47,10 @@
 - (void)useRedStyle
 {
 	self.gradientColors = [NSArray arrayWithObjects:
-						   [UIColor colorWithRed:219.0f/255.0f green:122.0f/255.0f blue:129.0f/255.0f alpha:1.0f],
-						   [UIColor colorWithRed:191.0f/255.0f green:20.0f/255.0f blue:28.0f/255.0f alpha:1.0f],
-						   [UIColor colorWithRed:162.0f/255.0f green:87.0f/255.0f blue:93.0f/255.0f alpha:1.0f],
-						   [UIColor colorWithRed:143.0f/255.0f green:4.0f/255.0f blue:15.0f/255.0f alpha:1.0f],
+						   [UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:1.0f],
+						   [UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:1.0f],
+						   [UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:1.0f],
+						   [UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:1.0f],
 						   nil];
 	[self.textLabel setTextColor:[UIColor whiteColor]];
 }
@@ -58,10 +58,10 @@
 - (void)useGreenStyle
 {
 	self.gradientColors = [NSArray arrayWithObjects:
-						   [UIColor colorWithRed:109.0f/255.0f green:187.0f/255.0f blue:115.0f/255.0f alpha:1.0f],
-						   [UIColor colorWithRed:0.0f/255.0f green:155.0f/255.0f blue:12.0f/255.0f alpha:1.0f],
-						   [UIColor colorWithRed:74.0f/255.0f green:169.0f/255.0f blue:89.0f/255.0f alpha:1.0f],
-						   [UIColor colorWithRed:4.0f/255.0f green:150.0f/255.0f blue:15.0f/255.0f alpha:1.0f],
+						   [UIColor colorWithRed:0.0f green:1.0f blue:0.0f alpha:1.0f],
+						   [UIColor colorWithRed:0.0f green:1.0f blue:0.0f alpha:1.0f],
+						   [UIColor colorWithRed:0.0f green:1.0f blue:0.0f alpha:1.0f],
+						   [UIColor colorWithRed:0.0f green:1.0f blue:0.0f alpha:1.0f],
 						   nil];
 	[self.textLabel setTextColor:[UIColor whiteColor]];
 }
@@ -115,7 +115,7 @@
 	
 	self.textLabel = [[[UILabel alloc] initWithFrame:self.bounds] autorelease];
 	[self.textLabel setFont:[UIFont boldSystemFontOfSize:10.0f]];
-	[self.textLabel setTextAlignment:UITextAlignmentCenter];
+	[self.textLabel setTextAlignment:NSTextAlignmentCenter];
 	[self.textLabel setBackgroundColor:[UIColor clearColor]];
 	[self.textLabel setShadowOffset:CGSizeZero];
 	[self setTitle:[NSString string] forState:UIControlStateNormal];	
@@ -175,8 +175,7 @@
 
 	CGFloat components[8]; // End color
 	memcpy(components, CGColorGetComponents(startColor), sizeof(CGFloat)*4);
-	memcpy(components + 4, 
-		   CGColorGetComponents(endColor), sizeof(CGFloat)*4);
+	memcpy(components + 4, CGColorGetComponents(endColor), sizeof(CGFloat)*4);
 
     rgbColorspace = CGColorSpaceCreateDeviceRGB();
     glossGradient = CGGradientCreateWithColorComponents(rgbColorspace, components, locations, num_locations);
@@ -187,7 +186,7 @@
     CGContextDrawLinearGradient(currentContext, glossGradient, topCenter, midCenter, 0);
 
     CGGradientRelease(glossGradient);
-    CGColorSpaceRelease(rgbColorspace); 
+    CGColorSpaceRelease(rgbColorspace);
 	
 	CGContextSetLineWidth(currentContext, 1);
 	CGContextSetRGBStrokeColor(currentContext, 20.0/255.0, 20.0/255.0, 20.0/255.0, 0.6);

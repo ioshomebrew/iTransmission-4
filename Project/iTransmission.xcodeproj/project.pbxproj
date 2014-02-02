@@ -1689,7 +1689,7 @@
 				INFOPLIST_FILE = "iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "/Users/beecher/iTransmission-4/Project/libraries/i386/lib";
+				LIBRARY_SEARCH_PATHS = "/Users/beecher/iTransmission-4/Project/libraries/$(CURRENT_ARCH)/lib";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ltransmission",
@@ -1706,7 +1706,7 @@
 				PRODUCT_NAME = iTransmission;
 				SDKROOT = iphoneos7.0;
 				SHARED_PRECOMPS_DIR = "";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/i386/include\"";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -1731,7 +1731,7 @@
 				INFOPLIST_FILE = "iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "/Users/beecher/iTransmission-4/Project/libraries/i386/lib";
+				LIBRARY_SEARCH_PATHS = "/Users/beecher/iTransmission-4/Project/libraries/$(CURRENT_ARCH)/lib";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ltransmission",
@@ -1748,7 +1748,7 @@
 				PRODUCT_NAME = iTransmission;
 				SDKROOT = iphoneos7.0;
 				SHARED_PRECOMPS_DIR = "";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/i386/include\"";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -1774,7 +1774,7 @@
 				INFOPLIST_FILE = "iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "/Users/beecher/iTransmission-4/Project/libraries/i386/lib";
+				LIBRARY_SEARCH_PATHS = "/Users/beecher/iTransmission-4/Project/libraries/$(CURRENT_ARCH)/lib";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ltransmission",
@@ -1791,7 +1791,7 @@
 				PRODUCT_NAME = iTransmission;
 				SDKROOT = iphoneos7.0;
 				SHARED_PRECOMPS_DIR = "";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/i386/include\"";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};

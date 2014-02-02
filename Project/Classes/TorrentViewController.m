@@ -176,7 +176,7 @@
     c.torrent = nil;
     c.controller = self.controller;
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:c] autorelease];
-    [self presentModalViewController:navController animated:YES];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)infoButtonClicked:(id)sender
@@ -189,7 +189,7 @@
 {
     PrefViewController *prefViewController = [[[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil] autorelease];
     UINavigationController *prefNav = [[[UINavigationController alloc] initWithRootViewController:prefViewController] autorelease];
-    [self presentModalViewController:prefNav animated:YES];
+    [self presentViewController:prefNav animated:YES completion:nil];
 }
 
 - (void)controlButtonClicked:(id)sender
@@ -225,7 +225,7 @@
 	else if ([t isActive] && ![t isComplete])
 		[cell.progressView useBlueColor];
 	else if (![t isActive])
-		[cell.progressView useGrayColor];
+		[cell.progressView useBlackColor];
 	else if (![t isChecking])
 		[cell.progressView useGreenColor];
 	if ([t isActive])

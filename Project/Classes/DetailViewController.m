@@ -191,7 +191,7 @@
 	[fTitleLabel setText:[fTorrent name]];
     
     [fTorrentMagnetLinkLabel setText:@"Tap to Copy"];
-    [fTorrentMagnetLinkLabel setTextAlignment:UITextAlignmentRight];
+    [fTorrentMagnetLinkLabel setTextAlignment:NSTextAlignmentRight];
     
     NSMutableArray *fPeers = [[NSMutableArray alloc] init];
     [fPeers removeAllObjects];
@@ -246,7 +246,7 @@
 	
     int activityTimeInSeconds = [fTorrent secondsDownloading] + [fTorrent secondsSeeding];
     [fTorrentActivityLabel setText:[NSString stringForTime:activityTimeInSeconds]];
-    [fTorrentActivityLabel setTextAlignment:UITextAlignmentRight];
+    [fTorrentActivityLabel setTextAlignment:NSTextAlignmentRight];
     
 	fFilesCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
 	fFilesCell.textLabel.text = @"Files";
@@ -258,12 +258,12 @@
     
     fRecheckDataCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     fRecheckDataCell.textLabel.text = @"Recheck Data";
-    fRecheckDataCell.textLabel.textAlignment = UITextAlignmentCenter;
+    fRecheckDataCell.textLabel.textAlignment = NSTextAlignmentCenter;
     
     fStartPauseCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     if ([[fTorrent stateString] isEqualToString:@"Paused"]) fStartPauseCell.textLabel.text = @"Start";
         else fStartPauseCell.textLabel.text = @"Pause";
-    fStartPauseCell.textLabel.textAlignment = UITextAlignmentCenter;
+    fStartPauseCell.textLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -584,7 +584,7 @@
     
     int activityTimeInSeconds = [fTorrent secondsDownloading] + [fTorrent secondsSeeding];
     [fTorrentActivityLabel setText:[NSString stringForTime:activityTimeInSeconds]];
-    [fTorrentActivityLabel setTextAlignment:UITextAlignmentRight];
+    [fTorrentActivityLabel setTextAlignment:NSTextAlignmentRight];
 
 	BOOL hasError = [fTorrent isAnyErrorOrWarning];
 	if (hasError) {

@@ -31,8 +31,8 @@
 	CAGradientLayer *gradientLayer = (CAGradientLayer *)self.layer;
 	gradientLayer.colors =
 	[NSArray arrayWithObjects:
-	 (id)[UIColor colorWithRed:250.0f/255.0f green:250.0f/255.0f blue:250.0f/255.0f alpha:1.0f].CGColor,
-	 (id)[UIColor colorWithRed:220.0f/255.0f green:220.0f/255.0f blue:220.0f/255.0f alpha:1.0f].CGColor,
+	 (id)[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1.0f].CGColor,
+	 (id)[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1.0f].CGColor,
 	 nil];
 	self.backgroundColor = [UIColor clearColor];
 }
@@ -50,8 +50,8 @@
 		CAGradientLayer *gradientLayer = (CAGradientLayer *)self.layer;
 		gradientLayer.colors =
 		[NSArray arrayWithObjects:
-		 (id)[UIColor colorWithRed:250.0f/255.0f green:250.0f/255.0f blue:250.0f/255.0f alpha:1.0f].CGColor,
-		 (id)[UIColor colorWithRed:220.0f/255.0f green:220.0f/255.0f blue:220.0f/255.0f alpha:1.0f].CGColor,
+		 (id)[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1.0f].CGColor,
+		 (id)[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1.0f].CGColor,
 		 nil];
 		self.backgroundColor = [UIColor clearColor];
     }

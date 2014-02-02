@@ -41,6 +41,7 @@
 - (void)setTintColor: (UIColor *) aColor;
 - (void)useGreenColor;
 - (void)useBlueColor;
-- (void)useGrayColor;
+- (void)useWhiteColor;
+- (void)useBlackColor;
 
 @end

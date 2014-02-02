@@ -128,7 +128,7 @@
 
 - (void)doneButtonClicked:(id)sender
 {
-    [self.parentViewController dismissModalViewControllerAnimated:YES];
+    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)infoButtonClicked:(id)sender
@@ -260,7 +260,7 @@
             cell.textLabel.text = [NSString stringWithFormat:@"%d torrents found.", [self.searchResults count]];
         else 
             cell.textLabel.text = [NSString stringWithFormat:@"%d torrents found.", [self.discoveredTorrents count]];
-        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
         return cell;
     }
 }

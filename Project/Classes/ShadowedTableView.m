@@ -8,8 +8,8 @@
 
 #import "ShadowedTableView.h"
 
-#define SHADOW_HEIGHT 20.0
-#define SHADOW_INVERSE_HEIGHT 10.0
+#define SHADOW_HEIGHT 0.0
+#define SHADOW_INVERSE_HEIGHT 0.0
 #define SHADOW_RATIO (SHADOW_INVERSE_HEIGHT / SHADOW_HEIGHT)
 
 @implementation ShadowedTableView
