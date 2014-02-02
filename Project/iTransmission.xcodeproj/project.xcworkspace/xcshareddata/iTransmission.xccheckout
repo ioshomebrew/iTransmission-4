@@ -5,29 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>E943EBE1-C875-4760-BD76-4EDD79E9D4A8</string>
+	<string>42BBE8C2-624F-462C-B74D-8EDF56199975</string>
 	<key>IDESourceControlProjectName</key>
 	<string>iTransmission</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>29E174A3-B832-4C81-AC5C-1B5030B5CCD9</key>
+		<string>https://github.com/ioshomebrew/iTransmission-4.git</string>
+	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>iTransmission/iTransmission.xcodeproj/project.xcworkspace</string>
+	<string>Project/iTransmission.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>EBA2A6DD-3301-4848-A558-F3BEEE500BF5</key>
+		<key>29E174A3-B832-4C81-AC5C-1B5030B5CCD9</key>
 		<string>../../..</string>
 	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ioshomebrew/iTransmission-4.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>EBA2A6DD-3301-4848-A558-F3BEEE500BF5</string>
+	<string>29E174A3-B832-4C81-AC5C-1B5030B5CCD9</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>EBA2A6DD-3301-4848-A558-F3BEEE500BF5</string>
+			<string>29E174A3-B832-4C81-AC5C-1B5030B5CCD9</string>
 			<key>IDESourceControlWCCName</key>
-			<string>iTransmission</string>
+			<string>iTransmission-4</string>
 		</dict>
 	</array>
 </dict>

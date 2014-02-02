@@ -204,7 +204,7 @@
 	else 
 		[torrent startTransfer];
 	
-	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+	//[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)setupCell:(TorrentCell*)cell forTorrent:(Torrent*)t

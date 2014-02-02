@@ -8,8 +8,8 @@
 
 #import "InfoViewController.h"
 
-#import "version.h"
-#import "event-config.h"
+#import "libtransmission/version.h"
+#import "event2/event-config.h"
 
 @implementation InfoViewController
 @synthesize pageName;

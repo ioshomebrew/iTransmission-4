@@ -224,7 +224,6 @@
 		8981249B18884D2900DB955B /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C5FC813CEA7D800095B64 /* DDLog.m */; };
 		8981249C18884D2900DB955B /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C5FCA13CEA7DF00095B64 /* DDTTYLogger.m */; };
 		8981249D18884D2900DB955B /* WebBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0BACB716B8E39C00EFFCD3 /* WebBrowser.m */; };
-		8981249F18884D2900DB955B /* libSystem.B.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C71DC01832C98000CA3AB6 /* libSystem.B.dylib */; };
 		898124A018884D2900DB955B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F9EE8818381630001A2A4D /* AVFoundation.framework */; };
 		898124A118884D2900DB955B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F9EE8618381627001A2A4D /* IOKit.framework */; };
 		898124A218884D2900DB955B /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDBAD5613CA984B0047AB4B /* libicucore.dylib */; };
@@ -233,19 +232,6 @@
 		898124A518884D2900DB955B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		898124A618884D2900DB955B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74861F521259DB06005FDE74 /* QuartzCore.framework */; };
 		898124A718884D2900DB955B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7437B171125B4B6500B456EF /* SystemConfiguration.framework */; };
-		898124A818884D2900DB955B /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C0FD18343078000783B8 /* libcrypto.a */; };
-		898124A918884D2900DB955B /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C0FE18343078000783B8 /* libcurl.a */; };
-		898124AA18884D2900DB955B /* libdht.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C0FF18343078000783B8 /* libdht.a */; };
-		898124AB18884D2900DB955B /* libevent_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C10018343078000783B8 /* libevent_core.a */; };
-		898124AC18884D2900DB955B /* libevent_extra.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C10118343078000783B8 /* libevent_extra.a */; };
-		898124AD18884D2900DB955B /* libevent_openssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C10218343078000783B8 /* libevent_openssl.a */; };
-		898124AE18884D2900DB955B /* libevent_pthreads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C10318343078000783B8 /* libevent_pthreads.a */; };
-		898124AF18884D2900DB955B /* libevent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C10418343078000783B8 /* libevent.a */; };
-		898124B018884D2900DB955B /* libminiupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C10518343078000783B8 /* libminiupnp.a */; };
-		898124B118884D2900DB955B /* libnatpmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C10618343078000783B8 /* libnatpmp.a */; };
-		898124B218884D2900DB955B /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C10718343078000783B8 /* libssl.a */; };
-		898124B318884D2900DB955B /* libtransmission.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C10818343078000783B8 /* libtransmission.a */; };
-		898124B418884D2900DB955B /* libutp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C10918343078000783B8 /* libutp.a */; };
 		8985C10A18343078000783B8 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C0FD18343078000783B8 /* libcrypto.a */; };
 		8985C10B18343078000783B8 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C0FE18343078000783B8 /* libcurl.a */; };
 		8985C10C18343078000783B8 /* libdht.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8985C0FF18343078000783B8 /* libdht.a */; };
@@ -270,6 +256,20 @@
 		89EE77CA185A1109003D9D91 /* libSystem.B.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C71DC01832C98000CA3AB6 /* libSystem.B.dylib */; };
 		89F9EE8718381627001A2A4D /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F9EE8618381627001A2A4D /* IOKit.framework */; };
 		89F9EE8918381630001A2A4D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F9EE8818381630001A2A4D /* AVFoundation.framework */; };
+		ACE6CA49189DBE2200444349 /* libSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA48189DBE2200444349 /* libSystem.dylib */; };
+		ACE6CA57189DBE8500444349 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA4A189DBE8500444349 /* libcrypto.a */; };
+		ACE6CA58189DBE8500444349 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA4B189DBE8500444349 /* libcurl.a */; };
+		ACE6CA59189DBE8500444349 /* libdht.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA4C189DBE8500444349 /* libdht.a */; };
+		ACE6CA5A189DBE8500444349 /* libevent_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA4D189DBE8500444349 /* libevent_core.a */; };
+		ACE6CA5B189DBE8500444349 /* libevent_extra.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA4E189DBE8500444349 /* libevent_extra.a */; };
+		ACE6CA5C189DBE8500444349 /* libevent_openssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA4F189DBE8500444349 /* libevent_openssl.a */; };
+		ACE6CA5D189DBE8500444349 /* libevent_pthreads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA50189DBE8500444349 /* libevent_pthreads.a */; };
+		ACE6CA5E189DBE8500444349 /* libevent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA51189DBE8500444349 /* libevent.a */; };
+		ACE6CA5F189DBE8500444349 /* libminiupnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA52189DBE8500444349 /* libminiupnp.a */; };
+		ACE6CA60189DBE8500444349 /* libnatpmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA53189DBE8500444349 /* libnatpmp.a */; };
+		ACE6CA61189DBE8500444349 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA54189DBE8500444349 /* libssl.a */; };
+		ACE6CA62189DBE8500444349 /* libtransmission.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA55189DBE8500444349 /* libtransmission.a */; };
+		ACE6CA63189DBE8500444349 /* libutp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6CA56189DBE8500444349 /* libutp.a */; };
 		CE0BACB516B8E29900EFFCD3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0BACB416B8E29900EFFCD3 /* Default-568h@2x.png */; };
 		CE0BACB916B8E39C00EFFCD3 /* WebBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0BACB716B8E39C00EFFCD3 /* WebBrowser.m */; };
 		CE0BACBA16B8E39C00EFFCD3 /* WebBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0BACB816B8E39C00EFFCD3 /* WebBrowser.xib */; };
@@ -551,6 +551,20 @@
 		89F9EE8618381627001A2A4D /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		89F9EE8818381630001A2A4D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* iTransmission-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iTransmission-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		ACE6CA48189DBE2200444349 /* libSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
+		ACE6CA4A189DBE8500444349 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = libraries/i386/lib/libcrypto.a; sourceTree = "<group>"; };
+		ACE6CA4B189DBE8500444349 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = libraries/i386/lib/libcurl.a; sourceTree = "<group>"; };
+		ACE6CA4C189DBE8500444349 /* libdht.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdht.a; path = libraries/i386/lib/libdht.a; sourceTree = "<group>"; };
+		ACE6CA4D189DBE8500444349 /* libevent_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_core.a; path = libraries/i386/lib/libevent_core.a; sourceTree = "<group>"; };
+		ACE6CA4E189DBE8500444349 /* libevent_extra.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_extra.a; path = libraries/i386/lib/libevent_extra.a; sourceTree = "<group>"; };
+		ACE6CA4F189DBE8500444349 /* libevent_openssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_openssl.a; path = libraries/i386/lib/libevent_openssl.a; sourceTree = "<group>"; };
+		ACE6CA50189DBE8500444349 /* libevent_pthreads.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_pthreads.a; path = libraries/i386/lib/libevent_pthreads.a; sourceTree = "<group>"; };
+		ACE6CA51189DBE8500444349 /* libevent.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent.a; path = libraries/i386/lib/libevent.a; sourceTree = "<group>"; };
+		ACE6CA52189DBE8500444349 /* libminiupnp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libminiupnp.a; path = libraries/i386/lib/libminiupnp.a; sourceTree = "<group>"; };
+		ACE6CA53189DBE8500444349 /* libnatpmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libnatpmp.a; path = libraries/i386/lib/libnatpmp.a; sourceTree = "<group>"; };
+		ACE6CA54189DBE8500444349 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = libraries/i386/lib/libssl.a; sourceTree = "<group>"; };
+		ACE6CA55189DBE8500444349 /* libtransmission.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtransmission.a; path = libraries/i386/lib/libtransmission.a; sourceTree = "<group>"; };
+		ACE6CA56189DBE8500444349 /* libutp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libutp.a; path = libraries/i386/lib/libutp.a; sourceTree = "<group>"; };
 		CE0BACB416B8E29900EFFCD3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CE0BACB616B8E39C00EFFCD3 /* WebBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBrowser.h; sourceTree = "<group>"; };
 		CE0BACB716B8E39C00EFFCD3 /* WebBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBrowser.m; sourceTree = "<group>"; };
@@ -594,7 +608,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8981249F18884D2900DB955B /* libSystem.B.dylib in Frameworks */,
+				ACE6CA57189DBE8500444349 /* libcrypto.a in Frameworks */,
+				ACE6CA58189DBE8500444349 /* libcurl.a in Frameworks */,
+				ACE6CA59189DBE8500444349 /* libdht.a in Frameworks */,
+				ACE6CA5A189DBE8500444349 /* libevent_core.a in Frameworks */,
+				ACE6CA5B189DBE8500444349 /* libevent_extra.a in Frameworks */,
+				ACE6CA5C189DBE8500444349 /* libevent_openssl.a in Frameworks */,
+				ACE6CA5D189DBE8500444349 /* libevent_pthreads.a in Frameworks */,
+				ACE6CA5E189DBE8500444349 /* libevent.a in Frameworks */,
+				ACE6CA5F189DBE8500444349 /* libminiupnp.a in Frameworks */,
+				ACE6CA60189DBE8500444349 /* libnatpmp.a in Frameworks */,
+				ACE6CA61189DBE8500444349 /* libssl.a in Frameworks */,
+				ACE6CA62189DBE8500444349 /* libtransmission.a in Frameworks */,
+				ACE6CA63189DBE8500444349 /* libutp.a in Frameworks */,
+				ACE6CA49189DBE2200444349 /* libSystem.dylib in Frameworks */,
 				898124A018884D2900DB955B /* AVFoundation.framework in Frameworks */,
 				898124A118884D2900DB955B /* IOKit.framework in Frameworks */,
 				898124A218884D2900DB955B /* libicucore.dylib in Frameworks */,
@@ -603,19 +630,6 @@
 				898124A518884D2900DB955B /* UIKit.framework in Frameworks */,
 				898124A618884D2900DB955B /* QuartzCore.framework in Frameworks */,
 				898124A718884D2900DB955B /* SystemConfiguration.framework in Frameworks */,
-				898124A818884D2900DB955B /* libcrypto.a in Frameworks */,
-				898124A918884D2900DB955B /* libcurl.a in Frameworks */,
-				898124AA18884D2900DB955B /* libdht.a in Frameworks */,
-				898124AB18884D2900DB955B /* libevent_core.a in Frameworks */,
-				898124AC18884D2900DB955B /* libevent_extra.a in Frameworks */,
-				898124AD18884D2900DB955B /* libevent_openssl.a in Frameworks */,
-				898124AE18884D2900DB955B /* libevent_pthreads.a in Frameworks */,
-				898124AF18884D2900DB955B /* libevent.a in Frameworks */,
-				898124B018884D2900DB955B /* libminiupnp.a in Frameworks */,
-				898124B118884D2900DB955B /* libnatpmp.a in Frameworks */,
-				898124B218884D2900DB955B /* libssl.a in Frameworks */,
-				898124B318884D2900DB955B /* libtransmission.a in Frameworks */,
-				898124B418884D2900DB955B /* libutp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,6 +724,20 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ACE6CA4A189DBE8500444349 /* libcrypto.a */,
+				ACE6CA4B189DBE8500444349 /* libcurl.a */,
+				ACE6CA4C189DBE8500444349 /* libdht.a */,
+				ACE6CA4D189DBE8500444349 /* libevent_core.a */,
+				ACE6CA4E189DBE8500444349 /* libevent_extra.a */,
+				ACE6CA4F189DBE8500444349 /* libevent_openssl.a */,
+				ACE6CA50189DBE8500444349 /* libevent_pthreads.a */,
+				ACE6CA51189DBE8500444349 /* libevent.a */,
+				ACE6CA52189DBE8500444349 /* libminiupnp.a */,
+				ACE6CA53189DBE8500444349 /* libnatpmp.a */,
+				ACE6CA54189DBE8500444349 /* libssl.a */,
+				ACE6CA55189DBE8500444349 /* libtransmission.a */,
+				ACE6CA56189DBE8500444349 /* libutp.a */,
+				ACE6CA48189DBE2200444349 /* libSystem.dylib */,
 				89F9EE8818381630001A2A4D /* AVFoundation.framework */,
 				89F9EE8618381627001A2A4D /* IOKit.framework */,
 				7EDBAD5613CA984B0047AB4B /* libicucore.dylib */,
@@ -1643,7 +1671,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
@@ -1659,9 +1687,9 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib\"";
+				LIBRARY_SEARCH_PATHS = "/Users/beecher/iTransmission-4/Project/libraries/i386/lib";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ltransmission",
@@ -1678,7 +1706,7 @@
 				PRODUCT_NAME = iTransmission;
 				SDKROOT = iphoneos7.0;
 				SHARED_PRECOMPS_DIR = "";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/i386/include\"";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -1687,7 +1715,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
@@ -1701,9 +1729,9 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib\"";
+				LIBRARY_SEARCH_PATHS = "/Users/beecher/iTransmission-4/Project/libraries/i386/lib";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ltransmission",
@@ -1720,7 +1748,7 @@
 				PRODUCT_NAME = iTransmission;
 				SDKROOT = iphoneos7.0;
 				SHARED_PRECOMPS_DIR = "";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/i386/include\"";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -1730,7 +1758,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
@@ -1744,9 +1772,9 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib\"";
+				LIBRARY_SEARCH_PATHS = "/Users/beecher/iTransmission-4/Project/libraries/i386/lib";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ltransmission",
@@ -1763,7 +1791,7 @@
 				PRODUCT_NAME = iTransmission;
 				SDKROOT = iphoneos7.0;
 				SHARED_PRECOMPS_DIR = "";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/i386/include\"";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
