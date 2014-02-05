@@ -194,9 +194,8 @@
 
 - (void)controlButtonClicked:(id)sender
 {
-    UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
-	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-	
+    CGPoint pos = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:pos];
 	
 	Torrent *torrent = [self.controller torrentAtIndex:indexPath.row];
 	if ([torrent isActive])
@@ -204,7 +203,7 @@
 	else 
 		[torrent startTransfer];
 	
-	//[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)setupCell:(TorrentCell*)cell forTorrent:(Torrent*)t
