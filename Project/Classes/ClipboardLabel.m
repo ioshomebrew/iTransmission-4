@@ -18,7 +18,6 @@
 		shouldPopUpControlMenu = YES;
 		UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
 		[self addGestureRecognizer:gr];
-		[gr release]; 
 	}
 	return self;
 }
@@ -76,7 +75,6 @@
 
 - (void)dealloc
 {
-	[super dealloc];
 }
 
 @end

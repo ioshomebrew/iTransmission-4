@@ -566,19 +566,10 @@
 #pragma mark -
 - (void)dealloc 
 {
-    [normalGradientColors release];
-    [normalGradientLocations release];
-    [highlightGradientColors release];
-    [highlightGradientLocations release];
-    [strokeColor release];
-    
     if (normalGradient != NULL)
         CGGradientRelease(normalGradient);
     if (highlightGradient != NULL)
         CGGradientRelease(highlightGradient);
-    
-    
-    [super dealloc];
 }
 
 @end

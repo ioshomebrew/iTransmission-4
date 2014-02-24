@@ -48,7 +48,7 @@ StatisticsViewController *__activeController;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.statisticsView = [[StatisticsView createFromNib] autorelease];
+    self.statisticsView = [StatisticsView createFromNib];
 	self.statisticsView.controller = self.controller;
 	[self.view addSubview:self.statisticsView];
 }
@@ -93,7 +93,6 @@ StatisticsViewController *__activeController;
     self.statisticsView = nil;
     [self.UIUpdateTimer invalidate];
     self.UIUpdateTimer = nil;
-    [super dealloc];
 }
 
 @end

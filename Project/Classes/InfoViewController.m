@@ -25,7 +25,7 @@
 
 + (id)infoWithPageName:(NSString*)p
 {
-    return [[[InfoViewController alloc] initWithPageName:p] autorelease];
+    return [[InfoViewController alloc] initWithPageName:p];
 }
 
 - (id)initWithPageName:(NSString*)p
@@ -43,7 +43,6 @@
     UIWebView *view = [[UIWebView alloc] init];
     view.delegate = self;
     self.view = view;
-    [view release];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -52,8 +51,8 @@
     [super viewDidLoad];
     
     CGRect frame = CGRectMake(0.0, 0.0, 25.0, 25.0);
-    self.activityIndicator = [[[UIActivityIndicatorView alloc]
-                              initWithFrame:frame] autorelease];
+    self.activityIndicator = [[UIActivityIndicatorView alloc]
+                              initWithFrame:frame];
     [self.activityIndicator sizeToFit];
     [self.activityIndicator setHidesWhenStopped:YES];
     self.activityIndicator.autoresizingMask =
@@ -66,7 +65,6 @@
                                     initWithCustomView:self.activityIndicator];
     loadingView.target = self;
     self.navigationItem.rightBarButtonItem = loadingView;
-    [loadingView release];
     
     NSString *pagePath = [[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Info"] stringByAppendingPathComponent:self.pageName] stringByAppendingPathExtension:@"html"];
     
@@ -134,9 +132,6 @@
 
 - (void)dealloc
 {
-    self.pageName = nil;
-    self.activityIndicator = nil;
-    [super dealloc];
 }
 
 @end

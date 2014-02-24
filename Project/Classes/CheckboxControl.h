@@ -18,8 +18,6 @@
     UIImageView *fImageView;
     UIImage *fUncheckedImage;
     UIImage *fCheckedImage;
-    id<NSObject> fBackwardReference;
-    id<CheckboxControlDelegate> delegate;
 }
 
 @property (nonatomic, assign) BOOL checked;

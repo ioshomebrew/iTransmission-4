@@ -73,6 +73,7 @@
 @synthesize refreshButton = fRefreshButton;
 @synthesize bandwidthButton = fBandwidthButton;
 @synthesize selectedIndexPath = fSelectedIndexPath;
+@synthesize fController;
 
 - (id)initWithTorrent:(Torrent*)t controller:(Controller*)c {
     if ((self = [super initWithNibName:@"DetailViewController" bundle:nil])) {
@@ -80,18 +81,18 @@
 		fTorrent = t;
 		fController = c;
 		
-		self.startButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(startButtonClicked:)] autorelease];
-		self.pauseButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseButtonClicked:)] autorelease];
-		self.removeButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeButtonClicked:)] autorelease];
+		self.startButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(startButtonClicked:)];
+		self.pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseButtonClicked:)];
+		self.removeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeButtonClicked:)];
         
-        self.bandwidthButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bandwidth-icon"] style:UIBarButtonItemStylePlain target:self action:@selector(bandwidthButtonClicked:)] autorelease];
+        self.bandwidthButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bandwidth-icon"] style:UIBarButtonItemStylePlain target:self action:@selector(bandwidthButtonClicked:)];
         
-		self.refreshButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateUI)] autorelease];
+		self.refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateUI)];
 
-		UIBarButtonItem *flexSpaceOne = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-		UIBarButtonItem *flexSpaceTwo = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-		UIBarButtonItem *flexSpaceThree = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-		UIBarButtonItem *flexSpaceFour = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+		UIBarButtonItem *flexSpaceOne = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+		UIBarButtonItem *flexSpaceTwo = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+		UIBarButtonItem *flexSpaceThree = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+		UIBarButtonItem *flexSpaceFour = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 		
 		self.toolbarItems = [NSArray arrayWithObjects:self.startButton, flexSpaceOne, self.pauseButton, flexSpaceTwo, self.refreshButton, flexSpaceThree, self.bandwidthButton, flexSpaceFour, self.removeButton, nil];
 		displayedError = NO;
@@ -101,7 +102,7 @@
 
 - (void)bandwidthButtonClicked:(id)sender
 {
-    BandwidthController *bandwidthController = [[[BandwidthController alloc] initWithNibName:@"BandwidthController" bundle:nil] autorelease];
+    BandwidthController *bandwidthController = [[BandwidthController alloc] initWithNibName:@"BandwidthController" bundle:nil];
     [bandwidthController setTorrent:self.torrent];
     [bandwidthController setController:self.controller];
     [self.navigationController pushViewController:bandwidthController animated:YES];
@@ -138,10 +139,10 @@
 {
 	if (indexPath.section == MORE_SECTION) {
         if (indexPath.row == FILES_ROW) {
-            FileListViewController *c = [[[FileListViewController alloc] initWithTorrent:self.torrent] autorelease];
+            FileListViewController *c = [[FileListViewController alloc] initWithTorrent:self.torrent];
             [self.navigationController pushViewController:c animated:YES];
         } else if (indexPath.row == TRACKERS_ROW) {
-                TrackersViewController *c = [[[TrackersViewController alloc] initWithTorrent:self.torrent] autorelease];
+                TrackersViewController *c = [[TrackersViewController alloc] initWithTorrent:self.torrent];
                 [self.navigationController pushViewController:c animated:YES];
         }
 		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -149,7 +150,7 @@
     else if (indexPath.section == LOCATION_SECTION) {
         self.selectedIndexPath = indexPath;
         UIActionSheet *sheet = nil;
-        sheet = [[[UIActionSheet alloc] initWithTitle:@"Open with ..." delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
+        sheet = [[UIActionSheet alloc] initWithTitle:@"Open with ..." delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
         [sheet addButtonWithTitle:@"iFile"];
         [sheet showInView:self.view];
     }
@@ -314,7 +315,7 @@
 - (void)removeButtonClicked:(id)sender
 {
 	NSString *msg = @"Are you sure to remove this torrent?";
-	UIActionSheet *actionSheet = [[[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes and remove data" otherButtonTitles:@"Yes but keep data", nil] autorelease];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes and remove data" otherButtonTitles:@"Yes but keep data", nil];
 	actionSheet.tag = REMOVE_COMFIRM_TAG;
 	[actionSheet showFromToolbar:self.navigationController.toolbar];	
 }
@@ -632,61 +633,6 @@
     self.bandwidthButton = nil;
     self.selectedIndexPath = nil;
     self.tableView = nil;
-	[fTitleCell release];
-	[fTitleLabel release];
-	[fIconView release];
-	[fTotalSizeCell release];
-	[fTotalSizeLabel release];
-	[fCompletedSizeCell release];
-	[fCompletedSizeLabel release];
-	[fProgressCell release];
-	[fProgressLabel release];
-	[fDownloadedSizeCell release];
-	[fDownloadedSizeLabel release];
-	[fUploadedSizeCell release];
-	[fUploadedSizeLabel release];	
-	[fStateCell release];
-	[fStateLabel release];
-	[fErrorMessageCell release];
-	[fErrorMessageLabel release];
-	[fHashCell release];
-	[fHashLabel release];
-	[fRatioCell release];
-	[fRatioLabel release];
-	[fDataLocationCell release];
-	[fDataLocationLabel release];
-	[fTorrentLocationCell release];
-	[fTorrentLocationLabel release];
-	[fULSpeedCell release];
-	[fULSpeedLabel release];
-	[fDLSpeedCell release];
-	[fDLSpeedLabel release];
-	[fCreatorCell release];
-	[fCreatorLabel release];
-	[fCreatedOnCell release];
-	[fCreatedOnLabel release];
-	[fCommentCell release];
-	[fCommentLabel release];
-	[fIsPrivateSwitch release];
-	[fIsPrivateCell release];
-	[fTrackersCell release];
-	[fFilesCell release];
-    [fAverageDLSpeedCell release];
-    [fAverageDLSpeedLabel release];
-    [fAverageULSpeedCell release];
-    [fAverageULSpeedLabel release];
-    [fStartPauseButton release];
-    [fStartPauseCell release];
-    [fRecheckDataCell release];
-    [fTorrentMagnetLinkLabel release];
-    [fTorrentMagnetLinkCell release];
-    [fTorrentActivityLabel release];
-    [fTorrentActivityCell release];
-    [fTorrentPeersCell release];
-    [fTorrentPeersLabel release];
-    [fTorrentSeedersCell release];
-    [fTorrentSeedersLabel release];
-    [super dealloc];
 }
 
 

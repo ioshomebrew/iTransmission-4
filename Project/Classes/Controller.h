@@ -61,8 +61,6 @@ extern BOOL isStartingTransferAllowed();
 	BOOL fUpdateInProgress;
     tr_benc settings;
     
-    Insomnia *fInsomnia;
-    
     UINavigationController *navController;
     TorrentViewController *torrentViewController;
     NSInteger activityCounter;

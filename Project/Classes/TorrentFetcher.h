@@ -21,7 +21,6 @@
     NSURLConnection *fURLConnection;
     NSMutableData *fData;
     NSString *url;
-    id<TorrentFetcherDelegate> fDelegate;
 }
 @property (nonatomic, retain) NSURLConnection *URLConnection;
 @property (nonatomic, retain) NSString *url;

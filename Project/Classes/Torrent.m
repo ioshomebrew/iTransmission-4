@@ -60,38 +60,32 @@ legacyIncompleteFolder: (NSString *) incompleteFolder;
 
 void completenessChangeCallback(tr_torrent * torrent, tr_completeness status, bool wasRunning, void * torrentData)
 {
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     
     NSDictionary * dict = [[NSDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInt: status], @"Status",
                            [NSNumber numberWithBool: wasRunning], @"WasRunning", nil];
-    [(Torrent *)torrentData performSelectorOnMainThread: @selector(completenessChange:) withObject: dict waitUntilDone: NO];
-    
-    [pool drain];
+    [(__bridge Torrent *)torrentData performSelectorOnMainThread: @selector(completenessChange:) withObject: dict waitUntilDone: NO];
 }
 
 void ratioLimitHitCallback(tr_torrent * torrent, void * torrentData)
 {
-    [(Torrent *)torrentData performSelectorOnMainThread: @selector(ratioLimitHit) withObject: nil waitUntilDone: NO];
+    [(__bridge Torrent *)torrentData performSelectorOnMainThread: @selector(ratioLimitHit) withObject: nil waitUntilDone: NO];
 }
 
 void idleLimitHitCallback(tr_torrent * torrent, void * torrentData)
 {
-    [(Torrent *)torrentData performSelectorOnMainThread: @selector(idleLimitHit) withObject: nil waitUntilDone: NO];
+    [(__bridge Torrent *)torrentData performSelectorOnMainThread: @selector(idleLimitHit) withObject: nil waitUntilDone: NO];
 }
 
 void metadataCallback(tr_torrent * torrent, void * torrentData)
 {
-    [(Torrent *)torrentData performSelectorOnMainThread: @selector(metadataRetrieved) withObject: nil waitUntilDone: NO];
+    [(__bridge Torrent *)torrentData performSelectorOnMainThread: @selector(metadataRetrieved) withObject: nil waitUntilDone: NO];
 }
 
 int trashDataFile(const char * filename)
 {
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    
     if (filename != NULL)
         [Torrent trashFile: [NSString stringWithUTF8String: filename]];
     
-    [pool drain];
     return 0;
 }
 
@@ -209,20 +203,6 @@ int trashDataFile(const char * filename)
     
     if (fFileStat)
         tr_torrentFilesFree(fFileStat, [self fileCount]);
-    
-    [fPreviousFinishedIndexes release];
-    [fPreviousFinishedIndexesDate release];
-    
-    [fHashString release];
-    
-    [fIcon release];
-    
-    [fFileList release];
-    [fFlatFileList release];
-    
-//    [fTimeMachineExclude release];
-    
-    [super dealloc];
 }
 
 - (NSString *) description
@@ -232,7 +212,7 @@ int trashDataFile(const char * filename)
 
 - (id) copyWithZone: (NSZone *) zone
 {
-    return [self retain];
+    return self;
 }
 
 - (void) closeRemoveTorrent: (BOOL) trashFiles
@@ -280,10 +260,8 @@ int trashDataFile(const char * filename)
 
 -(void) setPreviousFinishedPieces: (NSIndexSet *) indexes
 {
-    [fPreviousFinishedIndexes release];
-    fPreviousFinishedIndexes = [indexes retain];
+    fPreviousFinishedIndexes = indexes;
     
-    [fPreviousFinishedIndexesDate release];
     fPreviousFinishedIndexesDate = indexes != nil ? [[NSDate alloc] init] : nil;
 }
 
@@ -527,7 +505,6 @@ int trashDataFile(const char * filename)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat: NSLocalizedString(@"The move operation of \"%@\" cannot be done.", "Move inside itself alert -> message"), [self name]] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
         [alert show];
-        [alert autorelease];
 //        NSAlert * alert = [[NSAlert alloc] init];
 //        [alert setMessageText: NSLocalizedString(@"A folder cannot be moved to inside itself.",
 //                                                 "Move inside itself alert -> title")];
@@ -659,7 +636,6 @@ int trashDataFile(const char * filename)
         
         TrackerNode * tracker = [[TrackerNode alloc] initWithTrackerStat: &stats[i] torrent: self];
         [trackers addObject: tracker];
-        [tracker release];
     }
     
     tr_torrentTrackersFree(stats, count);
@@ -1670,17 +1646,16 @@ legacyIncompleteFolder: (NSString *) incompleteFolder
         
         if (!fHandle)
         {
-            [self release];
             return nil;
         }
     }
     
     fInfo = tr_torrentInfo(fHandle);
     
-    tr_torrentSetCompletenessCallback(fHandle, completenessChangeCallback, self);
-    tr_torrentSetRatioLimitHitCallback(fHandle, ratioLimitHitCallback, self);
-    tr_torrentSetIdleLimitHitCallback(fHandle, idleLimitHitCallback, self);
-    tr_torrentSetMetadataCallback(fHandle, metadataCallback, self);
+    tr_torrentSetCompletenessCallback(fHandle, completenessChangeCallback, (__bridge void *)(self));
+    tr_torrentSetRatioLimitHitCallback(fHandle, ratioLimitHitCallback, (__bridge void *)(self));
+    tr_torrentSetIdleLimitHitCallback(fHandle, idleLimitHitCallback, (__bridge void *)(self));
+    tr_torrentSetMetadataCallback(fHandle, metadataCallback, (__bridge void *)(self));
     
     fHashString = [[NSString alloc] initWithUTF8String: fInfo->hashString];
     
@@ -1735,7 +1710,6 @@ legacyIncompleteFolder: (NSString *) incompleteFolder
                 {
                     node = [[FileListNode alloc] initWithFolderName: name path: path torrent: self];
                     [fileList addObject: node];
-                    [node release];
                 }
                 
                 NSMutableArray * trimmedComponents = [NSMutableArray arrayWithArray: [pathComponents subarrayWithRange:
@@ -1749,7 +1723,6 @@ legacyIncompleteFolder: (NSString *) incompleteFolder
                 FileListNode * node = [[FileListNode alloc] initWithFileName: name path: path size: file->length index: i torrent: self];
                 [fileList addObject: node];
                 [flatFileList addObject: node];
-                [node release];
             }
         }
         
@@ -1762,9 +1735,8 @@ legacyIncompleteFolder: (NSString *) incompleteFolder
     else
     {
         FileListNode * node = [[FileListNode alloc] initWithFileName: [self name] path: @"" size: [self size] index: 0 torrent: self];
-        fFileList = [[NSArray arrayWithObject: node] retain];
-        fFlatFileList = [fFileList retain];
-        [node release];
+        fFileList = [NSArray arrayWithObject: node];
+        fFlatFileList = fFileList;
     }
 }
 
@@ -1795,7 +1767,6 @@ legacyIncompleteFolder: (NSString *) incompleteFolder
         }
         
         [parent insertChild: node];
-        [node release];
     }
     
     if (isFolder)
@@ -1837,7 +1808,6 @@ legacyIncompleteFolder: (NSString *) incompleteFolder
             [[NSNotificationCenter defaultCenter] postNotificationName: @"TorrentRestartedDownloading" object: self];
             break;
     }
-    [statusInfo release];
     
     [self update];
     [self updateTimeMachineExclude];

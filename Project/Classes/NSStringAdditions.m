@@ -49,7 +49,7 @@
 
 + (NSString *) formattedUInteger: (NSUInteger) value
 {
-    NSNumberFormatter * numberFormatter = [[[NSNumberFormatter alloc] init] autorelease];
+    NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setNumberStyle: NSNumberFormatterDecimalStyle];
     [numberFormatter setMaximumFractionDigits: 0];
     
@@ -224,7 +224,6 @@
     [numberFormatter setMaximumFractionDigits: decimals];
     
     NSString * fileSizeString = [numberFormatter stringFromNumber: [NSNumber numberWithFloat: convertedSize]];
-    [numberFormatter release];
     
     if (!notAllowedUnit || ![unit isEqualToString: notAllowedUnit])
         fileSizeString = [fileSizeString stringByAppendingFormat: @" %@", unit];

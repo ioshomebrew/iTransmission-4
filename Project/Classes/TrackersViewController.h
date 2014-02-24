@@ -13,7 +13,6 @@
 #import "TrackerNode.h"
 #import "NSStringAdditions.h"
 #import "UIAlertViewPrivate.h"
-#import "RegexExtension.h"
 
 @class Torrent, TrackerCell;
 

@@ -10,7 +10,7 @@
 
 
 @interface TransparentClickArea : UIView {
-	UIView *fEventsForwardView;
+	//IBOutlet UIView *fEventsForwardView;
 }
 @property (nonatomic, assign) IBOutlet UIView *eventsForwardView;
 

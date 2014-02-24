@@ -21,7 +21,7 @@
 {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         self.title = @"Global Bandwidth";
-        UIBarButtonItem *doneButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(hide)] autorelease];
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(hide)];
         self.navigationItem.rightBarButtonItem = doneButton;
         
 	}
@@ -368,27 +368,6 @@
 - (void)dealloc
 {
 	self.torrent = nil;
-    [fMaximumConnectionsLabelCell release];
-    [fMaximumConnectionsSlider release];
-    [fMaximumConnectionsSliderCell release];
-    [fMaximumConnectionsLabel release];
-    [fConnectionsPerTorrentLabel release];
-    [fConnectionsPerTorrentLabelCell release];
-    [fConnectionsPerTorrentSlider release];
-    [fConnectionsPerTorrentSliderCell release];
-    [fUploadSpeedLimitField release];
-    [fUploadSpeedLimitCell release];
-    [fDownloadSpeedLimitField release];
-    [fDownloadSpeedLimitCell release];
-    [fDownloadSpeedLimitEnabledSwitch release];
-    [fDownloadSpeedLimitEnabledCell release];
-    [fUploadSpeedLimitEnabledSwitch release];
-    [fUploadSpeedLimitEnabledCell release];
-    [fOverrideSpeedLimitSwitch release];
-    [fOverrideSpeedLimitsCell release];
-    self.tableView = nil;
-    self.indexPathToScroll = nil;
-	[super dealloc];
 }
 
 @end

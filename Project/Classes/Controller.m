@@ -12,12 +12,11 @@
 #import "TorrentViewController.h"
 #import "TorrentFetcher.h"
 #import "Reachability.h"
-#import "MTStatusBarOverlay.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 #import "DDASLLogger.h"
 #import "DDFileLogger.h"
-#import "Insomnia.h"
+#import "ALAlertBanner.h"
 #include <stdlib.h> // setenv()
 
 #define APP_NAME "iTrans"
@@ -47,7 +46,7 @@ static void pumpLogMessages()
 static tr_rpc_callback_status rpcCallback(tr_session * handle UNUSED, tr_rpc_callback_type type, struct tr_torrent * torrentStruct,
                                           void * controller)
 {
-    [(Controller *)controller rpcCallback: type forTorrentStruct: torrentStruct];
+    [(__bridge Controller *)controller rpcCallback: type forTorrentStruct: torrentStruct];
     return TR_RPC_NOREMOVE; //we'll do the remove manually
 }
 
@@ -79,16 +78,12 @@ static void signal_handler(int sig) {
     [self fixDocumentsDirectory];
 	[self transmissionInitialize];
     
-    self.torrentViewController = [[[TorrentViewController alloc] initWithNibName:@"TorrentViewController" bundle:nil] autorelease];
+    self.torrentViewController = [[TorrentViewController alloc] initWithNibName:@"TorrentViewController" bundle:nil];
     self.torrentViewController.controller = self;
-    self.navController = [[[UINavigationController alloc] initWithRootViewController:self.torrentViewController] autorelease];
+    self.navController = [[UINavigationController alloc] initWithRootViewController:self.torrentViewController];
     self.navController.toolbarHidden = NO;
     
     self.installedApps = [self findRelatedApps];
-    
-    MTStatusBarOverlay *statusBarOverlay = [MTStatusBarOverlay sharedInstance];
-    [statusBarOverlay setHistoryEnabled:NO];
-    statusBarOverlay.animation = MTStatusBarOverlayAnimationShrink;  // MTStatusBarOverlayAnimationShrink
     
     [self.window addSubview:self.navController.view];
 	
@@ -286,13 +281,7 @@ static void signal_handler(int sig) {
 	
 	fTorrents = [[NSMutableArray alloc] init];	
     fActivities = [[NSMutableArray alloc] init];
-    tr_sessionSetRPCCallback(fLib, rpcCallback, self);
-	
-    if ([fDefaults boolForKey:@"Insomnia"] == YES) {
-        [fInsomnia disableSleep];
-    } else {
-        [fInsomnia enableSleep];
-    }
+    tr_sessionSetRPCCallback(fLib, rpcCallback, (__bridge void *)(self));
     
 	fUpdateInProgress = NO;
 	
@@ -364,17 +353,14 @@ static void signal_handler(int sig) {
 }
 
 - (void)dealloc {
-    [fTorrents release];
     self.logMessageTimer = nil;
     fTorrents = nil;
-    [fActivities release];
     fActivities = nil;
 	self.window = nil;
 	self.reachability = nil;
     self.installedApps = nil;
     self.torrentViewController = nil;
     self.fileLogger = nil;
-	[super dealloc];
 }
 
 - (NSString*)documentsDirectory
@@ -449,22 +435,22 @@ static void signal_handler(int sig) {
 
 - (void)postError:(NSString *)err_msg
 {
-    MTStatusBarOverlay *overlay = [MTStatusBarOverlay sharedInstance];
-    [overlay postErrorMessage:err_msg duration:3.0f animated:YES];    
+    //ALAlertBanner *banner = [ALAlertBanner alertBannerForView:torrentViewController.view style:ALAlertBannerStyleFailure position:ALAlertBannerPositionUnderNavBar title:err_msg];
+    //[banner show];
     return;
 }
 
 - (void)postMessage:(NSString*)msg
 {
-    MTStatusBarOverlay *overlay = [MTStatusBarOverlay sharedInstance];
-    [overlay postMessage:msg duration:3.0f animated:YES];    
+    //ALAlertBanner *banner = [ALAlertBanner alertBannerForView:torrentViewController.view style:ALAlertBannerStyleNotify position:ALAlertBannerPositionUnderNavBar title:msg];
+    //[banner show];
     return;
 }
 
 - (void)postFinishMessage:(NSString*)msg
 {
-    MTStatusBarOverlay *overlay = [MTStatusBarOverlay sharedInstance];
-    [overlay postFinishMessage:msg duration:3.0f animated:YES];    
+    //ALAlertBanner *banner = [ALAlertBanner alertBannerForView:torrentViewController.view style:ALAlertBannerStyleSuccess position:ALAlertBannerPositionUnderNavBar title:msg];
+    //[banner show];
     return;
 }
 
@@ -550,7 +536,6 @@ static void signal_handler(int sig) {
             continue;
         }
     }
-    [fileManager release];
 }
 
 - (NSString*)randomTorrentPath
@@ -589,7 +574,6 @@ static void signal_handler(int sig) {
             {
                 [torrent changeDownloadFolderBeforeUsing:[self defaultDownloadDir]];
                 [fTorrents addObject: torrent];
-                [torrent release];
             }
         }
     }
@@ -613,14 +597,14 @@ static void signal_handler(int sig) {
     [data writeToFile:path options:0 error:&error];
     error = [self openFile:path addType:ADD_URL forcePath:nil];
     if (error) {
-        [[[[UIAlertView alloc] initWithTitle:@"Add from URL" message:[NSString stringWithFormat:@"Adding from %@ failed. %@", url, [error localizedDescription]]  delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease] show];
+        [[[UIAlertView alloc] initWithTitle:@"Add from URL" message:[NSString stringWithFormat:@"Adding from %@ failed. %@", url, [error localizedDescription]]  delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
     }
     [fActivities removeObject:fetcher];
 }
 
 - (void)torrentFetcher:(TorrentFetcher *)fetcher failedToFetchFromURL:(NSString *)url withError:(NSError *)error
 {
-    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Add torrent" message:[NSString stringWithFormat:@"Failed to fetch torrent URL: \"%@\". \nError: %@", url, [error localizedDescription]] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Add torrent" message:[NSString stringWithFormat:@"Failed to fetch torrent URL: \"%@\". \nError: %@", url, [error localizedDescription]] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alertView show];
     [fActivities removeObject:fetcher];    
     [self decreaseActivityCounter];
@@ -653,14 +637,14 @@ static void signal_handler(int sig) {
 
 - (void)addTorrentFromURL:(NSString*)url
 {
-    TorrentFetcher *fetcher = [[[TorrentFetcher alloc] initWithURLString:url delegate:self] autorelease];
+    TorrentFetcher *fetcher = [[TorrentFetcher alloc] initWithURLString:url delegate:self];
     [fActivities addObject:fetcher];
     [self increaseActivityCounter];
 }
 
 - (void)firstRunMessage
 {
-    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Welcome!" message:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"first_run_message" ofType:@""] encoding:NSASCIIStringEncoding error:nil] delegate:nil cancelButtonTitle:@"I got it!" otherButtonTitles:nil] autorelease];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Welcome!" message:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"first_run_message" ofType:@""] encoding:NSASCIIStringEncoding error:nil] delegate:nil cancelButtonTitle:@"I got it!" otherButtonTitles:nil];
     [alertView show];
 }
 
@@ -673,7 +657,7 @@ static void signal_handler(int sig) {
     {
         const tr_info * info = tr_torrentInfo(duplicateTorrent);
         NSString * name = (info != NULL && info->name != NULL) ? [NSString stringWithUTF8String: info->name] : nil;
-        err = [[[NSError alloc] initWithDomain:@"Controller" code:1 userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Torrent %@ already exists. ", name] forKey:NSLocalizedDescriptionKey]] autorelease];
+        err = [[NSError alloc] initWithDomain:@"Controller" code:1 userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Torrent %@ already exists. ", name] forKey:NSLocalizedDescriptionKey]];
         return err;
     }
     
@@ -685,14 +669,13 @@ static void signal_handler(int sig) {
     Torrent * torrent;
     if (!(torrent = [[Torrent alloc] initWithMagnetAddress: magnet location: location lib: fLib]))
     {
-        err = [[[NSError alloc] initWithDomain:@"Controller" code:1 userInfo:[NSDictionary dictionaryWithObject:@"The magnet supplied is invalid." forKey:NSLocalizedDescriptionKey]] autorelease];
+        err = [[NSError alloc] initWithDomain:@"Controller" code:1 userInfo:[NSDictionary dictionaryWithObject:@"The magnet supplied is invalid." forKey:NSLocalizedDescriptionKey]];
         return err;
     }
     
     [torrent setWaitToStart: [fDefaults boolForKey: @"AutoStartDownload"]];
     [torrent update];
     [fTorrents addObject: torrent];
-    [torrent release]; 
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationNewTorrentAdded object:self userInfo:nil];
     [self updateTorrentHistory];
@@ -713,11 +696,11 @@ static void signal_handler(int sig) {
     if (result != TR_PARSE_OK)
     {
         if (result == TR_PARSE_DUPLICATE) {
-            error = [[[NSError alloc] initWithDomain:@"Controller" code:1 userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Torrent %s already exists. ", info.name] forKey:NSLocalizedDescriptionKey]] autorelease];
+            error = [[NSError alloc] initWithDomain:@"Controller" code:1 userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Torrent %s already exists. ", info.name] forKey:NSLocalizedDescriptionKey]];
         }
         else if (result == TR_PARSE_ERR)
         {
-            error = [[[NSError alloc] initWithDomain:@"Controller" code:1 userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Invalid torrent file. "] forKey:NSLocalizedDescriptionKey]] autorelease];
+            error = [[NSError alloc] initWithDomain:@"Controller" code:1 userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Invalid torrent file. "] forKey:NSLocalizedDescriptionKey]];
         }
         tr_metainfoFree(&info);
         return error;
@@ -726,7 +709,7 @@ static void signal_handler(int sig) {
     
     Torrent * torrent;
     if (!(torrent = [[Torrent alloc] initWithPath:file location: [path stringByExpandingTildeInPath] deleteTorrentFile: NO lib: fLib])) {
-        error = [[[NSError alloc] initWithDomain:@"Controller" code:1 userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Unknown error. "] forKey:NSLocalizedDescriptionKey]] autorelease];
+        error = [[NSError alloc] initWithDomain:@"Controller" code:1 userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Unknown error. "] forKey:NSLocalizedDescriptionKey]];
         return error;
     }
     
@@ -737,7 +720,6 @@ static void signal_handler(int sig) {
     [torrent setWaitToStart: [fDefaults boolForKey: @"AutoStartDownload"]];
     [torrent update];
     [fTorrents addObject: torrent];
-    [torrent release];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationNewTorrentAdded object:self userInfo:nil];
     [self updateTorrentHistory];
@@ -759,8 +741,6 @@ static void signal_handler(int sig) {
 
 - (void) rpcCallback: (tr_rpc_callback_type) type forTorrentStruct: (struct tr_torrent *) torrentStruct
 {
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    
     //get the torrent
     Torrent * torrent = nil;
     if (torrentStruct != NULL && (type != TR_RPC_TORRENT_ADDED && type != TR_RPC_SESSION_CHANGED))
@@ -768,14 +748,11 @@ static void signal_handler(int sig) {
         for (torrent in fTorrents)
             if (torrentStruct == [torrent torrentStruct])
             {
-                [torrent retain];
                 break;
             }
         
         if (!torrent)
         {
-            [pool drain];
-            
             NSLog(@"No torrent found matching the given torrent struct from the RPC callback!");
             return;
         }
@@ -785,7 +762,7 @@ static void signal_handler(int sig) {
     {
         case TR_RPC_TORRENT_ADDED:
             [self performSelectorOnMainThread: @selector(rpcAddTorrentStruct:) withObject:
-			 [[NSValue valueWithPointer: torrentStruct] retain] waitUntilDone: NO];
+			 [NSValue valueWithPointer: torrentStruct] waitUntilDone: NO];
             break;
 			
         case TR_RPC_TORRENT_STARTED:
@@ -811,16 +788,12 @@ static void signal_handler(int sig) {
 			
         default:
             NSAssert1(NO, @"Unknown RPC command received: %d", type);
-            [torrent release];
     }
-    
-    [pool drain];
 }
 
 - (void) rpcAddTorrentStruct: (NSValue *) torrentStructPtr
 {
     tr_torrent * torrentStruct = (tr_torrent *)[torrentStructPtr pointerValue];
-    [torrentStructPtr release];
     
     NSString * location = nil;
     if (tr_torrentGetDownloadDir(torrentStruct) != NULL)
@@ -830,19 +803,16 @@ static void signal_handler(int sig) {
     
     [torrent update];
     [fTorrents addObject: torrent];
-    [torrent release];
 }
 
 - (void) rpcRemoveTorrent: (Torrent *) torrent
 {
     [self removeTorrents:[NSArray arrayWithObject: torrent] trashData:NO];
-    [torrent release];
 }
 
 - (void) rpcStartedStoppedTorrent: (Torrent *) torrent
 {
     [torrent update];
-    [torrent release];
     
 	//TODO: Post notification to update this torrent's info in UI. 
 	
@@ -853,16 +823,12 @@ static void signal_handler(int sig) {
 {
     [torrent update];
     
-	//TODO: Post notification to update this torrent's info in UI. 
-	
-    [torrent release];
+	//TODO: Post notification to update this torrent's info in UI.
 }
 
 - (void) rpcMovedTorrent: (Torrent *) torrent
 {
     [torrent update];
-    
-    [torrent release];
 }
 
 
@@ -948,7 +914,7 @@ static void signal_handler(int sig) {
 - (void)startLogging
 {
     if (![self isLoggingEnabled]) {
-        self.fileLogger = [[[DDFileLogger alloc] init] autorelease];
+        self.fileLogger = [[DDFileLogger alloc] init];
         self.fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
         self.fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
         [DDLog addLogger:self.fileLogger];
@@ -1001,7 +967,6 @@ static void signal_handler(int sig) {
 		
 		// Schedule the notification
 		[[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
-		[localNotif release];
 	}
 } 
 

@@ -14,7 +14,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
 	if (self = [super initWithCoder:aDecoder]) {
-		UIView *transparentBackground = [[[UIView alloc] init] autorelease];
+		UIView *transparentBackground = [[UIView alloc] init];
 		transparentBackground.backgroundColor = [UIColor clearColor];
 		self.backgroundView = transparentBackground;
 	}

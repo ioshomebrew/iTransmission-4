@@ -6,11 +6,11 @@
 /**
  * Welcome to Cocoa Lumberjack!
  * 
- * The Google Code page has a wealth of documentation if you have any questions.
- * http://code.google.com/p/cocoalumberjack/
+ * The project page has a wealth of documentation if you have any questions.
+ * https://github.com/CocoaLumberjack/CocoaLumberjack
  * 
- * If you're new to the project you may wish to read the "Getting Started" page.
- * http://code.google.com/p/cocoalumberjack/wiki/GettingStarted
+ * If you're new to the project you may wish to read the "Getting Started" wiki.
+ * https://github.com/CocoaLumberjack/CocoaLumberjack/wiki/GettingStarted
  * 
  * 
  * This class provides a logger for the Apple System Log facility.
@@ -28,10 +28,10 @@
 
 @interface DDASLLogger : DDAbstractLogger <DDLogger>
 {
-	aslclient client;
+    aslclient client;
 }
 
-+ (DDASLLogger *)sharedInstance;
++ (instancetype)sharedInstance;
 
 // Inherited from DDAbstractLogger
 

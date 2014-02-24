@@ -11,7 +11,7 @@
 
 @class Torrent;
 @interface BandwidthController : StatisticsViewController<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
-	Torrent *fTorrent;
+	//Torrent *fTorrent;
 	UITableView *fTableView;
 	BOOL _visible;
     BOOL keyboardIsShowing;

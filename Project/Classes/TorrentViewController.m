@@ -11,9 +11,9 @@
 #import "TorrentCell.h"
 #import "Torrent.h"
 #import "PrefViewController.h"
-#import "RegexKitLite.h"
+//#import "RegexKitLite.h"
 #import "UIAlertViewPrivate.h"
-#import "RegexExtension.h"
+//#import "RegexExtension.h"
 #import "TorrentFetcher.h"
 #import "TDBadgedCell.h"
 #import "Notifications.h"
@@ -48,22 +48,22 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        UIBarButtonItem *addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonClicked:)] autorelease];
-        UIBarButtonItem *flexSpaceOne = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-		UIBarButtonItem *refreshButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateUI)] autorelease];
-		UIBarButtonItem *flexSpaceTwo = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-		UIBarButtonItem *prefButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gear-icon"] style:UIBarButtonItemStylePlain target:self action:@selector(prefButtonClicked:)] autorelease];
-		UIBarButtonItem *flexSpaceThree = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-		UIBarButtonItem *bandwidthButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bandwidth-icon"] style:UIBarButtonItemStylePlain target:self action:@selector(bandwidthButtonClicked:)] autorelease];
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonClicked:)];
+        UIBarButtonItem *flexSpaceOne = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+		UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateUI)];
+		UIBarButtonItem *flexSpaceTwo = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+		UIBarButtonItem *prefButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gear-icon"] style:UIBarButtonItemStylePlain target:self action:@selector(prefButtonClicked:)];
+		UIBarButtonItem *flexSpaceThree = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+		UIBarButtonItem *bandwidthButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bandwidth-icon"] style:UIBarButtonItemStylePlain target:self action:@selector(bandwidthButtonClicked:)];
 		
         self.normalToolbarItems = [NSArray arrayWithObjects:addButton, flexSpaceOne, refreshButton, flexSpaceTwo, bandwidthButton, flexSpaceThree, prefButton, nil];
         self.toolbarItems = self.normalToolbarItems;
         
-		UIBarButtonItem *pauseButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(resumeButtonClicked:)] autorelease];
-		UIBarButtonItem *resumeButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseButtonClicked:)] autorelease];
-		UIBarButtonItem *removeButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeButtonClicked:)] autorelease];
-		UIBarButtonItem *_flexSpaceOne = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-		UIBarButtonItem *_flexSpaceTwo = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+		UIBarButtonItem *pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(resumeButtonClicked:)];
+		UIBarButtonItem *resumeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseButtonClicked:)];
+		UIBarButtonItem *removeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeButtonClicked:)];
+		UIBarButtonItem *_flexSpaceOne = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+		UIBarButtonItem *_flexSpaceTwo = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 		
 		self.editToolbarItems = [NSArray arrayWithObjects:resumeButton, _flexSpaceOne, pauseButton, _flexSpaceTwo, removeButton, nil];
         
@@ -89,7 +89,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (self.tableView.editing == NO) {
-		DetailViewController *detailController = [[[DetailViewController alloc] initWithTorrent:[self.controller torrentAtIndex:indexPath.row] controller:self.controller] autorelease];
+		DetailViewController *detailController = [[DetailViewController alloc] initWithTorrent:[self.controller torrentAtIndex:indexPath.row] controller:self.controller];
 		[self.navigationController pushViewController:detailController animated:YES];
 		[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
@@ -160,7 +160,7 @@
 
 - (void)addButtonClicked:(id)sender
 {
-    UIActionSheet *sheet = [[[UIActionSheet alloc] initWithTitle:@"Add from..." delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Add from..." delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     [sheet addButtonWithTitle:@"Web"];
     [sheet addButtonWithTitle:@"Magnet"];
     [sheet addButtonWithTitle:@"URL"];
@@ -172,10 +172,10 @@
 
 - (void)bandwidthButtonClicked:(id)sender
 {
-    BandwidthController *c = [[[BandwidthController alloc] initWithNibName:@"BandwidthController" bundle:nil] autorelease];
+    BandwidthController *c = [[BandwidthController alloc] initWithNibName:@"BandwidthController" bundle:nil];
     c.torrent = nil;
     c.controller = self.controller;
-    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:c] autorelease];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:c];
     [self presentViewController:navController animated:YES completion:nil];
 }
 
@@ -187,8 +187,8 @@
 
 - (void)prefButtonClicked:(id)sender
 {
-    PrefViewController *prefViewController = [[[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil] autorelease];
-    UINavigationController *prefNav = [[[UINavigationController alloc] initWithRootViewController:prefViewController] autorelease];
+    PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil];
+    UINavigationController *prefNav = [[UINavigationController alloc] initWithRootViewController:prefViewController];
     [self presentViewController:prefNav animated:YES completion:nil];
 }
 
@@ -246,17 +246,17 @@
     [super viewDidLoad];
 		
     self.activityItemView.backgroundColor = [UIColor clearColor];
-    self.activityItem = [[[UIBarButtonItem alloc] initWithCustomView:self.activityItemView] autorelease];	
+    self.activityItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityItemView];
 		
 	UIButton *_infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
 	[_infoButton addTarget:self action:@selector(infoButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-	self.infoButton = [[[UIBarButtonItem alloc] initWithCustomView:_infoButton] autorelease];
+	self.infoButton = [[UIBarButtonItem alloc] initWithCustomView:_infoButton];
 	self.navigationItem.rightBarButtonItem = self.infoButton;
 	
-	self.editButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonClicked:)] autorelease];
+	self.editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonClicked:)];
 	self.navigationItem.leftBarButtonItem = self.editButton;
 	
-	self.doneButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked:)] autorelease];
+	self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked:)];
 	
     [self.activityCounterBadge setBadgeColor:[UIColor colorWithRed:0.82 green:0.0 blue:0.082 alpha:1.000]];
 	
@@ -293,7 +293,7 @@
 	else 
 		msg = [NSString stringWithFormat:@"Are you sure to remove %i torrents?", [self.selectedIndexPaths count]];
 
-	UIActionSheet *actionSheet = [[[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes and remove data" otherButtonTitles:@"Yes but keep data", nil] autorelease];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes and remove data" otherButtonTitles:@"Yes but keep data", nil];
 	actionSheet.tag = REMOVE_COMFIRM_TAG;
 	[actionSheet showFromToolbar:self.navigationController.toolbar];
 }
@@ -374,7 +374,7 @@
 
 - (void)addFromURLWithExistingURL:(NSString*)url message:(NSString*)msg
 {
-    UIAlertView *dialog = [[[UIAlertView alloc] initWithTitle:@"Add from URL" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil] autorelease];
+    UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:@"Add from URL" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     dialog.delegate = self;
     dialog.tag = ADD_FROM_URL_TAG;
     [dialog addTextFieldWithValue:url label:@"http://"];
@@ -391,7 +391,7 @@
 
 - (void)addFromMagnetWithExistingMagnet:(NSString*)magnet message:(NSString*)msg
 {
-    UIAlertView *dialog = [[[UIAlertView alloc] initWithTitle:@"Add from magnet" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil] autorelease];
+    UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:@"Add from magnet" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     dialog.delegate = self;
     dialog.tag = ADD_FROM_MAGNET_TAG;
     [dialog addTextFieldWithValue:magnet label:@"magnet:"];
@@ -455,7 +455,7 @@
             return;
         if (buttonIndex == 1) {
             NSString *url = [[alertView textField] text];
-            if (![url isURL])
+            if (![url hasPrefix:@"http://"] || [url hasPrefix:@"https://"])
                 [self addFromURLWithExistingURL:url message:@"Error: The URL provided is malformed!"];
             else {
                 [self.controller addTorrentFromURL:url];
@@ -537,7 +537,6 @@
     self.activityIndicator = nil;
 	self.normalToolbarItems = nil;
 	self.editToolbarItems = nil;
-    [super dealloc];
 }
 
 

@@ -14,7 +14,7 @@
 @class Insomnia;
 @interface PrefViewController :UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
     UITableView *fTableView;
-    Controller *fController;
+    //Controller *fController;
     
     IBOutlet UITableViewCell *fEnableRPCCell;
     IBOutlet UITableViewCell *fRPCUsernameCell;

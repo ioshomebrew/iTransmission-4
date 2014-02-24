@@ -65,7 +65,6 @@
     self.PeerNumber = nil;
     self.SeedLabel = nil;
     self.SeedNumber = nil;
-    [super dealloc];
 }
 
 @end

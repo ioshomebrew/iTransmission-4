@@ -70,18 +70,18 @@ MAX([UIApplication sharedApplication].statusBarFrame.size.width, [UIApplication 
 #define kLightThemeActivityIndicatorViewStyle		UIActivityIndicatorViewStyleGray
 #define kLightThemeDetailViewBackgroundColor		[UIColor blackColor]
 #define kLightThemeDetailViewBorderColor			[UIColor darkGrayColor]
-#define kLightThemeHistoryTextColor					[UIColor colorWithRed:0.749f green:0.749f blue:0.749f alpha:1.0f]
+#define kLightThemeHistoryTextColor					[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f]
 
 
 ///////////////////////////////////////////////////////
 // Dark Theme (for UIStatusBarStyleBlackOpaque)
 ///////////////////////////////////////////////////////
 
-#define kDarkThemeTextColor							[UIColor colorWithRed:0.749f green:0.749f blue:0.749f alpha:1.0f]
-#define kDarkThemeErrorMessageTextColor             [UIColor colorWithRed:0.749f green:0.749f blue:0.749f alpha:1.0f] // [UIColor colorWithRed:0.918367f green:0.48385f blue:0.423895f alpha:1.0f]
-#define kDarkThemeFinishedMessageTextColor          [UIColor colorWithRed:0.749f green:0.749f blue:0.749f alpha:1.0f] // [UIColor colorWithRed:0.681767f green:0.918367f blue:0.726814f alpha:1.0f]
+#define kDarkThemeTextColor							[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f]
+#define kDarkThemeErrorMessageTextColor             [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f] // [UIColor colorWithRed:0.918367f green:0.48385f blue:0.423895f alpha:1.0f]
+#define kDarkThemeFinishedMessageTextColor          [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f] // [UIColor colorWithRed:0.681767f green:0.918367f blue:0.726814f alpha:1.0f]
 #define kDarkThemeActivityIndicatorViewStyle		UIActivityIndicatorViewStyleWhite
-#define kDarkThemeDetailViewBackgroundColor			[UIColor colorWithRed:0.3f green:0.3f blue:0.3f alpha:1.0f]
+#define kDarkThemeDetailViewBackgroundColor			[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f]
 #define kDarkThemeDetailViewBorderColor				[UIColor whiteColor]
 #define kDarkThemeHistoryTextColor					[UIColor whiteColor]
 
@@ -367,7 +367,7 @@ kDetailViewWidth, kHistoryTableRowHeight*kMaxHistoryTableRowCount + kStatusBarHe
 		[self addSubviewToBackgroundView:statusBarBackgroundImageView_];
 
 		// Activity Indicator
-		activityIndicator_ = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+		activityIndicator_ = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 		activityIndicator_.frame = CGRectMake(6.0f, 3.0f, backgroundView_.frame.size.height - 6, backgroundView_.frame.size.height - 6);
 		activityIndicator_.hidesWhenStopped = YES;
 		[self addSubviewToBackgroundView:activityIndicator_];

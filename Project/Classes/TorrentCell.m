@@ -12,17 +12,17 @@
 
 @implementation TorrentCell
 
-@synthesize nameLabel = fNameLabel;
-@synthesize upperDetailLabel = fUpperDetailLabel;
-@synthesize lowerDetailLabel = fLowerDetailLabel;
-@synthesize progressView = fProgressView;
-@synthesize controlButton = fControlButton;
+@synthesize nameLabel;
+@synthesize upperDetailLabel;
+@synthesize lowerDetailLabel;
+@synthesize progressView;
+@synthesize controlButton;
 
 + (id)cellFromNib
 {
     NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"TorrentCell" owner:nil options:nil];
 	TorrentCell *cell = (TorrentCell*)[objects objectAtIndex:0];
-	cell.backgroundView = [[[GradientView alloc] init] autorelease];
+	cell.backgroundView = [[GradientView alloc] init];
 	
 	CGRect progressViewRect = cell.progressView.frame;
 	progressViewRect.size = CGSizeMake(progressViewRect.size.width, 14);
@@ -33,17 +33,11 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 
     [super setSelected:selected animated:animated];
-	[self.controlButton setNeedsDisplay];
+	//[self.controlButton setNeedsDisplay];
 }
 
 - (void)dealloc {
-	self.nameLabel = nil;
-	self.upperDetailLabel = nil;
-	self.lowerDetailLabel = nil;
-	self.progressView = nil;
-	self.controlButton = nil;
-    [super dealloc];
-}
 
+}
 
 @end

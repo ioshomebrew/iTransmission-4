@@ -18,7 +18,7 @@
 	IBOutlet UILabel *fDLSpeedLabel;
 	IBOutlet UILabel *fULSpeedLabel;
 	IBOutlet UIImageView *fStatusIndicator;
-	Controller *fController;
+	//Controller *fController;
 }
 @property (nonatomic, retain) NSTimer *updateTimer;
 @property (nonatomic, assign) Controller *controller;

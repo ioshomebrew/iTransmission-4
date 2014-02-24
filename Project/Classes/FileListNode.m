@@ -72,20 +72,12 @@
 - (id) copyWithZone: (NSZone *) zone
 {
     //this object is essentially immutable after initial setup
-    return [self retain];
+    return self;
 }
 
 - (void) dealloc
 {
-    [fName release];
-    [fPath release];
-    [fIndexes release];
-    
-    [fIcon release];
-    
-    [fChildren release];
-    
-    [super dealloc];
+
 }
 
 - (NSString *) description
@@ -148,8 +140,8 @@
     if ((self = [super init]))
     {
         fIsFolder = isFolder;
-        fName = [name retain];
-        fPath = [path retain];
+        fName = name;
+        fPath = path;
         
         fIndexes = [[NSMutableIndexSet alloc] init];
         

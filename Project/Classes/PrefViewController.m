@@ -26,8 +26,8 @@
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         self.title = @"Preferences";
         
-        UIBarButtonItem *closeButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeButtonClicked)] autorelease];
-        UIBarButtonItem *saveButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveButtonClicked)] autorelease];
+        UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeButtonClicked)];
+        UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveButtonClicked)];
         
         [self.navigationItem setLeftBarButtonItem:closeButton];
         [self.navigationItem setRightBarButtonItem:saveButton];
@@ -224,10 +224,10 @@
 - (void)portCheckButtonClicked
 {
 	if ([self.navigationItem.rightBarButtonItem isEnabled]) {
-		[[[[UIAlertView alloc] initWithTitle:@"Failure" message:@"Please save before performing a port check. " delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease] show];
+		[[[UIAlertView alloc] initWithTitle:@"Failure" message:@"Please save before performing a port check. " delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
 	}
 	else {
-		self.portChecker = [[[PortChecker alloc] initForPort:[self.originalPreferences integerForKey:@"BindPort"] delay:NO withDelegate:self] autorelease];
+		self.portChecker = [[PortChecker alloc] initForPort:[self.originalPreferences integerForKey:@"BindPort"] delay:NO withDelegate:self];
 		[fPortCheckActivityIndicator startAnimating];
 		[fCheckPortButton setEnabled:NO];
 	}
@@ -251,7 +251,6 @@
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Port check" message:msg delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
 	[alert show];
-	[alert release];
 }
 
 - (void)saveButtonClicked
@@ -344,7 +343,7 @@
     [fCheckPortButton useSimpleOrangeStyle];
 	[fCheckPortButton addTarget:self action:@selector(portCheckButtonClicked) forControlEvents:UIControlEventTouchUpInside];
 	
-    fTextFieldTextColor = [[fRPCPortTextField textColor] retain];
+    fTextFieldTextColor = [fRPCPortTextField textColor];
     [self loadPreferences];
 
 }
@@ -417,7 +416,7 @@
 {
 	BOOL on = [fUseWiFiSwitch isOn];
 	if (on == NO) {
-		UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Disable WiFi" message:@"Disabling WiFi is strongly discouraged! Please make sure this is what you want. " delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease];
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Disable WiFi" message:@"Disabling WiFi is strongly discouraged! Please make sure this is what you want. " delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
 		[alertView show];
 	}
     [self.navigationItem.rightBarButtonItem setEnabled:YES];
@@ -432,7 +431,7 @@
 {
     int bind_port = [[fBindPortTextField text] intValue];
     if (bind_port != [self.originalPreferences integerForKey:@"BindPort"]) {
-        [[[[UIAlertView alloc] initWithTitle:@"Cannot check port" message:@"Bind port may have been modified. Please save before port test." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease] show];
+        [[[UIAlertView alloc] initWithTitle:@"Cannot check port" message:@"Bind port may have been modified. Please save before port test." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
     }
 }
 
@@ -472,33 +471,8 @@
 	[self.portChecker cancelProbe];
 	self.portChecker = nil;
     self.originalPreferences = nil;
-    [fTextFieldTextColor release];
-    [fBindPortCell release];
-    [fEnableRPCCell release];
-    [fRPCPortCell release];
-    [fRPCPasswordCell release];
-    [fRPCRequireAuthCell release];
-    [fRPCUsernameCell release];
-    [fUseWiFiCell release];
-    [fUseCellularNetworkCell release];
-    [fAutoPortMapCell release];
-    [fCheckPortButton release];
-	[fEnableRPCSwitch release];
-	[fRPCRequireAuthSwitch release];
-	[fUseWiFiSwitch release];
-	[fUseCellularNetworkSwitch release];
-	[fAutoPortMapSwitch release];
-	[fBindPortTextField release];
-	[fRPCUsernameTextField release];
-	[fRPCPasswordTextField release];
-	[fRPCPortTextField release];
-    [fEnableLoggingCell release];
-    [fEnableLoggingSwitch release];
-    [fInsomniaCell release];
-    [fInsomniaSwitch release];
     self.controller = nil;
     self.indexPathToScroll = nil;
-    [super dealloc];
 }
 
 

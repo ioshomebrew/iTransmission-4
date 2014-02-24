@@ -20,7 +20,6 @@
 	UIBarButtonItem *fRemoveButton;
 	UIBarButtonItem *fRefreshButton;
     UIBarButtonItem *fBandwidthButton;
-	Torrent *fTorrent;
     NSIndexPath *fSelectedIndexPath;
 	
 	IBOutlet UITableViewCell *fTitleCell;
@@ -114,6 +113,7 @@
 @property (nonatomic, retain) UIBarButtonItem *refreshButton;
 @property (nonatomic, retain) UIBarButtonItem *bandwidthButton;
 @property (nonatomic, retain) NSIndexPath *selectedIndexPath;
+@property (nonatomic, retain) Controller *fController;
 
 - (id)initWithTorrent:(Torrent*)t controller:(Controller*)c;
 

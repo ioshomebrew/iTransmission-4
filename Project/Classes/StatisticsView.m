@@ -28,7 +28,7 @@
 	[v setFrame:CGRectMake(0, 0, 320, 20)];
 	[v.backgroundView setImage:[[UIImage imageNamed:@"status-view-background"] stretchableImageWithLeftCapWidth:0 topCapHeight:0]];
     
-	return [v retain];
+	return v;
 }
 
 - (void)startUpdate
@@ -68,13 +68,6 @@
 - (void)dealloc {
 	[self.updateTimer invalidate];
 	self.updateTimer = nil;
-	[fUploadIcon release];
-	[fDownloadIcon release];
-	[fULSpeedLabel release];
-	[fDLSpeedLabel release];
-	[fBackgroundView release];
-	[fStatusIndicator release];
-    [super dealloc];
 }
 
 

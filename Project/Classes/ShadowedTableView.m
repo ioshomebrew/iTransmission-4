@@ -26,7 +26,7 @@
 //
 - (CAGradientLayer *)shadowAsInverse:(BOOL)inverse
 {
-	CAGradientLayer *newShadow = [[[CAGradientLayer alloc] init] autorelease];
+	CAGradientLayer *newShadow = [[CAGradientLayer alloc] init];
 	CGRect newShadowFrame =
     CGRectMake(0, 0, self.frame.size.width,
                inverse ? SHADOW_INVERSE_HEIGHT : SHADOW_HEIGHT);
@@ -38,8 +38,8 @@
     [self.backgroundColor colorWithAlphaComponent:0.0].CGColor;
 	newShadow.colors =
     [NSArray arrayWithObjects:
-     (id)(inverse ? lightColor : darkColor),
-     (id)(inverse ? darkColor : lightColor),
+     (__bridge id)(inverse ? lightColor : darkColor),
+     (__bridge id)(inverse ? darkColor : lightColor),
      nil];
 	return newShadow;
 }
@@ -83,10 +83,8 @@
 	if ([indexPathsForVisibleRows count] == 0)
 	{
 		[topShadow removeFromSuperlayer];
-		[topShadow release];
 		topShadow = nil;
 		[bottomShadow removeFromSuperlayer];
-		[bottomShadow release];
 		bottomShadow = nil;
 		return;
 	}
@@ -97,7 +95,7 @@
 		UIView *cell = [self cellForRowAtIndexPath:firstRow];
 		if (!topShadow)
 		{
-			topShadow = [[self shadowAsInverse:YES] retain];
+			topShadow = [self shadowAsInverse:YES];
 			[cell.layer insertSublayer:topShadow atIndex:0];
 		}
 		else if ([cell.layer.sublayers indexOfObjectIdenticalTo:topShadow] != 0)
@@ -113,8 +111,6 @@
 	else
 	{
 		[topShadow removeFromSuperlayer];
-		[topShadow release];
-		topShadow = nil;
 	}
     
 	NSIndexPath *lastRow = [indexPathsForVisibleRows lastObject];
@@ -125,7 +121,7 @@
         [self cellForRowAtIndexPath:lastRow];
 		if (!bottomShadow)
 		{
-			bottomShadow = [[self shadowAsInverse:NO] retain];
+			bottomShadow = [self shadowAsInverse:NO];
 			[cell.layer insertSublayer:bottomShadow atIndex:0];
 		}
 		else if ([cell.layer.sublayers indexOfObjectIdenticalTo:bottomShadow] != 0)
@@ -141,9 +137,7 @@
 	else
 	{
 		[bottomShadow removeFromSuperlayer];
-		[bottomShadow release];
-		bottomShadow = nil;
-	}
+    }
 }
 
 //
@@ -153,10 +147,6 @@
 //
 - (void)dealloc
 {
-	[topShadow release];
-	[bottomShadow release];
-    
-	[super dealloc];
 }
 
 

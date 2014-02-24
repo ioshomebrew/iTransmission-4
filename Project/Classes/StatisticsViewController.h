@@ -13,7 +13,7 @@
 
 @interface StatisticsViewController : UIViewController {
     StatisticsView *fStatisticsView;
-    Controller *fController;
+    //Controller *fController;
     NSTimer *fUIUpdateTimer;
 }
 @property (nonatomic, retain) NSTimer *UIUpdateTimer;

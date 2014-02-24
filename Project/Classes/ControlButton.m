@@ -113,7 +113,7 @@
 {
 	self.backgroundColor = [UIColor clearColor];
 	
-	self.textLabel = [[[UILabel alloc] initWithFrame:self.bounds] autorelease];
+	self.textLabel = [[UILabel alloc] initWithFrame:self.bounds];
 	[self.textLabel setFont:[UIFont boldSystemFontOfSize:10.0f]];
 	[self.textLabel setTextAlignment:NSTextAlignmentCenter];
 	[self.textLabel setBackgroundColor:[UIColor clearColor]];
@@ -216,8 +216,6 @@
 - (void)dealloc {
 	self.gradientColors = nil;
 	self.textLabel = nil;
-    [super dealloc];
 }
-
 
 @end

@@ -38,8 +38,6 @@
 		
 
 - (void)dealloc {
-	self.eventsForwardView = nil;
-    [super dealloc];
 }
 
 

@@ -9,8 +9,8 @@ export TEMP_DIR="$PWD/temp"
 export PATCH_DIR="$PWD/patches"
 export DEPENDENCY_DIR="$PWD/dependency"
 export BUILD_FILTER="ssl,curl,trans,libev"
-export TOOL_DIR="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin"
-export Min_IPHONE_OS=7.0
+export TOOL_DIR="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/"
+export Min_IPHONE_OS=4.3
 
 function do_abort {
 	echo $1 >&2
@@ -153,11 +153,11 @@ function do_libevent {
 	  /usr/bin/curl -O -L "http://cloud.github.com/downloads/libevent/libevent/${PACKAGE_NAME}.tar.gz" || do_abort "$FUNCNAME: fetch failed "
 	fi
 	
-	if [[ -z $DONT_OVERWRITE ]]; then
-		rm -rf "${PACKAGE_NAME}"
-		tar zxvf "${PACKAGE_NAME}.tar.gz" || do_abort "$FUNCNAME: unpack failed "
-	fi
-	
+    if [[ -z $DONT_OVERWRITE ]]; then
+        rm -rf "${PACKAGE_NAME}"
+        tar zxvf "${PACKAGE_NAME}.tar.gz" || do_abort "$FUNCNAME: unpack failed "
+    fi
+
 	pushd ${PACKAGE_NAME}
 	
 	# libevent patch to hardcode google public dns servers for iOS
@@ -256,4 +256,7 @@ done
 
 mkdir -p ${TEMP_DIR}
 
+do_openssl
+do_curl
+do_libevent
 do_transmission

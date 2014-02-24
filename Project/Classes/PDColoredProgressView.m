@@ -119,8 +119,7 @@ static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloa
 }
 
 - (void) setTintColor: (UIColor *) aColor {
-	[_tintColor release];
-	_tintColor = [aColor retain];
+	_tintColor = aColor;
 	[self setNeedsDisplay];
 }
 
@@ -145,8 +144,6 @@ static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloa
 }
 
 - (void)dealloc {
-    [super dealloc];
-	[_tintColor release];
 }
 
 

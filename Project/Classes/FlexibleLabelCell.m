@@ -14,7 +14,6 @@
 
 - (void)dealloc {
 	self.flexibleLabel = nil;
-    [super dealloc];
 }
 
 - (void)resizeToFitText

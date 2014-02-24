@@ -69,7 +69,6 @@
     self.sizeLabel = nil;
     self.progressLabel = nil;
     self.checkbox = nil;
-    [super dealloc];
 }
 
 @end

@@ -53,9 +53,7 @@
 
 - (void)dealloc
 {
-    [_docController release];
     self.tableView = nil;
-    [super dealloc];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

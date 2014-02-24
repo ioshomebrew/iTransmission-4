@@ -60,8 +60,6 @@
 - (void)dealloc
 {
     self.directoryLabel = nil;
-    self.filenameLabel = nil;
-    [super dealloc];
 }
 
 @end

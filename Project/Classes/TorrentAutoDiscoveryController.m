@@ -60,8 +60,7 @@
 
 - (void)dealloc
 {
-    self.filepath = nil;
-    [super dealloc];
+
 }
 
 @end
@@ -85,16 +84,16 @@
     if (self) {
         [self buildSearchDirectories];
         self.discoveredTorrents = nil;
-        self.fileManager = [[[NSFileManager alloc] init] autorelease];
+        self.fileManager = [[NSFileManager alloc] init];
         state = AutoDiscoveryStateIdle;
         self.discoveredTorrents = [NSMutableArray array];
         self.lastDiscoveryDate = [NSDate dateWithTimeIntervalSince1970:0];
         
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked:)] autorelease];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked:)];
         
         UIButton *_infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
         [_infoButton addTarget:self action:@selector(infoButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:_infoButton] autorelease];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_infoButton];
         
         self.title = @"Auto Discover";
     }
@@ -113,7 +112,6 @@
     self.searchResults = nil;
     self.searchBar = nil;
     self.lastDiscoveryDate = nil;
-    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -133,7 +131,7 @@
 
 - (void)infoButtonClicked:(id)sender
 {
-    [[[[UIAlertView alloc] initWithTitle:@"Help" message:@"Pulling down the view will activate torrent file auto discover that will find every .torrent file in your device." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease] show];
+    [[[UIAlertView alloc] initWithTitle:@"Help" message:@"Pulling down the view will activate torrent file auto discover that will find every .torrent file in your device." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
 }
 
 - (void)viewDidLoad
@@ -143,8 +141,8 @@
     self.tableView.tableHeaderView = self.searchBar;
     
     if (self.refreshHeaderView == nil) {
-		self.refreshHeaderView = [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.tableView.frame.size.width, self.tableView.bounds.size.height)] autorelease];
-		self.refreshHeaderView.delegate = self;
+		self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.tableView.frame.size.width, self.tableView.bounds.size.height)];
+		self.refreshHeaderView.delagate = self;
 		[self.tableView addSubview:self.refreshHeaderView];		
 	}
 }
@@ -283,10 +281,10 @@
             torrent = [self.discoveredTorrents objectAtIndex:row];
         NSError *error = [self.controller openFile:[torrent filepath] addType:ADD_URL forcePath:nil];
         if (error) {
-            [[[[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease] show];
+            [[[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
         }
         else {
-            [[[[UIAlertView alloc] initWithTitle:@"Success" message:@"New torrent added. " delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease] show];
+            [[[UIAlertView alloc] initWithTitle:@"Success" message:@"New torrent added. " delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
         }
     }
     
@@ -331,13 +329,12 @@
     }
     [self appendDiscoveredTorrents:loadedTorrents];
     [unarchiver finishDecoding];
-    [unarchiver release];
 }
 
 - (void)saveToHistories
 {
-    NSMutableData *data = [[[NSMutableData alloc] init] autorelease];
-    NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
     [archiver setOutputFormat:NSPropertyListXMLFormat_v1_0];
     [archiver encodeObject:self.discoveredTorrents forKey:@"torrents"];
     [archiver encodeObject:self.lastDiscoveryDate forKey:@"date"];
@@ -392,7 +389,7 @@
         }
         
         if ([[file pathExtension] isEqualToString:@"torrent"]) {
-            DiscoveredTorrentFile *torrent = [[[DiscoveredTorrentFile alloc] initWithFilepath:filepath] autorelease];
+            DiscoveredTorrentFile *torrent = [[DiscoveredTorrentFile alloc] initWithFilepath:filepath];
             [torrentFiles addObject:torrent];
         }
         
@@ -419,7 +416,7 @@
 {
     if (self.autoDiscoveryThread || self.state == AutoDiscoveryStateWorking) 
         return;
-    NSThread *thread = [[[NSThread alloc] initWithTarget:self selector:@selector(_autoDiscoveryMain) object:nil] autorelease];
+    NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(_autoDiscoveryMain) object:nil];
     self.autoDiscoveryThread = thread;
     state = AutoDiscoveryStateWorking;
     [thread start];
@@ -435,7 +432,6 @@
 
 - (void)_autoDiscoveryMain
 {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     for (NSString *searchDirectory in self.searchDirectories) {
         if ([[NSThread currentThread] isCancelled]) {
             goto FINISH;
@@ -447,8 +443,6 @@ FINISH:
     if ([[NSThread currentThread] isCancelled] == NO) {
         [self performSelectorOnMainThread:@selector(autoDiscoveryThreadEnded) withObject:nil waitUntilDone:NO];
     }
-    
-    [pool release];
     [NSThread exit];
 }
 

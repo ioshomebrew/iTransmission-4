@@ -33,12 +33,12 @@
     // Release any cached data, images, etc that aren't in use.
 }
 - (void)viewDidLoad {
-    UIBarButtonItem *editButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonTouched)] autorelease];
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonTouched)];
     [self.navigationItem setRightBarButtonItem:editButton animated:YES];
     
-    UIBarButtonItem *addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTouched)] autorelease];
-    UIBarButtonItem *removeButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeButtonTouched)] autorelease];
-    UIBarButtonItem *emptyButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:@selector(addButtonTouched)] autorelease];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTouched)];
+    UIBarButtonItem *removeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeButtonTouched)];
+    UIBarButtonItem *emptyButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:@selector(addButtonTouched)];
     [addButton setTag:ADD_TRACKER_BUTTON];
     [removeButton setTag:REMOVE_TRACKER_BUTTON];
     [addButton setEnabled:NO];
@@ -73,7 +73,7 @@
                     }
                 }
             }
-            if (![url isTracker] || exists) {
+            if (![url hasPrefix:@"http://"] || [url hasPrefix:@"https://"] || [url hasPrefix:@"udp://"] || exists) {
                 if (!exists) {[[[UIAlertView alloc] initWithTitle:@"Error"
                                            message:@"The URL you entered is invalid. Just where did you get it?"
                                           delegate:nil
@@ -94,11 +94,11 @@
 }
 
 - (void)addButtonTouched {
-    UIAlertView *dialog = [[[UIAlertView alloc] initWithTitle:@"Add Tracker"
+    UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:@"Add Tracker"
                                                       message:@"Enter the full tracker URL"
                                                      delegate:self
                                             cancelButtonTitle:@"Cancel"
-                                            otherButtonTitles:@"OK", nil] autorelease];
+                                            otherButtonTitles:@"OK", nil];
     dialog.delegate = self;
     dialog.tag = ADD_FROM_URL;
     [dialog addTextFieldWithValue:@"" label:@"Enter tracker URL"];
@@ -131,7 +131,6 @@
                                                                                 target:self
                                                                                 action:@selector(doneButtonTouched)];
     [self.navigationItem setRightBarButtonItem:doneButton animated:YES];
-    [doneButton release];
 }
 
 - (void)doneButtonTouched {
@@ -143,8 +142,6 @@
                                                                                 target:self
                                                                                 action:@selector(editButtonTouched)];
     [self.navigationItem setRightBarButtonItem:editButton animated:YES];
-    [editButton release];
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -181,11 +178,9 @@
     [super viewDidUnload];
 }
 - (void)dealloc {
-    [_docController release];
     self.tableView = nil;
     SelectedItems = nil;
     Trackers = nil;
-    [super dealloc];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

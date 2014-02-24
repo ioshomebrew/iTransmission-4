@@ -31,7 +31,7 @@
 {
 	if (self = [super initWithFrame:frame])
 	{
-		font = [[UIFont boldSystemFontOfSize: 14] retain];
+		font = [UIFont boldSystemFontOfSize: 14];
 		
 		self.backgroundColor = [UIColor clearColor];
 	}
@@ -41,7 +41,7 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
     if ((self = [super initWithCoder:coder])) {
-        font = [[UIFont boldSystemFontOfSize: 14] retain];
+        font = [UIFont boldSystemFontOfSize: 14];
 		
 		self.backgroundColor = [UIColor clearColor];
     }
@@ -118,12 +118,6 @@
 - (void) dealloc
 {
     self.badgeNumber = nil;
-	
-	[font release];
-	[badgeColor release];
-	[badgeColorHighlighted release];
-	
-	[super dealloc];
 }
 
 @end
@@ -244,11 +238,6 @@
 }
 
 - (void)dealloc {
-	[badge release];
-	[badgeColor release];
-	[badgeColorHighlighted release];
-	
-    [super dealloc];
 }
 
 

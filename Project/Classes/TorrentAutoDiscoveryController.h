@@ -39,7 +39,7 @@ typedef enum _AutoDiscoveryState {
     NSDate *fLastDiscoveryDate;
     UITableView *fTableView;
     UISearchBar *fSearchBar;
-    Controller *fController;
+    __unsafe_unretained Controller *fController;
 }
 @property (nonatomic, retain) NSArray *searchDirectories;
 @property (nonatomic, retain) EGORefreshTableHeaderView *refreshHeaderView;

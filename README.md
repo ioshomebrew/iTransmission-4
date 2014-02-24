@@ -15,6 +15,12 @@ There is no longer a need to compile iTransmission libraries yourself. I've alre
 
 Yet, if you still want to be adventurous, I have added the required files in a folder named 'compilation'.
 
+How to compile libraries
+_____
+Go to Compilation
+sudo ./build.sh -a ARCH
+Replace ARCH with what arch your going to compile
+
 Compiling app
 -----
 Compiling may be a bit hard, and depends upon your target. I will cover the basics below. I assume that you are using Mac OS X and have XCode.

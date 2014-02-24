@@ -12,13 +12,8 @@
 
 @class PDColoredProgressView;
 @class ControlButton;
-@interface TorrentCell : UITableViewCell {
-    UILabel *fNameLabel;
-	PDColoredProgressView *fProgressView;
-	UILabel *fUpperDetailLabel;
-	UILabel *fLowerDetailLabel;
-	ControlButton *fControlButton;
-}
+@interface TorrentCell : UITableViewCell
+
 @property (nonatomic, retain) IBOutlet UILabel *nameLabel;
 @property (nonatomic, retain) IBOutlet PDColoredProgressView *progressView;
 @property (nonatomic, retain) IBOutlet UILabel *upperDetailLabel;

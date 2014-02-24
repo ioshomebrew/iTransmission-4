@@ -66,23 +66,18 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [self.delegate torrentFetcher:self failedToFetchFromURL:self.url withError:error];
-    [fData release];
     fData = nil;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     [self.delegate torrentFetcher:self fetchedTorrentContent:fData fromURL:self.url];
-    [fData release];
     fData = nil;
 }
 
 - (void)dealloc {
-    if (fData)
-        [fData release];
     self.URLConnection = nil;
     self.url = nil;
-    [super dealloc];
 }
 
 @end

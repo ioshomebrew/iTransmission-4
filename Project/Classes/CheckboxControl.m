@@ -20,7 +20,7 @@
     if ((self = [super initWithCoder:c])) {
         self.checkedImage = [UIImage imageNamed: @"checkbox_checked.png"];
         self.uncheckedImage = [UIImage imageNamed: @"checkbox_unchecked.png"];
-        self.imageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
+        self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [self addSubview:self.imageView];
     
         self.imageView.image = self.checkedImage;
@@ -42,10 +42,6 @@
 }
 
 - (void)dealloc {
-    self.checkedImage = nil;
-    self.uncheckedImage = nil;
-    self.imageView = nil;
-    [super dealloc];
 }
 
 @end
