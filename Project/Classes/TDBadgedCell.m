@@ -95,7 +95,10 @@
     
     CGContextAddPath(context, path);
     CGContextSaveGState(context);
-    CGContextClip(context);
+    if(!CGContextIsPathEmpty(context))
+    {
+        CGContextClip(context);   
+    }
     CGContextDrawLinearGradient (context, gradientFill, myStartPoint, myEndPoint, 0);
     CGContextRestoreGState(context);
     

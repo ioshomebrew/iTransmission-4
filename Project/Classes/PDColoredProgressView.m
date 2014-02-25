@@ -93,7 +93,10 @@ static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloa
 		CGContextRef ctx = UIGraphicsGetCurrentContext();
 		
 		// draw rectangle
-		CGContextClip(ctx);
+        if(!CGContextIsPathEmpty(ctx))
+        {
+            CGContextClip(ctx);
+        }
 		
         // fill empty progress bar with white
 		CGContextSetRGBFillColor(ctx, 102.0f/255.0f, 102.0f/255.0f, 102.0f/255.0f, 1);
@@ -107,7 +110,10 @@ static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloa
 		CGRect progressRect = rect;
 		progressRect.size.width *= [self progress];
 		
-		CGContextClip(ctx);
+        if(!CGContextIsPathEmpty(ctx))
+        {
+            CGContextClip(ctx);
+        }
 		
 		CGContextSetFillColorWithColor(ctx, [_tintColor CGColor]);
 		CGContextFillRect(ctx, progressRect);

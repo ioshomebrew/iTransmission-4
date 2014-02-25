@@ -31,6 +31,7 @@
 #import <UIKit/UIKit.h>
 #import "Reachability.h"
 #import "TorrentFetcher.h"
+#import <libtransmission/transmission.h>
 
 typedef enum
 {

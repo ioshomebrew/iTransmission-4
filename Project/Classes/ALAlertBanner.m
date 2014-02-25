@@ -771,4 +771,9 @@ static CGFloat const kForceHideAnimationDuration = 0.1f;
     return descriptionString;
 }
 
++ (void)forceHideAll
+{
+    [[ALAlertBannerManager sharedManager] forceHideAll];
+}
+
 @end

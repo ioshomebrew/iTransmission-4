@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "StatisticsViewController.h"
+#import "ALAlertBanner.h"
 
 @class Controller;
 @class TDBadgeView;

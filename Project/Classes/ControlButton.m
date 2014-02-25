@@ -151,7 +151,10 @@
 -(void)drawRect:(CGRect)rect {
     CGContextRef currentContext = UIGraphicsGetCurrentContext();
     [self clipCornersToOvalWidth:5.0f height:5.0f];
-    CGContextClip(currentContext);
+    if(!CGContextIsPathEmpty(currentContext))
+    {
+        CGContextClip(currentContext);
+    }
 	
     CGGradientRef glossGradient;
     CGColorSpaceRef rgbColorspace;

@@ -122,6 +122,8 @@ typedef enum {
  */
 + (void)hideAllAlertBanners;
 
++ (void)forceHideAll;
+
 /**
  Immediately hides all alert banners in a certain view, forgoing their secondsToShow values.
  */

@@ -435,23 +435,30 @@ static void signal_handler(int sig) {
 
 - (void)postError:(NSString *)err_msg
 {
-    //ALAlertBanner *banner = [ALAlertBanner alertBannerForView:torrentViewController.view style:ALAlertBannerStyleFailure position:ALAlertBannerPositionUnderNavBar title:err_msg];
-    //[banner show];
-    return;
+    ALAlertBanner *banner = [ALAlertBanner alertBannerForView:self.window style:ALAlertBannerStyleFailure position:ALAlertBannerPositionUnderNavBar title:err_msg];
+    banner.secondsToShow = 3.5f;
+    banner.showAnimationDuration = 0.25f;
+    banner.hideAnimationDuration = 0.2f;
+    [banner show];
 }
 
 - (void)postMessage:(NSString*)msg
 {
-    //ALAlertBanner *banner = [ALAlertBanner alertBannerForView:torrentViewController.view style:ALAlertBannerStyleNotify position:ALAlertBannerPositionUnderNavBar title:msg];
-    //[banner show];
-    return;
+    ALAlertBanner *banner = [ALAlertBanner alertBannerForView:self.window style:ALAlertBannerStyleNotify position:ALAlertBannerPositionUnderNavBar title:msg];
+    banner.secondsToShow = 3.5f;
+    banner.showAnimationDuration = 0.25f;
+    banner.hideAnimationDuration = 0.2f;
+    [banner show];
 }
 
 - (void)postFinishMessage:(NSString*)msg
 {
-    //ALAlertBanner *banner = [ALAlertBanner alertBannerForView:torrentViewController.view style:ALAlertBannerStyleSuccess position:ALAlertBannerPositionUnderNavBar title:msg];
-    //[banner show];
-    return;
+    NSLog(@"Init finished");
+    ALAlertBanner *banner = [ALAlertBanner alertBannerForView:self.window style:ALAlertBannerStyleSuccess position:ALAlertBannerPositionUnderNavBar title:msg subtitle:msg];
+    banner.secondsToShow = 3.5f;
+    banner.showAnimationDuration = 0.25f;
+    banner.hideAnimationDuration = 0.2f;
+    [banner show];
 }
 
 - (void)setActiveForNetworkStatus:(NetworkStatus)status

@@ -35,5 +35,6 @@
 - (void)hideAllAlertBanners;
 - (void)hideAlertBannersInView:(UIView *)view;
 - (void)forceHideAllAlertBannersInView:(UIView *)view;
+- (void) forceHideAll;
 
 @end
