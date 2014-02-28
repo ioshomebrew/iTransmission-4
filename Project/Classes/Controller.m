@@ -43,8 +43,7 @@ static void pumpLogMessages()
     tr_freeMessageList( list );
 }
 
-static tr_rpc_callback_status rpcCallback(tr_session * handle UNUSED, tr_rpc_callback_type type, struct tr_torrent * torrentStruct,
-                                          void * controller)
+static tr_rpc_callback_status rpcCallback(tr_session *handle, tr_rpc_callback_type type, struct tr_torrent *torrentStruct, void *controller)
 {
     [(__bridge Controller *)controller rpcCallback: type forTorrentStruct: torrentStruct];
     return TR_RPC_NOREMOVE; //we'll do the remove manually
@@ -74,9 +73,7 @@ static void signal_handler(int sig) {
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { 
-    [self fixDocumentsDirectory];
-	[self transmissionInitialize];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.torrentViewController = [[TorrentViewController alloc] initWithNibName:@"TorrentViewController" bundle:nil];
     self.torrentViewController.controller = self;
@@ -99,6 +96,9 @@ static void signal_handler(int sig) {
     }
     
     application.applicationIconBadgeNumber = 0;
+    
+    [self fixDocumentsDirectory];
+	[self transmissionInitialize];
     
     return YES;
 }
@@ -455,9 +455,6 @@ static void signal_handler(int sig) {
 {
     NSLog(@"Init finished");
     ALAlertBanner *banner = [ALAlertBanner alertBannerForView:self.window style:ALAlertBannerStyleSuccess position:ALAlertBannerPositionUnderNavBar title:msg subtitle:msg];
-    banner.secondsToShow = 3.5f;
-    banner.showAnimationDuration = 0.25f;
-    banner.hideAnimationDuration = 0.2f;
     [banner show];
 }
 

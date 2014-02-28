@@ -34,17 +34,17 @@
 
 @implementation TorrentViewController
 
-@synthesize tableView = fTableView;
-@synthesize activityIndicator = fActivityIndicator;
-@synthesize activityItemView = fActivityItemView;
-@synthesize activityCounterBadge = fActivityCounterBadge;
-@synthesize normalToolbarItems = fNormalToolbarItems;
-@synthesize editToolbarItems = fEditToolbarItems;
-@synthesize doneButton = fDoneButton;
-@synthesize editButton = fEditButton;
-@synthesize infoButton = fInfoButton;
-@synthesize selectedIndexPaths = fSelectedIndexPaths;
-@synthesize activityItem = fActivityItem;
+@synthesize tableView;
+@synthesize activityIndicator;
+@synthesize activityItemView;
+@synthesize activityCounterBadge;
+@synthesize normalToolbarItems;
+@synthesize editToolbarItems;
+@synthesize doneButton;
+@synthesize editButton;
+@synthesize infoButton;
+@synthesize selectedIndexPaths;
+@synthesize activityItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -145,7 +145,7 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath { 
-	return UITableViewCellAccessoryCheckmark;
+	return UITableViewCellEditingStyleDelete;
 }
 
 - (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
@@ -155,7 +155,14 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	Torrent * torrent = [self.controller torrentAtIndex:indexPath.row];
-	NSLog(@"Should delete torrent %@", [torrent name]);
+    self.selectedIndexPaths = [NSMutableArray array];
+    [self.selectedIndexPaths addObject:indexPath];
+    NSString *msg;
+    msg = [NSString stringWithFormat:@"Are you sure to remove %@ torrent?", [torrent name]];
+    
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes and remove data" otherButtonTitles:@"Yes but keep data", nil];
+	actionSheet.tag = REMOVE_COMFIRM_TAG;
+	[actionSheet showFromToolbar:self.navigationController.toolbar];
 }
 
 - (void)addButtonClicked:(id)sender
@@ -359,7 +366,6 @@
 
 - (void)addFromWebClicked
 {
-    // [self addFromURLWithExistingURL:@"" message:@"Please enter the torrent's URL below. "];
     WebBrowser *web = [[WebBrowser alloc] initWithNibName:@"WebBrowser"
                                                    bundle:nil
                                    navigigationController:self.navigationController

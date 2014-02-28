@@ -33,7 +33,12 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 
     [super setSelected:selected animated:animated];
-	//[self.controlButton setNeedsDisplay];
+}
+
+- (IBAction)swipedLeft:(id)sender
+{
+    NSLog(@"Swiped left");
+    
 }
 
 - (void)dealloc {

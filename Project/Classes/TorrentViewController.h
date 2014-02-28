@@ -16,19 +16,7 @@
 @class TorrentCell;
 @class StatisticsView;
 
-@interface TorrentViewController : StatisticsViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate> {
-    UITableView *fTableView;
-    UIActivityIndicatorView *fActivityIndicator;
-    UIView *fActivityItemView;
-    TDBadgeView *fActivityCounterBadge;
-	NSArray *fNormalToolbarItems;
-	NSArray *fEditToolbarItems;
-	UIBarButtonItem *fEditButton;
-	UIBarButtonItem *fDoneButton;
-	UIBarButtonItem *fInfoButton;
-	NSMutableArray *fSelectedIndexPaths;
-	UIBarButtonItem *fActivityItem;
-}
+@interface TorrentViewController : StatisticsViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;

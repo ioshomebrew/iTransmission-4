@@ -8,10 +8,12 @@
 
 #import "ControlButton.h"
 #import <CoreGraphics/CoreGraphics.h>
+#import "Controller.h"
+#import "ALAlertBanner.h"
 
 @implementation ControlButton
-@synthesize gradientColors = fGradientColors;
-@synthesize textLabel = fTextLabel;
+@synthesize gradientColors;
+@synthesize textLabel;
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
