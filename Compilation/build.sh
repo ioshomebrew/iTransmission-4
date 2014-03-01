@@ -10,7 +10,7 @@ export PATCH_DIR="$PWD/patches"
 export DEPENDENCY_DIR="$PWD/dependency"
 export BUILD_FILTER="ssl,curl,trans,libev"
 export TOOL_DIR="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/"
-export Min_IPHONE_OS=4.3
+export Min_IPHONE_OS=5.0
 
 function do_abort {
 	echo $1 >&2
@@ -50,7 +50,7 @@ function do_export {
 		export DEVROOT="${DEVELOPER_DIR}/Platforms/${PLATFORM}.platform/Developer"
 		export SDKROOT="${DEVELOPER_DIR}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}$SDK_VERSION.sdk"
 		export LD=${DEVROOT}/usr/bin/ld
-		export CPP="${TOOL_DIR}/cpp"
+        export CPP="${TOOL_DIR}/cpp"
 		export CXX="${TOOL_DIR}/clang++" 
 		unset AR
 		unset AS
@@ -245,7 +245,7 @@ while getopts ":o:a:ne" opt; do
 		  export BUILD_FILTER=""
 		  do_export
 		  ;;
-	    \?)
+	    ?)
 	      do_abort "Invalid option: -$OPTARG"
 	      ;;
 	    :)
@@ -256,7 +256,7 @@ done
 
 mkdir -p ${TEMP_DIR}
 
-do_openssl
+#do_openssl
 do_curl
 do_libevent
 do_transmission
