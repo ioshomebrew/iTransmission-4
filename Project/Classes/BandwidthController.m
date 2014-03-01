@@ -365,9 +365,4 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)dealloc
-{
-	self.torrent = nil;
-}
-
 @end

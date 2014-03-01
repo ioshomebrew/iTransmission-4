@@ -64,11 +64,4 @@
     return cell;
 }
 
-- (void)dealloc {
-    self.filenameLabel = nil;
-    self.sizeLabel = nil;
-    self.progressLabel = nil;
-    self.checkbox = nil;
-}
-
 @end

@@ -35,10 +35,5 @@
 		return self.eventsForwardView ? self.eventsForwardView : [super hitTest:point withEvent:event];
 	return [super hitTest:point withEvent:event];
 }
-		
-
-- (void)dealloc {
-}
-
 
 @end

@@ -58,13 +58,4 @@
     return cell;
 }
 
-- (void)dealloc {
-    self.TrackerLastAnnounceTime = nil;
-    self.TrackerURL = nil;
-    self.PeerLabel = nil;
-    self.PeerNumber = nil;
-    self.SeedLabel = nil;
-    self.SeedNumber = nil;
-}
-
 @end

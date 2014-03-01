@@ -90,9 +90,7 @@ StatisticsViewController *__activeController;
 
 - (void)dealloc
 {
-    self.statisticsView = nil;
     [self.UIUpdateTimer invalidate];
-    self.UIUpdateTimer = nil;
 }
 
 @end

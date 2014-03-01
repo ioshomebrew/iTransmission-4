@@ -57,9 +57,4 @@
     return cell;
 }
 
-- (void)dealloc
-{
-    self.directoryLabel = nil;
-}
-
 @end

@@ -58,11 +58,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-
-}
-
 @end
 
 @implementation TorrentAutoDiscoveryController
@@ -102,16 +97,7 @@
 
 - (void)dealloc
 {
-    self.searchDirectories = nil;
-    self.fileManager = nil;
-    self.refreshHeaderView = nil;
-    self.discoveredTorrents = nil;
     [self.autoDiscoveryThread cancel];
-    self.autoDiscoveryThread = nil;
-    self.tableView = nil;
-    self.searchResults = nil;
-    self.searchBar = nil;
-    self.lastDiscoveryDate = nil;
 }
 
 - (void)didReceiveMemoryWarning

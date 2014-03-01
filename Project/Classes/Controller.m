@@ -68,7 +68,6 @@ static void signal_handler(int sig) {
 @synthesize logMessageTimer = fLogMessageTimer;
 @synthesize installedApps = fInstalledApps;
 @synthesize fileLogger = fFileLogger;
-@synthesize insomnia = fInsomnia;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -99,6 +98,8 @@ static void signal_handler(int sig) {
     
     [self fixDocumentsDirectory];
 	[self transmissionInitialize];
+    
+    
     
     return YES;
 }
@@ -172,7 +173,6 @@ static void signal_handler(int sig) {
     [fDefaults setBool:NO forKey:@"RPCUseWhitelist"];
 	[fDefaults setBool:YES forKey:@"UseWiFi"];
 	[fDefaults setBool:NO forKey:@"UseCellularNetwork"];
-    [fDefaults setBool:NO forKey:@"Insomnia"];
 	[fDefaults synchronize];
 }
 
@@ -324,6 +324,7 @@ static void signal_handler(int sig) {
     /*
      Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
      */
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     application.applicationIconBadgeNumber = 0;
 }
 
@@ -350,17 +351,6 @@ static void signal_handler(int sig) {
     /*
      Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
      */
-}
-
-- (void)dealloc {
-    self.logMessageTimer = nil;
-    fTorrents = nil;
-    fActivities = nil;
-	self.window = nil;
-	self.reachability = nil;
-    self.installedApps = nil;
-    self.torrentViewController = nil;
-    self.fileLogger = nil;
 }
 
 - (NSString*)documentsDirectory

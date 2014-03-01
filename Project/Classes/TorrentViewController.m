@@ -86,12 +86,12 @@
     return 0;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)ftableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (self.tableView.editing == NO) {
 		DetailViewController *detailController = [[DetailViewController alloc] initWithTorrent:[self.controller torrentAtIndex:indexPath.row] controller:self.controller];
 		[self.navigationController pushViewController:detailController animated:YES];
-		[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		[ftableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
 	else {
 		if ([self.selectedIndexPaths count] == 0) {
@@ -123,11 +123,11 @@
 	}
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)ftableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger index = indexPath.row;
     
-    TorrentCell *cell = (TorrentCell*)[tableView dequeueReusableCellWithIdentifier:TorrentCellIdentifier];
+    TorrentCell *cell = (TorrentCell*)[ftableView dequeueReusableCellWithIdentifier:TorrentCellIdentifier];
     
     if (!cell) {
         cell = [TorrentCell cellFromNib];
@@ -534,21 +534,5 @@
 		}
     }
 }
-
-- (void)dealloc {
-    self.tableView = nil;
-	self.statisticsView = nil;
-	self.editButton = nil;
-	self.doneButton = nil;
-	self.infoButton = nil;
-	self.selectedIndexPaths = nil;
-    self.activityCounterBadge = nil;
-	self.activityItem = nil;
-    self.activityItemView = nil;
-    self.activityIndicator = nil;
-	self.normalToolbarItems = nil;
-	self.editToolbarItems = nil;
-}
-
 
 @end

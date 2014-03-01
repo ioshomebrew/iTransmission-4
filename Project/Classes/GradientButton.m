@@ -563,13 +563,5 @@
     }
     return self;
 }
-#pragma mark -
-- (void)dealloc 
-{
-    if (normalGradient != NULL)
-        CGGradientRelease(normalGradient);
-    if (highlightGradient != NULL)
-        CGGradientRelease(highlightGradient);
-}
 
 @end

@@ -626,15 +626,4 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)dealloc {
-	self.removeButton = nil;
-	self.startButton = nil;
-	self.pauseButton = nil;
-	self.refreshButton = nil;
-    self.bandwidthButton = nil;
-    self.selectedIndexPath = nil;
-    self.tableView = nil;
-}
-
-
 @end

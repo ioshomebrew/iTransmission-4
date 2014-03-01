@@ -149,8 +149,4 @@ static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloa
     [self setTintColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f]];
 }
 
-- (void)dealloc {
-}
-
-
 @end

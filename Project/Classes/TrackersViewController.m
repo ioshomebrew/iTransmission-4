@@ -177,11 +177,7 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
-- (void)dealloc {
-    self.tableView = nil;
-    SelectedItems = nil;
-    Trackers = nil;
-}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }

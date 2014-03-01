@@ -217,14 +217,6 @@ int trashDataFile(const char * filename)
 
 - (void) closeRemoveTorrent: (BOOL) trashFiles
 {
-    //allow the file to be indexed by Time Machine
-//    if (fTimeMachineExclude)
-//    {
-//        [self setTimeMachineExclude: NO forPath: fTimeMachineExclude];
-//        [fTimeMachineExclude release];
-//        fTimeMachineExclude = nil;
-//    }
-    
     tr_torrentRemove(fHandle, trashFiles, trashDataFile);
 }
 
@@ -295,7 +287,20 @@ int trashDataFile(const char * filename)
 - (void) startTransfer
 {
     fWaitToStart = NO;
+    
+    // disable sleep downloading
+    UIApplication *app = [UIApplication sharedApplication];
 
+    // start background task
+    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+       if(bgTask != UIBackgroundTaskInvalid)
+       {
+           // cancel load
+           [[UIApplication sharedApplication] endBackgroundTask:bgTask];
+           bgTask = UIBackgroundTaskInvalid;
+       }
+    }];
+    
     if ([(Controller*)[[UIApplication sharedApplication] delegate] isStartingTransferAllowed]) {
         
         if (![self isActive] && [self alertForRemainingDiskSpace])

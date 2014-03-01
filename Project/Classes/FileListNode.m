@@ -75,11 +75,6 @@
     return self;
 }
 
-- (void) dealloc
-{
-
-}
-
 - (NSString *) description
 {
     if (!fIsFolder)

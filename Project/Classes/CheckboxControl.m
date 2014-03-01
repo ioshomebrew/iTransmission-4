@@ -41,7 +41,4 @@
     self.imageView.image = (checked ? self.checkedImage : self.uncheckedImage); 
 }
 
-- (void)dealloc {
-}
-
 @end

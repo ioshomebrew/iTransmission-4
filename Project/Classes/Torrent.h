@@ -48,6 +48,8 @@
     
     BOOL fResumeOnWake;
     
+    UIBackgroundTaskIdentifier bgTask;
+    
 //    NSString * fTimeMachineExclude;
 }
 

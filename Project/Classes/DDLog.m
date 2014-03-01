@@ -860,13 +860,6 @@ NSString *DDExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
     return [[DDLoggerNode alloc] initWithLogger:logger loggerQueue:loggerQueue logLevel:logLevel];
 }
 
-- (void)dealloc
-{
-    #if !OS_OBJECT_USE_OBJC
-    if (loggerQueue) dispatch_release(loggerQueue);
-    #endif
-}
-
 @end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

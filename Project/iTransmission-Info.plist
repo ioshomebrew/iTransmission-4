@@ -70,6 +70,8 @@
 	<false/>
 	<key>UIFileSharingEnabled</key>
 	<true/>
+    <key>UIRequiresPersistentWiFi</key>
+    <true/>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>

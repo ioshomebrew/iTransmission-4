@@ -75,9 +75,4 @@
     fData = nil;
 }
 
-- (void)dealloc {
-    self.URLConnection = nil;
-    self.url = nil;
-}
-
 @end

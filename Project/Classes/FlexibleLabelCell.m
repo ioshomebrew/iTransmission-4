@@ -12,10 +12,6 @@
 @implementation FlexibleLabelCell
 @synthesize flexibleLabel = fLabel;
 
-- (void)dealloc {
-	self.flexibleLabel = nil;
-}
-
 - (void)resizeToFitText
 {
 	CGSize constraint = CGSizeMake(self.flexibleLabel.bounds.size.width, 20000.0f);

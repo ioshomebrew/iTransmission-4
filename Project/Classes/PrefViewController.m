@@ -6,7 +6,6 @@
 //  Copyright (c) 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "Insomnia.h"
 #import "PrefViewController.h"
 #import "GradientButton.h"
 #import "NSDictionaryAdditions.h"
@@ -18,7 +17,6 @@
 @synthesize tableView = fTableView;
 @synthesize originalPreferences = fOriginalPreferences;
 @synthesize portChecker = fPortChecker;
-@synthesize insomnia = fInsomnia;
 @synthesize indexPathToScroll = fIndexPathToScroll;
 @synthesize controller = fController;
 
@@ -161,7 +159,6 @@
         case 1: return @"Network Interface";
         case 2: return @"Port Listening";
         case 3: return @"Logging";
-        case 4: return @"Insomnia";
     }
     return nil;
 }
@@ -205,11 +202,6 @@
         case 3: {
             switch (indexPath.row) {
                 case 0: return fEnableLoggingCell;
-            }
-        }
-        case 4: {
-            switch (indexPath.row) {
-                case 0: return fInsomniaCell;
             }
         }
     }
@@ -311,15 +303,6 @@
         [fDefaults setBool:[fUseCellularNetworkSwitch isOn] forKey:@"UseCellularNetwork"];
 		callSetNetworkActive = YES;
     }
-	
-    if ([fInsomniaSwitch isOn] != [self.originalPreferences boolForKey:@"Insomnia"]) {
-        [fDefaults setBool:[fInsomniaSwitch isOn] forKey:@"Insomnia"];
-        if ([fInsomniaSwitch isOn] == YES) {
-            [fInsomnia disableSleep];
-        } else {
-            [fInsomnia enableSleep];
-        }
-    }
     
 	if (callSetNetworkActive)
 		[controller updateNetworkStatus];
@@ -361,7 +344,6 @@
 	[_originalPref setBool:[fDefaults boolForKey:@"UseWiFi"] forKey:@"UseWiFi"];
 	[_originalPref setBool:[fDefaults boolForKey:@"UseCellularNetwork"] forKey:@"UseCellularNetwork"];
     [_originalPref setBool:[fDefaults boolForKey:@"LoggingEnabled"] forKey:@"LoggingEnabled"];
-    [_originalPref setBool:[fDefaults boolForKey:@"Insomnia"] forKey:@"Insomnia"];
 	self.originalPreferences = [NSDictionary dictionaryWithDictionary:_originalPref];
 	
 	[fEnableRPCSwitch setOn:[self.originalPreferences boolForKey:@"RPC"]];
@@ -373,7 +355,6 @@
 	[fUseWiFiSwitch setOn:[self.originalPreferences boolForKey:@"UseWiFi"]];
 	[fUseCellularNetworkSwitch setOn:[self.originalPreferences boolForKey:@"UseCellularNetwork"]];
     [fEnableLoggingSwitch setOn:[self.originalPreferences boolForKey:@"LoggingEnabled"]];
-    [fInsomniaSwitch setOn:[self.originalPreferences boolForKey:@"Insomnia"]];
     
     [self enableRPCSwitchChanged:fEnableRPCSwitch];
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
@@ -435,10 +416,6 @@
     }
 }
 
-- (IBAction)insomniaSwitchChanged:(id)sender {
-    [self.navigationItem.rightBarButtonItem setEnabled:YES];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -467,12 +444,7 @@
 }
 
 - (void)dealloc {
-	self.tableView = nil;
 	[self.portChecker cancelProbe];
-	self.portChecker = nil;
-    self.originalPreferences = nil;
-    self.controller = nil;
-    self.indexPathToScroll = nil;
 }
 
 

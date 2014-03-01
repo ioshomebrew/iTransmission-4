@@ -218,9 +218,4 @@
 	[self performSelector:@selector(setNeedsDisplay) withObject:nil afterDelay:0.2f];
 }
 
-- (void)dealloc {
-	self.gradientColors = nil;
-	self.textLabel = nil;
-}
-
 @end

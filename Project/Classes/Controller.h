@@ -46,7 +46,6 @@ typedef enum
 @class TorrentViewController;
 @class Reachability;
 @class DDFileLogger;
-@class Insomnia;
 
 extern BOOL isStartingTransferAllowed();
 
@@ -85,7 +84,6 @@ extern BOOL isStartingTransferAllowed();
 @property (nonatomic, retain) NSArray *installedApps;
 @property (nonatomic, retain) NSTimer *logMessageTimer;
 @property (nonatomic, retain) DDFileLogger *fileLogger;
-@property (nonatomic, retain) Insomnia *insomnia;
 
 - (void)transmissionInitialize;
 - (NSArray*)findRelatedApps;

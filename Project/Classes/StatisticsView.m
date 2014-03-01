@@ -67,7 +67,6 @@
 
 - (void)dealloc {
 	[self.updateTimer invalidate];
-	self.updateTimer = nil;
 }
 
 

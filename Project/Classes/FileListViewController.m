@@ -51,11 +51,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)dealloc
-{
-    self.tableView = nil;
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations

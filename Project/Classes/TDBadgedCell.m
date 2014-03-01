@@ -118,11 +118,6 @@
 	[countString drawInRect:bounds withAttributes:@{NSFontAttributeName:self.font}];
 }
 
-- (void) dealloc
-{
-    self.badgeNumber = nil;
-}
-
 @end
 
 
@@ -239,9 +234,5 @@
 		[self setNeedsDisplay];
 	}
 }
-
-- (void)dealloc {
-}
-
 
 @end
