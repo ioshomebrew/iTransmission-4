@@ -22,6 +22,8 @@
  * DEALINGS IN THE SOFTWARE.
  *****************************************************************************/
 
+#import <AVFoundation/AVFoundation.h>
+
 @class FileListNode;
 
 @interface Torrent : NSObject <NSCopying>//, QLPreviewItem>

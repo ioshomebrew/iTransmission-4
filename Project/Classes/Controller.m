@@ -17,6 +17,7 @@
 #import "DDASLLogger.h"
 #import "DDFileLogger.h"
 #import "ALAlertBanner.h"
+#import <AVFoundation/AVFoundation.h>
 #include <stdlib.h> // setenv()
 
 #define APP_NAME "iTrans"
@@ -98,8 +99,6 @@ static void signal_handler(int sig) {
     
     [self fixDocumentsDirectory];
 	[self transmissionInitialize];
-    
-    
     
     return YES;
 }
@@ -317,6 +316,19 @@ static void signal_handler(int sig) {
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
+    /*
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    UIApplication  *app = [UIApplication sharedApplication];
+    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+        [app endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    }];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{});
+    
+    [app endBackgroundTask:bgTask];
+    bgTask = UIBackgroundTaskInvalid;
+     */
 }
 
 
@@ -324,7 +336,7 @@ static void signal_handler(int sig) {
     /*
      Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
      */
-    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
     application.applicationIconBadgeNumber = 0;
 }
 
@@ -443,7 +455,6 @@ static void signal_handler(int sig) {
 
 - (void)postFinishMessage:(NSString*)msg
 {
-    NSLog(@"Init finished");
     ALAlertBanner *banner = [ALAlertBanner alertBannerForView:self.window style:ALAlertBannerStyleSuccess position:ALAlertBannerPositionUnderNavBar title:msg subtitle:msg];
     [banner show];
 }

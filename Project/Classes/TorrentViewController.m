@@ -45,6 +45,7 @@
 @synthesize infoButton;
 @synthesize selectedIndexPaths;
 @synthesize activityItem;
+@synthesize audio;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -73,6 +74,18 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removedTorrents:) name:NotificationTorrentsRemoved object:self.controller];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activityCounterDidChange:) name:NotificationActivityCounterChanged object:self.controller];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newTorrentAdded:) name:NotificationNewTorrentAdded object:self.controller];
+        
+        // load audio
+        NSURL *audioURL = [[NSBundle mainBundle] URLForResource:@"phone" withExtension:@"mp3"];
+        self.audio = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:nil];
+        self.audio.numberOfLoops = -1;
+        [self.audio setVolume:0.0];
+        
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+        [[AVAudioSession sharedInstance] setActive: YES error: nil];
+        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+        
+        [self.audio play];
     }
     return self;
 }

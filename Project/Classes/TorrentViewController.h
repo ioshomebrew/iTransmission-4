@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StatisticsViewController.h"
 #import "ALAlertBanner.h"
+#import <AVFoundation/AVFoundation.h>
 
 @class Controller;
 @class TDBadgeView;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) UIBarButtonItem *infoButton;
 @property (nonatomic, retain) UIBarButtonItem *activityItem;
 @property (nonatomic, retain) NSMutableArray *selectedIndexPaths;
+@property (nonatomic, retain) AVAudioPlayer *audio;
 
 - (void)addButtonClicked:(id)sender;
 - (void)prefButtonClicked:(id)sender;

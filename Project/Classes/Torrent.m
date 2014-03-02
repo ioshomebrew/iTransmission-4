@@ -105,6 +105,7 @@ int trashDataFile(const char * filename)
         if (torrentDelete && ![[self torrentLocation] isEqualToString: path])
             [Torrent trashFile: path];
     }
+    
     return self;
 }
 
@@ -287,19 +288,6 @@ int trashDataFile(const char * filename)
 - (void) startTransfer
 {
     fWaitToStart = NO;
-    
-    // disable sleep downloading
-    UIApplication *app = [UIApplication sharedApplication];
-
-    // start background task
-    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
-       if(bgTask != UIBackgroundTaskInvalid)
-       {
-           // cancel load
-           [[UIApplication sharedApplication] endBackgroundTask:bgTask];
-           bgTask = UIBackgroundTaskInvalid;
-       }
-    }];
     
     if ([(Controller*)[[UIApplication sharedApplication] delegate] isStartingTransferAllowed]) {
         

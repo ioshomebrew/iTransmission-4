@@ -73,7 +73,7 @@ extern BOOL isStartingTransferAllowed();
     NSTimer *fLogMessageTimer;
     DDFileLogger *fFileLogger;
     
-    UIBackgroundTaskIdentifier bgTaskId;
+    UIBackgroundTaskIdentifier bgTask;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

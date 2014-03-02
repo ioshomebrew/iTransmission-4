@@ -137,7 +137,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
@@ -147,7 +147,6 @@
         case 1: return 2;
         case 2: return 2;
         case 3: return 1;
-        case 4: return 1;
     }
     return 0;
 }
@@ -170,7 +169,6 @@
         case 1: return @"Enabling cellular network may generate significant data charges. ";
         case 2: return nil;
         case 3: return @"Only use logging for debugging. Extensive loggings will shorten both battery and Nand life. Saved logs will be available in iTunes.";
-        case 4: return @"Disable sleep mode. Never disconnects from WiFi. Consumes Power. Use when charger is plugged in.";
     }
     return nil;
 }
