@@ -7,7 +7,6 @@
 //
 
 #import "TorrentCell.h"
-#import "GradientView.h"
 #import "PDColoredProgressView.h"
 
 @implementation TorrentCell
@@ -22,11 +21,7 @@
 {
     NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"TorrentCell" owner:nil options:nil];
 	TorrentCell *cell = (TorrentCell*)[objects objectAtIndex:0];
-	cell.backgroundView = [[GradientView alloc] init];
 	
-	CGRect progressViewRect = cell.progressView.frame;
-	progressViewRect.size = CGSizeMake(progressViewRect.size.width, 14);
-	cell.progressView.frame = progressViewRect;
 	return cell;
 }
 
@@ -35,10 +30,9 @@
     [super setSelected:selected animated:animated];
 }
 
-- (IBAction)swipedLeft:(id)sender
+- (IBAction)pausedPressed:(id)sender
 {
-    NSLog(@"Swiped left");
-    
+
 }
 
 @end

@@ -9,9 +9,9 @@ export DEVFOLDER="/Applications/Xcode.app/Contents/Developer"
 SDK_VERSION="7.0"
 PARALLEL_NUM=1
 
-CURL_VERSION=7.33.0
+CURL_VERSION=7.35.0
 LIBEVENT_VERSION="2.0.21-stable"
-OPENSSL_VERSION=1.0.1e
+OPENSSL_VERSION=1.0.1f
 TRANSMISSION_VERSION=2.76
 
 #########################

@@ -103,6 +103,24 @@ static void signal_handler(int sig) {
     return YES;
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    NSString *text = [notification alertBody];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:[self infoValueForKey:@"CFBundleDisplayName"]
+                                                    message:text
+                                                   delegate:self
+                                          cancelButtonTitle:@"Close"
+                                          otherButtonTitles:@"View", nil];
+    NSLog(@"Text is: %@", text);
+    [alert show];	
+}
+
+- (id)infoValueForKey:(NSString *)key
+{
+    // fetch objects from our bundle based on keys in our Info.plist
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:key];
+}
+
 - (NSArray*)findRelatedApps
 {
     NSMutableArray *ret = [NSMutableArray array];
@@ -457,6 +475,12 @@ static void signal_handler(int sig) {
 {
     ALAlertBanner *banner = [ALAlertBanner alertBannerForView:self.window style:ALAlertBannerStyleSuccess position:ALAlertBannerPositionUnderNavBar title:msg subtitle:msg];
     [banner show];
+    UILocalNotification *notification = [[UILocalNotification alloc]init];
+    notification.repeatInterval = NSDayCalendarUnit;
+    [notification setAlertBody:msg];
+    [notification setFireDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+    [notification setTimeZone:[NSTimeZone  defaultTimeZone]];
+    [[UIApplication sharedApplication] setScheduledLocalNotifications:[NSArray arrayWithObject:notification]];
 }
 
 - (void)setActiveForNetworkStatus:(NetworkStatus)status
@@ -949,6 +973,7 @@ static void signal_handler(int sig) {
 
 - (void)torrentFinished:(NSNotification*)notif {
     [self postBGNotif:[NSString stringWithFormat:NSLocalizedString(@"%@ download finished.", nil), [(Torrent *)[notif object] name]]];
+    [self postFinishMessage:[NSString stringWithFormat:NSLocalizedString(@"%@ download finished.", nil), [(Torrent *)[notif object] name]]];
 }
 
 - (void)postBGNotif:(NSString *)message {

@@ -91,6 +91,8 @@ int trashDataFile(const char * filename)
 
 @implementation Torrent
 
+@synthesize controller;
+
 - (id) initWithPath: (NSString *) path location: (NSString *) location deleteTorrentFile: (BOOL) torrentDelete
                 lib: (tr_session *) lib
 {
@@ -1792,10 +1794,15 @@ legacyIncompleteFolder: (NSString *) incompleteFolder
     {
         case TR_SEED:
         case TR_PARTIAL_SEED:
+        {
             //simpler to create a new dictionary than to use statusInfo - avoids retention chicanery
             [[NSNotificationCenter defaultCenter] postNotificationName: @"TorrentFinishedDownloading" object: self
                                                               userInfo: [NSDictionary dictionaryWithObject: [statusInfo objectForKey: @"WasRunning"] forKey: @"WasRunning"]];
-            break;
+            NSString *string = [NSString stringWithFormat:@"%@ finished downloading", self.name];
+            [self.controller postFinishMessage:string];
+            NSLog(@"Finished");
+        }
+        break;
             
         case TR_LEECH:
             [[NSNotificationCenter defaultCenter] postNotificationName: @"TorrentRestartedDownloading" object: self];

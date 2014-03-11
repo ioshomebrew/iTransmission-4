@@ -14,7 +14,7 @@
 				7471DD03126F27D300CB0653 /* ShellScript */,
 			);
 			dependencies = (
-				7471DD00126F27B400CB0653 /* PBXTargetDependency */,
+				AC00E8A418C4043D0084BBBA /* PBXTargetDependency */,
 			);
 			name = IPA;
 			productName = IPA;
@@ -47,7 +47,6 @@
 		74275D0C125831680098BCE8 /* TorrentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74275D0A125831680098BCE8 /* TorrentViewController.m */; };
 		74275D2412586FFF0098BCE8 /* PrefViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74275D2212586FFF0098BCE8 /* PrefViewController.m */; };
 		74275D4E1258981E0098BCE8 /* gear-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74275D4D1258981E0098BCE8 /* gear-icon.png */; };
-		74275D5512589FD00098BCE8 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 74275D5412589FD00098BCE8 /* GradientButton.m */; };
 		742A92EA126EB6E60070AD10 /* FlexibleLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742A92E9126EB6E60070AD10 /* FlexibleLabelCell.m */; };
 		7437B03F125B2FF300B456EF /* NSDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7437B03E125B2FF300B456EF /* NSDictionaryAdditions.m */; };
 		7437B139125B3BFC00B456EF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 7437B138125B3BFC00B456EF /* Reachability.m */; };
@@ -63,7 +62,6 @@
 		7469A46212700133005A404D /* BandwidthController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7469A46012700133005A404D /* BandwidthController.xib */; };
 		74861F531259DB06005FDE74 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74861F521259DB06005FDE74 /* QuartzCore.framework */; };
 		74861F731259DBA0005FDE74 /* gpl-3.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 74861F721259DBA0005FDE74 /* gpl-3.0.txt */; };
-		74AC8E171259E1A500342907 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AC8E161259E1A500342907 /* GradientView.m */; };
 		74AF60201258186600550520 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74AF601F1258186600550520 /* MainWindow.xib */; };
 		74AF60B11258195600550520 /* Torrent.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF60AE1258195600550520 /* Torrent.m */; };
 		74AF60B21258195600550520 /* TrackerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF60B01258195600550520 /* TrackerNode.m */; };
@@ -71,11 +69,9 @@
 		74AF611112581D8200550520 /* FileListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF611012581D8200550520 /* FileListNode.m */; };
 		74AFF1C6126D5A57006ECB5C /* TransparentClickArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AFF1C5126D5A57006ECB5C /* TransparentClickArea.m */; };
 		74AFF2D5126DC296006ECB5C /* ClipboardLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AFF2D4126DC296006ECB5C /* ClipboardLabel.m */; };
-		74AFF3A7126DCF42006ECB5C /* TransparentBackgroundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AFF3A6126DCF42006ECB5C /* TransparentBackgroundCell.m */; };
 		74AFF3E0126DD361006ECB5C /* question-mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 74AFF3DF126DD361006ECB5C /* question-mark.png */; };
 		74E1BCB81259836F00F8842E /* magnet_ex in Resources */ = {isa = PBXBuildFile; fileRef = 74E1BCB71259836F00F8842E /* magnet_ex */; };
 		74E1BCC512598E4100F8842E /* first_run_message in Resources */ = {isa = PBXBuildFile; fileRef = 74E1BCC412598E4100F8842E /* first_run_message */; };
-		74E1BCCF125992AB00F8842E /* ShadowedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1BCCE125992AB00F8842E /* ShadowedTableView.m */; };
 		74EF1F09126C04960054A20E /* StatisticsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF1F08126C04960054A20E /* StatisticsView.m */; };
 		74EF1F0B126C04D10054A20E /* StatisticsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74EF1F0A126C04D10054A20E /* StatisticsView.xib */; };
 		74EF1F37126C0AE10054A20E /* GreenDot.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EF1F35126C0AE10054A20E /* GreenDot.png */; };
@@ -98,8 +94,6 @@
 		7E4C5FCF13CEA7E100095B64 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C5FCA13CEA7DF00095B64 /* DDTTYLogger.m */; };
 		7E9AA79713CC0118006A4174 /* Info in Resources */ = {isa = PBXBuildFile; fileRef = 7E9AA79613CC0118006A4174 /* Info */; };
 		7E9AA79A13CC0138006A4174 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9AA79913CC0138006A4174 /* InfoViewController.m */; };
-		7E9B37EB13960AC0006D55C7 /* TorrentAutoDiscoveryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B37E913960ABE006D55C7 /* TorrentAutoDiscoveryController.m */; };
-		7E9B37EC13960AC0006D55C7 /* TorrentAutoDiscoveryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9B37EA13960ABF006D55C7 /* TorrentAutoDiscoveryController.xib */; };
 		7E9B37F713960F1F006D55C7 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B37F613960F1E006D55C7 /* EGORefreshTableHeaderView.m */; };
 		7E9B37FC1396101B006D55C7 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E9B37F81396101B006D55C7 /* blackArrow.png */; };
 		7E9B37FD1396101B006D55C7 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E9B37F91396101B006D55C7 /* blackArrow@2x.png */; };
@@ -139,7 +133,6 @@
 		8981244918884D2900DB955B /* BandwidthController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7469A46012700133005A404D /* BandwidthController.xib */; };
 		8981244A18884D2900DB955B /* donedown.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E45C7AD1391FF9800C46D76 /* donedown.png */; };
 		8981244B18884D2900DB955B /* doneup.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E45C7AE1391FF9800C46D76 /* doneup.png */; };
-		8981244C18884D2900DB955B /* TorrentAutoDiscoveryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9B37EA13960ABF006D55C7 /* TorrentAutoDiscoveryController.xib */; };
 		8981244D18884D2900DB955B /* TrackerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 899B804E184CD25C0051F92B /* TrackerCell.xib */; };
 		8981244E18884D2900DB955B /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E9B37F81396101B006D55C7 /* blackArrow.png */; };
 		8981244F18884D2900DB955B /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E9B37F91396101B006D55C7 /* blackArrow@2x.png */; };
@@ -168,7 +161,6 @@
 		8981246618884D2900DB955B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E7D4B9B146C003E0055906A /* Icon.png */; };
 		8981246718884D2900DB955B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E7D4B9C146C003E0055906A /* Icon@2x.png */; };
 		8981246818884D2900DB955B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0BACB416B8E29900EFFCD3 /* Default-568h@2x.png */; };
-		8981246918884D2900DB955B /* WebBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0BACB816B8E39C00EFFCD3 /* WebBrowser.xib */; };
 		8981246A18884D2900DB955B /* FavIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 899B8054184CD33A0051F92B /* FavIcon.png */; };
 		8981246B18884D2900DB955B /* FileListController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE206DC116CCB4EE00F1F27B /* FileListController_iPad.xib */; };
 		8981246C18884D2900DB955B /* PrefViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE206DC416CCB5D500F1F27B /* PrefViewController_iPad.xib */; };
@@ -183,12 +175,9 @@
 		8981247618884D2900DB955B /* TorrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74275D0212582DD00098BCE8 /* TorrentCell.m */; };
 		8981247718884D2900DB955B /* TorrentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74275D0A125831680098BCE8 /* TorrentViewController.m */; };
 		8981247818884D2900DB955B /* PrefViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74275D2212586FFF0098BCE8 /* PrefViewController.m */; };
-		8981247918884D2900DB955B /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 74275D5412589FD00098BCE8 /* GradientButton.m */; };
 		8981247B18884D2900DB955B /* TrackerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 899B805C184CD4200051F92B /* TrackerCell.m */; };
 		8981247E18884D2900DB955B /* TorrentFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7448A6A51258B46D009BAF99 /* TorrentFetcher.m */; };
 		8981247F18884D2900DB955B /* TDBadgedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7448A6BB1258C176009BAF99 /* TDBadgedCell.m */; };
-		8981248018884D2900DB955B /* ShadowedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1BCCE125992AB00F8842E /* ShadowedTableView.m */; };
-		8981248118884D2900DB955B /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AC8E161259E1A500342907 /* GradientView.m */; };
 		8981248218884D2900DB955B /* PDColoredProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7424542E1259FAF5003EACB1 /* PDColoredProgressView.m */; };
 		8981248318884D2900DB955B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7424548C1259FFC6003EACB1 /* DetailViewController.m */; };
 		8981248418884D2900DB955B /* ControlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7455B63C125AE0500066FBE7 /* ControlButton.m */; };
@@ -198,12 +187,10 @@
 		8981248818884D2900DB955B /* StatisticsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF1F08126C04960054A20E /* StatisticsView.m */; };
 		8981248918884D2900DB955B /* TransparentClickArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AFF1C5126D5A57006ECB5C /* TransparentClickArea.m */; };
 		8981248A18884D2900DB955B /* ClipboardLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AFF2D4126DC296006ECB5C /* ClipboardLabel.m */; };
-		8981248B18884D2900DB955B /* TransparentBackgroundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AFF3A6126DCF42006ECB5C /* TransparentBackgroundCell.m */; };
 		8981248C18884D2900DB955B /* FlexibleLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742A92E9126EB6E60070AD10 /* FlexibleLabelCell.m */; };
 		8981248D18884D2900DB955B /* BandwidthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469A45B126FFF28005A404D /* BandwidthController.m */; };
 		8981248E18884D2900DB955B /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDFDA591391D858004E3BB0 /* NSDate+Helper.m */; };
 		8981249018884D2900DB955B /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDFDA5F1391E127004E3BB0 /* StatisticsViewController.m */; };
-		8981249118884D2900DB955B /* TorrentAutoDiscoveryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B37E913960ABE006D55C7 /* TorrentAutoDiscoveryController.m */; };
 		8981249218884D2900DB955B /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B37F613960F1E006D55C7 /* EGORefreshTableHeaderView.m */; };
 		8981249318884D2900DB955B /* DiscoveredTorrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE82EB139750C400D4C5FC /* DiscoveredTorrentCell.m */; };
 		8981249418884D2900DB955B /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9AA79913CC0138006A4174 /* InfoViewController.m */; };
@@ -215,7 +202,6 @@
 		8981249A18884D2900DB955B /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C5FC613CEA7CF00095B64 /* DDFileLogger.m */; };
 		8981249B18884D2900DB955B /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C5FC813CEA7D800095B64 /* DDLog.m */; };
 		8981249C18884D2900DB955B /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C5FCA13CEA7DF00095B64 /* DDTTYLogger.m */; };
-		8981249D18884D2900DB955B /* WebBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0BACB716B8E39C00EFFCD3 /* WebBrowser.m */; };
 		898124A318884D2900DB955B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		898124A418884D2900DB955B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		898124A518884D2900DB955B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -252,9 +238,9 @@
 		ACE3888018C2ECAB007D2F58 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE3887F18C2ECAB007D2F58 /* AVFoundation.framework */; };
 		ACE3888218C2F04D007D2F58 /* Ping.aiff in Resources */ = {isa = PBXBuildFile; fileRef = ACE3888118C2F04D007D2F58 /* Ping.aiff */; };
 		ACE3888418C2F182007D2F58 /* phone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ACE3888318C2F182007D2F58 /* phone.mp3 */; };
+		ACE82CB318C3A4F700F4360A /* pause_icon-ios7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACE82CB118C3A4F700F4360A /* pause_icon-ios7@2x.png */; };
+		ACE82CB418C3A4F700F4360A /* play_icon-ios7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACE82CB218C3A4F700F4360A /* play_icon-ios7@2x.png */; };
 		CE0BACB516B8E29900EFFCD3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0BACB416B8E29900EFFCD3 /* Default-568h@2x.png */; };
-		CE0BACB916B8E39C00EFFCD3 /* WebBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0BACB716B8E39C00EFFCD3 /* WebBrowser.m */; };
-		CE0BACBA16B8E39C00EFFCD3 /* WebBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0BACB816B8E39C00EFFCD3 /* WebBrowser.xib */; };
 		CE206DC216CCB4EE00F1F27B /* FileListController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE206DC116CCB4EE00F1F27B /* FileListController_iPad.xib */; };
 		CE206DC516CCB5D500F1F27B /* PrefViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE206DC416CCB5D500F1F27B /* PrefViewController_iPad.xib */; };
 		CE206DC716CCB97B00F1F27B /* TorrentViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE206DC616CCB97B00F1F27B /* TorrentViewController_iPad.xib */; };
@@ -274,11 +260,11 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
-		7471DCFF126F27B400CB0653 /* PBXContainerItemProxy */ = {
+		AC00E8A318C4043D0084BBBA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
+			remoteGlobalIDString = 8981243218884D2900DB955B;
 			remoteInfo = iTransmission;
 		};
 /* End PBXContainerItemProxy section */
@@ -317,8 +303,6 @@
 		74275D2112586FFF0098BCE8 /* PrefViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefViewController.h; sourceTree = "<group>"; };
 		74275D2212586FFF0098BCE8 /* PrefViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefViewController.m; sourceTree = "<group>"; };
 		74275D4D1258981E0098BCE8 /* gear-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gear-icon.png"; path = "Resources/gear-icon.png"; sourceTree = "<group>"; };
-		74275D5312589FD00098BCE8 /* GradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientButton.h; sourceTree = "<group>"; };
-		74275D5412589FD00098BCE8 /* GradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientButton.m; sourceTree = "<group>"; };
 		742A92E8126EB6E60070AD10 /* FlexibleLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlexibleLabelCell.h; sourceTree = "<group>"; };
 		742A92E9126EB6E60070AD10 /* FlexibleLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlexibleLabelCell.m; sourceTree = "<group>"; };
 		7437B03D125B2FF300B456EF /* NSDictionaryAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionaryAdditions.h; sourceTree = "<group>"; };
@@ -342,8 +326,6 @@
 		7469A46012700133005A404D /* BandwidthController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BandwidthController.xib; path = Resources/BandwidthController.xib; sourceTree = "<group>"; };
 		74861F521259DB06005FDE74 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		74861F721259DBA0005FDE74 /* gpl-3.0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "gpl-3.0.txt"; path = "Resources/gpl-3.0.txt"; sourceTree = "<group>"; };
-		74AC8E151259E1A500342907 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
-		74AC8E161259E1A500342907 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		74AF601F1258186600550520 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
 		74AF60AD1258195600550520 /* Torrent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Torrent.h; sourceTree = "<group>"; };
 		74AF60AE1258195600550520 /* Torrent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Torrent.m; sourceTree = "<group>"; };
@@ -357,14 +339,10 @@
 		74AFF1C5126D5A57006ECB5C /* TransparentClickArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentClickArea.m; sourceTree = "<group>"; };
 		74AFF2D3126DC296006ECB5C /* ClipboardLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClipboardLabel.h; sourceTree = "<group>"; };
 		74AFF2D4126DC296006ECB5C /* ClipboardLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClipboardLabel.m; sourceTree = "<group>"; };
-		74AFF3A5126DCF42006ECB5C /* TransparentBackgroundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentBackgroundCell.h; sourceTree = "<group>"; };
-		74AFF3A6126DCF42006ECB5C /* TransparentBackgroundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentBackgroundCell.m; sourceTree = "<group>"; };
 		74AFF3DF126DD361006ECB5C /* question-mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "question-mark.png"; path = "Resources/question-mark.png"; sourceTree = "<group>"; };
 		74B1534F1258CEEB0079AD89 /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
 		74E1BCB71259836F00F8842E /* magnet_ex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = magnet_ex; path = Resources/magnet_ex; sourceTree = "<group>"; };
 		74E1BCC412598E4100F8842E /* first_run_message */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = first_run_message; path = Resources/first_run_message; sourceTree = "<group>"; };
-		74E1BCCD125992AB00F8842E /* ShadowedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowedTableView.h; sourceTree = "<group>"; };
-		74E1BCCE125992AB00F8842E /* ShadowedTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadowedTableView.m; sourceTree = "<group>"; };
 		74EF1F07126C04960054A20E /* StatisticsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsView.h; sourceTree = "<group>"; };
 		74EF1F08126C04960054A20E /* StatisticsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsView.m; sourceTree = "<group>"; };
 		74EF1F0A126C04D10054A20E /* StatisticsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = StatisticsView.xib; path = Resources/StatisticsView.xib; sourceTree = "<group>"; };
@@ -398,9 +376,6 @@
 		7E9AA79613CC0118006A4174 /* Info */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Info; path = Resources/Info; sourceTree = "<group>"; };
 		7E9AA79813CC0138006A4174 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		7E9AA79913CC0138006A4174 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
-		7E9B37E813960ABE006D55C7 /* TorrentAutoDiscoveryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TorrentAutoDiscoveryController.h; sourceTree = "<group>"; };
-		7E9B37E913960ABE006D55C7 /* TorrentAutoDiscoveryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TorrentAutoDiscoveryController.m; sourceTree = "<group>"; };
-		7E9B37EA13960ABF006D55C7 /* TorrentAutoDiscoveryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TorrentAutoDiscoveryController.xib; path = Classes/TorrentAutoDiscoveryController.xib; sourceTree = "<group>"; };
 		7E9B37F513960F1E006D55C7 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		7E9B37F613960F1E006D55C7 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		7E9B37F81396101B006D55C7 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackArrow.png; path = Resources/blackArrow.png; sourceTree = "<group>"; };
@@ -546,10 +521,9 @@
 		ACE6CA54189DBE8500444349 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = libraries/i386/lib/libssl.a; sourceTree = "<group>"; };
 		ACE6CA55189DBE8500444349 /* libtransmission.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtransmission.a; path = libraries/i386/lib/libtransmission.a; sourceTree = "<group>"; };
 		ACE6CA56189DBE8500444349 /* libutp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libutp.a; path = libraries/i386/lib/libutp.a; sourceTree = "<group>"; };
+		ACE82CB118C3A4F700F4360A /* pause_icon-ios7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pause_icon-ios7@2x.png"; path = "Resources/pause_icon-ios7@2x.png"; sourceTree = "<group>"; };
+		ACE82CB218C3A4F700F4360A /* play_icon-ios7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play_icon-ios7@2x.png"; path = "Resources/play_icon-ios7@2x.png"; sourceTree = "<group>"; };
 		CE0BACB416B8E29900EFFCD3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		CE0BACB616B8E39C00EFFCD3 /* WebBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBrowser.h; sourceTree = "<group>"; };
-		CE0BACB716B8E39C00EFFCD3 /* WebBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBrowser.m; sourceTree = "<group>"; };
-		CE0BACB816B8E39C00EFFCD3 /* WebBrowser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebBrowser.xib; sourceTree = "<group>"; };
 		CE206DC116CCB4EE00F1F27B /* FileListController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileListController_iPad.xib; sourceTree = "<group>"; };
 		CE206DC416CCB5D500F1F27B /* PrefViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefViewController_iPad.xib; sourceTree = "<group>"; };
 		CE206DC616CCB97B00F1F27B /* TorrentViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TorrentViewController_iPad.xib; sourceTree = "<group>"; };
@@ -774,9 +748,6 @@
 		4E82709B14687EC2000BBE40 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CE0BACB616B8E39C00EFFCD3 /* WebBrowser.h */,
-				CE0BACB716B8E39C00EFFCD3 /* WebBrowser.m */,
-				CE0BACB816B8E39C00EFFCD3 /* WebBrowser.xib */,
 				1D3623240D0F684500981E51 /* Controller.h */,
 				1D3623250D0F684500981E51 /* Controller.m */,
 				74275D09125831680098BCE8 /* TorrentViewController.h */,
@@ -789,8 +760,6 @@
 				7469A45B126FFF28005A404D /* BandwidthController.m */,
 				7EDFDA5E1391E127004E3BB0 /* StatisticsViewController.h */,
 				7EDFDA5F1391E127004E3BB0 /* StatisticsViewController.m */,
-				7E9B37E813960ABE006D55C7 /* TorrentAutoDiscoveryController.h */,
-				7E9B37E913960ABE006D55C7 /* TorrentAutoDiscoveryController.m */,
 				7E9AA79813CC0138006A4174 /* InfoViewController.h */,
 				7E9AA79913CC0138006A4174 /* InfoViewController.m */,
 				89B00EEF185F680D008A67D7 /* TrackersViewController.h */,
@@ -808,8 +777,6 @@
 				7448A6BB1258C176009BAF99 /* TDBadgedCell.m */,
 				74275D0112582DD00098BCE8 /* TorrentCell.h */,
 				74275D0212582DD00098BCE8 /* TorrentCell.m */,
-				74AFF3A5126DCF42006ECB5C /* TransparentBackgroundCell.h */,
-				74AFF3A6126DCF42006ECB5C /* TransparentBackgroundCell.m */,
 				742A92E8126EB6E60070AD10 /* FlexibleLabelCell.h */,
 				742A92E9126EB6E60070AD10 /* FlexibleLabelCell.m */,
 				7EBE82EA139750C300D4C5FC /* DiscoveredTorrentCell.h */,
@@ -840,7 +807,6 @@
 				893728861861E12300CFBF12 /* TrackersViewController_iPad.xib */,
 				7E255BDB13CC3BFC009783B4 /* FileListViewController.xib */,
 				CE206DC116CCB4EE00F1F27B /* FileListController_iPad.xib */,
-				7E9B37EA13960ABF006D55C7 /* TorrentAutoDiscoveryController.xib */,
 				7448A68A1258AE69009BAF99 /* PrefViewController.xib */,
 				CE206DC416CCB5D500F1F27B /* PrefViewController_iPad.xib */,
 				7448A68B1258AE69009BAF99 /* TorrentViewController.xib */,
@@ -865,6 +831,8 @@
 		4E8270A014687FD8000BBE40 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				ACE82CB118C3A4F700F4360A /* pause_icon-ios7@2x.png */,
+				ACE82CB218C3A4F700F4360A /* play_icon-ios7@2x.png */,
 				4E7D4B96146C003E0055906A /* Icons */,
 				7E9B38041396102F006D55C7 /* whiteArrow.png */,
 				7E9B38051396102F006D55C7 /* whiteArrow@2x.png */,
@@ -913,14 +881,8 @@
 		4EF518EC146884FB006C8443 /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
-				74E1BCCD125992AB00F8842E /* ShadowedTableView.h */,
-				74E1BCCE125992AB00F8842E /* ShadowedTableView.m */,
-				74275D5312589FD00098BCE8 /* GradientButton.h */,
-				74275D5412589FD00098BCE8 /* GradientButton.m */,
 				7455B63B125AE0500066FBE7 /* ControlButton.h */,
 				7455B63C125AE0500066FBE7 /* ControlButton.m */,
-				74AC8E151259E1A500342907 /* GradientView.h */,
-				74AC8E161259E1A500342907 /* GradientView.m */,
 				74AFF1C4126D5A57006ECB5C /* TransparentClickArea.h */,
 				74AFF1C5126D5A57006ECB5C /* TransparentClickArea.m */,
 				74AFF2D3126DC296006ECB5C /* ClipboardLabel.h */,
@@ -1169,7 +1131,6 @@
 				7469A46212700133005A404D /* BandwidthController.xib in Resources */,
 				7E45C7AF1391FF9800C46D76 /* donedown.png in Resources */,
 				7E45C7B01391FF9800C46D76 /* doneup.png in Resources */,
-				7E9B37EC13960AC0006D55C7 /* TorrentAutoDiscoveryController.xib in Resources */,
 				899B804F184CD25D0051F92B /* TrackerCell.xib in Resources */,
 				7E9B37FC1396101B006D55C7 /* blackArrow.png in Resources */,
 				7E9B37FD1396101B006D55C7 /* blackArrow@2x.png in Resources */,
@@ -1198,7 +1159,6 @@
 				4E7D4BA1146C003E0055906A /* Icon.png in Resources */,
 				4E7D4BA2146C003E0055906A /* Icon@2x.png in Resources */,
 				CE0BACB516B8E29900EFFCD3 /* Default-568h@2x.png in Resources */,
-				CE0BACBA16B8E39C00EFFCD3 /* WebBrowser.xib in Resources */,
 				899B8056184CD33A0051F92B /* FavIcon.png in Resources */,
 				CE206DC216CCB4EE00F1F27B /* FileListController_iPad.xib in Resources */,
 				CE206DC516CCB5D500F1F27B /* PrefViewController_iPad.xib in Resources */,
@@ -1235,8 +1195,8 @@
 				8981244818884D2900DB955B /* bandwidth-icon.png in Resources */,
 				8981244918884D2900DB955B /* BandwidthController.xib in Resources */,
 				8981244A18884D2900DB955B /* donedown.png in Resources */,
+				ACE82CB418C3A4F700F4360A /* play_icon-ios7@2x.png in Resources */,
 				8981244B18884D2900DB955B /* doneup.png in Resources */,
-				8981244C18884D2900DB955B /* TorrentAutoDiscoveryController.xib in Resources */,
 				8981244D18884D2900DB955B /* TrackerCell.xib in Resources */,
 				8981244E18884D2900DB955B /* blackArrow.png in Resources */,
 				8981244F18884D2900DB955B /* blackArrow@2x.png in Resources */,
@@ -1263,9 +1223,9 @@
 				8981246418884D2900DB955B /* Icon-Small.png in Resources */,
 				8981246518884D2900DB955B /* Icon-Small@2x.png in Resources */,
 				8981246618884D2900DB955B /* Icon.png in Resources */,
+				ACE82CB318C3A4F700F4360A /* pause_icon-ios7@2x.png in Resources */,
 				8981246718884D2900DB955B /* Icon@2x.png in Resources */,
 				8981246818884D2900DB955B /* Default-568h@2x.png in Resources */,
-				8981246918884D2900DB955B /* WebBrowser.xib in Resources */,
 				8981246A18884D2900DB955B /* FavIcon.png in Resources */,
 				8981246B18884D2900DB955B /* FileListController_iPad.xib in Resources */,
 				8981246C18884D2900DB955B /* PrefViewController_iPad.xib in Resources */,
@@ -1306,12 +1266,9 @@
 				74275D0312582DD00098BCE8 /* TorrentCell.m in Sources */,
 				74275D0C125831680098BCE8 /* TorrentViewController.m in Sources */,
 				74275D2412586FFF0098BCE8 /* PrefViewController.m in Sources */,
-				74275D5512589FD00098BCE8 /* GradientButton.m in Sources */,
 				899B805D184CD4200051F92B /* TrackerCell.m in Sources */,
 				7448A6A61258B46D009BAF99 /* TorrentFetcher.m in Sources */,
 				7448A6BC1258C176009BAF99 /* TDBadgedCell.m in Sources */,
-				74E1BCCF125992AB00F8842E /* ShadowedTableView.m in Sources */,
-				74AC8E171259E1A500342907 /* GradientView.m in Sources */,
 				7424542F1259FAF5003EACB1 /* PDColoredProgressView.m in Sources */,
 				7424548D1259FFC6003EACB1 /* DetailViewController.m in Sources */,
 				7455B63D125AE0500066FBE7 /* ControlButton.m in Sources */,
@@ -1322,13 +1279,11 @@
 				74AFF1C6126D5A57006ECB5C /* TransparentClickArea.m in Sources */,
 				AC0B6C9418BABD35008AE303 /* ALAlertBannerManager.m in Sources */,
 				74AFF2D5126DC296006ECB5C /* ClipboardLabel.m in Sources */,
-				74AFF3A7126DCF42006ECB5C /* TransparentBackgroundCell.m in Sources */,
 				742A92EA126EB6E60070AD10 /* FlexibleLabelCell.m in Sources */,
 				AC0B6C9318BABD35008AE303 /* ALAlertBanner.m in Sources */,
 				7469A45C126FFF28005A404D /* BandwidthController.m in Sources */,
 				7EDFDA5A1391D858004E3BB0 /* NSDate+Helper.m in Sources */,
 				7EDFDA601391E128004E3BB0 /* StatisticsViewController.m in Sources */,
-				7E9B37EB13960AC0006D55C7 /* TorrentAutoDiscoveryController.m in Sources */,
 				7E9B37F713960F1F006D55C7 /* EGORefreshTableHeaderView.m in Sources */,
 				7EBE82EC139750C400D4C5FC /* DiscoveredTorrentCell.m in Sources */,
 				7E9AA79A13CC0138006A4174 /* InfoViewController.m in Sources */,
@@ -1340,7 +1295,6 @@
 				7E4C5FCD13CEA7E100095B64 /* DDFileLogger.m in Sources */,
 				7E4C5FCE13CEA7E100095B64 /* DDLog.m in Sources */,
 				7E4C5FCF13CEA7E100095B64 /* DDTTYLogger.m in Sources */,
-				CE0BACB916B8E39C00EFFCD3 /* WebBrowser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1360,12 +1314,9 @@
 				8981247618884D2900DB955B /* TorrentCell.m in Sources */,
 				8981247718884D2900DB955B /* TorrentViewController.m in Sources */,
 				8981247818884D2900DB955B /* PrefViewController.m in Sources */,
-				8981247918884D2900DB955B /* GradientButton.m in Sources */,
 				8981247B18884D2900DB955B /* TrackerCell.m in Sources */,
 				8981247E18884D2900DB955B /* TorrentFetcher.m in Sources */,
 				8981247F18884D2900DB955B /* TDBadgedCell.m in Sources */,
-				8981248018884D2900DB955B /* ShadowedTableView.m in Sources */,
-				8981248118884D2900DB955B /* GradientView.m in Sources */,
 				8981248218884D2900DB955B /* PDColoredProgressView.m in Sources */,
 				8981248318884D2900DB955B /* DetailViewController.m in Sources */,
 				8981248418884D2900DB955B /* ControlButton.m in Sources */,
@@ -1375,12 +1326,10 @@
 				8981248818884D2900DB955B /* StatisticsView.m in Sources */,
 				8981248918884D2900DB955B /* TransparentClickArea.m in Sources */,
 				8981248A18884D2900DB955B /* ClipboardLabel.m in Sources */,
-				8981248B18884D2900DB955B /* TransparentBackgroundCell.m in Sources */,
 				8981248C18884D2900DB955B /* FlexibleLabelCell.m in Sources */,
 				8981248D18884D2900DB955B /* BandwidthController.m in Sources */,
 				8981248E18884D2900DB955B /* NSDate+Helper.m in Sources */,
 				8981249018884D2900DB955B /* StatisticsViewController.m in Sources */,
-				8981249118884D2900DB955B /* TorrentAutoDiscoveryController.m in Sources */,
 				8981249218884D2900DB955B /* EGORefreshTableHeaderView.m in Sources */,
 				8981249318884D2900DB955B /* DiscoveredTorrentCell.m in Sources */,
 				8981249418884D2900DB955B /* InfoViewController.m in Sources */,
@@ -1392,17 +1341,16 @@
 				8981249A18884D2900DB955B /* DDFileLogger.m in Sources */,
 				8981249B18884D2900DB955B /* DDLog.m in Sources */,
 				8981249C18884D2900DB955B /* DDTTYLogger.m in Sources */,
-				8981249D18884D2900DB955B /* WebBrowser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7471DD00126F27B400CB0653 /* PBXTargetDependency */ = {
+		AC00E8A418C4043D0084BBBA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1D6058900D05DD3D006BFB54 /* iTransmission Legacy */;
-			targetProxy = 7471DCFF126F27B400CB0653 /* PBXContainerItemProxy */;
+			target = 8981243218884D2900DB955B /* iTransmission */;
+			targetProxy = AC00E8A318C4043D0084BBBA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1577,6 +1525,7 @@
 		740E5F92129E6902008C61FF /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
@@ -1585,7 +1534,8 @@
 				GCC_VERSION = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = IPA;
-				SDKROOT = iphoneos5.1;
+				SDKROOT = iphoneos7.0;
+				VALID_ARCHS = "armv7 arm64";
 				ZERO_LINK = NO;
 			};
 			name = Distribution;
@@ -1593,6 +1543,7 @@
 		7471DCFB126F27A200CB0653 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
@@ -1602,13 +1553,15 @@
 				GCC_VERSION = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = IPA;
-				SDKROOT = iphoneos5.1;
+				SDKROOT = iphoneos7.0;
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Debug;
 		};
 		7471DCFC126F27A200CB0653 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
@@ -1617,7 +1570,8 @@
 				GCC_VERSION = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = IPA;
-				SDKROOT = iphoneos5.1;
+				SDKROOT = iphoneos7.0;
+				VALID_ARCHS = "armv7 arm64";
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1631,8 +1585,8 @@
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = IPA;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = IPA;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
@@ -1662,7 +1616,7 @@
 					"-fobjc-arc",
 				);
 				PRODUCT_NAME = iTransmission;
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				VALID_ARCHS = "armv7 arm64";
@@ -1678,8 +1632,8 @@
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = IPA;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = IPA;
 				COPY_PHASE_STRIP = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1707,7 +1661,7 @@
 					"-fobjc-arc",
 				);
 				PRODUCT_NAME = iTransmission;
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				VALIDATE_PRODUCT = YES;
@@ -1724,8 +1678,8 @@
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = IPA;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = IPA;
 				COPY_PHASE_STRIP = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1753,7 +1707,7 @@
 					"-fobjc-arc",
 				);
 				PRODUCT_NAME = iTransmission;
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				VALIDATE_PRODUCT = YES;

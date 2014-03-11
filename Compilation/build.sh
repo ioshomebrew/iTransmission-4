@@ -206,8 +206,8 @@ function do_transmission {
 		make clean
 	fi
 
-	export CFLAGS = "${CFLAGS} -framework CoreFoundation"
-	export LDFLAGS = "${LDFLAGS} -lcurl -liconv"
+	export CFLAGS="${CFLAGS} -framework CoreFoundation"
+	export LDFLAGS="${LDFLAGS} -lcurl -liconv"
 
 	./configure --prefix="${BUILD_DIR}" ${COMMON_OPTIONS} --enable-utp --enable-largefile --disable-nls --enable-lightweight --enable-cli --enable-daemon --disable-mac --with-kqueue --with-gtk=no || do_abort "$FUNCNAME: configure failed "
 	
@@ -256,7 +256,7 @@ done
 
 mkdir -p ${TEMP_DIR}
 
-#do_openssl
+do_openssl
 do_curl
 do_libevent
 do_transmission

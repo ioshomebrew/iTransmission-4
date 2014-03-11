@@ -156,6 +156,7 @@ extern BOOL isStartingTransferAllowed();
 
 - (void)torrentFinished:(NSNotification*)notif;
 - (void)postBGNotif:(NSString *)message;
+- (id)infoValueForKey:(NSString *)key;
 
 @end
 

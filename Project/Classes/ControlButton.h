@@ -9,17 +9,10 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ControlButton : UIButton {
-	NSArray *fGradientColors;	
-	UILabel *fTextLabel;
-	CGRect properFrame;
-}
-@property (nonatomic, retain) NSArray *gradientColors;
+@interface ControlButton : UIButton
+
 @property (nonatomic, retain) UILabel *textLabel;
 
-- (void)useRedStyle;
-- (void)useGrayStyle;
-- (void)useGreenStyle;
 - (void)_initViews;
 - (void)hesitateUpdate;
 

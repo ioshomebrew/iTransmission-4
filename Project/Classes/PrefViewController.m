@@ -321,7 +321,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.allowsSelection = NO;
-    [fCheckPortButton useSimpleOrangeStyle];
 	[fCheckPortButton addTarget:self action:@selector(portCheckButtonClicked) forControlEvents:UIControlEventTouchUpInside];
 	
     fTextFieldTextColor = [fRPCPortTextField textColor];

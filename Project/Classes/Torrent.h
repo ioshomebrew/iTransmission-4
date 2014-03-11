@@ -23,6 +23,7 @@
  *****************************************************************************/
 
 #import <AVFoundation/AVFoundation.h>
+#import "Controller.h"
 
 @class FileListNode;
 
@@ -51,9 +52,9 @@
     BOOL fResumeOnWake;
     
     UIBackgroundTaskIdentifier bgTask;
-    
-//    NSString * fTimeMachineExclude;
 }
+
+@property (nonatomic, retain) Controller *controller;
 
 - (id) initWithPath: (NSString *) path location: (NSString *) location deleteTorrentFile: (BOOL) torrentDelete
                 lib: (tr_session *) lib;

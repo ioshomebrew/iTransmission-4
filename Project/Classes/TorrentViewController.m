@@ -11,9 +11,7 @@
 #import "TorrentCell.h"
 #import "Torrent.h"
 #import "PrefViewController.h"
-//#import "RegexKitLite.h"
 #import "UIAlertViewPrivate.h"
-//#import "RegexExtension.h"
 #import "TorrentFetcher.h"
 #import "TDBadgedCell.h"
 #import "Notifications.h"
@@ -23,9 +21,7 @@
 #import "StatisticsView.h"
 #import "PDColoredProgressView.h"
 #import "BandwidthController.h"
-#import "TorrentAutoDiscoveryController.h"
 #import "InfoViewController.h"
-#import "WebBrowser.h"
 
 #define ADD_TAG 1000
 #define ADD_FROM_URL_TAG 1001
@@ -41,7 +37,6 @@
 @synthesize normalToolbarItems;
 @synthesize editToolbarItems;
 @synthesize doneButton;
-@synthesize editButton;
 @synthesize infoButton;
 @synthesize selectedIndexPaths;
 @synthesize activityItem;
@@ -114,7 +109,6 @@
 		}
 		[self.selectedIndexPaths addObject:indexPath];
 		TorrentCell *cell = (TorrentCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-		[cell.controlButton useGrayStyle];
 		[cell.controlButton setEnabled:NO];
 	}
 }
@@ -131,7 +125,6 @@
 			}
 		}		
 		TorrentCell *cell = (TorrentCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-		[cell.controlButton useGrayStyle];
 		[cell.controlButton setEnabled:YES];
 	}
 }
@@ -181,11 +174,10 @@
 - (void)addButtonClicked:(id)sender
 {
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Add from..." delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-    [sheet addButtonWithTitle:@"Web"];
     [sheet addButtonWithTitle:@"Magnet"];
     [sheet addButtonWithTitle:@"URL"];
     [sheet addButtonWithTitle:@"Cancel"];
-    [sheet setCancelButtonIndex:3];
+    [sheet setCancelButtonIndex:2];
     [sheet setTag:ADD_TAG];
     [sheet showFromToolbar:self.navigationController.toolbar];
 }
@@ -244,7 +236,7 @@
 	else if ([t isActive] && ![t isComplete])
 		[cell.progressView useBlueColor];
 	else if (![t isActive])
-		[cell.progressView useBlackColor];
+		[cell.progressView useBlueColor];
 	else if (![t isChecking])
 		[cell.progressView useGreenColor];
 	if ([t isActive])
@@ -253,7 +245,6 @@
 		[cell.controlButton setResumeStyle];
 
 	if (![self.controller isStartingTransferAllowed]) {
-		[cell.controlButton useGrayStyle];
 		[cell.controlButton setEnabled:NO];
 	}
 	else {
@@ -273,16 +264,9 @@
 	self.infoButton = [[UIBarButtonItem alloc] initWithCustomView:_infoButton];
 	self.navigationItem.rightBarButtonItem = self.infoButton;
 	
-	self.editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonClicked:)];
-	self.navigationItem.leftBarButtonItem = self.editButton;
-	
 	self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked:)];
 	
     [self.activityCounterBadge setBadgeColor:[UIColor colorWithRed:0.82 green:0.0 blue:0.082 alpha:1.000]];
-	
-//	self.statisticsView = [StatisticsView createFromNib];
-//	self.statisticsView.controller = self.controller;
-//	[self.view addSubview:self.statisticsView];
 }
 
 - (void)resumeButtonClicked:(id)sender
@@ -370,20 +354,6 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    self.tableView = nil;
-	self.statisticsView = nil;
-	self.editButton = nil;
-	self.doneButton = nil;
-	self.selectedIndexPaths = nil;
-}
-
-- (void)addFromWebClicked
-{
-    WebBrowser *web = [[WebBrowser alloc] initWithNibName:@"WebBrowser"
-                                                   bundle:nil
-                                   navigigationController:self.navigationController
-                                               controller:self.controller];
-    [self.navigationController pushViewController:web animated:YES];
 }
 
 - (void)addFromURLClicked
@@ -515,14 +485,10 @@
         case ADD_TAG: {
             switch (buttonIndex) {
                 case 0: {
-                    [self addFromWebClicked];
-                    break;
-                }
-                case 1: {
                     [self addFromMagnetClicked];
                     break;
                 }
-                case 2: {
+                case 1: {
                     [self addFromURLClicked];
                 }
                 default: 

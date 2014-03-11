@@ -147,6 +147,7 @@ static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloa
 - (void)useWhiteColor
 {
     [self setTintColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f]];
+    NSLog(@"Using white");
 }
 
 @end
