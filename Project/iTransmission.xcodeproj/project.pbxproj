@@ -1726,7 +1726,7 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				INFOPLIST_FILE = "iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib";
 				ONLY_ACTIVE_ARCH = NO;
@@ -1747,6 +1747,7 @@
 				PRODUCT_NAME = iTransmission;
 				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				VALID_ARCHS = "armv7 arm64";
 			};
@@ -1771,7 +1772,7 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				INFOPLIST_FILE = "iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib";
 				ONLY_ACTIVE_ARCH = NO;
@@ -1792,6 +1793,7 @@
 				PRODUCT_NAME = iTransmission;
 				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 arm64";
@@ -1817,7 +1819,7 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				INFOPLIST_FILE = "iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/lib";
 				ONLY_ACTIVE_ARCH = NO;
@@ -1838,6 +1840,7 @@
 				PRODUCT_NAME = iTransmission;
 				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libraries/$(CURRENT_ARCH)/include\"";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 arm64";

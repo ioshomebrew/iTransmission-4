@@ -200,18 +200,9 @@
 
 - (void)prefButtonClicked:(id)sender
 {
-    if([(NSString*)[UIDevice currentDevice].model hasPrefix:@"iPad"])
-    {
-        PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController_iPad" bundle:nil];
-        UINavigationController *prefNav = [[UINavigationController alloc] initWithRootViewController:prefViewController];
-        [self presentViewController:prefNav animated:YES completion:nil];
-    }
-    else
-    {
-        PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil];
-        UINavigationController *prefNav = [[UINavigationController alloc] initWithRootViewController:prefViewController];
-        [self presentViewController:prefNav animated:YES completion:nil];
-    }
+    PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil];
+    UINavigationController *prefNav = [[UINavigationController alloc] initWithRootViewController:prefViewController];
+    [self presentViewController:prefNav animated:YES completion:nil];
 }
 
 - (void)controlButtonClicked:(id)sender
