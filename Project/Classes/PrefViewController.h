@@ -25,7 +25,7 @@
     IBOutlet UITableViewCell *fRPCRequireAuthCell;
     IBOutlet UITableViewCell *fBindPortCell;
     IBOutlet UITableViewCell *fEnableLoggingCell;
-    IBOutlet GradientButton *fCheckPortButton;
+    IBOutlet UIButton *fCheckPortButton;
     
 	IBOutlet UISwitch *fEnableRPCSwitch;
 	IBOutlet UISwitch *fRPCRequireAuthSwitch;

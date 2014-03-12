@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StatisticsViewController.h"
 #import "ALAlertBanner.h"
+#import "SVWebViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
 @class Controller;
@@ -39,6 +40,7 @@
 - (void)addFromURLWithExistingURL:(NSString*)url message:(NSString*)msg;
 - (void)addFromMagnetClicked;
 - (void)addFromMagnetWithExistingMagnet:(NSString*)magnet message:(NSString*)msg;
+- (void)addFromWebClicked;
 - (void)activityCounterDidChange:(NSNotification*)notif;
 - (void)newTorrentAdded:(NSNotification*)notif;
 - (void)removedTorrents:(NSNotification*)notif;

@@ -174,10 +174,11 @@
 - (void)addButtonClicked:(id)sender
 {
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Add from..." delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    [sheet addButtonWithTitle:@"Web"];
     [sheet addButtonWithTitle:@"Magnet"];
     [sheet addButtonWithTitle:@"URL"];
     [sheet addButtonWithTitle:@"Cancel"];
-    [sheet setCancelButtonIndex:2];
+    [sheet setCancelButtonIndex:3];
     [sheet setTag:ADD_TAG];
     [sheet showFromToolbar:self.navigationController.toolbar];
 }
@@ -199,9 +200,18 @@
 
 - (void)prefButtonClicked:(id)sender
 {
-    PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil];
-    UINavigationController *prefNav = [[UINavigationController alloc] initWithRootViewController:prefViewController];
-    [self presentViewController:prefNav animated:YES completion:nil];
+    if([(NSString*)[UIDevice currentDevice].model hasPrefix:@"iPad"])
+    {
+        PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController_iPad" bundle:nil];
+        UINavigationController *prefNav = [[UINavigationController alloc] initWithRootViewController:prefViewController];
+        [self presentViewController:prefNav animated:YES completion:nil];
+    }
+    else
+    {
+        PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil];
+        UINavigationController *prefNav = [[UINavigationController alloc] initWithRootViewController:prefViewController];
+        [self presentViewController:prefNav animated:YES completion:nil];
+    }
 }
 
 - (void)controlButtonClicked:(id)sender
@@ -468,6 +478,13 @@
     [self addFromMagnetWithExistingMagnet:@"" message:@"Please enter the magnet link below. "];
 }
 
+- (void)addFromWebClicked
+{
+    NSURL *URL = [NSURL URLWithString:@"http://google.com"];
+	SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:URL];
+	[self.navigationController pushViewController:webViewController animated:YES];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -484,11 +501,16 @@
     switch (actionSheet.tag) {
         case ADD_TAG: {
             switch (buttonIndex) {
-                case 0: {
-                    [self addFromMagnetClicked];
+                case 0:
+                {
+                    [self addFromWebClicked];
                     break;
                 }
                 case 1: {
+                    [self addFromMagnetClicked];
+                    break;
+                }
+                case 2: {
                     [self addFromURLClicked];
                 }
                 default: 

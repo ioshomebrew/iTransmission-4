@@ -32,6 +32,8 @@
 #import "Reachability.h"
 #import "TorrentFetcher.h"
 #import <libtransmission/transmission.h>
+#include <dlfcn.h>
+#define SBSERVPATH "/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices"
 
 typedef enum
 {
@@ -157,6 +159,8 @@ extern BOOL isStartingTransferAllowed();
 - (void)torrentFinished:(NSNotification*)notif;
 - (void)postBGNotif:(NSString *)message;
 - (id)infoValueForKey:(NSString *)key;
+-(void) openApp;
+-(void) showAlert;
 
 @end
 

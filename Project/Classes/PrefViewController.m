@@ -7,7 +7,6 @@
 //
 
 #import "PrefViewController.h"
-#import "GradientButton.h"
 #import "NSDictionaryAdditions.h"
 #import "Controller.h"
 #import "PortChecker.h"
