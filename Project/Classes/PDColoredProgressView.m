@@ -89,7 +89,8 @@ static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloa
     [self setNeedsDisplay];
 }
 
-- (void)drawRect:(CGRect)rect {	
+- (void)drawRect:(CGRect)rect {
+    
 		CGContextRef ctx = UIGraphicsGetCurrentContext();
 		
 		// draw rectangle
@@ -102,7 +103,7 @@ static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloa
 		CGContextSetRGBFillColor(ctx, 102.0f/255.0f, 102.0f/255.0f, 102.0f/255.0f, 1);
 		CGContextFillRect(ctx, rect);
 		
-		//fill upperhalf with light grey
+		// fill upperhalf with light grey
 		CGRect upperhalf = rect;
 		upperhalf.size.height /= 1.75;
 		upperhalf.origin.y = 0;

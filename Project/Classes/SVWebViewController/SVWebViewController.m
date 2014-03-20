@@ -38,6 +38,9 @@
 
 @implementation SVWebViewController
 
+@synthesize controller;
+@synthesize transmission;
+
 #pragma mark - Initialization
 
 - (void)dealloc {
@@ -46,7 +49,9 @@
     self.webView.delegate = nil;
 }
 
-- (id)initWithAddress:(NSString *)urlString {
+- (id)initWithAddress:(NSString *)urlString :(Controller *)libtransmission :(UINavigationController *)nav {
+    self.controller = nav;
+    self.transmission = libtransmission;
     return [self initWithURL:[NSURL URLWithString:urlString]];
 }
 
@@ -270,6 +275,49 @@
 
 - (void)doneButtonClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSURL *requestedURL = [request URL];
+    NSString *scheme = [requestedURL scheme];
+    NSString *fileExtension = [requestedURL pathExtension];
+    NSString *magnet;
+    NSString *torrent;
+    
+    if(navigationType == UIWebViewNavigationTypeLinkClicked)
+    {
+        // make network icon visible
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        
+        if([scheme isEqualToString:@"magnet"])
+        {
+            magnet = [requestedURL absoluteString];
+            
+            NSLog(@"Magnet");
+            
+            // add magnet
+            [self.transmission addTorrentFromManget:magnet];
+            
+            // close view controller
+            [self.controller popViewControllerAnimated:YES];
+        }
+        
+        else if([fileExtension isEqualToString:@"torrent"])
+        {
+            torrent = [requestedURL absoluteString];
+            
+            NSLog(@"Torrent");
+            
+            // add torrent
+            [self.transmission addTorrentFromURL:torrent];
+            
+            // close view controller
+            [self.controller popViewControllerAnimated:YES];
+        }
+    }
+    
+    return TRUE;
 }
 
 @end

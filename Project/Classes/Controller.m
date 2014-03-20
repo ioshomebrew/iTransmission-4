@@ -101,21 +101,17 @@ static void signal_handler(int sig) {
     [self fixDocumentsDirectory];
 	[self transmissionInitialize];
     
+    // thomoserver init
+    server = [[ThoMoServerStub alloc] initWithProtocolIdentifier:@"libcydianotify"];
+    [server sendToAllClients:@"Test"];
+    
     return YES;
 }
 
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+-(void)server:(ThoMoServerStub *)theServer didReceiveData:(id)theData fromClient:(NSString *)aClientIdString;
 {
-    /*
-    NSString *text = [notification alertBody];
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:[self infoValueForKey:@"CFBundleDisplayName"]
-                                                    message:text
-                                                   delegate:self
-                                          cancelButtonTitle:@"Close"
-                                          otherButtonTitles:@"View", nil];
-    [alert show];	
-     */
-    //[self showAlert];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Recieved" message:@"Recieved" delegate:nil cancelButtonTitle:@"Null" otherButtonTitles:nil];
+    [alert show];
 }
 
 -(void) openApp {
@@ -124,7 +120,7 @@ static void signal_handler(int sig) {
     //  so we open it dynamically and find SBSLaunchApplicationWithIdentifier()
     void* sbServices = dlopen(SBSERVPATH, RTLD_LAZY);
     int (*SBSLaunchApplicationWithIdentifier)(CFStringRef identifier, Boolean suspended) = dlsym(sbServices, "SBSLaunchApplicationWithIdentifier");
-    int result = SBSLaunchApplicationWithIdentifier(CFSTR("com.ioshomebrew.itransmission"), false);
+    SBSLaunchApplicationWithIdentifier(CFSTR("com.ioshomebrew.itransmission"), false);
     dlclose(sbServices);
 }
 

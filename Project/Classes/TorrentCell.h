@@ -15,12 +15,15 @@
 @interface TorrentCell : UITableViewCell
 
 @property (nonatomic, retain) IBOutlet UILabel *nameLabel;
-@property (nonatomic, retain) IBOutlet PDColoredProgressView *progressView;
+//@property (nonatomic, retain) IBOutlet PDColoredProgressView *progressView;
+@property (nonatomic, retain) IBOutlet UIProgressView *progressView;
 @property (nonatomic, retain) IBOutlet UILabel *upperDetailLabel;
 @property (nonatomic, retain) IBOutlet UILabel *lowerDetailLabel;
 @property (nonatomic, retain) IBOutlet ControlButton *controlButton;
 
 + (id)cellFromNib;
 - (IBAction)pausedPressed:(id)sender;
+- (void)useGreenColor;
+- (void)useBlueColor;
 
 @end

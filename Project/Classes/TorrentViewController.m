@@ -229,17 +229,17 @@
     }
     
 	if ([t isSeeding])
-		[cell.progressView useGreenColor];
+		[cell useGreenColor];
 	else if ([t isChecking]) {
-		[cell.progressView useGreenColor];
+		[cell useGreenColor];
         [cell.progressView setProgress:[t checkingProgress]];
     }
 	else if ([t isActive] && ![t isComplete])
-		[cell.progressView useBlueColor];
+		[cell useBlueColor];
 	else if (![t isActive])
-		[cell.progressView useBlueColor];
+		[cell useBlueColor];
 	else if (![t isChecking])
-		[cell.progressView useGreenColor];
+		[cell useGreenColor];
 	if ([t isActive])
 		[cell.controlButton setPauseStyle];
 	else 
@@ -471,8 +471,9 @@
 
 - (void)addFromWebClicked
 {
-    NSURL *URL = [NSURL URLWithString:@"http://google.com"];
-	SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:URL];
+    NSString *URL = @"http://google.com";
+	//SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:URL];
+    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:URL :self.controller :self.navigationController];
 	[self.navigationController pushViewController:webViewController animated:YES];
 }
 
