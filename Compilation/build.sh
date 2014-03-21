@@ -9,9 +9,7 @@ export TEMP_DIR="$PWD/temp"
 export PATCH_DIR="$PWD/patches"
 export DEPENDENCY_DIR="$PWD/dependency"
 export BUILD_FILTER="ssl,curl,trans,libev"
-export TOOL_DIR="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin"
-#GCC_DIR Assuming gcc-4.8 is installed using homebrew
-export GCC_DIR="/usr/local/Cellar/gcc48/4.8.2/bin"
+export TOOL_DIR="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/"
 export Min_IPHONE_OS=5.0
 
 function do_abort {
@@ -20,7 +18,7 @@ function do_abort {
 }
 
 function do_loadenv {
-	export BUILD_DIR="$PWD/out/${ARCH}"
+	export BUILD_DIR="$PWD/../Project/libraries/${ARCH}"
 	export TRANS_LINKER_FLAGS="-framework CoreFoundation "
 
 	if [ ${ARCH} = "i386" ]
@@ -52,23 +50,18 @@ function do_export {
 		export DEVROOT="${DEVELOPER_DIR}/Platforms/${PLATFORM}.platform/Developer"
 		export SDKROOT="${DEVELOPER_DIR}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}$SDK_VERSION.sdk"
 		export LD=${DEVROOT}/usr/bin/ld
-		#export CPP="${TOOL_DIR}/cpp"
-        export CPP="${GCC_DIR}/cpp-4.8"
-        export CXX="${TOOL_DIR}/clang++" 
-        #export CXX="${GCC_DIR}/c++-4.8" 
+        export CPP="${TOOL_DIR}/cpp"
+		export CXX="${TOOL_DIR}/clang++" 
 		unset AR
 		unset AS
 		export NM=${DEVROOT}/usr/bin/nm
-		#export CXXCPP="${TOOL_DIR}/cpp"
-		export CXXCPP="${GCC_DIR}/cpp-4.8"
-		export RANLIB="${TOOL_DIR}/ranlib"
-		#export RANLIB="${GCC_DIR}/gcc-ranlib-4.8"
+		export CXXCPP="${TOOL_DIR}/cpp"
+		export RANLIB="${TOOL_DIR}ranlib"
 		export CFLAGS="-arch ${ARCH} -isysroot ${SDKROOT} -miphoneos-version-min=${Min_IPHONE_OS}"
 		export LDFLAGS="-L${SDKROOT}/usr/lib -L${DEVROOT}/usr/lib -isysroot ${SDKROOT} -Wl,-syslibroot $SDKROOT"
 		export HAVE_CXX="yes"
 	fi
 	export CC="${TOOL_DIR}/clang"
-	#export CC="${GCC_DIR}/gcc-4.8"
 	export CFLAGS="${CFLAGS} -I${BUILD_DIR}/include -I${SDKROOT}/usr/include -pipe -no-cpp-precomp"
 	export CXXFLAGS="${CFLAGS}"
 	export LDFLAGS="-L${SDKROOT}/usr/lib -L${BUILD_DIR}/lib -pipe -no-cpp-precomp ${LDFLAGS}"
@@ -233,9 +226,7 @@ function do_transmission {
 	popd
 	popd
 }
-ARCHS=("armv7 armv7s arm64 i386")
-for ARCH in "${ARCHS[@]}"
-do
+
 do_loadenv
 
 while getopts ":o:a:ne" opt; do
@@ -264,9 +255,8 @@ while getopts ":o:a:ne" opt; do
 done
 
 mkdir -p ${TEMP_DIR}
+
 do_openssl
 do_curl
 do_libevent
 do_transmission
-
-done

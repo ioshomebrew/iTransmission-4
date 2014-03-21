@@ -17,10 +17,9 @@ Yet, if you still want to be adventurous, I have added the required files in a f
 
 How to compile libraries
 _____
-Open terminal
-cd to Compilation directory
-./build.sh
-If you need to change options, edit the configuration & build.sh file in Compilation directory. 
+Go to Compilation
+sudo ./build.sh -a ARCH
+Replace ARCH with what arch your going to compile
 
 Compiling app
 -----
