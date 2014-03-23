@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -221,14 +221,13 @@
 		895A751518D9D66200561CD6 /* torrent.js in Resources */ = {isa = PBXBuildFile; fileRef = 895A745118D9CB7E00561CD6 /* torrent.js */; };
 		895A751618D9D66200561CD6 /* transmission.js in Resources */ = {isa = PBXBuildFile; fileRef = 895A745218D9CB7E00561CD6 /* transmission.js */; };
 		895A751718D9D66200561CD6 /* transmission.remote.js in Resources */ = {isa = PBXBuildFile; fileRef = 895A745318D9CB7E00561CD6 /* transmission.remote.js */; };
+		897DEFE418DEF01100E12909 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F9EE8818381630001A2A4D /* AVFoundation.framework */; };
 		898124A318884D2900DB955B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		898124A418884D2900DB955B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		898124A518884D2900DB955B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		898124A618884D2900DB955B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74861F521259DB06005FDE74 /* QuartzCore.framework */; };
 		898124A718884D2900DB955B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7437B171125B4B6500B456EF /* SystemConfiguration.framework */; };
 		89E7ABF618DA02E700EB5349 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89E7ABF518DA02E700EB5349 /* Default-568h@2x.png */; };
-		AC9A2D7118B3199C00EF925C /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9A2D7018B3199C00EF925C /* libicucore.dylib */; };
-		ACE3888018C2ECAB007D2F58 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE3887F18C2ECAB007D2F58 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -507,8 +506,6 @@
 		89E7ABF518DA02E700EB5349 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		89F9EE8618381627001A2A4D /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		89F9EE8818381630001A2A4D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		AC9A2D7018B3199C00EF925C /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/usr/lib/libicucore.dylib; sourceTree = DEVELOPER_DIR; };
-		ACE3887F18C2ECAB007D2F58 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		ACE6CA48189DBE2200444349 /* libSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -517,8 +514,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACE3888018C2ECAB007D2F58 /* AVFoundation.framework in Frameworks */,
-				AC9A2D7118B3199C00EF925C /* libicucore.dylib in Frameworks */,
+				897DEFE418DEF01100E12909 /* AVFoundation.framework in Frameworks */,
 				898124A318884D2900DB955B /* CoreGraphics.framework in Frameworks */,
 				898124A418884D2900DB955B /* Foundation.framework in Frameworks */,
 				898124A518884D2900DB955B /* UIKit.framework in Frameworks */,
@@ -555,12 +551,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ACE3887F18C2ECAB007D2F58 /* AVFoundation.framework */,
-				AC9A2D7018B3199C00EF925C /* libicucore.dylib */,
 				ACE6CA48189DBE2200444349 /* libSystem.dylib */,
+				7EDBAD5613CA984B0047AB4B /* libicucore.dylib */,
 				89F9EE8818381630001A2A4D /* AVFoundation.framework */,
 				89F9EE8618381627001A2A4D /* IOKit.framework */,
-				7EDBAD5613CA984B0047AB4B /* libicucore.dylib */,
 				7437B171125B4B6500B456EF /* SystemConfiguration.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				74861F521259DB06005FDE74 /* QuartzCore.framework */,
@@ -1152,7 +1146,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					8981243218884D2900DB955B = {
 						SystemCapabilities = {
@@ -1164,7 +1158,7 @@
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iTransmission" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -1458,10 +1452,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -1478,15 +1468,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/lib\"/**";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = iphoneos5.1;
+				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"/**";
 				VALID_ARCHS = "armv6 armv7";
 			};
 			name = Distribution;
@@ -1494,7 +1485,6 @@
 		740E5F92129E6902008C61FF /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
@@ -1503,7 +1493,7 @@
 				GCC_VERSION = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = IPA;
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 arm64";
 				ZERO_LINK = NO;
 			};
@@ -1512,7 +1502,6 @@
 		7471DCFB126F27A200CB0653 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
@@ -1522,7 +1511,7 @@
 				GCC_VERSION = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = IPA;
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Debug;
@@ -1530,7 +1519,6 @@
 		7471DCFC126F27A200CB0653 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
@@ -1539,7 +1527,7 @@
 				GCC_VERSION = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = IPA;
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 arm64";
 				ZERO_LINK = NO;
 			};
@@ -1549,7 +1537,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
@@ -1561,17 +1548,14 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/dhruvitraithatha/XCode/iTransmission-4/Project/Other Sources/iTransmission_Prefix.pch";
+				GCC_PREFIX_HEADER = "Other Sources/iTransmission_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
+				HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/libraries/lib\"/**";
+				LIBRARY_SEARCH_PATHS = "Libraries/lib/**";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ltransmission",
@@ -1591,7 +1575,7 @@
 				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"";
+				USER_HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -1600,7 +1584,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
@@ -1610,17 +1593,14 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/dhruvitraithatha/XCode/iTransmission-4/Project/Other Sources/iTransmission_Prefix.pch";
+				GCC_PREFIX_HEADER = "Other Sources/iTransmission_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
+				HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/libraries/lib\"/**";
+				LIBRARY_SEARCH_PATHS = "Libraries/lib/**";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ltransmission",
@@ -1640,7 +1620,7 @@
 				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"";
+				USER_HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -1650,7 +1630,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
@@ -1660,17 +1639,14 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/dhruvitraithatha/XCode/iTransmission-4/Project/Other Sources/iTransmission_Prefix.pch";
+				GCC_PREFIX_HEADER = "Other Sources/iTransmission_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
+				HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/libraries/lib\"/**";
+				LIBRARY_SEARCH_PATHS = "Libraries/lib/**";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ltransmission",
@@ -1690,7 +1666,7 @@
 				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"";
+				USER_HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -1700,10 +1676,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -1722,15 +1694,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = "";
-				ONLY_ACTIVE_ARCH = NO;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/lib\"/**";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = iphoneos5.1;
+				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"/**";
 				VALID_ARCHS = "armv6 armv7";
 			};
 			name = Debug;
@@ -1739,10 +1712,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv6,
-					armv7,
-				);
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -1759,15 +1728,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/lib\"/**";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = iphoneos5.1;
+				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"/**";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv6 armv7";
 			};
