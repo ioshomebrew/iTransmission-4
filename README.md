@@ -2,7 +2,7 @@ iTransmission 4
 ==========
 iTransmission, basically, is a torrent client, which uses libtransmission as it's backend.
 
-So, what is iTransmission 4? iTransmission , originally, was developed by [ccp0101](https://github.com/ccp0101). It is no longer kept active. I plan on keeping iTransmision 4 active, as well as building it for older devices (currently as old as iOS 4/iPT 2).
+So, what is iTransmission 4? iTransmission , originally, was developed by [ccp0101](https://github.com/ccp0101). It is no longer kept active. I plan on keeping iTransmision 4 active.~~, as well as building it for older devices (currently as old as iOS 4/iPT 2).~~
 
 This is an extension to [ioshomebrew's](https://github.com/ioshomebrew) iTransmission 3, which is basically a torrent client for iOS, which I plan on keeping active and adding new features to as per my requirements and requests from you i.e. the user.
 I've already added lots of stuff.
@@ -11,9 +11,9 @@ Compiling libraries
 -----
 ~~You may wish to compile iTransmission libraries yourself~~
 
-There is no longer a need to compile iTransmission libraries yourself. I've already done that for you. The libraries include armv6, armv7, armv7s and arm64. They are in iTransmission/libraries folder, in zip format. Unzip them and you can run, build, etc. the project from XCode freely.
+There is no longer a need to compile iTransmission libraries yourself. I've already done that for you. The libraries include armv7, armv7s and arm64. They are in Project/Libraries folder, in zip format.
 
-Yet, if you still want to be adventurous, I have added the required files in a folder named 'compilation'.
+Yet, if you still want to be adventurous, I have added the required files in a folder named 'Compilation'.
 
 How to compile libraries
 _____
@@ -50,11 +50,7 @@ to
 <string>NO</string>
 ```
 
-2. This project uses IOKit framework , which is a private framework. But, I found it's headers. Decompress IOKit Headers.zip(present in "Project" directory), and copy the resulting Headers folder to /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/IOKit.framework
-
-3. I've added a build rule to compile the project using GCC 4.8, which I require for compiling this app for armv6. If you want to compile it for armv7s or arm64, remove it.
-
-4. You may also want to change the minimum deployment target to your choice and the base SDK to your choice also
+2. You may also want to change the minimum deployment target to your choice and the base SDK to your choice also.
 
 Installation
 -----
@@ -81,5 +77,6 @@ Credits
 - [ccp0101](https://github.com/ccp0101)
 - [ioshomebrew](https://github.com/ioshomebrew)
 - [fopino](https://github.com/fopino)
+- [heavenly-awker](https://github.com/heavenly-awker)
 
 Mail me if I missed somebody.

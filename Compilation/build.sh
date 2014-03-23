@@ -26,6 +26,9 @@ function do_loadenv {
 	if [ ${ARCH} = "i386" ]
 		then
 		PLATFORM="iPhoneSimulator"
+	elif [ ${ARCH} = "x86_64" ]
+		then
+		PLATFORM="iPhoneSimulator"
 	elif [ ${ARCH} = "armv7" ]
 		then
 		PLATFORM="iPhoneOS"
@@ -80,7 +83,11 @@ function do_export {
 		COMMON_OPTIONS="--host arm-apple-darwin ${COMMON_OPTIONS}"
 	elif [ ${PLATFORM} = "iPhoneSimulator" ]
 		then
-		COMMON_OPTIONS="--host i386-apple-darwin ${COMMON_OPTIONS}"
+			if [[ $ARCH == "x86_64" ]]; then
+				COMMON_OPTIONS="--host x86_64-apple-darwin ${COMMON_OPTIONS}"
+			elif [[ $ARCH == "i386" ]]; then
+				COMMON_OPTIONS="--host i386-apple-darwin ${COMMON_OPTIONS}"
+			fi
 	fi	
 
 	export PKG_CONFIG_PATH="${SDKROOT}/usr/lib/pkgconfig:${BUILD_DIR}/lib/pkgconfig"
@@ -100,8 +107,11 @@ function do_openssl {
 	pushd ${PACKAGE_NAME}
 	
 	do_export
-	
-	./configure BSD-generic32 --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
+	if [[ "${ARCH}" == "x86_64" ]]; then
+		./Configure darwin64-x86_64-cc --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
+	else
+		./configure BSD-generic32 --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
+	fi
 	
 	# Patch for iOS, taken from https://github.com/st3fan/ios-openssl/blame/master/build.sh
 	perl -i -pe "s|static volatile sig_atomic_t intr_signal|static volatile int intr_signal|" ./crypto/ui/ui_openssl.c
@@ -233,7 +243,7 @@ function do_transmission {
 	popd
 	popd
 }
-ARCHS=("armv7 armv7s arm64 i386")
+
 for ARCH in "${ARCHS[@]}"
 do
 do_loadenv
