@@ -31,14 +31,8 @@
 #import <UIKit/UIKit.h>
 #import "Reachability.h"
 #import "TorrentFetcher.h"
-<<<<<<< HEAD:Project/Classes/Controller.h
-#import <libtransmission/transmission.h>
-#import <ThoMoNetworking/ThoMoNetworking.h>
-=======
 #import "libtransmission/transmission.h"
->>>>>>> pr/1:Project/Source/Controllers/Controller.h
 #include <dlfcn.h>
-#import <xpc/xpc.h>
 #define SBSERVPATH "/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices"
 
 typedef enum
@@ -59,7 +53,7 @@ extern BOOL isStartingTransferAllowed();
 
 #define PREF_
 
-@interface Controller : NSObject <UIApplicationDelegate, TorrentFetcherDelegate, ThoMoServerDelegateProtocol> {
+@interface Controller : NSObject <UIApplicationDelegate, TorrentFetcherDelegate> {
     UIWindow *window;
 	NSUserDefaults *fDefaults;
 	tr_session *fLib;
@@ -82,7 +76,6 @@ extern BOOL isStartingTransferAllowed();
     DDFileLogger *fFileLogger;
     
     UIBackgroundTaskIdentifier bgTask;
-    ThoMoServerStub *server;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

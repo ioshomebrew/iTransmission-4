@@ -106,18 +106,8 @@ static void signal_handler(int sig) {
     
     [self fixDocumentsDirectory];
 	[self transmissionInitialize];
-    
-    // thomoserver init
-    server = [[ThoMoServerStub alloc] initWithProtocolIdentifier:@"libcydianotify"];
-    [server sendToAllClients:@"Test"];
-    
-    return YES;
-}
 
--(void)server:(ThoMoServerStub *)theServer didReceiveData:(id)theData fromClient:(NSString *)aClientIdString;
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Recieved" message:@"Recieved" delegate:nil cancelButtonTitle:@"Null" otherButtonTitles:nil];
-    [alert show];
+    return YES;
 }
 
 -(void) openApp {
