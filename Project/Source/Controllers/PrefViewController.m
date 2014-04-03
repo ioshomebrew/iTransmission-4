@@ -51,12 +51,6 @@
 
 - (void)keyboardDoneButton:(id)sender
 {
-    /* 
-     IBOutlet UITextField *fBindPortTextField;
-     IBOutlet UITextField *fRPCUsernameTextField;
-     IBOutlet UITextField *fRPCPasswordTextField;
-     IBOutlet UITextField *fRPCPortTextField;
-     */
     if ([fBindPortTextField isEditing])
         [fBindPortTextField resignFirstResponder];
     if ([fRPCPasswordTextField isEditing])
@@ -136,7 +130,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
@@ -146,6 +140,7 @@
         case 1: return 2;
         case 2: return 2;
         case 3: return 1;
+        case 4: return 1;
     }
     return 0;
 }
@@ -157,6 +152,7 @@
         case 1: return @"Network Interface";
         case 2: return @"Port Listening";
         case 3: return @"Logging";
+        case 4: return @"Background Downloading";
     }
     return nil;
 }
@@ -168,6 +164,7 @@
         case 1: return @"Enabling cellular network may generate significant data charges. ";
         case 2: return nil;
         case 3: return @"Only use logging for debugging. Extensive loggings will shorten both battery and Nand life. Saved logs will be available in iTunes.";
+        case 4: return @"Enable downloading while in background through multimedia functions";
     }
     return nil;
 }
@@ -199,6 +196,13 @@
         case 3: {
             switch (indexPath.row) {
                 case 0: return fEnableLoggingCell;
+            }
+        }
+        case 4:
+        {
+            switch (indexPath.row) {
+                case 0:
+                    return fBackgroundDownloadingCell;
             }
         }
     }
@@ -244,7 +248,6 @@
 
 - (void)saveButtonClicked
 {
-    
 	BOOL callSetNetworkActive = NO;
 	
 	Controller *controller = (Controller*)[[UIApplication sharedApplication] delegate];
@@ -301,6 +304,11 @@
 		callSetNetworkActive = YES;
     }
     
+    if([fEnableBackgroundDownloadingSwitch isOn] != [self.originalPreferences boolForKey:@"BackgroundDownloading"])
+    {
+        [fDefaults setBool:[fEnableBackgroundDownloadingSwitch isOn] forKey:@"BackgroundDownloading"];
+    }
+    
 	if (callSetNetworkActive)
 		[controller updateNetworkStatus];
 	
@@ -340,6 +348,7 @@
 	[_originalPref setBool:[fDefaults boolForKey:@"UseWiFi"] forKey:@"UseWiFi"];
 	[_originalPref setBool:[fDefaults boolForKey:@"UseCellularNetwork"] forKey:@"UseCellularNetwork"];
     [_originalPref setBool:[fDefaults boolForKey:@"LoggingEnabled"] forKey:@"LoggingEnabled"];
+    [_originalPref setBool:[fDefaults boolForKey:@"BackgroundDownloading"] forKey:@"BackgroundDownloading"];
 	self.originalPreferences = [NSDictionary dictionaryWithDictionary:_originalPref];
 	
 	[fEnableRPCSwitch setOn:[self.originalPreferences boolForKey:@"RPC"]];
@@ -351,6 +360,7 @@
 	[fUseWiFiSwitch setOn:[self.originalPreferences boolForKey:@"UseWiFi"]];
 	[fUseCellularNetworkSwitch setOn:[self.originalPreferences boolForKey:@"UseCellularNetwork"]];
     [fEnableLoggingSwitch setOn:[self.originalPreferences boolForKey:@"LoggingEnabled"]];
+    [fEnableBackgroundDownloadingSwitch setOn:[self.originalPreferences boolForKey:@"BackgroundDownloading"]];
     
     [self enableRPCSwitchChanged:fEnableRPCSwitch];
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
@@ -410,6 +420,14 @@
     if (bind_port != [self.originalPreferences integerForKey:@"BindPort"]) {
         [[[UIAlertView alloc] initWithTitle:@"Cannot check port" message:@"Bind port may have been modified. Please save before port test." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
     }
+}
+
+- (IBAction)enableBackgroundDownloadSwitchChanged:(id)sender
+{
+    [self.navigationItem.rightBarButtonItem setEnabled:YES];
+    
+    NSNumber *value = [NSNumber numberWithBool:fEnableBackgroundDownloadingSwitch.on];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AudioPrefChanged" object:value];
 }
 
 - (void)viewWillAppear:(BOOL)animated

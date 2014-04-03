@@ -221,6 +221,7 @@ static void signal_handler(int sig) {
     [fDefaults setBool:NO forKey:@"RPCUseWhitelist"];
 	[fDefaults setBool:YES forKey:@"UseWiFi"];
 	[fDefaults setBool:NO forKey:@"UseCellularNetwork"];
+    [fDefaults setBool:NO forKey:@"BackgroundDownloading"];
 	[fDefaults synchronize];
 }
 
@@ -507,11 +508,8 @@ static void signal_handler(int sig) {
     ALAlertBanner *banner = [ALAlertBanner alertBannerForView:self.window style:ALAlertBannerStyleSuccess position:ALAlertBannerPositionUnderNavBar title:msg subtitle:msg];
     [banner show];
     UILocalNotification *notification = [[UILocalNotification alloc]init];
-    notification.repeatInterval = NSDayCalendarUnit;
     [notification setAlertBody:msg];
-    [notification setFireDate:[NSDate dateWithTimeIntervalSinceNow:1]];
-    [notification setTimeZone:[NSTimeZone  defaultTimeZone]];
-    [[UIApplication sharedApplication] setScheduledLocalNotifications:[NSArray arrayWithObject:notification]];
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
 - (void)setActiveForNetworkStatus:(NetworkStatus)status

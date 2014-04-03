@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @class GradientButton;
 @class PortChecker;
@@ -25,6 +26,7 @@
     IBOutlet UITableViewCell *fRPCRequireAuthCell;
     IBOutlet UITableViewCell *fBindPortCell;
     IBOutlet UITableViewCell *fEnableLoggingCell;
+    IBOutlet UITableViewCell *fBackgroundDownloadingCell;
     IBOutlet UIButton *fCheckPortButton;
     
 	IBOutlet UISwitch *fEnableRPCSwitch;
@@ -33,6 +35,7 @@
 	IBOutlet UISwitch *fUseCellularNetworkSwitch;
 	IBOutlet UISwitch *fAutoPortMapSwitch;
     IBOutlet UISwitch *fEnableLoggingSwitch;
+    IBOutlet UISwitch *fEnableBackgroundDownloadingSwitch;
 	IBOutlet UITextField *fBindPortTextField;
 	IBOutlet UITextField *fRPCUsernameTextField;
 	IBOutlet UITextField *fRPCPasswordTextField;
@@ -73,5 +76,6 @@
 - (IBAction)switchChanged:(id)sender;
 - (IBAction)checkPortButtonClicked:(id)sender;
 - (IBAction)enableLoggingSwitchChanged:(id)sender;
+- (IBAction)enableBackgroundDownloadSwitchChanged:(id)sender;
 
 @end

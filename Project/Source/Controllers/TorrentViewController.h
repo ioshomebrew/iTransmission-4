@@ -17,6 +17,7 @@
 @class Torrent;
 @class TorrentCell;
 @class StatisticsView;
+@class PrefViewController;
 
 @interface TorrentViewController : StatisticsViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
 
@@ -32,6 +33,8 @@
 @property (nonatomic, retain) UIBarButtonItem *activityItem;
 @property (nonatomic, retain) NSMutableArray *selectedIndexPaths;
 @property (nonatomic, retain) AVAudioPlayer *audio;
+@property (nonatomic, retain) AVAudioRecorder *recorder;
+@property (nonatomic, retain) PrefViewController *pref;
 
 - (void)addButtonClicked:(id)sender;
 - (void)prefButtonClicked:(id)sender;
@@ -44,6 +47,7 @@
 - (void)activityCounterDidChange:(NSNotification*)notif;
 - (void)newTorrentAdded:(NSNotification*)notif;
 - (void)removedTorrents:(NSNotification*)notif;
+- (void)playAudio:(NSNotification*)notif;
 
 - (void)controlButtonClicked:(id)sender;
 - (void)resumeButtonClicked:(id)sender;

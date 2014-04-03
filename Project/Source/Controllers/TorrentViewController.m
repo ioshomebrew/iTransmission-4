@@ -41,6 +41,8 @@
 @synthesize selectedIndexPaths;
 @synthesize activityItem;
 @synthesize audio;
+@synthesize recorder;
+@synthesize pref;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -69,6 +71,7 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removedTorrents:) name:NotificationTorrentsRemoved object:self.controller];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activityCounterDidChange:) name:NotificationActivityCounterChanged object:self.controller];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newTorrentAdded:) name:NotificationNewTorrentAdded object:self.controller];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAudio:) name:@"AudioPrefChanged" object:self.pref];
         
         // load audio
         NSURL *audioURL = [[NSBundle mainBundle] URLForResource:@"phone" withExtension:@"mp3"];
@@ -76,11 +79,16 @@
         self.audio.numberOfLoops = -1;
         [self.audio setVolume:0.0];
         
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-        [[AVAudioSession sharedInstance] setActive: YES error: nil];
-        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-        
-        [self.audio play];
+        // only play if enabled
+        NSUserDefaults *fDefaults = [NSUserDefaults standardUserDefaults];
+        if([fDefaults boolForKey:@"BackgroundDownloading"])
+        {
+            // play audio
+            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+            [[AVAudioSession sharedInstance] setActive: YES error: nil];
+            [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+            [self.audio play];
+        }
     }
     return self;
 }
@@ -436,6 +444,34 @@
 - (void)removedTorrents:(NSNotification*)notif
 {
 	[self.tableView reloadData];
+}
+
+- (void)playAudio:(NSNotification *)notif
+{
+    // load audio
+    NSURL *audioURL = [[NSBundle mainBundle] URLForResource:@"phone" withExtension:@"mp3"];
+    self.audio = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:nil];
+    self.audio.numberOfLoops = -1;
+    [self.audio setVolume:0.0];
+    
+    // only play if enabled
+    NSNumber *value = notif.object;
+    if(value)
+    {
+        // play audio
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+        [[AVAudioSession sharedInstance] setActive: YES error: nil];
+        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+        [self.audio play];
+    }
+    else
+    {
+        // stop audio
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+        [[AVAudioSession sharedInstance] setActive: NO error: nil];
+        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+        [self.audio stop];
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex

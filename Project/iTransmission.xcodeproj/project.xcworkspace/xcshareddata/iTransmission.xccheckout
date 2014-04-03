@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>2A8F5672-270C-496A-9ADE-EC38E4394C06</string>
+	<string>902C7F12-48BF-4CD8-9CDC-7A3E83476348</string>
 	<key>IDESourceControlProjectName</key>
 	<string>iTransmission</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>9F011C69-FD6E-4721-9ACA-D9063D9CBC44</key>
-		<string>https://github.com/heavenly-awker/iTransmission-4.git</string>
+		<key>007CAB8B-2E57-4717-9EE7-52AE705165A4</key>
+		<string>https://github.com/ioshomebrew/iTransmission-4.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Project/iTransmission.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>9F011C69-FD6E-4721-9ACA-D9063D9CBC44</key>
+		<key>007CAB8B-2E57-4717-9EE7-52AE705165A4</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/heavenly-awker/iTransmission-4.git</string>
+	<string>https://github.com/ioshomebrew/iTransmission-4.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9F011C69-FD6E-4721-9ACA-D9063D9CBC44</string>
+	<string>007CAB8B-2E57-4717-9EE7-52AE705165A4</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9F011C69-FD6E-4721-9ACA-D9063D9CBC44</string>
+			<string>007CAB8B-2E57-4717-9EE7-52AE705165A4</string>
 			<key>IDESourceControlWCCName</key>
-			<string>iTransmission-4</string>
+			<string>iTransmission-ioshomebrew</string>
 		</dict>
 	</array>
 </dict>
