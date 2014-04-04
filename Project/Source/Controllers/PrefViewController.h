@@ -27,6 +27,7 @@
     IBOutlet UITableViewCell *fBindPortCell;
     IBOutlet UITableViewCell *fEnableLoggingCell;
     IBOutlet UITableViewCell *fBackgroundDownloadingCell;
+    IBOutlet UITableViewCell *fEnableMicrophoneCell;
     IBOutlet UIButton *fCheckPortButton;
     
 	IBOutlet UISwitch *fEnableRPCSwitch;
@@ -36,6 +37,7 @@
 	IBOutlet UISwitch *fAutoPortMapSwitch;
     IBOutlet UISwitch *fEnableLoggingSwitch;
     IBOutlet UISwitch *fEnableBackgroundDownloadingSwitch;
+    IBOutlet UISwitch *fEnableMicrophoneSwitch;
 	IBOutlet UITextField *fBindPortTextField;
 	IBOutlet UITextField *fRPCUsernameTextField;
 	IBOutlet UITextField *fRPCPasswordTextField;
@@ -77,5 +79,6 @@
 - (IBAction)checkPortButtonClicked:(id)sender;
 - (IBAction)enableLoggingSwitchChanged:(id)sender;
 - (IBAction)enableBackgroundDownloadSwitchChanged:(id)sender;
+- (IBAction)enableMicrophoneSwitchChanged:(id)sender;
 
 @end

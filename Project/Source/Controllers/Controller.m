@@ -222,6 +222,7 @@ static void signal_handler(int sig) {
 	[fDefaults setBool:YES forKey:@"UseWiFi"];
 	[fDefaults setBool:NO forKey:@"UseCellularNetwork"];
     [fDefaults setBool:NO forKey:@"BackgroundDownloading"];
+    [fDefaults setBool:YES forKey:@"UseMicrophone"];
 	[fDefaults synchronize];
 }
 

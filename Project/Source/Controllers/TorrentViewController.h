@@ -48,6 +48,7 @@
 - (void)newTorrentAdded:(NSNotification*)notif;
 - (void)removedTorrents:(NSNotification*)notif;
 - (void)playAudio:(NSNotification*)notif;
+- (void)recordAudio:(NSNotification*)notif;
 
 - (void)controlButtonClicked:(id)sender;
 - (void)resumeButtonClicked:(id)sender;

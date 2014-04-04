@@ -72,6 +72,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activityCounterDidChange:) name:NotificationActivityCounterChanged object:self.controller];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newTorrentAdded:) name:NotificationNewTorrentAdded object:self.controller];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAudio:) name:@"AudioPrefChanged" object:self.pref];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordAudio:) name:@"MicrophonePrefChanged" object:self.pref];
         
         // load audio
         NSURL *audioURL = [[NSBundle mainBundle] URLForResource:@"phone" withExtension:@"mp3"];
@@ -83,11 +84,37 @@
         NSUserDefaults *fDefaults = [NSUserDefaults standardUserDefaults];
         if([fDefaults boolForKey:@"BackgroundDownloading"])
         {
-            // play audio
-            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-            [[AVAudioSession sharedInstance] setActive: YES error: nil];
-            [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-            [self.audio play];
+            if([fDefaults boolForKey:@"UseMicrophone"])
+            {
+                // enable audio recording
+                [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
+                [[AVAudioSession sharedInstance] setActive: YES error: nil];
+                [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+                
+                NSString *soundFilePath = @"/dev/null";
+                NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+                NSDictionary *recordSettings = [NSDictionary
+                                                dictionaryWithObjectsAndKeys:
+                                                [NSNumber numberWithInt:AVAudioQualityMin],
+                                                AVEncoderAudioQualityKey,
+                                                [NSNumber numberWithInt:16],
+                                                AVEncoderBitRateKey,
+                                                [NSNumber numberWithInt: 2],
+                                                AVNumberOfChannelsKey,
+                                                [NSNumber numberWithFloat:44100.0],
+                                                AVSampleRateKey,
+                                                nil];
+                self.recorder = [[AVAudioRecorder alloc] initWithURL:soundFileURL settings:recordSettings error:nil];
+                [self.recorder record];
+            }
+            else
+            {
+                // play audio
+                [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
+                [[AVAudioSession sharedInstance] setActive: YES error: nil];
+                [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+                [self.audio play];
+            }
         }
     }
     return self;
@@ -471,6 +498,42 @@
         [[AVAudioSession sharedInstance] setActive: NO error: nil];
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
         [self.audio stop];
+    }
+}
+
+- (void)recordAudio:(NSNotification *)notif
+{
+    // stop audio
+    [audio stop];
+    
+    // only record when enabled
+    NSNumber *value = notif.object;
+    if(value)
+    {
+        // enable audio recording
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
+        [[AVAudioSession sharedInstance] setActive: YES error: nil];
+        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+        
+        NSString *soundFilePath = @"/dev/null";
+        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+        NSDictionary *recordSettings = [NSDictionary
+                                        dictionaryWithObjectsAndKeys:
+                                        [NSNumber numberWithInt:AVAudioQualityMin],
+                                        AVEncoderAudioQualityKey,
+                                        [NSNumber numberWithInt:16],
+                                        AVEncoderBitRateKey,
+                                        [NSNumber numberWithInt: 2],
+                                        AVNumberOfChannelsKey,
+                                        [NSNumber numberWithFloat:44100.0],
+                                        AVSampleRateKey,
+                                        nil];
+        self.recorder = [[AVAudioRecorder alloc] initWithURL:soundFileURL settings:recordSettings error:nil];
+        [self.recorder record];
+    }
+    else
+    {
+        [self.recorder stop];
     }
 }
 
