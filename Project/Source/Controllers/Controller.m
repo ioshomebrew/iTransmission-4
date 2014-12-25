@@ -443,7 +443,7 @@ static void signal_handler(int sig) {
 
 - (NSString*)defaultDownloadDir
 {
-    return [[self documentsDirectory] stringByAppendingPathComponent:@"Downloads"];
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"torrents"];
 }
 
 - (NSString*)transferPlist
