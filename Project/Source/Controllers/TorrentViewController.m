@@ -198,24 +198,55 @@
 	Torrent * torrent = [self.controller torrentAtIndex:indexPath.row];
     self.selectedIndexPaths = [NSMutableArray array];
     [self.selectedIndexPaths addObject:indexPath];
-    NSString *msg;
-    msg = [NSString stringWithFormat:@"Are you sure to remove %@ torrent?", [torrent name]];
-    
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes and remove data" otherButtonTitles:@"Yes but keep data", nil];
-	actionSheet.tag = REMOVE_COMFIRM_TAG;
-	[actionSheet showFromToolbar:self.navigationController.toolbar];
+    NSString *msg = [NSString stringWithFormat:@"Are you sure to remove %@ torrent?", [torrent name]];
+
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:msg message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *removeDataAction = [UIAlertAction actionWithTitle:@"Yes and remove data" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self removeTorrentsTrashData:YES];
+    }];
+    [actionSheet addAction:removeDataAction];
+
+    UIAlertAction *keepDataAction = [UIAlertAction actionWithTitle:@"Yes, but keep data" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self removeTorrentsTrashData:NO];
+    }];
+    [actionSheet addAction:keepDataAction];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        self.selectedIndexPaths = [NSMutableArray array];
+    }];
+    [actionSheet addAction:cancelAction];
+
+    if (actionSheet.popoverPresentationController != nil) {
+        actionSheet.popoverPresentationController.sourceView = self.tableView;
+    }
+    [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 - (void)addButtonClicked:(id)sender
 {
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Add from..." delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-    [sheet addButtonWithTitle:@"Web"];
-    [sheet addButtonWithTitle:@"Magnet"];
-    [sheet addButtonWithTitle:@"URL"];
-    [sheet addButtonWithTitle:@"Cancel"];
-    [sheet setCancelButtonIndex:3];
-    [sheet setTag:ADD_TAG];
-    [sheet showFromToolbar:self.navigationController.toolbar];
+    UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"Add from …" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *webAction = [UIAlertAction actionWithTitle:@"Web" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self addFromWebClicked];
+    }];
+    [sheet addAction:webAction];
+
+    UIAlertAction *magnetAction = [UIAlertAction actionWithTitle:@"Magnet" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self addFromMagnetClicked];
+    }];
+    [sheet addAction:magnetAction];
+
+    UIAlertAction *URLAction = [UIAlertAction actionWithTitle:@"URL" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self addFromURLClicked];
+    }];
+    [sheet addAction:URLAction];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [sheet addAction:cancelAction];
+
+    if (sheet.popoverPresentationController != nil) {
+        sheet.popoverPresentationController.barButtonItem = (UIBarButtonItem *)sender;
+    }
+    [self presentViewController:sheet animated:YES completion:nil];
 }
 
 - (void)bandwidthButtonClicked:(id)sender
@@ -224,19 +255,23 @@
     c.torrent = nil;
     c.controller = self.controller;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:c];
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)infoButtonClicked:(id)sender
 {
     InfoViewController *viewController = [InfoViewController infoWithPageName:@"about"];
-    [self.navigationController pushViewController:viewController animated:YES];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)prefButtonClicked:(id)sender
 {
     PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil];
     UINavigationController *prefNav = [[UINavigationController alloc] initWithRootViewController:prefViewController];
+    prefNav.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentViewController:prefNav animated:YES completion:nil];
 }
 
@@ -328,14 +363,43 @@
 - (void)removeButtonClicked:(id)sender
 {
 	NSString *msg;
-	if ([self.selectedIndexPaths count] == 1)
+    if ([self.selectedIndexPaths count] == 1) {
 		msg = @"Are you sure to remove one torrent?";
-	else 
+    } else {
 		msg = [NSString stringWithFormat:@"Are you sure to remove %lu torrents?", (unsigned long)[self.selectedIndexPaths count]];
+    }
 
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes and remove data" otherButtonTitles:@"Yes but keep data", nil];
-	actionSheet.tag = REMOVE_COMFIRM_TAG;
-	[actionSheet showFromToolbar:self.navigationController.toolbar];
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:msg message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *removeDataAction = [UIAlertAction actionWithTitle:@"Yes and remove data" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self removeTorrentsTrashData:YES];
+    }];
+    [actionSheet addAction:removeDataAction];
+
+    UIAlertAction *keepDataAction = [UIAlertAction actionWithTitle:@"Yes, but keep data" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self removeTorrentsTrashData:NO];
+    }];
+    [actionSheet addAction:keepDataAction];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        self.selectedIndexPaths = [NSMutableArray array];
+    }];
+    [actionSheet addAction:cancelAction];
+
+    if (actionSheet.popoverPresentationController != nil) {
+        actionSheet.popoverPresentationController.sourceView = (UIView *)sender;
+    }
+    [self presentViewController:actionSheet animated:YES completion:nil];
+}
+
+- (void)removeTorrentsTrashData:(BOOL)trashData {
+    NSMutableArray *torrents = [NSMutableArray arrayWithCapacity:[self.selectedIndexPaths count]];
+    for (NSIndexPath *indexPath in self.selectedIndexPaths) {
+        Torrent *t = [self.controller torrentAtIndex:indexPath.row];
+        [torrents addObject:t];
+    }
+    [self.controller removeTorrents:torrents trashData:trashData];
+    self.selectedIndexPaths = [NSMutableArray array];
+    [self.tableView reloadData];
 }
 
 - (void)editButtonClicked:(id)sender
@@ -399,49 +463,59 @@
 
 - (void)addFromURLWithExistingURL:(NSString*)url message:(NSString*)msg
 {
-    UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:@"Add from URL" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-    dialog.delegate = self;
-    dialog.tag = ADD_FROM_URL_TAG;
-    [dialog addTextFieldWithValue:url label:@"http://"];
-    UITextField *textField = [dialog textField];
-    textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    textField.autocorrectionType = UITextAutocorrectionTypeNo;
-    textField.enablesReturnKeyAutomatically = YES;
-    textField.keyboardAppearance = UIKeyboardAppearanceDefault;
-    textField.keyboardType = UIKeyboardTypeURL;
-    textField.returnKeyType = UIReturnKeyDone;
-    textField.secureTextEntry = NO;
-    [dialog show];
+
+    UIAlertController *dialog = [UIAlertController alertControllerWithTitle:@"Add from URL" message:msg preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *url = dialog.textFields.firstObject.text;
+        if (![url hasPrefix:@"http://"] || [url hasPrefix:@"https://"])
+            [self addFromURLWithExistingURL:url message:@"Error: The URL provided is malformed!"];
+        else {
+            [self.controller addTorrentFromURL:url];
+        }
+    }];
+    [dialog addAction:okAction];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [dialog addAction:cancelAction];
+
+    [dialog addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        textField.enablesReturnKeyAutomatically = YES;
+        textField.keyboardAppearance = UIKeyboardAppearanceDefault;
+        textField.keyboardType = UIKeyboardTypeURL;
+        textField.returnKeyType = UIReturnKeyDone;
+        textField.secureTextEntry = NO;
+    }];
+    [self presentViewController:dialog animated:YES completion:nil];
 }
 
 - (void)addFromMagnetWithExistingMagnet:(NSString*)magnet message:(NSString*)msg
 {
-    UIAlertView *dialog = [[UIAlertView alloc] initWithTitle:@"Add from magnet" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-    dialog.delegate = self;
-    dialog.tag = ADD_FROM_MAGNET_TAG;
-    [dialog addTextFieldWithValue:magnet label:@"magnet:"];
-    UITextField *textField = [dialog textField];
-    textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    textField.autocorrectionType = UITextAutocorrectionTypeNo;
-    textField.enablesReturnKeyAutomatically = YES;
-    textField.keyboardAppearance = UIKeyboardAppearanceDefault;
-    textField.keyboardType = UIKeyboardTypeURL;
-    textField.returnKeyType = UIReturnKeyDone;
-    textField.secureTextEntry = NO;
-    [dialog show];
-}
+    UIAlertController *dialog = [UIAlertController alertControllerWithTitle:@"Add from magnet" message:msg preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *magnet = dialog.textFields.firstObject.text;
+        NSError *error = [self.controller addTorrentFromManget:magnet];
+        if (error) {
+            [self addFromMagnetWithExistingMagnet:magnet message:[error localizedDescription]];
+        }
+    }];
+    [dialog addAction:okAction];
 
-- (void)didPresentAlertView:(UIAlertView *)alertView
-{
-    if (alertView.tag == ADD_FROM_URL_TAG || alertView.tag == ADD_FROM_MAGNET_TAG) {
-//        [UIView beginAnimations:@"Lift Alert View" context:nil];
-//        CGPoint center = alertView.center;
-//        center.y = center.y - 100;
-//        alertView.center = center;
-//        [UIView setAnimationDuration:0.3f];
-//        [UIView setAnimationBeginsFromCurrentState:YES];
-//        [UIView commitAnimations];
-    }
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [dialog addAction:cancelAction];
+
+    [dialog addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        textField.enablesReturnKeyAutomatically = YES;
+        textField.keyboardAppearance = UIKeyboardAppearanceDefault;
+        textField.keyboardType = UIKeyboardTypeURL;
+        textField.returnKeyType = UIReturnKeyDone;
+        textField.secureTextEntry = NO;
+    }];
+
+    [self presentViewController:dialog animated:YES completion:nil];
 }
 
 - (void)activityCounterDidChange:(NSNotification*)notif
@@ -537,32 +611,6 @@
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag == ADD_FROM_URL_TAG) {
-        if (buttonIndex == 0) // cancelled
-            return;
-        if (buttonIndex == 1) {
-            NSString *url = [[alertView textField] text];
-            if (![url hasPrefix:@"http://"] || [url hasPrefix:@"https://"])
-                [self addFromURLWithExistingURL:url message:@"Error: The URL provided is malformed!"];
-            else {
-                [self.controller addTorrentFromURL:url];
-            }
-        }
-    }
-    if (alertView.tag == ADD_FROM_MAGNET_TAG) {
-        if (buttonIndex == 0) // cancelled
-            return;
-        if (buttonIndex == 1) {
-            NSString *magnet = [[alertView textField] text];
-            NSError *error = [self.controller addTorrentFromManget:magnet];
-            if (error)
-                [self addFromMagnetWithExistingMagnet:magnet message:[error localizedDescription]];
-        }
-    }
-}
-
 - (void)addFromMagnetClicked
 {
     [self addFromMagnetWithExistingMagnet:@"" message:@"Please enter the magnet link below. "];
@@ -572,7 +620,7 @@
 {
     NSString *URL = @"http://google.com";
 	//SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:URL];
-    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:URL :self.controller :self.navigationController];
+    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:URL controller:self.controller navigationController:self.navigationController];
 	[self.navigationController pushViewController:webViewController animated:YES];
 }
 
@@ -580,51 +628,6 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:NO animated:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (actionSheet.tag) {
-        case ADD_TAG: {
-            switch (buttonIndex) {
-                case 0:
-                {
-                    [self addFromWebClicked];
-                    break;
-                }
-                case 1: {
-                    [self addFromMagnetClicked];
-                    break;
-                }
-                case 2: {
-                    [self addFromURLClicked];
-                }
-                default: 
-                    return;
-            }
-			break;
-        }
-		case REMOVE_COMFIRM_TAG: {
-			if (buttonIndex == actionSheet.cancelButtonIndex) {
-				self.selectedIndexPaths = [NSMutableArray array];
-			}
-			else {
-				NSMutableArray *torrents = [NSMutableArray arrayWithCapacity:[self.selectedIndexPaths count]];
-				for (NSIndexPath *indexPath in self.selectedIndexPaths) {
-					Torrent *t = [self.controller torrentAtIndex:indexPath.row];
-					[torrents addObject:t];
-				}
-				[self.controller removeTorrents:torrents trashData:(buttonIndex == [actionSheet destructiveButtonIndex])];
-				self.selectedIndexPaths = [NSMutableArray array];
-				[self.tableView reloadData];
-			}
-		}
-    }
 }
 
 @end
