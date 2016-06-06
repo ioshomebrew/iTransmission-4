@@ -51,6 +51,11 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>5.0</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>cydia</string>
+		<string>ifile</string>
+	</array>
 	<key>LSMinimumSystemVersion</key>
 	<string>3.2</string>
 	<key>LSRequiresIPhoneOS</key>
