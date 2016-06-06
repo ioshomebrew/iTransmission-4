@@ -89,8 +89,7 @@ static void signal_handler(int sig) {
     
     self.installedApps = [self findRelatedApps];
     
-    [self.window addSubview:self.navController.view];
-	
+    self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     
     /* start logging if needed */
