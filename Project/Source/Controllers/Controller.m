@@ -229,12 +229,6 @@ static void signal_handler(int sig) {
 {
 	fDefaults = [NSUserDefaults standardUserDefaults];
     
-    if (![fDefaults boolForKey:@"NotFirstRun"]) {
-        [self resetToDefaultPreferences];
-        [fDefaults setBool:YES forKey:@"NotFirstRun"];
-        [self performSelector:@selector(firstRunMessage) withObject:nil afterDelay:0.5f];
-    }
-    
     //checks for old version speeds of -1
     if ([fDefaults integerForKey: @"UploadLimit"] < 0)
     {
@@ -698,17 +692,6 @@ static void signal_handler(int sig) {
     TorrentFetcher *fetcher = [[TorrentFetcher alloc] initWithURLString:url delegate:self];
     [fActivities addObject:fetcher];
     [self increaseActivityCounter];
-}
-
-- (void)firstRunMessage
-{
-    NSString *firstRunMessage = @"Hello, and enjoy downloading!";
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Hey!"
-                                                        message:firstRunMessage
-                                                       delegate:nil
-                                              cancelButtonTitle:@"I got it!"
-                                              otherButtonTitles:nil];
-    [alertView show];
 }
 
 - (NSError*)addTorrentFromManget:(NSString *)magnet

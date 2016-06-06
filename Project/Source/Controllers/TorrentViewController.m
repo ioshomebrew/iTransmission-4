@@ -12,7 +12,6 @@
 #import "Torrent.h"
 #import "PrefViewController.h"
 #import "UIAlertViewPrivate.h"
-#import "TorrentFetcher.h"
 #import "TDBadgedCell.h"
 #import "Notifications.h"
 #import "NSStringAdditions.h"

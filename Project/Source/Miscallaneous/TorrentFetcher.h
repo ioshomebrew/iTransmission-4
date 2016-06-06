@@ -17,12 +17,8 @@
 @end
     
 
-@interface TorrentFetcher : NSObject {
-    NSURLConnection *fURLConnection;
-    NSMutableData *fData;
-    NSString *url;
-}
-@property (nonatomic, retain) NSURLConnection *URLConnection;
+@interface TorrentFetcher : NSObject
+
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, assign) id<TorrentFetcherDelegate> delegate;
 

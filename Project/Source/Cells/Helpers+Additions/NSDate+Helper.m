@@ -45,7 +45,7 @@ static NSDateFormatter *displayFormatter;
  * you're better off using daysAgoAgainstMidnight
  */
 - (NSUInteger)daysAgo {
-    NSDateComponents *components = [calendar components:(NSDayCalendarUnit) 
+    NSDateComponents *components = [calendar components:NSCalendarUnitDay
 											   fromDate:self
 												 toDate:[NSDate date]
 												options:0];
@@ -82,7 +82,7 @@ static NSDateFormatter *displayFormatter;
 }
 
 - (NSUInteger)weekday {
-    NSDateComponents *weekdayComponents = [calendar components:(NSWeekdayCalendarUnit) fromDate:self];
+    NSDateComponents *weekdayComponents = [calendar components:(NSCalendarUnitWeekday) fromDate:self];
 	return [weekdayComponents weekday];
 }
 
@@ -115,7 +115,7 @@ static NSDateFormatter *displayFormatter;
 	 */
 	
 	NSDate *today = [NSDate date];
-    NSDateComponents *offsetComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) 
+    NSDateComponents *offsetComponents = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay)
 													 fromDate:today];
 	
 	NSDate *midnight = [calendar dateFromComponents:offsetComponents];
@@ -143,7 +143,7 @@ static NSDateFormatter *displayFormatter;
 			// check if same calendar year
 			NSInteger thisYear = [offsetComponents year];
 			
-			NSDateComponents *dateComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) 
+			NSDateComponents *dateComponents = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay)
 														   fromDate:date];
 			NSInteger thatYear = [dateComponents year];			
 			if (thatYear >= thisYear) {
@@ -203,7 +203,7 @@ static NSDateFormatter *displayFormatter;
 	// we'll use the default calendar and hope for the best
 	
     NSDate *beginningOfWeek = nil;
-	BOOL ok = [calendar rangeOfUnit:NSWeekCalendarUnit startDate:&beginningOfWeek
+	BOOL ok = [calendar rangeOfUnit:NSCalendarUnitWeekOfYear startDate:&beginningOfWeek
 						   interval:NULL forDate:self];
 	if (ok) {
 		return beginningOfWeek;
@@ -211,7 +211,7 @@ static NSDateFormatter *displayFormatter;
 	
 	// couldn't calc via range, so try to grab Sunday, assuming gregorian style
 	// Get the weekday component of the current date
-	NSDateComponents *weekdayComponents = [calendar components:NSWeekdayCalendarUnit fromDate:self];
+	NSDateComponents *weekdayComponents = [calendar components:NSCalendarUnitWeekday fromDate:self];
 	
 	/*
 	 Create a date components to represent the number of days to subtract from the current date.
@@ -223,21 +223,21 @@ static NSDateFormatter *displayFormatter;
 	beginningOfWeek = [calendar dateByAddingComponents:componentsToSubtract toDate:self options:0];
 	
 	//normalize to midnight, extract the year, month, and day components and create a new date from those components.
-	NSDateComponents *components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+	NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay)
 											   fromDate:beginningOfWeek];
 	return [calendar dateFromComponents:components];
 }
 
 - (NSDate *)beginningOfDay {
     // Get the weekday component of the current date
-	NSDateComponents *components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) 
+	NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay)
 											   fromDate:self];
 	return [calendar dateFromComponents:components];
 }
 
 - (NSDate *)endOfWeek {
     // Get the weekday component of the current date
-	NSDateComponents *weekdayComponents = [calendar components:NSWeekdayCalendarUnit fromDate:self];
+	NSDateComponents *weekdayComponents = [calendar components:NSCalendarUnitWeekday fromDate:self];
 	NSDateComponents *componentsToAdd = [[NSDateComponents alloc] init];
 	// to get the end of week for a particular date, add (7 - weekday) days
 	[componentsToAdd setDay:(7 - [weekdayComponents weekday])];
