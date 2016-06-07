@@ -65,14 +65,17 @@
                                     initWithCustomView:self.activityIndicator];
     loadingView.target = self;
     self.navigationItem.rightBarButtonItem = loadingView;
-    
-    NSString *pagePath = [[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Info"] stringByAppendingPathComponent:self.pageName] stringByAppendingPathExtension:@"html"];
-    
-    self.pageName = nil;
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:pagePath] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:5.0f];
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)];
+
+    NSString *path = [[NSBundle mainBundle] pathForResource:self.pageName ofType:@"html"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:5.0f];
     [(UIWebView*)self.view loadRequest:request];
-    
+}
+
+- (void)doneButtonPressed:(UIBarButtonItem *)button
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType

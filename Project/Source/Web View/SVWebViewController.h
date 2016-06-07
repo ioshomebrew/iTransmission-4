@@ -11,7 +11,7 @@
 
 @interface SVWebViewController : UIViewController
 
-- (id)initWithAddress:(NSString*)urlString :(Controller *)libtransmission :(UINavigationController*)nav;
+- (id)initWithAddress:(NSString *)urlString controller:(Controller *)libtransmission navigationController:(UINavigationController *)nav;
 - (id)initWithURL:(NSURL*)URL;
 
 @property (nonatomic, retain) Controller *transmission;

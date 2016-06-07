@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		23ACED151D04F99A00B76404 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23ACED141D04F99A00B76404 /* Launch Screen.storyboard */; };
 		895A738A18D9CB6F00561CD6 /* ALAlertBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A730A18D9CB6E00561CD6 /* ALAlertBanner.m */; };
 		895A738B18D9CB6F00561CD6 /* ALAlertBannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A730C18D9CB6E00561CD6 /* ALAlertBannerManager.m */; };
 		895A738C18D9CB6F00561CD6 /* DiscoveredTorrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A730F18D9CB6E00561CD6 /* DiscoveredTorrentCell.m */; };
@@ -227,7 +228,6 @@
 		898124A518884D2900DB955B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		898124A618884D2900DB955B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74861F521259DB06005FDE74 /* QuartzCore.framework */; };
 		898124A718884D2900DB955B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7437B171125B4B6500B456EF /* SystemConfiguration.framework */; };
-		89E7ABF618DA02E700EB5349 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89E7ABF518DA02E700EB5349 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -243,6 +243,7 @@
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		23ACED141D04F99A00B76404 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7437B171125B4B6500B456EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		74861F521259DB06005FDE74 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -503,7 +504,6 @@
 		895A750618D9CF9B00561CD6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		895A750818D9D4EF00561CD6 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 		898124BA18884D2900DB955B /* iTransmission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTransmission.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		89E7ABF518DA02E700EB5349 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		89F9EE8618381627001A2A4D /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		89F9EE8818381630001A2A4D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		ACE6CA48189DBE2200444349 /* libSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
@@ -537,7 +537,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				89E7ABF518DA02E700EB5349 /* Default-568h@2x.png */,
 				895A74E318D9CB8900561CD6 /* Nibs */,
 				895A74DD18D9CB8500561CD6 /* Other Sources */,
 				895A73C518D9CB7D00561CD6 /* Resources */,
@@ -1088,6 +1087,7 @@
 				895A74E818D9CB8A00561CD6 /* Controllers */,
 				895A74F418D9CB8A00561CD6 /* MainWindow.xib */,
 				895A74F518D9CB8A00561CD6 /* StatisticsView.xib */,
+				23ACED141D04F99A00B76404 /* Launch Screen.storyboard */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -1146,7 +1146,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0730;
 				TargetAttributes = {
 					8981243218884D2900DB955B = {
 						SystemCapabilities = {
@@ -1220,6 +1220,7 @@
 				895A74BF18D9CB7E00561CD6 /* favicon.png in Resources */,
 				895A74C418D9CB7E00561CD6 /* lock_icon.png in Resources */,
 				895A748718D9CB7E00561CD6 /* maps.png in Resources */,
+				23ACED151D04F99A00B76404 /* Launch Screen.storyboard in Resources */,
 				895A748118D9CB7E00561CD6 /* tributton.png in Resources */,
 				895A74FB18D9CB8A00561CD6 /* DiscoveredTorrentCell.xib in Resources */,
 				895A747618D9CB7E00561CD6 /* navleft.png in Resources */,
@@ -1303,7 +1304,6 @@
 				895A74FD18D9CB8A00561CD6 /* FileListViewController.xib in Resources */,
 				895A746118D9CB7E00561CD6 /* about.html in Resources */,
 				895A74FF18D9CB8A00561CD6 /* PrefViewController_iPad.xib in Resources */,
-				89E7ABF618DA02E700EB5349 /* Default-568h@2x.png in Resources */,
 				895A74CA18D9CB7E00561CD6 /* index.html in Resources */,
 				895A746318D9CB7E00561CD6 /* style.css in Resources */,
 				895A748518D9CB7E00561CD6 /* itunes.png in Resources */,
@@ -1456,8 +1456,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_SSE3_EXTENSIONS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
@@ -1469,7 +1468,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/lib\"/**";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
@@ -1478,7 +1477,6 @@
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"/**";
-				VALID_ARCHS = "armv6 armv7";
 			};
 			name = Distribution;
 		};
@@ -1538,14 +1536,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1555,10 +1551,9 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_DEPENDENCY_INFO_FILE = "";
 				LIBRARY_SEARCH_PATHS = "Libraries/lib/**";
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ltransmission",
 					"-levent",
@@ -1573,12 +1568,11 @@
 					"-fobjc-arc",
 					"-lutp",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ioshomebrew.itransmission;
 				PRODUCT_NAME = iTransmission;
-				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
-				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -1587,14 +1581,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Other Sources/iTransmission_Prefix.pch";
@@ -1602,10 +1594,9 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_DEPENDENCY_INFO_FILE = "";
 				LIBRARY_SEARCH_PATHS = "Libraries/lib/**";
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ltransmission",
 					"-levent",
@@ -1620,13 +1611,12 @@
 					"-fobjc-arc",
 					"-lutp",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ioshomebrew.itransmission;
 				PRODUCT_NAME = iTransmission;
-				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -1635,14 +1625,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Other Sources/iTransmission_Prefix.pch";
@@ -1650,10 +1638,9 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_DEPENDENCY_INFO_FILE = "";
 				LIBRARY_SEARCH_PATHS = "Libraries/lib/**";
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ltransmission",
 					"-levent",
@@ -1668,13 +1655,12 @@
 					"-fobjc-arc",
 					"-lutp",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ioshomebrew.itransmission;
 				PRODUCT_NAME = iTransmission;
-				SDKROOT = iphoneos;
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Distribution;
 		};
@@ -1686,9 +1672,9 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_SSE3_EXTENSIONS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
@@ -1701,7 +1687,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/lib\"/**";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
@@ -1710,7 +1696,6 @@
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"/**";
-				VALID_ARCHS = "armv6 armv7";
 			};
 			name = Debug;
 		};
@@ -1722,8 +1707,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_SSE3_EXTENSIONS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
@@ -1735,7 +1719,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/lib\"/**";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
@@ -1745,7 +1729,6 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/include/${CURRENT_ARCH}\"/**";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv6 armv7";
 			};
 			name = Release;
 		};

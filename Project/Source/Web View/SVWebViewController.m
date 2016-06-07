@@ -21,7 +21,6 @@
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) NSURL *URL;
 
-- (id)initWithAddress:(NSString*)urlString;
 - (id)initWithURL:(NSURL*)URL;
 - (void)loadURL:(NSURL*)URL;
 
@@ -49,7 +48,7 @@
     self.webView.delegate = nil;
 }
 
-- (id)initWithAddress:(NSString *)urlString :(Controller *)libtransmission :(UINavigationController *)nav {
+- (id)initWithAddress:(NSString *)urlString controller:(Controller *)libtransmission navigationController:(UINavigationController *)nav {
     self.controller = nav;
     self.transmission = libtransmission;
     return [self initWithURL:[NSURL URLWithString:urlString]];

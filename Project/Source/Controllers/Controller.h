@@ -109,7 +109,6 @@ extern BOOL isStartingTransferAllowed();
 
 - (tr_session*)rawSession;
 
-- (void)firstRunMessage;
 - (void)fixDocumentsDirectory;
 
 - (CGFloat)globalDownloadSpeed;
