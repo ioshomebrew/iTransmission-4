@@ -76,8 +76,6 @@
                     return fConnectionsPerTorrentLabelCell;
                 case 3:
                     return fConnectionsPerTorrentSliderCell;
-                default:
-                    break;
             }
             break;
         case 1:
@@ -89,21 +87,14 @@
                     if (self.torrent) return fOverrideSpeedLimitsCell;
                     else return fUploadSpeedLimitEnabledCell;
                 case 2:
-                    return fDownloadSpeedLimitCell;
-                default:
-                    break;
-            }
+                    return fDownloadSpeedLimitCell;            }
         case 2:
             switch (indexPath.row) {
                 case 1:
                     return fDownloadSpeedLimitCell;     
                 case 0:
                     return fDownloadSpeedLimitEnabledCell;
-                default:
-                    break;
             }
-        default:
-            break;
     }
     assert(false);
     return nil;

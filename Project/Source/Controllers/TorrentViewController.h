@@ -55,7 +55,6 @@
 - (void)removeButtonClicked:(id)sender;
 - (void)editButtonClicked:(id)sender;
 - (void)doneButtonClicked:(id)sender;
-- (void)bandwidthButtonClicked:(id)sender;
 
 - (void)setupCell:(TorrentCell*)cell forTorrent:(Torrent*)torrent;
 

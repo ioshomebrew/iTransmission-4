@@ -104,9 +104,6 @@
 		895A74AB18D9CB7E00561CD6 /* YellowDot.png in Resources */ = {isa = PBXBuildFile; fileRef = 895A741E18D9CB7E00561CD6 /* YellowDot.png */; };
 		895A74AC18D9CB7E00561CD6 /* magnet_ex in Resources */ = {isa = PBXBuildFile; fileRef = 895A742018D9CB7E00561CD6 /* magnet_ex */; };
 		895A74AD18D9CB7E00561CD6 /* url_ex in Resources */ = {isa = PBXBuildFile; fileRef = 895A742118D9CB7E00561CD6 /* url_ex */; };
-		895A74AE18D9CB7E00561CD6 /* Phone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 895A742318D9CB7E00561CD6 /* Phone.mp3 */; };
-		895A74AF18D9CB7E00561CD6 /* Ping.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 895A742418D9CB7E00561CD6 /* Ping.aiff */; };
-		895A74B018D9CB7E00561CD6 /* Silence.wav in Resources */ = {isa = PBXBuildFile; fileRef = 895A742518D9CB7E00561CD6 /* Silence.wav */; };
 		895A74E218D9CB8500561CD6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A74E018D9CB8500561CD6 /* main.m */; };
 		895A74F618D9CB8A00561CD6 /* FileListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 895A74E518D9CB8A00561CD6 /* FileListCell.xib */; };
 		895A74F718D9CB8A00561CD6 /* TorrentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 895A74E618D9CB8A00561CD6 /* TorrentCell.xib */; };
@@ -281,9 +278,6 @@
 		895A741E18D9CB7E00561CD6 /* YellowDot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YellowDot.png; sourceTree = "<group>"; };
 		895A742018D9CB7E00561CD6 /* magnet_ex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = magnet_ex; sourceTree = "<group>"; };
 		895A742118D9CB7E00561CD6 /* url_ex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = url_ex; sourceTree = "<group>"; };
-		895A742318D9CB7E00561CD6 /* Phone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Phone.mp3; sourceTree = "<group>"; };
-		895A742418D9CB7E00561CD6 /* Ping.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Ping.aiff; sourceTree = "<group>"; };
-		895A742518D9CB7E00561CD6 /* Silence.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Silence.wav; sourceTree = "<group>"; };
 		895A74DE18D9CB8500561CD6 /* iTransmission-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iTransmission-Info.plist"; sourceTree = "<group>"; };
 		895A74DF18D9CB8500561CD6 /* iTransmission_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTransmission_Prefix.pch; sourceTree = "<group>"; };
 		895A74E018D9CB8500561CD6 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -591,7 +585,6 @@
 			children = (
 				895A740418D9CB7E00561CD6 /* Photo Components */,
 				895A741F18D9CB7E00561CD6 /* Regex */,
-				895A742218D9CB7E00561CD6 /* Sounds */,
 				895A750618D9CF9B00561CD6 /* Images.xcassets */,
 				895A750818D9D4EF00561CD6 /* license.txt */,
 			);
@@ -638,16 +631,6 @@
 				895A742118D9CB7E00561CD6 /* url_ex */,
 			);
 			path = Regex;
-			sourceTree = "<group>";
-		};
-		895A742218D9CB7E00561CD6 /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				895A742318D9CB7E00561CD6 /* Phone.mp3 */,
-				895A742418D9CB7E00561CD6 /* Ping.aiff */,
-				895A742518D9CB7E00561CD6 /* Silence.wav */,
-			);
-			path = Sounds;
 			sourceTree = "<group>";
 		};
 		895A74DD18D9CB8500561CD6 /* Other Sources */ = {
@@ -779,7 +762,6 @@
 				23ACED151D04F99A00B76404 /* Launch Screen.storyboard in Resources */,
 				895A74FB18D9CB8A00561CD6 /* DiscoveredTorrentCell.xib in Resources */,
 				895A749418D9CB7E00561CD6 /* blackArrow.png in Resources */,
-				895A74B018D9CB7E00561CD6 /* Silence.wav in Resources */,
 				895A74A918D9CB7E00561CD6 /* whiteArrow.png in Resources */,
 				895A74AA18D9CB7E00561CD6 /* whiteArrow@2x.png in Resources */,
 				895A73C118D9CB6F00561CD6 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */,
@@ -821,7 +803,6 @@
 				895A74FA18D9CB8A00561CD6 /* DetailViewController.xib in Resources */,
 				895A73A818D9CB6F00561CD6 /* bannerFailure@2x.png in Resources */,
 				895A749A18D9CB7E00561CD6 /* checkbox_unchecked.png in Resources */,
-				895A74AE18D9CB7E00561CD6 /* Phone.mp3 in Resources */,
 				895A749B18D9CB7E00561CD6 /* donedown.png in Resources */,
 				895A750918D9D4EF00561CD6 /* license.txt in Resources */,
 				895A73AA18D9CB6F00561CD6 /* bannerNotify@2x.png in Resources */,
@@ -833,7 +814,6 @@
 				895A750118D9CB8A00561CD6 /* TorrentViewController_iPad.xib in Resources */,
 				895A750518D9CB8A00561CD6 /* StatisticsView.xib in Resources */,
 				895A750718D9CF9B00561CD6 /* Images.xcassets in Resources */,
-				895A74AF18D9CB7E00561CD6 /* Ping.aiff in Resources */,
 				895A749818D9CB7E00561CD6 /* cell-background.png in Resources */,
 				895A749518D9CB7E00561CD6 /* blackArrow@2x.png in Resources */,
 			);

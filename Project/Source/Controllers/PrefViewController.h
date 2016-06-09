@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "Controller.h"
 
 @class GradientButton;
 @class PortChecker;
 @class Controller;
 @interface PrefViewController :UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
     UITableView *fTableView;
-    //Controller *fController;
     
     IBOutlet UITableViewCell *fAutoPortMapCell;
     IBOutlet UITableViewCell *fBindPortCell;
@@ -27,6 +27,33 @@
     IBOutlet UISwitch *fEnableMicrophoneSwitch;
 	IBOutlet UITextField *fBindPortTextField;
 	IBOutlet UIActivityIndicatorView *fPortCheckActivityIndicator;
+    
+    IBOutlet UILabel *fMaximumConnectionsLabel;
+    IBOutlet UITableViewCell *fMaximumConnectionsLabelCell;
+    
+    IBOutlet UITableViewCell *fMaximumConnectionsSliderCell;
+    IBOutlet UISlider *fMaximumConnectionsSlider;
+    
+    IBOutlet UITableViewCell *fConnectionsPerTorrentLabelCell;
+    IBOutlet UILabel *fConnectionsPerTorrentLabel;
+    
+    IBOutlet UITableViewCell *fConnectionsPerTorrentSliderCell;
+    IBOutlet UISlider *fConnectionsPerTorrentSlider;
+    
+    IBOutlet UITableViewCell *fDownloadSpeedLimitCell;
+    IBOutlet UITextField *fDownloadSpeedLimitField;
+    
+    IBOutlet UITableViewCell *fUploadSpeedLimitCell;
+    IBOutlet UITextField *fUploadSpeedLimitField;
+    
+    IBOutlet UITableViewCell *fUploadSpeedLimitEnabledCell;
+    IBOutlet UISwitch *fUploadSpeedLimitEnabledSwitch;
+    
+    IBOutlet UITableViewCell *fDownloadSpeedLimitEnabledCell;
+    IBOutlet UISwitch *fDownloadSpeedLimitEnabledSwitch;
+    
+    IBOutlet UITableViewCell *fOverrideSpeedLimitsCell;
+    IBOutlet UISwitch *fOverrideSpeedLimitSwitch;
     
     UIColor *fTextFieldTextColor;
     
@@ -60,5 +87,12 @@
 - (IBAction)checkPortButtonClicked:(id)sender;
 - (IBAction)enableBackgroundDownloadSwitchChanged:(id)sender;
 - (IBAction)enableMicrophoneSwitchChanged:(id)sender;
+
+- (IBAction)maximumConnectionsSliderValueChanged:(id)sender;
+- (IBAction)connectionsPerTorrentSliderValueChanged:(id)sender;
+- (IBAction)uploadSpeedLimitEnabledValueChanged:(id)sender;
+- (IBAction)downloadSpeedLimitEnabledValueChanged:(id)sender;
+- (IBAction)overrideGlobalLimitsEnabledValueChanged:(id)sender;
+
 
 @end

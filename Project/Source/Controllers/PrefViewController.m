@@ -124,7 +124,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
@@ -132,6 +132,9 @@
     switch (section) {
         case 0: return 2;
         case 1: return 2;
+            case 2: return 4;
+            case 3: return 2;
+            case 4: return 2;
     }
     return 0;
 }
@@ -141,6 +144,9 @@
     switch (section) {
         case 0: return @"Port Listening";
         case 1: return @"Background Downloading";
+        case 2: return @"Connections";
+            case 3: return @"Upload";
+            case 4: return @"Download";
     }
     return nil;
 }
@@ -150,6 +156,8 @@
     switch (section) {
         case 0: return nil;
         case 1: return @"Enable downloading while in background through multimedia functions";
+        case 2: return @"Caution! Too many connections will make your device unstable.";
+        case 3: return @"30KB/s is recommended for upload.";
     }
     return nil;
 }
@@ -168,6 +176,29 @@
             switch (indexPath.row) {
                 case 0: return fBackgroundDownloadingCell;
                 case 1: return fEnableMicrophoneCell;
+            }
+        }
+        case 2:
+        {
+            switch (indexPath.row) {
+                case 0: return fMaximumConnectionsLabelCell;
+                case 1: return fMaximumConnectionsSliderCell;
+                case 2: return fConnectionsPerTorrentLabelCell;
+                case 3: return fConnectionsPerTorrentSliderCell;
+            }
+        }
+        case 3:
+        {
+            switch (indexPath.row) {
+                case 0: return fDownloadSpeedLimitEnabledCell;
+                case 1: return fDownloadSpeedLimitCell;
+            }
+        }
+        case 4:
+        {
+            switch (indexPath.row) {
+                case 0: return fUploadSpeedLimitEnabledCell;
+                case 1: return fUploadSpeedLimitCell;
             }
         }
     }
@@ -213,8 +244,7 @@
 
 - (void)saveButtonClicked
 {
-	Controller *controller = (Controller*)[[UIApplication sharedApplication] delegate];
-    tr_session *fHandle = [controller rawSession];
+    tr_session *fHandle = [self.controller rawSession];
     NSUserDefaults *fDefaults = [NSUserDefaults standardUserDefaults];
     
     if ([fAutoPortMapSwitch isOn] != [self.originalPreferences boolForKey:@"NatTraversal"]) {
@@ -247,6 +277,18 @@
     self.tableView.allowsSelection = NO;
 	[fCheckPortButton addTarget:self action:@selector(portCheckButtonClicked) forControlEvents:UIControlEventTouchUpInside];
 	
+    self.controller = (Controller*)[[UIApplication sharedApplication] delegate];
+    
+    [fConnectionsPerTorrentSlider setValue:[self.controller connectionsPerTorrent]];
+    [fConnectionsPerTorrentLabel setText:[NSString stringWithFormat:@"%ld", (long)[self.controller connectionsPerTorrent]]];
+    NSLog(@"%li", (long)[self.controller connectionsPerTorrent]);
+    [fMaximumConnectionsSlider setValue:[self.controller globalMaximumConnections]];
+    [fMaximumConnectionsLabel setText:[NSString stringWithFormat:@"%ld", (long)[self.controller globalMaximumConnections]]];
+    [fUploadSpeedLimitField setText:[NSString stringWithFormat:@"%ld", (long)[self.controller globalUploadSpeedLimit]]];
+    [fDownloadSpeedLimitField setText:[NSString stringWithFormat:@"%ld", (long)[self.controller globalDownloadSpeedLimit]]];
+    [fUploadSpeedLimitEnabledSwitch setOn:[self.controller globalUploadSpeedLimitEnabled]];
+    [fDownloadSpeedLimitEnabledSwitch setOn:[self.controller globalDownloadSpeedLimitEnabled]];
+    
     [self loadPreferences];
 
 }
@@ -295,6 +337,37 @@
     
     NSNumber *value = [NSNumber numberWithBool:fEnableMicrophoneSwitch.on];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UseMicrophone" object:value];
+}
+
+- (IBAction)maximumConnectionsSliderValueChanged:(id)sender
+{
+    int intValue = round([fMaximumConnectionsSlider value]);
+    [fMaximumConnectionsLabel setText:[NSString stringWithFormat:@"%d", intValue]];
+    [self.controller setGlobalMaximumConnections:intValue];
+}
+
+- (IBAction)connectionsPerTorrentSliderValueChanged:(id)sender
+{
+    int intValue = round([fConnectionsPerTorrentSlider value]);
+    [fConnectionsPerTorrentLabel setText:[NSString stringWithFormat:@"%d", intValue]];
+    [self.controller setConnectionsPerTorrent:intValue];
+}
+
+- (IBAction)uploadSpeedLimitEnabledValueChanged:(id)sender
+{
+    BOOL enabled = [fUploadSpeedLimitEnabledSwitch isOn];
+    [self.controller setGlobalUploadSpeedLimitEnabled:enabled];
+}
+
+- (IBAction)downloadSpeedLimitEnabledValueChanged:(id)sender
+{
+    BOOL enabled = [fDownloadSpeedLimitEnabledSwitch isOn];
+    [self.controller setGlobalDownloadSpeedLimitEnabled:enabled];
+}
+
+- (IBAction)overrideGlobalLimitsEnabledValueChanged:(id)sender
+{
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
