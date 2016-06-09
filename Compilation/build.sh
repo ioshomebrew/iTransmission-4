@@ -10,9 +10,7 @@ export PATCH_DIR="$PWD/patches"
 export DEPENDENCY_DIR="$PWD/dependency"
 export BUILD_FILTER="ssl,curl,trans,libev"
 export TOOL_DIR="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin"
-#GCC_DIR Assuming gcc-4.8 is installed using homebrew
-export GCC_DIR="/usr/local/Cellar/gcc48/4.8.2/bin"
-export Min_IPHONE_OS=5.0
+export Min_IPHONE_OS=7.0
 
 function do_abort {
 	echo $1 >&2
@@ -53,27 +51,28 @@ function do_export {
 	unset CFLAGS
 	if [[ ${ARCH} != "system" ]]; then
 		export DEVROOT="${DEVELOPER_DIR}/Platforms/${PLATFORM}.platform/Developer"
-		export SDKROOT="${DEVELOPER_DIR}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}$SDK_VERSION.sdk"
+		export SDKROOT="${DEVELOPER_DIR}/Platforms/${PLATFORM}.platform/Developer/SDKs/$PLATFORM.sdk"
 		export LD=${DEVROOT}/usr/bin/ld
 		#export CPP="${TOOL_DIR}/cpp"
-        export CPP="${GCC_DIR}/cpp-4.8"
-        export CXX="${TOOL_DIR}/clang++" 
+        export CXX="${TOOL_DIR}/clang++"
         #export CXX="${GCC_DIR}/c++-4.8" 
 		unset AR
 		unset AS
 		export NM=${DEVROOT}/usr/bin/nm
 		#export CXXCPP="${TOOL_DIR}/cpp"
-		export CXXCPP="${GCC_DIR}/cpp-4.8"
 		export RANLIB="${TOOL_DIR}/ranlib"
 		#export RANLIB="${GCC_DIR}/gcc-ranlib-4.8"
-		export CFLAGS="-arch ${ARCH} -isysroot ${SDKROOT} -miphoneos-version-min=${Min_IPHONE_OS}"
-		export LDFLAGS="-L${SDKROOT}/usr/lib -L${DEVROOT}/usr/lib -isysroot ${SDKROOT} -Wl,-syslibroot $SDKROOT"
+        export CFLAGS="-arch ${ARCH} -isysroot ${SDKROOT} -miphoneos-version-min=${Min_IPHONE_OS}"
+		export CPPFLAGS="-arch ${ARCH} -isysroot ${SDKROOT} -miphoneos-version-min=${Min_IPHONE_OS}"
+		export LDFLAGS="-L${SDKROOT}/usr/lib -isysroot ${SDKROOT} -Wl,-syslibroot $SDKROOT"
 		export HAVE_CXX="yes"
 	fi
 	export CC="${TOOL_DIR}/clang"
+    export CXX="${TOOL_DIR}/clang++"
 	#export CC="${GCC_DIR}/gcc-4.8"
-	export CFLAGS="${CFLAGS} -I${BUILD_DIR}/include -I${SDKROOT}/usr/include -pipe -no-cpp-precomp"
-	export CXXFLAGS="${CFLAGS}"
+    export CFLAGS="${CPPFLAGS} -I${BUILD_DIR}/include -I${SDKROOT}/usr/include -pipe -no-cpp-precomp"
+	export CPPFLAGS="${CPPFLAGS} -I${BUILD_DIR}/include -I${SDKROOT}/usr/include -pipe -no-cpp-precomp"
+	export CXXFLAGS="${CPPFLAGS}"
 	export LDFLAGS="-L${SDKROOT}/usr/lib -L${BUILD_DIR}/lib -pipe -no-cpp-precomp ${LDFLAGS}"
 	export COMMON_OPTIONS="--disable-shared --enable-static --disable-ipv6 --disable-manual "
 	export HAVE_CXX="yes"
@@ -110,7 +109,7 @@ function do_openssl {
 	if [[ "${ARCH}" == "x86_64" ]]; then
 		./Configure darwin64-x86_64-cc --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
 	else
-		./configure BSD-generic32 --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
+		./configure iphoneos-cross --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
 	fi
 	
 	# Patch for iOS, taken from https://github.com/st3fan/ios-openssl/blame/master/build.sh
@@ -167,7 +166,7 @@ function do_libevent {
 	pushd ${TEMP_DIR}
 	if [ ! -e "${PACKAGE_NAME}.tar.gz" ]
 	then
-	  /usr/bin/curl -O -L "http://cloud.github.com/downloads/libevent/libevent/${PACKAGE_NAME}.tar.gz" || do_abort "$FUNCNAME: fetch failed "
+	  /usr/bin/curl -O -L "https://github.com/libevent/libevent/releases/download/release-${LIBEVENT_VERSION}/${PACKAGE_NAME}.tar.gz" || do_abort "$FUNCNAME: fetch failed "
 	fi
 	
     if [[ -z $DONT_OVERWRITE ]]; then
@@ -223,14 +222,11 @@ function do_transmission {
 		make clean
 	fi
 
-	export CFLAGS="${CFLAGS} -framework CoreFoundation"
-	export LDFLAGS="${LDFLAGS} -lcurl -liconv"
-
 	./configure --prefix="${BUILD_DIR}" ${COMMON_OPTIONS} --enable-utp --enable-largefile --disable-nls --enable-lightweight --enable-cli --enable-daemon --disable-mac --with-kqueue --with-gtk=no || do_abort "$FUNCNAME: configure failed "
 	
 	mkdir -p ${BUILD_DIR}/include/net
 	cp "${DEPENDENCY_DIR}/route.h" "${BUILD_DIR}/include/net/route.h"
-	
+
 	make -j ${PARALLEL_NUM} || do_abort "$FUNCNAME: make failed "
 	make install || do_abort "$FUNCNAME: install failed "
 	
