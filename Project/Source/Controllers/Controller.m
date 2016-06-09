@@ -11,11 +11,6 @@
 #import "Notifications.h"
 #import "TorrentViewController.h"
 #import "TorrentFetcher.h"
-#import "Reachability.h"
-#import "DDLog.h"
-#import "DDTTYLogger.h"
-#import "DDASLLogger.h"
-#import "DDFileLogger.h"
 #import "ALAlertBanner.h"
 #import <AVFoundation/AVFoundation.h>
 #import "CFUserNotification.h"
@@ -29,15 +24,11 @@
 
 #define APP_NAME "iTrans"
 
-static int ddLogLevel = LOG_LEVEL_VERBOSE;
-
 static void
 printMessage(int level, const char * name, const char * message, const char * file, int line )
 {
     char timestr[64];
     tr_logGetTimeStr (timestr, sizeof (timestr));
-    if( name )
-        DDLogCVerbose(@"[%s] %s %s (%s:%d)", timestr, name, message, file, line );
 }
 
 static void pumpLogMessages()
@@ -49,12 +40,6 @@ static void pumpLogMessages()
         printMessage(l->level, l->name, l->message, l->file, l->line );
     
     tr_logFreeQueue( list );
-}
-
-static tr_rpc_callback_status rpcCallback(tr_session *handle, tr_rpc_callback_type type, struct tr_torrent *torrentStruct, void *controller)
-{
-    [(__bridge Controller *)controller rpcCallback: type forTorrentStruct: torrentStruct];
-    return TR_RPC_NOREMOVE; //we'll do the remove manually
 }
 
 static void signal_handler(int sig) {
@@ -72,10 +57,8 @@ static void signal_handler(int sig) {
 @synthesize navController;
 @synthesize torrentViewController;
 @synthesize activityCounter;
-@synthesize reachability;
 @synthesize logMessageTimer = fLogMessageTimer;
 @synthesize installedApps = fInstalledApps;
-@synthesize fileLogger = fFileLogger;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -91,15 +74,6 @@ static void signal_handler(int sig) {
     
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
-    
-    /* start logging if needed */
-    [DDLog addLogger:[DDASLLogger sharedInstance]];
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
-    
-    if ([fDefaults objectForKey:@"LoggingEnabled"]) {
-        [self startLogging];
-        [self pumpLogMessages];
-    }
     
     application.applicationIconBadgeNumber = 0;
     
@@ -218,8 +192,6 @@ static void signal_handler(int sig) {
     [fDefaults setObject:@"" forKey:@"RPCPassword"];
 	[fDefaults setInteger:9091 forKey:@"RPCPort"];
     [fDefaults setBool:NO forKey:@"RPCUseWhitelist"];
-	[fDefaults setBool:YES forKey:@"UseWiFi"];
-	[fDefaults setBool:NO forKey:@"UseCellularNetwork"];
     [fDefaults setBool:NO forKey:@"BackgroundDownloading"];
     [fDefaults setBool:YES forKey:@"UseMicrophone"];
 	[fDefaults synchronize];
@@ -239,6 +211,11 @@ static void signal_handler(int sig) {
     {
         [fDefaults removeObjectForKey: @"DownloadLimit"];
         [fDefaults setBool: NO forKey: @"CheckDownload"];
+    }
+    
+    if (![fDefaults boolForKey:@"NotFirstRun"]) {
+        [self resetToDefaultPreferences];
+        [fDefaults setBool:YES forKey:@"NotFirstRun"];
     }
     
     tr_variantInitDict(&settings, 41);
@@ -324,7 +301,6 @@ static void signal_handler(int sig) {
 	
 	fTorrents = [[NSMutableArray alloc] init];	
     fActivities = [[NSMutableArray alloc] init];
-    tr_sessionSetRPCCallback(fLib, rpcCallback, (__bridge void *)(self));
     
 	fUpdateInProgress = NO;
 	
@@ -333,10 +309,7 @@ static void signal_handler(int sig) {
     
     [self loadTorrentHistory];
 	
-	self.reachability = [Reachability reachabilityForInternetConnection];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkInterfaceChanged:) name:kReachabilityChangedNotification object:self.reachability];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(torrentFinished:) name:@"TorrentFinishedDownloading" object:nil];
-	[self.reachability startNotifier];
     [self postFinishMessage:@"Initialization finished."];
 }
 
@@ -454,17 +427,6 @@ static void signal_handler(int sig) {
     return [[self documentsDirectory] stringByAppendingPathComponent:@"config"];
 }
 
-- (void)networkInterfaceChanged:(NSNotification*)notif
-{
-	NetworkStatus status = [self.reachability currentReachabilityStatus];
-	[self setActiveForNetworkStatus:status];
-}
-
-- (void)updateNetworkStatus
-{
-	[self setActiveForNetworkStatus:[self.reachability currentReachabilityStatus]];
-}
-
 - (BOOL)isSessionActive
 {
 	return [self isStartingTransferAllowed];
@@ -472,10 +434,6 @@ static void signal_handler(int sig) {
 
 - (BOOL)isStartingTransferAllowed
 {
-	NetworkStatus status = [self.reachability currentReachabilityStatus];
-	if (status == ReachableViaWiFi && [fDefaults boolForKey:@"UseWiFi"] == NO) return NO;
-	if (status == ReachableViaWWAN && [fDefaults boolForKey:@"UseCellularNetwork"] == NO) return NO;
-	if (status == NotReachable) return NO;
 	return YES;
 }
 
@@ -504,42 +462,6 @@ static void signal_handler(int sig) {
     UILocalNotification *notification = [[UILocalNotification alloc]init];
     [notification setAlertBody:msg];
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-}
-
-- (void)setActiveForNetworkStatus:(NetworkStatus)status
-{
-	if (status == ReachableViaWiFi) {
-		if ([fDefaults boolForKey:@"UseWiFi"] == NO) {
-			[self postMessage:@"Switched to WiFi. Pausing..."];
-			for (Torrent *t in fTorrents) {
-				[t sleep];
-			}
-		}
-        else {
-            [self postMessage:@"Switched to WiFi. Resuming..."];
-            for (Torrent *t in fTorrents) {
-				[t wakeUp];
-			}
-        }
-	}
-	else if (status == NotReachable) {
-		[self postError:@"Network is down!"];
-	}
-	else if (status == ReachableViaWWAN) {
-		if ([fDefaults boolForKey:@"UseCellularNetwork"] == NO) {
-			[self postMessage:@"Switched to cellular network. Pausing..."];
-			for (Torrent *t in fTorrents) {
-				[t sleep];
-			}
-		}
-        else {
-            [self postMessage:@"Switched to cellular network. Resuming..."];
-            for (Torrent *t in fTorrents) {
-				[t wakeUp];
-			}
-        }
-	}
-	[[NSNotificationCenter defaultCenter] postNotificationName:NotificationSessionStatusChanged object:self userInfo:nil];
 }
 
 - (CGFloat)globalDownloadSpeed
@@ -785,98 +707,6 @@ static void signal_handler(int sig) {
     [[NSNotificationCenter defaultCenter] postNotificationName:NotificationActivityCounterChanged object:self userInfo:nil];
 }
 
-- (void) rpcCallback: (tr_rpc_callback_type) type forTorrentStruct: (struct tr_torrent *) torrentStruct
-{
-    //get the torrent
-    Torrent * torrent = nil;
-    if (torrentStruct != NULL && (type != TR_RPC_TORRENT_ADDED && type != TR_RPC_SESSION_CHANGED))
-    {
-        for (torrent in fTorrents)
-            if (torrentStruct == [torrent torrentStruct])
-            {
-                break;
-            }
-        
-        if (!torrent)
-        {
-            NSLog(@"No torrent found matching the given torrent struct from the RPC callback!");
-            return;
-        }
-    }
-    
-    switch (type)
-    {
-        case TR_RPC_TORRENT_ADDED:
-            [self performSelectorOnMainThread: @selector(rpcAddTorrentStruct:) withObject:
-			 [NSValue valueWithPointer: torrentStruct] waitUntilDone: NO];
-            break;
-			
-        case TR_RPC_TORRENT_STARTED:
-        case TR_RPC_TORRENT_STOPPED:
-            [self performSelectorOnMainThread: @selector(rpcStartedStoppedTorrent:) withObject: torrent waitUntilDone: NO];
-            break;
-			
-        case TR_RPC_TORRENT_REMOVING:
-            [self performSelectorOnMainThread: @selector(rpcRemoveTorrent:) withObject: torrent waitUntilDone: NO];
-            break;
-			
-        case TR_RPC_TORRENT_CHANGED:
-            [self performSelectorOnMainThread: @selector(rpcChangedTorrent:) withObject: torrent waitUntilDone: NO];
-            break;
-			
-        case TR_RPC_TORRENT_MOVED:
-            [self performSelectorOnMainThread: @selector(rpcMovedTorrent:) withObject: torrent waitUntilDone: NO];
-            break;
-			
-        case TR_RPC_SESSION_CHANGED:
-            //TODO: Post notification to update preferences. 
-            break;
-			
-        default:
-            NSAssert1(NO, @"Unknown RPC command received: %d", type);
-    }
-}
-
-- (void) rpcAddTorrentStruct: (NSValue *) torrentStructPtr
-{
-    tr_torrent * torrentStruct = (tr_torrent *)[torrentStructPtr pointerValue];
-    
-    NSString * location = nil;
-    if (tr_torrentGetDownloadDir(torrentStruct) != NULL)
-        location = [NSString stringWithUTF8String: tr_torrentGetDownloadDir(torrentStruct)];
-    
-    Torrent * torrent = [[Torrent alloc] initWithTorrentStruct: torrentStruct location: location lib: fLib];
-    
-    [torrent update];
-    [fTorrents addObject: torrent];
-}
-
-- (void) rpcRemoveTorrent: (Torrent *) torrent
-{
-    [self removeTorrents:[NSArray arrayWithObject: torrent] trashData:NO];
-}
-
-- (void) rpcStartedStoppedTorrent: (Torrent *) torrent
-{
-    [torrent update];
-    
-	//TODO: Post notification to update this torrent's info in UI. 
-	
-    [self updateTorrentHistory];
-}
-
-- (void) rpcChangedTorrent: (Torrent *) torrent
-{
-    [torrent update];
-    
-	//TODO: Post notification to update this torrent's info in UI.
-}
-
-- (void) rpcMovedTorrent: (Torrent *) torrent
-{
-    [torrent update];
-}
-
 
 - (void)setGlobalUploadSpeedLimit:(NSInteger)kbytes
 {
@@ -950,42 +780,6 @@ static void signal_handler(int sig) {
 - (BOOL)globalDownloadSpeedLimitEnabled
 {
     return tr_sessionIsSpeedLimited(fLib, TR_DOWN);
-}
-
-- (BOOL)isLoggingEnabled
-{
-    return (self.fileLogger != nil);
-}
-
-- (void)startLogging
-{
-    if (![self isLoggingEnabled]) {
-        self.fileLogger = [[DDFileLogger alloc] init];
-        self.fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
-        self.fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
-        [DDLog addLogger:self.fileLogger];
-        self.logMessageTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(pumpLogMessages) userInfo:nil repeats:YES];
-    }
-}
-
-- (void)stopLogging
-{
-    if ([self isLoggingEnabled]) {
-        [DDLog removeLogger:self.fileLogger];
-        self.fileLogger = nil;
-        [self.logMessageTimer invalidate];
-        self.logMessageTimer = nil;
-    }
-}
-
-- (void)setLoggingEnabled:(BOOL)enabled
-{
-    if (enabled) {
-        [self startLogging];
-    }
-    else {
-        [self stopLogging];
-    }
 }
 
 - (void)torrentFinished:(NSNotification*)notif {

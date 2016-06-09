@@ -20,7 +20,6 @@
 #import "StatisticsView.h"
 #import "PDColoredProgressView.h"
 #import "BandwidthController.h"
-#import "InfoViewController.h"
 
 #define ADD_TAG 1000
 #define ADD_FROM_URL_TAG 1001
@@ -36,7 +35,6 @@
 @synthesize normalToolbarItems;
 @synthesize editToolbarItems;
 @synthesize doneButton;
-@synthesize infoButton;
 @synthesize selectedIndexPaths;
 @synthesize activityItem;
 @synthesize audio;
@@ -258,14 +256,6 @@
     [self presentViewController:navController animated:YES completion:nil];
 }
 
-- (void)infoButtonClicked:(id)sender
-{
-    InfoViewController *viewController = [InfoViewController infoWithPageName:@"about"];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    navController.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentViewController:navController animated:YES completion:nil];
-}
-
 - (void)prefButtonClicked:(id)sender
 {
     PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil];
@@ -328,11 +318,6 @@
 		
     self.activityItemView.backgroundColor = [UIColor clearColor];
     self.activityItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityItemView];
-		
-	UIButton *_infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-	[_infoButton addTarget:self action:@selector(infoButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-	self.infoButton = [[UIBarButtonItem alloc] initWithCustomView:_infoButton];
-	self.navigationItem.rightBarButtonItem = self.infoButton;
 	
 	self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked:)];
 	
@@ -532,7 +517,6 @@
         [self.activityIndicator stopAnimating];
         self.activityIndicator.hidden = YES;
         [self.activityCounterBadge setHidden:YES];
-		self.navigationItem.rightBarButtonItem = self.infoButton;
     }
 }
 

@@ -29,7 +29,6 @@
 @property (nonatomic, retain) NSArray *editToolbarItems;
 @property (nonatomic, retain) UIBarButtonItem *editButton;
 @property (nonatomic, retain) UIBarButtonItem *doneButton;
-@property (nonatomic, retain) UIBarButtonItem *infoButton;
 @property (nonatomic, retain) UIBarButtonItem *activityItem;
 @property (nonatomic, retain) NSMutableArray *selectedIndexPaths;
 @property (nonatomic, retain) AVAudioPlayer *audio;
@@ -57,7 +56,6 @@
 - (void)editButtonClicked:(id)sender;
 - (void)doneButtonClicked:(id)sender;
 - (void)bandwidthButtonClicked:(id)sender;
-- (void)infoButtonClicked:(id)sender;
 
 - (void)setupCell:(TorrentCell*)cell forTorrent:(Torrent*)torrent;
 

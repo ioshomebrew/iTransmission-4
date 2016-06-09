@@ -16,32 +16,16 @@
     UITableView *fTableView;
     //Controller *fController;
     
-    IBOutlet UITableViewCell *fEnableRPCCell;
-    IBOutlet UITableViewCell *fRPCUsernameCell;
-    IBOutlet UITableViewCell *fRPCPasswordCell;
-    IBOutlet UITableViewCell *fRPCPortCell;
-    IBOutlet UITableViewCell *fUseCellularNetworkCell;
-    IBOutlet UITableViewCell *fUseWiFiCell;
     IBOutlet UITableViewCell *fAutoPortMapCell;
-    IBOutlet UITableViewCell *fRPCRequireAuthCell;
     IBOutlet UITableViewCell *fBindPortCell;
-    IBOutlet UITableViewCell *fEnableLoggingCell;
     IBOutlet UITableViewCell *fBackgroundDownloadingCell;
     IBOutlet UITableViewCell *fEnableMicrophoneCell;
     IBOutlet UIButton *fCheckPortButton;
     
-	IBOutlet UISwitch *fEnableRPCSwitch;
-	IBOutlet UISwitch *fRPCRequireAuthSwitch;
-	IBOutlet UISwitch *fUseWiFiSwitch;
-	IBOutlet UISwitch *fUseCellularNetworkSwitch;
 	IBOutlet UISwitch *fAutoPortMapSwitch;
-    IBOutlet UISwitch *fEnableLoggingSwitch;
     IBOutlet UISwitch *fEnableBackgroundDownloadingSwitch;
     IBOutlet UISwitch *fEnableMicrophoneSwitch;
 	IBOutlet UITextField *fBindPortTextField;
-	IBOutlet UITextField *fRPCUsernameTextField;
-	IBOutlet UITextField *fRPCPasswordTextField;
-	IBOutlet UITextField *fRPCPortTextField;
 	IBOutlet UIActivityIndicatorView *fPortCheckActivityIndicator;
     
     UIColor *fTextFieldTextColor;
@@ -72,12 +56,8 @@
 
 - (void)loadPreferences;
 
-- (IBAction)enableRPCSwitchChanged:(id)sender;
-- (IBAction)RPCRequireAuthSwitchChanged:(id)sender;
-- (IBAction)UseWiFiSwitchChanged:(id)sender;
 - (IBAction)switchChanged:(id)sender;
 - (IBAction)checkPortButtonClicked:(id)sender;
-- (IBAction)enableLoggingSwitchChanged:(id)sender;
 - (IBAction)enableBackgroundDownloadSwitchChanged:(id)sender;
 - (IBAction)enableMicrophoneSwitchChanged:(id)sender;
 

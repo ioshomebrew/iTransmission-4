@@ -29,7 +29,6 @@
 
 
 #import <UIKit/UIKit.h>
-#import "Reachability.h"
 #import "TorrentFetcher.h"
 #import "libtransmission/transmission.h"
 #include <dlfcn.h>
@@ -46,8 +45,6 @@ typedef enum
 
 @class Torrent;
 @class TorrentViewController;
-@class Reachability;
-@class DDFileLogger;
 
 extern BOOL isStartingTransferAllowed();
 
@@ -66,14 +63,12 @@ extern BOOL isStartingTransferAllowed();
     UINavigationController *navController;
     TorrentViewController *torrentViewController;
     NSInteger activityCounter;
-	Reachability *reachability;
     
     NSArray *fInstalledApps;
     
     CGFloat fGlobalSpeedCached[2];
     
     NSTimer *fLogMessageTimer;
-    DDFileLogger *fFileLogger;
     
     UIBackgroundTaskIdentifier bgTask;
 }
@@ -82,20 +77,11 @@ extern BOOL isStartingTransferAllowed();
 @property (nonatomic, retain) UINavigationController *navController;
 @property (nonatomic, retain) TorrentViewController *torrentViewController;
 @property (nonatomic, readonly) NSInteger activityCounter;
-@property (nonatomic, retain) Reachability *reachability;
 @property (nonatomic, retain) NSArray *installedApps;
 @property (nonatomic, retain) NSTimer *logMessageTimer;
-@property (nonatomic, retain) DDFileLogger *fileLogger;
 
 - (void)transmissionInitialize;
 - (NSArray*)findRelatedApps;
-
-- (void)rpcCallback: (tr_rpc_callback_type) type forTorrentStruct: (struct tr_torrent *) torrentStruct;
-- (void)rpcAddTorrentStruct: (NSValue *) torrentStructPtr;
-- (void)rpcRemoveTorrent: (Torrent *) torrent;
-- (void)rpcStartedStoppedTorrent: (Torrent *) torrent;
-- (void)rpcChangedTorrent: (Torrent *) torrent;
-- (void)rpcMovedTorrent: (Torrent *) torrent;
 
 - (NSString*)transferPlist;
 - (NSString*)torrentsPath;
@@ -126,9 +112,6 @@ extern BOOL isStartingTransferAllowed();
 - (void)increaseActivityCounter;
 - (void)decreaseActivityCounter;
 
-- (void)networkInterfaceChanged:(NSNotification*)notif;
-- (void)setActiveForNetworkStatus:(NetworkStatus)status;
-- (void)updateNetworkStatus;
 - (BOOL)isStartingTransferAllowed;
 - (BOOL)isSessionActive;
 
@@ -150,10 +133,6 @@ extern BOOL isStartingTransferAllowed();
 - (NSInteger)connectionsPerTorrent;
 - (void)pumpLogMessages;
 - (void)updateGlobalSpeed;
-- (BOOL)isLoggingEnabled;
-- (void)setLoggingEnabled:(BOOL)enabled;
-- (void)startLogging;
-- (void)stopLogging;
 
 - (void)torrentFinished:(NSNotification*)notif;
 - (void)postBGNotif:(NSString *)message;

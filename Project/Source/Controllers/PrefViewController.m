@@ -53,12 +53,6 @@
 {
     if ([fBindPortTextField isEditing])
         [fBindPortTextField resignFirstResponder];
-    if ([fRPCPasswordTextField isEditing])
-        [fRPCPasswordTextField resignFirstResponder];
-    if ([fRPCUsernameTextField isEditing])
-        [fRPCUsernameTextField resignFirstResponder];
-    if ([fRPCPortTextField isEditing])
-        [fRPCPortTextField resignFirstResponder];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -113,7 +107,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     
-    if (textField == fBindPortTextField || textField == fRPCPortTextField) {
+    if (textField == fBindPortTextField) {
         NSString *new = [textField.text stringByReplacingCharactersInRange:range withString:string];
         if ([new length] == 0) return YES;
         NSScanner *scanner = [NSScanner scannerWithString:new];
@@ -130,17 +124,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case 0: return 5;
+        case 0: return 2;
         case 1: return 2;
-        case 2: return 2;
-        case 3: return 1;
-        case 4: return 2;
     }
     return 0;
 }
@@ -148,11 +139,8 @@
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
-        case 0: return @"Web Interface";
-        case 1: return @"Network Interface";
-        case 2: return @"Port Listening";
-        case 3: return @"Logging";
-        case 4: return @"Background Downloading";
+        case 0: return @"Port Listening";
+        case 1: return @"Background Downloading";
     }
     return nil;
 }
@@ -160,11 +148,8 @@
 - (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     switch (section) {
-        case 0: return @"It's always recommended to use authentication if web interface is enabled. ";
-        case 1: return @"Enabling cellular network may generate significant data charges. ";
-        case 2: return nil;
-        case 3: return @"Only use logging for debugging. Extensive loggings will shorten both battery and Nand life. Saved logs will be available in iTunes.";
-        case 4: return @"Enable downloading while in background through multimedia functions";
+        case 0: return nil;
+        case 1: return @"Enable downloading while in background through multimedia functions";
     }
     return nil;
 }
@@ -174,31 +159,11 @@
     switch (indexPath.section) {
         case 0: {
             switch (indexPath.row) {
-                case 0: return fEnableRPCCell;
-                case 1: return fRPCRequireAuthCell;
-                case 2: return fRPCUsernameCell;
-                case 3: return fRPCPasswordCell;
-                case 4: return fRPCPortCell;
-            }
-        }
-        case 1: {
-            switch (indexPath.row) {
-                case 0: return fUseWiFiCell;
-                case 1: return fUseCellularNetworkCell;
-            }
-        }
-        case 2: {
-            switch (indexPath.row) {
                 case 0: return fBindPortCell;
                 case 1: return fAutoPortMapCell;
             }
         }
-        case 3: {
-            switch (indexPath.row) {
-                case 0: return fEnableLoggingCell;
-            }
-        }
-        case 4:
+        case 1:
         {
             switch (indexPath.row) {
                 case 0: return fBackgroundDownloadingCell;
@@ -248,60 +213,13 @@
 
 - (void)saveButtonClicked
 {
-	BOOL callSetNetworkActive = NO;
-	
 	Controller *controller = (Controller*)[[UIApplication sharedApplication] delegate];
     tr_session *fHandle = [controller rawSession];
     NSUserDefaults *fDefaults = [NSUserDefaults standardUserDefaults];
     
-    if ([fEnableRPCSwitch isOn] != [self.originalPreferences boolForKey:@"RPC"]) {
-        [fDefaults setBool:[fEnableRPCSwitch isOn] forKey:@"RPC"];
-        tr_sessionSetRPCEnabled(fHandle, [fEnableRPCSwitch isOn]);
-    }
-    
-    if ([fRPCRequireAuthSwitch isOn] != [self.originalPreferences boolForKey:@"RPCAuthorize"]) {
-        [fDefaults setBool:[fRPCRequireAuthSwitch isOn] forKey:@"RPCAuthorize"];
-        tr_sessionSetRPCPasswordEnabled(fHandle, [fRPCRequireAuthSwitch isOn]);
-    }
-    
-    if (![[fRPCUsernameTextField text] isEqualToString:[self.originalPreferences stringForKey:@"RPCUsername"]]) {
-        [fDefaults setObject:[fRPCUsernameTextField text] forKey:@"RPCUsername"];
-        tr_sessionSetRPCUsername(fHandle, [[fRPCUsernameTextField text] cStringUsingEncoding:NSUTF8StringEncoding]);
-    }
-    
-    // TODO: Fix password in key chain. 
-//    if (![[fRPCUsernameTextField text] isEqualToString:[self.originalPreferences stringForKey:@"RPCUsername"]]) {
-//        [fDefaults setObject:[fRPCUsernameTextField text] forKey:@"RPCUsername"];
-//        tr_sessionSetRPCUsername(fHandle, [[fRPCUsernameTextField text] cStringUsingEncoding:NSUTF8StringEncoding]);
-//    }
-    
-    int rpc_port = [[fRPCPortTextField text] intValue];
-    if (rpc_port != [self.originalPreferences integerForKey:@"RPCPort"]) {
-        if (rpc_port < 1024 || rpc_port > 65535) return;
-        [fDefaults setInteger:rpc_port forKey:@"RPCPort"];
-        tr_sessionSetRPCPort(fHandle, rpc_port);
-    }
-    
     if ([fAutoPortMapSwitch isOn] != [self.originalPreferences boolForKey:@"NatTraversal"]) {
         [fDefaults setBool:[fAutoPortMapSwitch isOn] forKey:@"NatTraversal"];
         tr_sessionSetPortForwardingEnabled(fHandle, [fAutoPortMapSwitch isOn]);
-    }
-    
-    int bind_port = [[fBindPortTextField text] intValue];
-    if (bind_port != [self.originalPreferences integerForKey:@"BindPort"]) {
-        if (rpc_port < 1024 || rpc_port > 65535) return;
-        [fDefaults setInteger:bind_port forKey:@"BindPort"];
-        tr_sessionSetPeerPort(fHandle, bind_port);
-    }
-    
-    if ([fUseWiFiSwitch isOn] != [self.originalPreferences boolForKey:@"UseWiFi"]) {
-        [fDefaults setBool:[fUseWiFiSwitch isOn] forKey:@"UseWiFi"];
-		callSetNetworkActive = YES;
-    }
-    
-    if ([fUseCellularNetworkSwitch isOn] != [self.originalPreferences boolForKey:@"UseCellularNetwork"]) {
-        [fDefaults setBool:[fUseCellularNetworkSwitch isOn] forKey:@"UseCellularNetwork"];
-		callSetNetworkActive = YES;
     }
     
     if([fEnableBackgroundDownloadingSwitch isOn] != [self.originalPreferences boolForKey:@"BackgroundDownloading"])
@@ -313,12 +231,6 @@
     {
         [fDefaults setBool:[fEnableMicrophoneSwitch isOn] forKey:@"UseMicrophone"];
     }
-    
-	if (callSetNetworkActive)
-		[controller updateNetworkStatus];
-	
-    [fDefaults setBool:[fEnableLoggingSwitch isOn] forKey:@"LoggingEnabled"];
-    [self.controller setLoggingEnabled:[fEnableLoggingSwitch isOn]];
     
 	[fDefaults synchronize]; 
     
@@ -335,7 +247,6 @@
     self.tableView.allowsSelection = NO;
 	[fCheckPortButton addTarget:self action:@selector(portCheckButtonClicked) forControlEvents:UIControlEventTouchUpInside];
 	
-    fTextFieldTextColor = [fRPCPortTextField textColor];
     [self loadPreferences];
 
 }
@@ -344,81 +255,18 @@
 {
     NSMutableDictionary *_originalPref = [NSMutableDictionary dictionary];
 	NSUserDefaults *fDefaults = [NSUserDefaults standardUserDefaults];
-	[_originalPref setBool:[fDefaults boolForKey:@"RPC"] forKey:@"RPC"];
-	[_originalPref setBool:[fDefaults boolForKey:@"RPCAuthorize"] forKey:@"RPCAuthorize"];
-	[_originalPref setString:[fDefaults stringForKey:@"RPCUsername"] forKey:@"RPCUsername"];
-	[_originalPref setInteger:[fDefaults integerForKey:@"RPCPort"] forKey:@"RPCPort"];
 	[_originalPref setBool:[fDefaults boolForKey:@"NatTraversal"] forKey:@"NatTraversal"];
 	[_originalPref setInteger:[fDefaults integerForKey:@"BindPort"] forKey:@"BindPort"];
-	[_originalPref setBool:[fDefaults boolForKey:@"UseWiFi"] forKey:@"UseWiFi"];
-	[_originalPref setBool:[fDefaults boolForKey:@"UseCellularNetwork"] forKey:@"UseCellularNetwork"];
-    [_originalPref setBool:[fDefaults boolForKey:@"LoggingEnabled"] forKey:@"LoggingEnabled"];
     [_originalPref setBool:[fDefaults boolForKey:@"BackgroundDownloading"] forKey:@"BackgroundDownloading"];
     [_originalPref setBool:[fDefaults boolForKey:@"UseMicrophone"] forKey:@"UseMicrophone"];
 	self.originalPreferences = [NSDictionary dictionaryWithDictionary:_originalPref];
 	
-	[fEnableRPCSwitch setOn:[self.originalPreferences boolForKey:@"RPC"]];
-	[fRPCRequireAuthSwitch setOn:[self.originalPreferences boolForKey:@"RPCAuthorize"]];
-	[fRPCUsernameTextField setText:[self.originalPreferences stringForKey:@"RPCUsername"]];
-	[fRPCPortTextField setText:[NSString stringWithFormat:@"%li", (long)[self.originalPreferences integerForKey:@"RPCPort"]]];
 	[fAutoPortMapSwitch setOn:[self.originalPreferences boolForKey:@"NatTraversal"]];
 	[fBindPortTextField setText:[NSString stringWithFormat:@"%li", (long)[self.originalPreferences integerForKey:@"BindPort"]]];
-	[fUseWiFiSwitch setOn:[self.originalPreferences boolForKey:@"UseWiFi"]];
-	[fUseCellularNetworkSwitch setOn:[self.originalPreferences boolForKey:@"UseCellularNetwork"]];
-    [fEnableLoggingSwitch setOn:[self.originalPreferences boolForKey:@"LoggingEnabled"]];
     [fEnableBackgroundDownloadingSwitch setOn:[self.originalPreferences boolForKey:@"BackgroundDownloading"]];
     [fEnableMicrophoneSwitch setOn:[self.originalPreferences boolForKey:@"UseMicrophone"]];
     
-    [self enableRPCSwitchChanged:fEnableRPCSwitch];
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
-}
-
-- (IBAction)enableRPCSwitchChanged:(id)sender
-{
-    [self.navigationItem.rightBarButtonItem setEnabled:YES];
-
-	BOOL on = [fEnableRPCSwitch isOn];
-	[fRPCRequireAuthSwitch setEnabled:on];
-    [fRPCPortTextField setEnabled:on];
-	[self RPCRequireAuthSwitchChanged:fRPCRequireAuthSwitch];
-    if (on == NO) {
-        [fRPCPortTextField setTextColor:[UIColor grayColor]];
-    }
-    else {
-        [fRPCPortTextField setTextColor:fTextFieldTextColor];
-    }
-}
-
-- (IBAction)RPCRequireAuthSwitchChanged:(id)sender
-{
-    [self.navigationItem.rightBarButtonItem setEnabled:YES];
-
-	BOOL on = [fRPCRequireAuthSwitch isOn];
-	[fRPCUsernameTextField setEnabled:(on && [fEnableRPCSwitch isOn])];
-	[fRPCPasswordTextField setEnabled:(on && [fEnableRPCSwitch isOn])];
-    if ((on && [fEnableRPCSwitch isOn]) == NO) {
-        [fRPCUsernameTextField setTextColor:[UIColor grayColor]];
-        [fRPCPasswordTextField setTextColor:[UIColor grayColor]];
-    }
-    else {
-        [fRPCUsernameTextField setTextColor:fTextFieldTextColor];
-        [fRPCPasswordTextField setTextColor:fTextFieldTextColor];   
-    }
-}
-
-- (IBAction)UseWiFiSwitchChanged:(id)sender
-{
-	BOOL on = [fUseWiFiSwitch isOn];
-	if (on == NO) {
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Disable WiFi" message:@"Disabling WiFi is strongly discouraged! Please make sure this is what you want. " delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-		[alertView show];
-	}
-    [self.navigationItem.rightBarButtonItem setEnabled:YES];
-}
-
-- (IBAction)enableLoggingSwitchChanged:(id)sender
-{    
-    [self.navigationItem.rightBarButtonItem setEnabled:YES];
 }
 
 - (IBAction)checkPortButtonClicked:(id)sender

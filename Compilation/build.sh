@@ -109,7 +109,7 @@ function do_openssl {
 	if [[ "${ARCH}" == "x86_64" ]]; then
 		./Configure darwin64-x86_64-cc --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
 	else
-		./configure iphoneos-cross --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
+		./Configure iphoneos-cross --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
 	fi
 	
 	# Patch for iOS, taken from https://github.com/st3fan/ios-openssl/blame/master/build.sh
@@ -240,8 +240,6 @@ function do_transmission {
 	popd
 }
 
-for ARCH in "${ARCHS[@]}"
-do
 do_loadenv
 
 while getopts ":o:a:ne" opt; do
