@@ -601,7 +601,7 @@
 
 - (void)addFromWebClicked
 {
-    NSString *URL = @"http://google.com";
+    NSString *URL = @"https://google.com";
 	//SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:URL];
     SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:URL controller:self.controller navigationController:self.navigationController];
 	[self.navigationController pushViewController:webViewController animated:YES];
