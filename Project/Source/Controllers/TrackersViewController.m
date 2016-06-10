@@ -238,8 +238,6 @@
 }
 
 - (void)updateUI {
-    
-    [super updateUI];
     for (TrackerCell *cell in [self.tableView visibleCells]) {
         [self performSelector:@selector(updateCell:) withObject:cell afterDelay:1];
     }

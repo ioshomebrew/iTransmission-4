@@ -321,9 +321,8 @@ static void signal_handler(int sig) {
 - (void)applicationWillResignActive:(UIApplication *)application {
     NSTimer *updateTimer;
     if ([self.navController.visibleViewController respondsToSelector:@selector(UIUpdateTimer)]) {
-        updateTimer = [(StatisticsViewController*)self.navController.visibleViewController UIUpdateTimer];
+        updateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateUI) userInfo:nil repeats:YES];
         [updateTimer invalidate];
-        [(StatisticsViewController*)self.navController.visibleViewController setUIUpdateTimer:nil];
     }
 }
 
@@ -362,7 +361,6 @@ static void signal_handler(int sig) {
     NSTimer *updateTimer;
     if ([self.navController.visibleViewController respondsToSelector:@selector(UIUpdateTimer)]) {
         updateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self.navController.visibleViewController selector:@selector(updateUI) userInfo:nil repeats:YES];
-        [(StatisticsViewController*)self.navController.visibleViewController setUIUpdateTimer:updateTimer];
     }
 }
 

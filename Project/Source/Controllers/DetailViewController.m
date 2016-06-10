@@ -74,13 +74,13 @@
 @synthesize refreshButton = fRefreshButton;
 @synthesize bandwidthButton = fBandwidthButton;
 @synthesize selectedIndexPath = fSelectedIndexPath;
-@synthesize fController;
+@synthesize controller;
 
 - (id)initWithTorrent:(Torrent*)t controller:(Controller*)c {
     if ((self = [super initWithNibName:@"DetailViewController" bundle:nil])) {
         self.title = @"Details";
 		fTorrent = t;
-		fController = c;
+		controller = c;
 		
 		self.startButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(startButtonClicked:)];
 		self.pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseButtonClicked:)];

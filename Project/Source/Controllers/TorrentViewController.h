@@ -7,19 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StatisticsViewController.h"
 #import "ALAlertBanner.h"
 #import "SVWebViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 @class Controller;
 @class TDBadgeView;
 @class Torrent;
 @class TorrentCell;
-@class StatisticsView;
 @class PrefViewController;
 
-@interface TorrentViewController : StatisticsViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
+@interface TorrentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -34,6 +33,8 @@
 @property (nonatomic, retain) AVAudioPlayer *audio;
 @property (nonatomic, retain) AVAudioRecorder *recorder;
 @property (nonatomic, retain) PrefViewController *pref;
+@property(nonatomic, weak) IBOutlet GADBannerView *bannerView;
+@property (nonatomic, retain) Controller *controller;
 
 - (void)addButtonClicked:(id)sender;
 - (void)prefButtonClicked:(id)sender;

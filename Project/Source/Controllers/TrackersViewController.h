@@ -9,14 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "TrackerCell.h"
 #import "Torrent.h"
-#import "StatisticsViewController.h"
 #import "TrackerNode.h"
 #import "NSStringAdditions.h"
 #import "UIAlertViewPrivate.h"
 
 @class Torrent, TrackerCell;
 
-@interface TrackersViewController : StatisticsViewController <UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate> {
+@interface TrackersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate> {
     Torrent *fTorrent;
     UITableView *fTableView;
     UIDocumentInteractionController *_docController;

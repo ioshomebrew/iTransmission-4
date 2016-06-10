@@ -17,7 +17,6 @@
 #import "NSStringAdditions.h"
 #import "DetailViewController.h"
 #import "ControlButton.h"
-#import "StatisticsView.h"
 #import "PDColoredProgressView.h"
 #import "BandwidthController.h"
 
@@ -40,6 +39,7 @@
 @synthesize audio;
 @synthesize recorder;
 @synthesize pref;
+@synthesize bannerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -304,6 +304,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 		
+    // init admob
+    self.bannerView.adUnitID = @"ca-app-pub-5972525945446192/5283882861";
+    self.bannerView.rootViewController = self;
+    
+    GADRequest *request = [GADRequest request];
+    [self.bannerView loadRequest:request];
+    
     self.activityItemView.backgroundColor = [UIColor clearColor];
     self.activityItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityItemView];
 	
@@ -399,7 +406,6 @@
 
 - (void)updateUI
 {
-    [super updateUI];
 	NSArray *visibleCells = [self.tableView visibleCells];
 	
 	for (TorrentCell *cell in visibleCells) {

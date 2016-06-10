@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "StatisticsViewController.h"
+#import "Controller.h"
 
 @class Torrent;
-@interface BandwidthController : StatisticsViewController<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
+@interface BandwidthController : UIViewController<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
 	//Torrent *fTorrent;
 	UITableView *fTableView;
 	BOOL _visible;
@@ -45,6 +45,7 @@
     IBOutlet UITableViewCell *fOverrideSpeedLimitsCell;
     IBOutlet UISwitch *fOverrideSpeedLimitSwitch;
 }
+@property (nonatomic, assign) Controller *controller;
 @property (nonatomic, assign) Torrent *torrent;
 @property (nonatomic, readonly, getter=isVisible) BOOL visible;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
@@ -65,4 +66,5 @@
 - (void)keyboardDidHide:(NSNotification*)notif;
 - (void)keyboardWillShow:(NSNotification*)notif;
 - (void)keyboardDidShow:(NSNotification*)notif;
+
 @end

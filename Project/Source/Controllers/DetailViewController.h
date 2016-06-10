@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StatisticsViewController.h"
 
 @class Torrent;
 @class Controller;
 @class FlexibleLabelCell;
 
-@interface DetailViewController : StatisticsViewController<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
+@interface DetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
 	UITableView *fTableView;
 	UIBarButtonItem *fStartButton;
 	UIBarButtonItem *fPauseButton;
@@ -113,7 +112,7 @@
 @property (nonatomic, retain) UIBarButtonItem *refreshButton;
 @property (nonatomic, retain) UIBarButtonItem *bandwidthButton;
 @property (nonatomic, retain) NSIndexPath *selectedIndexPath;
-@property (nonatomic, retain) Controller *fController;
+@property (nonatomic, retain) Controller *controller;
 
 - (id)initWithTorrent:(Torrent*)t controller:(Controller*)c;
 

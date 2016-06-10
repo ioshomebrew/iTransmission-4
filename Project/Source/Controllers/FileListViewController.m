@@ -169,7 +169,6 @@
 
 - (void)updateUI
 {
-    [super updateUI];
     [self.torrent updateFileStat];
         
     for (FileListCell *cell in [self.tableView visibleCells]) {

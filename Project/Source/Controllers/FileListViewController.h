@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StatisticsViewController.h"
 #import "CheckboxControl.h"
 
 @class Torrent, FileListCell;
-@interface FileListViewController : StatisticsViewController <CheckboxControlDelegate,UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate>
+@interface FileListViewController : UIViewController <CheckboxControlDelegate,UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate>
 {
     Torrent *fTorrent;
     UITableView *fTableView;
