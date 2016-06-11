@@ -25,6 +25,7 @@
 @property (nonatomic, readonly) Torrent *torrent;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) UIDocumentInteractionController *docController;
+@property (nonatomic, retain) NSTimer *updateTimer;
 
 - (id)initWithTorrent:(Torrent*)t;
 

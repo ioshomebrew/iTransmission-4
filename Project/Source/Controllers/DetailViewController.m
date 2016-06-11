@@ -293,12 +293,19 @@
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:NO animated:animated];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sessionStatusChanged:) name:NotificationSessionStatusChanged object:self.controller];
+    
+    // start timer
+    self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateUI) userInfo:nil repeats:YES];
+    [self updateUI];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NotificationSessionStatusChanged object:self.controller];
+    
+    // stop timer
+    [self.updateTimer invalidate];
 }
 
 - (void)startButtonClicked:(id)sender

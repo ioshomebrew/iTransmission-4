@@ -66,6 +66,16 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:YES animated:YES];
+    
+    // start timer
+    self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateUI) userInfo:nil repeats:YES];
+    [self updateUI];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    // stop timer
+    [self.updateTimer invalidate];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -113,6 +113,7 @@
 @property (nonatomic, retain) UIBarButtonItem *bandwidthButton;
 @property (nonatomic, retain) NSIndexPath *selectedIndexPath;
 @property (nonatomic, retain) Controller *controller;
+@property (nonatomic, retain) NSTimer *updateTimer;
 
 - (id)initWithTorrent:(Torrent*)t controller:(Controller*)c;
 

@@ -35,6 +35,7 @@
 @property (nonatomic, retain) PrefViewController *pref;
 @property(nonatomic, weak) IBOutlet GADBannerView *bannerView;
 @property (nonatomic, retain) Controller *controller;
+@property (nonatomic, retain) NSTimer *updateTimer;
 
 - (void)addButtonClicked:(id)sender;
 - (void)prefButtonClicked:(id)sender;

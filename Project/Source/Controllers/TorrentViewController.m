@@ -605,6 +605,16 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:NO animated:animated];
+    
+    // start timer
+    self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateUI) userInfo:nil repeats:YES];
+    [self updateUI];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    // stop update timer
+    [self.updateTimer invalidate];
 }
 
 @end
