@@ -110,6 +110,13 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    NSLog(@"Free memory");
+    
+    // fix webview memory leak
+    [self.webView stopLoading];
+    self.webView.delegate = nil;
+    [self removeFromParentViewController];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {

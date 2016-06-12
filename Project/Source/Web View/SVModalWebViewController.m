@@ -47,4 +47,12 @@
     self.navigationBar.tintColor = self.barsTintColor;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:NO];
+    
+    // free memory
+    NSLog(@"Free memory");
+}
+
 @end
