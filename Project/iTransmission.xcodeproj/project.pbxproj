@@ -23,6 +23,8 @@
 
 /* Begin PBXBuildFile section */
 		23ACED151D04F99A00B76404 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23ACED141D04F99A00B76404 /* Launch Screen.storyboard */; };
+		3A1C03B01D0CE2AE005EB2A5 /* ALAlertBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C03AD1D0CE2AE005EB2A5 /* ALAlertBanner.m */; };
+		3A1C03B11D0CE2AE005EB2A5 /* ALAlertBannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C03AF1D0CE2AE005EB2A5 /* ALAlertBannerManager.m */; };
 		3A4483821D0A12E500786CD3 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483811D0A12E500786CD3 /* GoogleMobileAds.framework */; };
 		3A4483841D0A190A00786CD3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483831D0A190A00786CD3 /* AudioToolbox.framework */; };
 		3A4483861D0A199000786CD3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483851D0A199000786CD3 /* CoreMedia.framework */; };
@@ -35,8 +37,6 @@
 		3A4483941D0A1AD500786CD3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483931D0A1AD500786CD3 /* MessageUI.framework */; };
 		3A4483961D0A1AE300786CD3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483951D0A1AE300786CD3 /* StoreKit.framework */; };
 		3A4483981D0A1B0000786CD3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483971D0A1B0000786CD3 /* MediaPlayer.framework */; };
-		895A738A18D9CB6F00561CD6 /* ALAlertBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A730A18D9CB6E00561CD6 /* ALAlertBanner.m */; };
-		895A738B18D9CB6F00561CD6 /* ALAlertBannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A730C18D9CB6E00561CD6 /* ALAlertBannerManager.m */; };
 		895A738C18D9CB6F00561CD6 /* DiscoveredTorrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A730F18D9CB6E00561CD6 /* DiscoveredTorrentCell.m */; };
 		895A738D18D9CB6F00561CD6 /* FileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A731118D9CB6E00561CD6 /* FileListCell.m */; };
 		895A738E18D9CB6F00561CD6 /* FlexibleLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A731318D9CB6E00561CD6 /* FlexibleLabelCell.m */; };
@@ -154,6 +154,11 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		23ACED141D04F99A00B76404 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3A1C03AB1D0CE2AE005EB2A5 /* ALAlertBanner+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAlertBanner+Private.h"; sourceTree = "<group>"; };
+		3A1C03AC1D0CE2AE005EB2A5 /* ALAlertBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAlertBanner.h; sourceTree = "<group>"; };
+		3A1C03AD1D0CE2AE005EB2A5 /* ALAlertBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAlertBanner.m; sourceTree = "<group>"; };
+		3A1C03AE1D0CE2AE005EB2A5 /* ALAlertBannerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAlertBannerManager.h; sourceTree = "<group>"; };
+		3A1C03AF1D0CE2AE005EB2A5 /* ALAlertBannerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAlertBannerManager.m; sourceTree = "<group>"; };
 		3A4483811D0A12E500786CD3 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		3A4483831D0A190A00786CD3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3A4483851D0A199000786CD3 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -169,11 +174,6 @@
 		7437B171125B4B6500B456EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		74861F521259DB06005FDE74 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7EDBAD5613CA984B0047AB4B /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		895A730818D9CB6E00561CD6 /* ALAlertBanner+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAlertBanner+Private.h"; sourceTree = "<group>"; };
-		895A730918D9CB6E00561CD6 /* ALAlertBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAlertBanner.h; sourceTree = "<group>"; };
-		895A730A18D9CB6E00561CD6 /* ALAlertBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAlertBanner.m; sourceTree = "<group>"; };
-		895A730B18D9CB6E00561CD6 /* ALAlertBannerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAlertBannerManager.h; sourceTree = "<group>"; };
-		895A730C18D9CB6E00561CD6 /* ALAlertBannerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAlertBannerManager.m; sourceTree = "<group>"; };
 		895A730E18D9CB6E00561CD6 /* DiscoveredTorrentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveredTorrentCell.h; sourceTree = "<group>"; };
 		895A730F18D9CB6E00561CD6 /* DiscoveredTorrentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveredTorrentCell.m; sourceTree = "<group>"; };
 		895A731018D9CB6E00561CD6 /* FileListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListCell.h; sourceTree = "<group>"; };
@@ -395,11 +395,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3A1C03AA1D0CE2AE005EB2A5 /* ALAlertBanner */ = {
+			isa = PBXGroup;
+			children = (
+				3A1C03AB1D0CE2AE005EB2A5 /* ALAlertBanner+Private.h */,
+				3A1C03AC1D0CE2AE005EB2A5 /* ALAlertBanner.h */,
+				3A1C03AD1D0CE2AE005EB2A5 /* ALAlertBanner.m */,
+				3A1C03AE1D0CE2AE005EB2A5 /* ALAlertBannerManager.h */,
+				3A1C03AF1D0CE2AE005EB2A5 /* ALAlertBannerManager.m */,
+			);
+			path = ALAlertBanner;
+			sourceTree = "<group>";
+		};
 		895A730618D9CB6E00561CD6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3A1C03AA1D0CE2AE005EB2A5 /* ALAlertBanner */,
 				3A4483811D0A12E500786CD3 /* GoogleMobileAds.framework */,
-				895A730718D9CB6E00561CD6 /* ALAlertBanner */,
 				895A730D18D9CB6E00561CD6 /* Cells */,
 				895A732318D9CB6E00561CD6 /* ColoredProgress */,
 				895A732618D9CB6E00561CD6 /* Controllers */,
@@ -410,18 +422,6 @@
 				895A736C18D9CB6E00561CD6 /* Web View */,
 			);
 			path = Source;
-			sourceTree = "<group>";
-		};
-		895A730718D9CB6E00561CD6 /* ALAlertBanner */ = {
-			isa = PBXGroup;
-			children = (
-				895A730818D9CB6E00561CD6 /* ALAlertBanner+Private.h */,
-				895A730918D9CB6E00561CD6 /* ALAlertBanner.h */,
-				895A730A18D9CB6E00561CD6 /* ALAlertBanner.m */,
-				895A730B18D9CB6E00561CD6 /* ALAlertBannerManager.h */,
-				895A730C18D9CB6E00561CD6 /* ALAlertBannerManager.m */,
-			);
-			path = ALAlertBanner;
 			sourceTree = "<group>";
 		};
 		895A730D18D9CB6E00561CD6 /* Cells */ = {
@@ -858,7 +858,6 @@
 				895A739518D9CB6F00561CD6 /* TrackerCell.m in Sources */,
 				895A738F18D9CB6F00561CD6 /* NSDate+Helper.m in Sources */,
 				895A739F18D9CB6F00561CD6 /* TrackersViewController.m in Sources */,
-				895A738A18D9CB6F00561CD6 /* ALAlertBanner.m in Sources */,
 				895A73BB18D9CB6F00561CD6 /* SVWebViewController.m in Sources */,
 				895A739E18D9CB6F00561CD6 /* TorrentViewController.m in Sources */,
 				895A739918D9CB6F00561CD6 /* DetailViewController.m in Sources */,
@@ -869,13 +868,13 @@
 				895A739A18D9CB6F00561CD6 /* FileListViewController.m in Sources */,
 				895A739218D9CB6F00561CD6 /* NSStringAdditions.m in Sources */,
 				895A73AD18D9CB6F00561CD6 /* PortChecker.m in Sources */,
-				895A738B18D9CB6F00561CD6 /* ALAlertBannerManager.m in Sources */,
 				895A738E18D9CB6F00561CD6 /* FlexibleLabelCell.m in Sources */,
 				895A739018D9CB6F00561CD6 /* NSDictionaryAdditions.m in Sources */,
 				895A739118D9CB6F00561CD6 /* NSString+RelativePath.m in Sources */,
 				895A73BE18D9CB6F00561CD6 /* SVWebViewControllerActivityChrome.m in Sources */,
 				895A73AF18D9CB6F00561CD6 /* TorrentFetcher.m in Sources */,
 				895A74E218D9CB8500561CD6 /* main.m in Sources */,
+				3A1C03B01D0CE2AE005EB2A5 /* ALAlertBanner.m in Sources */,
 				895A739C18D9CB6F00561CD6 /* PrefViewController.m in Sources */,
 				895A739318D9CB6F00561CD6 /* TDBadgedCell.m in Sources */,
 				895A73B118D9CB6F00561CD6 /* TrackerNode.m in Sources */,
@@ -887,6 +886,7 @@
 				895A73B618D9CB6F00561CD6 /* ControlButton.m in Sources */,
 				895A739618D9CB6F00561CD6 /* PDColoredProgressView.m in Sources */,
 				895A73B718D9CB6F00561CD6 /* TransparentClickArea.m in Sources */,
+				3A1C03B11D0CE2AE005EB2A5 /* ALAlertBannerManager.m in Sources */,
 				895A739718D9CB6F00561CD6 /* BandwidthController.m in Sources */,
 				895A73B518D9CB6F00561CD6 /* ClipboardLabel.m in Sources */,
 				895A73C218D9CB6F00561CD6 /* SVWebViewControllerActivitySafari.m in Sources */,

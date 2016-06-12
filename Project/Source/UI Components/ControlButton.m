@@ -9,7 +9,6 @@
 #import "ControlButton.h"
 #import <CoreGraphics/CoreGraphics.h>
 #import "Controller.h"
-#import "ALAlertBanner.h"
 
 @implementation ControlButton
 @synthesize textLabel;
