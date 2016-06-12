@@ -75,6 +75,16 @@ static void signal_handler(int sig) {
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     
+    // enable notifications on iOS 9
+    [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)])
+    {
+        
+        [application registerUserNotificationSettings:[UIUserNotificationSettings
+                                                       settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|
+                                                       UIUserNotificationTypeSound categories:nil]];
+    }
+    
     application.applicationIconBadgeNumber = 0;
     
     [self fixDocumentsDirectory];
@@ -457,9 +467,6 @@ static void signal_handler(int sig) {
 {
     ALAlertBanner *banner = [ALAlertBanner alertBannerForView:self.window style:ALAlertBannerStyleSuccess position:ALAlertBannerPositionUnderNavBar title:msg subtitle:msg];
     [banner show];
-    UILocalNotification *notification = [[UILocalNotification alloc]init];
-    [notification setAlertBody:msg];
-    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
 - (CGFloat)globalDownloadSpeed
@@ -806,6 +813,8 @@ static void signal_handler(int sig) {
 		
 		// Schedule the notification
 		[[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+        
+        NSLog(@"Notification should've fired");
 	}
 } 
 
