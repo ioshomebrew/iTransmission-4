@@ -13,7 +13,7 @@ If you need to change options, edit the configuration & build.sh file in Compila
 
 Compiling app
 -----
-1. The app will never be accepted in the app store. Therefore, we do not need codesigning. But XCode requires us to codesign each and every app. Assuming I use the iOS 5.1 SDK, I can disable this check by opening /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/SDKSettings.plist with a text editor (not XCode) and change the following values 
+1. The app will never be accepted in the app store. Therefore, we do not need codesigning. But XCode requires us to codesign each and every app. Assuming you use the iOS 9.3 SDK, I can disable this check by opening /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/SDKSettings.plist with a text editor and change the following values 
 
 ```
 <key>CODE_SIGNING_REQUIRED</key>
@@ -35,16 +35,17 @@ to
 <key>ENTITLEMENTS_REQUIRED</key>
 <string>NO</string>
 ```
-
-2. You may also want to change the minimum deployment target to your choice and the base SDK to your choice also.
 
 Build Script
 -----
 **Cydia Package**
+
 1. First you need to install macports
 https://www.macports.org/install.php
+
 2. Then you need to install dpkg
 sudo port install dpkg
+
 3. Then build the deb
 
 Installation
