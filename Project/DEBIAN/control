@@ -1,0 +1,6 @@
+Maintainer: Beecher Adams <ioshomebrew@outlook.com>
+Name: iTransmission
+Package: com.ioshomebrew.itransmission4
+Version: 4.0
+Architecture: iphoneos-arm
+Description: Bittorrent client for iOS

@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
+		3A887B851D14F41D0041327D /* Cydia Package */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 3A887B861D14F41D0041327D /* Build configuration list for PBXAggregateTarget "Cydia Package" */;
+			buildPhases = (
+				3A887B8C1D14F4280041327D /* ShellScript */,
+			);
+			dependencies = (
+				3A887B8B1D14F4230041327D /* PBXTargetDependency */,
+			);
+			name = "Cydia Package";
+			productName = "Cydia Package";
+		};
 		7471DCFA126F27A200CB0653 /* IPA */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 7471DCFE126F27A400CB0653 /* Build configuration list for PBXAggregateTarget "IPA" */;
@@ -38,6 +50,7 @@
 		3A4483961D0A1AE300786CD3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483951D0A1AE300786CD3 /* StoreKit.framework */; };
 		3A4483981D0A1B0000786CD3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483971D0A1B0000786CD3 /* MediaPlayer.framework */; };
 		3A887B841D14E6BE0041327D /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A887B831D14E6BE0041327D /* Entitlements.plist */; };
+		3A887B8F1D14F5F70041327D /* control in Resources */ = {isa = PBXBuildFile; fileRef = 3A887B8E1D14F5F70041327D /* control */; };
 		3AE8C5BA1D14DB98006B78A3 /* phone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AE8C5B91D14DB98006B78A3 /* phone.mp3 */; };
 		895A738C18D9CB6F00561CD6 /* DiscoveredTorrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A730F18D9CB6E00561CD6 /* DiscoveredTorrentCell.m */; };
 		895A738D18D9CB6F00561CD6 /* FileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A731118D9CB6E00561CD6 /* FileListCell.m */; };
@@ -142,6 +155,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3A887B8A1D14F4230041327D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8981243218884D2900DB955B;
+			remoteInfo = iTransmission;
+		};
 		AC00E8A318C4043D0084BBBA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -174,6 +194,7 @@
 		3A4483951D0A1AE300786CD3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3A4483971D0A1B0000786CD3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3A887B831D14E6BE0041327D /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		3A887B8E1D14F5F70041327D /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = control; path = DEBIAN/control; sourceTree = "<group>"; };
 		3AE8C5B91D14DB98006B78A3 /* phone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = phone.mp3; sourceTree = "<group>"; };
 		7437B171125B4B6500B456EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		74861F521259DB06005FDE74 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -362,6 +383,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3A887B8D1D14F5D30041327D /* DEBIAN */,
 				3A887B831D14E6BE0041327D /* Entitlements.plist */,
 				895A74E318D9CB8900561CD6 /* Nibs */,
 				895A74DD18D9CB8500561CD6 /* Other Sources */,
@@ -410,6 +432,14 @@
 				3A1C03AF1D0CE2AE005EB2A5 /* ALAlertBannerManager.m */,
 			);
 			path = ALAlertBanner;
+			sourceTree = "<group>";
+		};
+		3A887B8D1D14F5D30041327D /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				3A887B8E1D14F5F70041327D /* control */,
+			);
+			name = DEBIAN;
 			sourceTree = "<group>";
 		};
 		895A730618D9CB6E00561CD6 /* Source */ = {
@@ -731,6 +761,9 @@
 			attributes = {
 				LastUpgradeCheck = 0730;
 				TargetAttributes = {
+					3A887B851D14F41D0041327D = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					8981243218884D2900DB955B = {
 						DevelopmentTeam = 734RX4L58H;
 						SystemCapabilities = {
@@ -765,6 +798,7 @@
 			targets = (
 				8981243218884D2900DB955B /* iTransmission */,
 				7471DCFA126F27A200CB0653 /* IPA */,
+				3A887B851D14F41D0041327D /* Cydia Package */,
 			);
 		};
 /* End PBXProject section */
@@ -812,6 +846,7 @@
 				895A73A518D9CB6F00561CD6 /* bannerAlert.png in Resources */,
 				895A74A018D9CB7E00561CD6 /* gear-icon.png in Resources */,
 				895A749F18D9CB7E00561CD6 /* FavIcon@2x.png in Resources */,
+				3A887B8F1D14F5F70041327D /* control in Resources */,
 				895A73BC18D9CB6F00561CD6 /* SVWebViewControllerActivityChrome-iPad.png in Resources */,
 				895A73C318D9CB6F00561CD6 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
 				3A887B841D14E6BE0041327D /* Entitlements.plist in Resources */,
@@ -844,6 +879,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3A887B8C1D14F4280041327D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/mkdir -p $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R $CONFIGURATION_BUILD_DIR/iTransmission.app $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R DEBIAN $CONFIGURATION_BUILD_DIR\n/opt/local/bin/dpkg-deb -b $CONFIGURATION_BUILD_DIR";
+		};
 		7471DD03126F27D300CB0653 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -905,6 +953,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3A887B8B1D14F4230041327D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8981243218884D2900DB955B /* iTransmission */;
+			targetProxy = 3A887B8A1D14F4230041327D /* PBXContainerItemProxy */;
+		};
 		AC00E8A418C4043D0084BBBA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8981243218884D2900DB955B /* iTransmission */;
@@ -931,6 +984,27 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3A887B871D14F41D0041327D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3A887B881D14F41D0041327D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3A887B891D14F41D0041327D /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Distribution;
+		};
 		740E5F90129E6902008C61FF /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1242,6 +1316,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3A887B861D14F41D0041327D /* Build configuration list for PBXAggregateTarget "Cydia Package" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A887B871D14F41D0041327D /* Debug */,
+				3A887B881D14F41D0041327D /* Release */,
+				3A887B891D14F41D0041327D /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		7471DCFE126F27A400CB0653 /* Build configuration list for PBXAggregateTarget "IPA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

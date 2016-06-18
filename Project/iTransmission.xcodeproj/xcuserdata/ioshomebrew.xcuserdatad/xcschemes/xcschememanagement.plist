@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Cydia Package.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>IPA.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,6 +22,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>3A887B851D14F41D0041327D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7471DCFA126F27A200CB0653</key>
 		<dict>
 			<key>primary</key>
