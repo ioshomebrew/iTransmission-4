@@ -22,8 +22,6 @@
                 <outlet property="fDownloadSpeedLimitEnabledSwitch" destination="1Hh-Vr-KNi" id="ajE-Q7-7UA"/>
                 <outlet property="fDownloadSpeedLimitField" destination="jgF-QS-fFw" id="tQX-Op-hKH"/>
                 <outlet property="fEnableBackgroundDownloadingSwitch" destination="hIf-Yn-PFl" id="xGM-i7-eaA"/>
-                <outlet property="fEnableMicrophoneCell" destination="eDK-Ov-pG0" id="6NW-nO-psB"/>
-                <outlet property="fEnableMicrophoneSwitch" destination="jOO-SD-ryc" id="jM8-J4-mKc"/>
                 <outlet property="fMaximumConnectionsLabel" destination="LSM-Gt-Fw8" id="EAy-xC-uSE"/>
                 <outlet property="fMaximumConnectionsLabelCell" destination="9r8-A9-7II" id="HHl-P2-pJf"/>
                 <outlet property="fMaximumConnectionsSlider" destination="5IQ-OT-JtX" id="7z4-gy-ocj"/>
@@ -149,30 +147,6 @@
                 </subviews>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-        </tableViewCell>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="eDK-Ov-pG0" userLabel="Enable Microphone">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eDK-Ov-pG0" id="SU5-iB-p1d">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Microphone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7XW-2I-a4p">
-                        <rect key="frame" x="10" y="11" width="174" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="jOO-SD-ryc">
-                        <rect key="frame" x="231" y="8" width="79" height="27"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <connections>
-                            <action selector="enableMicrophoneSwitchChanged:" destination="-1" eventType="valueChanged" id="fZn-2a-f2u"/>
-                        </connections>
-                    </switch>
-                </subviews>
-            </tableViewCellContentView>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="" id="LNK-S5-eSH">
             <rect key="frame" x="0.0" y="0.0" width="319" height="44"/>

@@ -175,7 +175,6 @@
         {
             switch (indexPath.row) {
                 case 0: return fBackgroundDownloadingCell;
-                case 1: return fEnableMicrophoneCell;
             }
         }
         case 2:
@@ -257,11 +256,6 @@
         [fDefaults setBool:[fEnableBackgroundDownloadingSwitch isOn] forKey:@"BackgroundDownloading"];
     }
     
-    if([fEnableMicrophoneSwitch isOn] != [self.originalPreferences boolForKey:@"UseMicrophone"])
-    {
-        [fDefaults setBool:[fEnableMicrophoneSwitch isOn] forKey:@"UseMicrophone"];
-    }
-    
 	[fDefaults synchronize]; 
     
     [self performSelector:@selector(loadPreferences) withObject:nil afterDelay:0.0f];
@@ -299,13 +293,11 @@
 	[_originalPref setBool:[fDefaults boolForKey:@"NatTraversal"] forKey:@"NatTraversal"];
 	[_originalPref setInteger:[fDefaults integerForKey:@"BindPort"] forKey:@"BindPort"];
     [_originalPref setBool:[fDefaults boolForKey:@"BackgroundDownloading"] forKey:@"BackgroundDownloading"];
-    [_originalPref setBool:[fDefaults boolForKey:@"UseMicrophone"] forKey:@"UseMicrophone"];
 	self.originalPreferences = [NSDictionary dictionaryWithDictionary:_originalPref];
 	
 	[fAutoPortMapSwitch setOn:[self.originalPreferences boolForKey:@"NatTraversal"]];
 	[fBindPortTextField setText:[NSString stringWithFormat:@"%li", (long)[self.originalPreferences integerForKey:@"BindPort"]]];
     [fEnableBackgroundDownloadingSwitch setOn:[self.originalPreferences boolForKey:@"BackgroundDownloading"]];
-    [fEnableMicrophoneSwitch setOn:[self.originalPreferences boolForKey:@"UseMicrophone"]];
     
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
 }
@@ -324,18 +316,6 @@
     
     NSNumber *value = [NSNumber numberWithBool:fEnableBackgroundDownloadingSwitch.on];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"AudioPrefChanged" object:value];
-}
-
-- (IBAction)enableMicrophoneSwitchChanged:(id)sender
-{
-    [self.navigationItem.rightBarButtonItem setEnabled:YES];
-    
-    // display alert
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"This feature is beta, it stores microphone data to RAM, which may increase CPU and RAM usage" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alert show];
-    
-    NSNumber *value = [NSNumber numberWithBool:fEnableMicrophoneSwitch.on];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UseMicrophone" object:value];
 }
 
 - (IBAction)maximumConnectionsSliderValueChanged:(id)sender

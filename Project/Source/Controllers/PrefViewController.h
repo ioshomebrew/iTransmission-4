@@ -19,12 +19,10 @@
     IBOutlet UITableViewCell *fAutoPortMapCell;
     IBOutlet UITableViewCell *fBindPortCell;
     IBOutlet UITableViewCell *fBackgroundDownloadingCell;
-    IBOutlet UITableViewCell *fEnableMicrophoneCell;
     IBOutlet UIButton *fCheckPortButton;
     
 	IBOutlet UISwitch *fAutoPortMapSwitch;
     IBOutlet UISwitch *fEnableBackgroundDownloadingSwitch;
-    IBOutlet UISwitch *fEnableMicrophoneSwitch;
 	IBOutlet UITextField *fBindPortTextField;
 	IBOutlet UIActivityIndicatorView *fPortCheckActivityIndicator;
     
@@ -86,7 +84,6 @@
 - (IBAction)switchChanged:(id)sender;
 - (IBAction)checkPortButtonClicked:(id)sender;
 - (IBAction)enableBackgroundDownloadSwitchChanged:(id)sender;
-- (IBAction)enableMicrophoneSwitchChanged:(id)sender;
 
 - (IBAction)maximumConnectionsSliderValueChanged:(id)sender;
 - (IBAction)connectionsPerTorrentSliderValueChanged:(id)sender;
