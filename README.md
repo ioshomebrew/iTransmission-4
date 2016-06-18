@@ -4,9 +4,8 @@ iTransmission is a torrent client, which uses libtransmission as it's backend.
 
 So, what is iTransmission 4? iTransmission , originally, was developed by [ccp0101](https://github.com/ccp0101). It is no longer kept active. I plan on keeping iTransmision 4 active.
 
-
 How to compile libraries
-_____
+-----
 Open terminal
 cd to Compilation directory
 ./build.sh
@@ -38,6 +37,15 @@ to
 ```
 
 2. You may also want to change the minimum deployment target to your choice and the base SDK to your choice also.
+
+Build Script
+-----
+**Cydia Package**
+1. First you need to install macports
+https://www.macports.org/install.php
+2. Then you need to install dpkg
+sudo port install dpkg
+3. Then build the deb
 
 Installation
 -----
