@@ -49,8 +49,6 @@
 		3A4483941D0A1AD500786CD3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483931D0A1AD500786CD3 /* MessageUI.framework */; };
 		3A4483961D0A1AE300786CD3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483951D0A1AE300786CD3 /* StoreKit.framework */; };
 		3A4483981D0A1B0000786CD3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483971D0A1B0000786CD3 /* MediaPlayer.framework */; };
-		3A887B841D14E6BE0041327D /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A887B831D14E6BE0041327D /* Entitlements.plist */; };
-		3A887B8F1D14F5F70041327D /* control in Resources */ = {isa = PBXBuildFile; fileRef = 3A887B8E1D14F5F70041327D /* control */; };
 		3AE8C5BA1D14DB98006B78A3 /* phone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AE8C5B91D14DB98006B78A3 /* phone.mp3 */; };
 		895A738C18D9CB6F00561CD6 /* DiscoveredTorrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A730F18D9CB6E00561CD6 /* DiscoveredTorrentCell.m */; };
 		895A738D18D9CB6F00561CD6 /* FileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A731118D9CB6E00561CD6 /* FileListCell.m */; };
@@ -145,7 +143,6 @@
 		895A750318D9CB8A00561CD6 /* TrackersViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 895A74F318D9CB8A00561CD6 /* TrackersViewController_iPad.xib */; };
 		895A750418D9CB8A00561CD6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 895A74F418D9CB8A00561CD6 /* MainWindow.xib */; };
 		895A750718D9CF9B00561CD6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 895A750618D9CF9B00561CD6 /* Images.xcassets */; };
-		895A750918D9D4EF00561CD6 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 895A750818D9D4EF00561CD6 /* license.txt */; };
 		897DEFE418DEF01100E12909 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F9EE8818381630001A2A4D /* AVFoundation.framework */; };
 		898124A318884D2900DB955B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		898124A418884D2900DB955B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -846,10 +843,8 @@
 				895A73A518D9CB6F00561CD6 /* bannerAlert.png in Resources */,
 				895A74A018D9CB7E00561CD6 /* gear-icon.png in Resources */,
 				895A749F18D9CB7E00561CD6 /* FavIcon@2x.png in Resources */,
-				3A887B8F1D14F5F70041327D /* control in Resources */,
 				895A73BC18D9CB6F00561CD6 /* SVWebViewControllerActivityChrome-iPad.png in Resources */,
 				895A73C318D9CB6F00561CD6 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
-				3A887B841D14E6BE0041327D /* Entitlements.plist in Resources */,
 				895A73AC18D9CB6F00561CD6 /* bannerSuccess@2x.png in Resources */,
 				895A74FC18D9CB8A00561CD6 /* FileListController_iPad.xib in Resources */,
 				895A749918D9CB7E00561CD6 /* checkbox_checked.png in Resources */,
@@ -862,7 +857,6 @@
 				895A73A818D9CB6F00561CD6 /* bannerFailure@2x.png in Resources */,
 				895A749A18D9CB7E00561CD6 /* checkbox_unchecked.png in Resources */,
 				895A749B18D9CB7E00561CD6 /* donedown.png in Resources */,
-				895A750918D9D4EF00561CD6 /* license.txt in Resources */,
 				895A73AA18D9CB6F00561CD6 /* bannerNotify@2x.png in Resources */,
 				895A74AD18D9CB7E00561CD6 /* url_ex in Resources */,
 				895A74A418D9CB7E00561CD6 /* GreenDot.png in Resources */,
@@ -890,7 +884,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/mkdir -p $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R $CONFIGURATION_BUILD_DIR/iTransmission.app $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R DEBIAN $CONFIGURATION_BUILD_DIR\n/opt/local/bin/dpkg-deb -b $CONFIGURATION_BUILD_DIR";
+			shellScript = "/bin/mkdir -p $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R $CONFIGURATION_BUILD_DIR/iTransmission.app $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R DEBIAN $CONFIGURATION_BUILD_DIR\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app.dSYM\n/opt/local/bin/dpkg-deb -b -Zgzip $CONFIGURATION_BUILD_DIR";
 		};
 		7471DD03126F27D300CB0653 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
