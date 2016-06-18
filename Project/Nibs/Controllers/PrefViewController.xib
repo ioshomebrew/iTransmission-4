@@ -25,7 +25,7 @@
                 <outlet property="fMaximumConnectionsLabel" destination="LSM-Gt-Fw8" id="EAy-xC-uSE"/>
                 <outlet property="fMaximumConnectionsLabelCell" destination="9r8-A9-7II" id="HHl-P2-pJf"/>
                 <outlet property="fMaximumConnectionsSlider" destination="5IQ-OT-JtX" id="7z4-gy-ocj"/>
-                <outlet property="fMaximumConnectionsSliderCell" destination="KPG-2B-nHh" id="M4E-eL-gD8"/>
+                <outlet property="fMaximumConnectionsSliderCell" destination="KPG-2B-nHh" id="bjU-bk-Iy3"/>
                 <outlet property="fOverrideSpeedLimitSwitch" destination="0kc-hx-Cgx" id="b2s-pl-jkT"/>
                 <outlet property="fOverrideSpeedLimitsCell" destination="HXR-gm-HdT" id="cdU-Qc-USS"/>
                 <outlet property="fPortCheckActivityIndicator" destination="78" id="79"/>
