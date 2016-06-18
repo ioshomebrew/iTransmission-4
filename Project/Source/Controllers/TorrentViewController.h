@@ -25,9 +25,6 @@
 @property (nonatomic, retain) IBOutlet UIView *activityItemView;
 @property (nonatomic, retain) IBOutlet TDBadgeView *activityCounterBadge;
 @property (nonatomic, retain) NSArray *normalToolbarItems;
-@property (nonatomic, retain) NSArray *editToolbarItems;
-@property (nonatomic, retain) UIBarButtonItem *editButton;
-@property (nonatomic, retain) UIBarButtonItem *doneButton;
 @property (nonatomic, retain) UIBarButtonItem *activityItem;
 @property (nonatomic, retain) NSMutableArray *selectedIndexPaths;
 @property (nonatomic, retain) AVAudioPlayer *audio;
@@ -55,8 +52,6 @@
 - (void)resumeButtonClicked:(id)sender;
 - (void)pauseButtonClicked:(id)sender;
 - (void)removeButtonClicked:(id)sender;
-- (void)editButtonClicked:(id)sender;
-- (void)doneButtonClicked:(id)sender;
 
 - (void)setupCell:(TorrentCell*)cell forTorrent:(Torrent*)torrent;
 

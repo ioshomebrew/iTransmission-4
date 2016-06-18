@@ -281,7 +281,6 @@
     
     [fConnectionsPerTorrentSlider setValue:[self.controller connectionsPerTorrent]];
     [fConnectionsPerTorrentLabel setText:[NSString stringWithFormat:@"%ld", (long)[self.controller connectionsPerTorrent]]];
-    NSLog(@"%li", (long)[self.controller connectionsPerTorrent]);
     [fMaximumConnectionsSlider setValue:[self.controller globalMaximumConnections]];
     [fMaximumConnectionsLabel setText:[NSString stringWithFormat:@"%ld", (long)[self.controller globalMaximumConnections]]];
     [fUploadSpeedLimitField setText:[NSString stringWithFormat:@"%ld", (long)[self.controller globalUploadSpeedLimit]]];

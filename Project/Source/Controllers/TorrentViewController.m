@@ -32,8 +32,6 @@
 @synthesize activityItemView;
 @synthesize activityCounterBadge;
 @synthesize normalToolbarItems;
-@synthesize editToolbarItems;
-@synthesize doneButton;
 @synthesize selectedIndexPaths;
 @synthesize activityItem;
 @synthesize audio;
@@ -45,20 +43,11 @@
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonClicked:)];
         UIBarButtonItem *flexSpaceOne = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateUI)];
 		UIBarButtonItem *flexSpaceTwo = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 		UIBarButtonItem *prefButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gear-icon"] style:UIBarButtonItemStylePlain target:self action:@selector(prefButtonClicked:)];
 		
-        self.normalToolbarItems = [NSArray arrayWithObjects:addButton, flexSpaceOne, refreshButton, flexSpaceTwo, prefButton, nil];
+        self.normalToolbarItems = [NSArray arrayWithObjects:addButton, flexSpaceOne, flexSpaceTwo, prefButton, nil];
         self.toolbarItems = self.normalToolbarItems;
-        
-		UIBarButtonItem *pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(resumeButtonClicked:)];
-		UIBarButtonItem *resumeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseButtonClicked:)];
-		UIBarButtonItem *removeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeButtonClicked:)];
-		UIBarButtonItem *_flexSpaceOne = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		UIBarButtonItem *_flexSpaceTwo = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		
-		self.editToolbarItems = [NSArray arrayWithObjects:resumeButton, _flexSpaceOne, pauseButton, _flexSpaceTwo, removeButton, nil];
         
 		self.title = @"Transfers";
 		self.controller = (Controller*)[[UIApplication sharedApplication] delegate];
@@ -132,11 +121,6 @@
 		[ftableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
 	else {
-		if ([self.selectedIndexPaths count] == 0) {
-			for (UIBarButtonItem *item in self.editToolbarItems) {
-				[item setEnabled:YES];
-			}
-		}
 		[self.selectedIndexPaths addObject:indexPath];
 		TorrentCell *cell = (TorrentCell*)[self.tableView cellForRowAtIndexPath:indexPath];
 		[cell.controlButton setEnabled:NO];
@@ -149,11 +133,6 @@
 	}
 	else {
 		[self.selectedIndexPaths removeObject:indexPath];
-		if ([self.selectedIndexPaths count] == 0) {
-			for (UIBarButtonItem *item in self.editToolbarItems) {
-				[item setEnabled:NO];
-			}
-		}		
 		TorrentCell *cell = (TorrentCell*)[self.tableView cellForRowAtIndexPath:indexPath];
 		[cell.controlButton setEnabled:YES];
 	}
@@ -246,10 +225,20 @@
 
 - (void)prefButtonClicked:(id)sender
 {
-    PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil];
-    UINavigationController *prefNav = [[UINavigationController alloc] initWithRootViewController:prefViewController];
-    prefNav.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentViewController:prefNav animated:YES completion:nil];
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil];
+        UINavigationController *prefNav = [[UINavigationController alloc] initWithRootViewController:prefViewController];
+        prefNav.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:prefNav animated:YES completion:nil];
+    }
+    else
+    {
+        PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil];
+        UINavigationController *prefNav = [[UINavigationController alloc] initWithRootViewController:prefViewController];
+        prefNav.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:prefNav animated:YES completion:nil];
+    }
 }
 
 - (void)controlButtonClicked:(id)sender
@@ -314,8 +303,6 @@
     self.activityItemView.backgroundColor = [UIColor clearColor];
     self.activityItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityItemView];
 	
-	self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked:)];
-	
     [self.activityCounterBadge setBadgeColor:[UIColor colorWithRed:0.82 green:0.0 blue:0.082 alpha:1.000]];
 }
 
@@ -379,29 +366,6 @@
     [self.controller removeTorrents:torrents trashData:trashData];
     self.selectedIndexPaths = [NSMutableArray array];
     [self.tableView reloadData];
-}
-
-- (void)editButtonClicked:(id)sender
-{
-	for (UIBarButtonItem *item in self.editToolbarItems) {
-		[item setEnabled:NO];
-	}
-	[self.tableView setEditing:YES animated:YES];
-	[self.navigationItem setLeftBarButtonItem:self.doneButton animated:YES];
-	[self setToolbarItems:self.editToolbarItems animated:YES];
-	self.selectedIndexPaths = [NSMutableArray array];
-}
-
-- (void)doneButtonClicked:(id)sender
-{
-	[self.tableView setEditing:NO animated:YES];
-	[self.navigationItem setLeftBarButtonItem:self.editButton animated:YES];
-	[self setToolbarItems:self.normalToolbarItems animated:YES];
-	
-	for (NSIndexPath *indexPath in self.selectedIndexPaths) {
-		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-	}
-	self.selectedIndexPaths = nil;
 }
 
 - (void)updateUI
