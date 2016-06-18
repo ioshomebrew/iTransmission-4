@@ -37,6 +37,7 @@
 		3A4483941D0A1AD500786CD3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483931D0A1AD500786CD3 /* MessageUI.framework */; };
 		3A4483961D0A1AE300786CD3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483951D0A1AE300786CD3 /* StoreKit.framework */; };
 		3A4483981D0A1B0000786CD3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483971D0A1B0000786CD3 /* MediaPlayer.framework */; };
+		3A887B841D14E6BE0041327D /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A887B831D14E6BE0041327D /* Entitlements.plist */; };
 		3AE8C5BA1D14DB98006B78A3 /* phone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AE8C5B91D14DB98006B78A3 /* phone.mp3 */; };
 		895A738C18D9CB6F00561CD6 /* DiscoveredTorrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A730F18D9CB6E00561CD6 /* DiscoveredTorrentCell.m */; };
 		895A738D18D9CB6F00561CD6 /* FileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A731118D9CB6E00561CD6 /* FileListCell.m */; };
@@ -172,6 +173,7 @@
 		3A4483931D0A1AD500786CD3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3A4483951D0A1AE300786CD3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3A4483971D0A1B0000786CD3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3A887B831D14E6BE0041327D /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3AE8C5B91D14DB98006B78A3 /* phone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = phone.mp3; sourceTree = "<group>"; };
 		7437B171125B4B6500B456EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		74861F521259DB06005FDE74 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -360,6 +362,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3A887B831D14E6BE0041327D /* Entitlements.plist */,
 				895A74E318D9CB8900561CD6 /* Nibs */,
 				895A74DD18D9CB8500561CD6 /* Other Sources */,
 				895A73C518D9CB7D00561CD6 /* Resources */,
@@ -729,6 +732,7 @@
 				LastUpgradeCheck = 0730;
 				TargetAttributes = {
 					8981243218884D2900DB955B = {
+						DevelopmentTeam = 734RX4L58H;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -810,6 +814,7 @@
 				895A749F18D9CB7E00561CD6 /* FavIcon@2x.png in Resources */,
 				895A73BC18D9CB6F00561CD6 /* SVWebViewControllerActivityChrome-iPad.png in Resources */,
 				895A73C318D9CB6F00561CD6 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
+				3A887B841D14E6BE0041327D /* Entitlements.plist in Resources */,
 				895A73AC18D9CB6F00561CD6 /* bannerSuccess@2x.png in Resources */,
 				895A74FC18D9CB8A00561CD6 /* FileListController_iPad.xib in Resources */,
 				895A749918D9CB7E00561CD6 /* checkbox_checked.png in Resources */,
@@ -1018,6 +1023,9 @@
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1052,6 +1060,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ioshomebrew.itransmission;
 				PRODUCT_NAME = iTransmission;
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
@@ -1067,6 +1076,9 @@
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1099,6 +1111,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ioshomebrew.itransmission;
 				PRODUCT_NAME = iTransmission;
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
@@ -1115,6 +1128,9 @@
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1147,6 +1163,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ioshomebrew.itransmission;
 				PRODUCT_NAME = iTransmission;
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
