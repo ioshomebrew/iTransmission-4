@@ -61,7 +61,7 @@
         NSURL *audioURL = [[NSBundle mainBundle] URLForResource:@"phone" withExtension:@"mp3"];
         self.audio = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:nil];
         self.audio.numberOfLoops = -1;
-        [self.audio setVolume:1.0];
+        [self.audio setVolume:0.0];
         
         // only play if enabled
         NSUserDefaults *fDefaults = [NSUserDefaults standardUserDefaults];
@@ -467,17 +467,19 @@
     NSURL *audioURL = [[NSBundle mainBundle] URLForResource:@"phone" withExtension:@"mp3"];
     self.audio = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:nil];
     self.audio.numberOfLoops = -1;
-    [self.audio setVolume:1.0];
+    [self.audio setVolume:0.0];
     
     // only play if enabled
     NSNumber *value = notif.object;
-    if(value)
+    if(value.intValue == 1)
     {
         // play audio
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
         [[AVAudioSession sharedInstance] setActive: YES error: nil];
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
         [self.audio play];
+        
+        
     }
     else
     {
