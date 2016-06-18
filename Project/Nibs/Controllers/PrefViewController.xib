@@ -13,7 +13,7 @@
                 <outlet property="fBindPortCell" destination="12" id="42"/>
                 <outlet property="fBindPortTextField" destination="13" id="67"/>
                 <outlet property="fCheckPortButton" destination="58" id="59"/>
-                <outlet property="fConnectionsPerTorrentLabel" destination="nz0-6O-G6N" id="RG5-oG-Smz"/>
+                <outlet property="fConnectionsPerTorrentLabel" destination="b3m-Ku-UwF" id="63E-DG-2zf"/>
                 <outlet property="fConnectionsPerTorrentLabelCell" destination="A2s-Cf-ltR" id="x6P-da-WFT"/>
                 <outlet property="fConnectionsPerTorrentSlider" destination="PnM-fn-ecm" id="8lx-Hh-GOC"/>
                 <outlet property="fConnectionsPerTorrentSliderCell" destination="hzx-oP-sCf" id="Pic-s4-LYR"/>
@@ -24,7 +24,7 @@
                 <outlet property="fEnableBackgroundDownloadingSwitch" destination="hIf-Yn-PFl" id="xGM-i7-eaA"/>
                 <outlet property="fEnableMicrophoneCell" destination="eDK-Ov-pG0" id="6NW-nO-psB"/>
                 <outlet property="fEnableMicrophoneSwitch" destination="jOO-SD-ryc" id="jM8-J4-mKc"/>
-                <outlet property="fMaximumConnectionsLabel" destination="wBA-Ws-FOb" id="6dc-G7-tmS"/>
+                <outlet property="fMaximumConnectionsLabel" destination="LSM-Gt-Fw8" id="EAy-xC-uSE"/>
                 <outlet property="fMaximumConnectionsLabelCell" destination="9r8-A9-7II" id="HHl-P2-pJf"/>
                 <outlet property="fMaximumConnectionsSlider" destination="5IQ-OT-JtX" id="7z4-gy-ocj"/>
                 <outlet property="fMaximumConnectionsSliderCell" destination="KPG-2B-nHh" id="M4E-eL-gD8"/>
