@@ -37,6 +37,7 @@
 		23ACED151D04F99A00B76404 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23ACED141D04F99A00B76404 /* Launch Screen.storyboard */; };
 		3A1C03B01D0CE2AE005EB2A5 /* ALAlertBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C03AD1D0CE2AE005EB2A5 /* ALAlertBanner.m */; };
 		3A1C03B11D0CE2AE005EB2A5 /* ALAlertBannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C03AF1D0CE2AE005EB2A5 /* ALAlertBannerManager.m */; };
+		3A3DCF921D150A8800F84299 /* postinst in Resources */ = {isa = PBXBuildFile; fileRef = 3A3DCF911D150A8800F84299 /* postinst */; };
 		3A4483821D0A12E500786CD3 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483811D0A12E500786CD3 /* GoogleMobileAds.framework */; };
 		3A4483841D0A190A00786CD3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483831D0A190A00786CD3 /* AudioToolbox.framework */; };
 		3A4483861D0A199000786CD3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483851D0A199000786CD3 /* CoreMedia.framework */; };
@@ -178,6 +179,7 @@
 		3A1C03AD1D0CE2AE005EB2A5 /* ALAlertBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAlertBanner.m; sourceTree = "<group>"; };
 		3A1C03AE1D0CE2AE005EB2A5 /* ALAlertBannerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAlertBannerManager.h; sourceTree = "<group>"; };
 		3A1C03AF1D0CE2AE005EB2A5 /* ALAlertBannerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAlertBannerManager.m; sourceTree = "<group>"; };
+		3A3DCF911D150A8800F84299 /* postinst */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = postinst; path = DEBIAN/postinst; sourceTree = "<group>"; };
 		3A4483811D0A12E500786CD3 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		3A4483831D0A190A00786CD3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3A4483851D0A199000786CD3 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -434,6 +436,7 @@
 		3A887B8D1D14F5D30041327D /* DEBIAN */ = {
 			isa = PBXGroup;
 			children = (
+				3A3DCF911D150A8800F84299 /* postinst */,
 				3A887B8E1D14F5F70041327D /* control */,
 			);
 			name = DEBIAN;
@@ -866,6 +869,7 @@
 				895A750118D9CB8A00561CD6 /* TorrentViewController_iPad.xib in Resources */,
 				895A750718D9CF9B00561CD6 /* Images.xcassets in Resources */,
 				895A749818D9CB7E00561CD6 /* cell-background.png in Resources */,
+				3A3DCF921D150A8800F84299 /* postinst in Resources */,
 				895A749518D9CB7E00561CD6 /* blackArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1318,6 +1322,7 @@
 				3A887B891D14F41D0041327D /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7471DCFE126F27A400CB0653 /* Build configuration list for PBXAggregateTarget "IPA" */ = {
 			isa = XCConfigurationList;
