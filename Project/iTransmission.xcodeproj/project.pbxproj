@@ -1113,7 +1113,7 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
 				LIBRARY_SEARCH_PATHS = "Libraries/lib/**";
 				OTHER_LDFLAGS = (
@@ -1164,7 +1164,7 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
 				LIBRARY_SEARCH_PATHS = "Libraries/lib/**";
 				OTHER_LDFLAGS = (
@@ -1216,7 +1216,7 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
 				LIBRARY_SEARCH_PATHS = "Libraries/lib/**";
 				OTHER_LDFLAGS = (

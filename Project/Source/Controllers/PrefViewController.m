@@ -24,10 +24,8 @@
         self.title = @"Preferences";
         
         UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeButtonClicked)];
-        UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveButtonClicked)];
         
         [self.navigationItem setLeftBarButtonItem:closeButton];
-        [self.navigationItem setRightBarButtonItem:saveButton];
         
     }
     return self;
@@ -190,14 +188,15 @@
         {
             switch (indexPath.row) {
                 case 0: return fDownloadSpeedLimitEnabledCell;
-                case 1: return fDownloadSpeedLimitCell;
+                case 1: return fUploadSpeedLimitCell;
+                
             }
         }
         case 4:
         {
             switch (indexPath.row) {
                 case 0: return fUploadSpeedLimitEnabledCell;
-                case 1: return fUploadSpeedLimitCell;
+                case 1: return fDownloadSpeedLimitCell;
             }
         }
     }
@@ -264,6 +263,8 @@
 - (void)closeButtonClicked
 {
     [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.controller setGlobalUploadSpeedLimit:[[fUploadSpeedLimitField text] intValue]];
+    [self.controller setGlobalDownloadSpeedLimit:[[fDownloadSpeedLimitField text] intValue]];
 }
 
 - (void)viewDidLoad {
@@ -356,6 +357,18 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == fUploadSpeedLimitField) {
+        int limit = [[textField text] intValue];
+        [self.controller setGlobalUploadSpeedLimit:limit];
+    }
+    if (textField == fDownloadSpeedLimitField) {
+        int limit = [[textField text] intValue];
+        [self.controller setGlobalDownloadSpeedLimit:limit];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
