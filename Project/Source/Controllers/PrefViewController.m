@@ -251,7 +251,9 @@
         [fDefaults setBool:[fEnableBackgroundDownloadingSwitch isOn] forKey:@"BackgroundDownloading"];
     }
     
+    // set bind port
     [fDefaults setInteger:[fBindPortTextField text].intValue forKey:@"BindPort"];
+    tr_sessionSetPeerPort(fHandle, [fBindPortTextField text].intValue);
     
     [fDefaults synchronize];
     
