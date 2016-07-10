@@ -888,7 +888,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/mkdir -p $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R $CONFIGURATION_BUILD_DIR/iTransmission.app $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R DEBIAN $CONFIGURATION_BUILD_DIR\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app.dSYM\n/opt/local/bin/dpkg-deb -b -Zgzip $CONFIGURATION_BUILD_DIR";
+			shellScript = "/bin/mkdir -p $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R $CONFIGURATION_BUILD_DIR/iTransmission.app $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R DEBIAN $CONFIGURATION_BUILD_DIR\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app.dSYM\n/opt/local/bin/dpkg-deb -b -Zgzip $CONFIGURATION_BUILD_DIR\n/bin/cp -R $CONFIGURATION_BUILD_DIR/Applications/iTransmission.app $CONFIGURATION_BUILD_DIR/iTransmission.app";
 		};
 		7471DD03126F27D300CB0653 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

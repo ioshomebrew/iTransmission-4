@@ -10,6 +10,7 @@
 #import "NSDictionaryAdditions.h"
 #import "Controller.h"
 #import "PortChecker.h"
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @implementation PrefViewController
 
@@ -51,14 +52,6 @@
 {
     if ([fBindPortTextField isEditing])
         [fBindPortTextField resignFirstResponder];
-}
-
-- (void)keyboardWillShow:(NSNotification *)notification {
-	NSDictionary *userInfo = [notification userInfo];
-	NSValue *keyboardBoundsValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-	[keyboardBoundsValue getValue:&keyboardBounds];
-	keyboardIsShowing = YES;
-	[self resizeToFit];
 }
 
 - (void)keyboardDidHide:(NSNotification *)notif
@@ -210,14 +203,9 @@
 
 - (void)portCheckButtonClicked
 {
-	if ([self.navigationItem.rightBarButtonItem isEnabled]) {
-		[[[UIAlertView alloc] initWithTitle:@"Failure" message:@"Please save before performing a port check. " delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
-	}
-	else {
-		self.portChecker = [[PortChecker alloc] initForPort:[self.originalPreferences integerForKey:@"BindPort"] delay:NO withDelegate:self];
-		[fPortCheckActivityIndicator startAnimating];
-		[fCheckPortButton setEnabled:NO];
-	}
+    self.portChecker = [[PortChecker alloc] initForPort:[self.originalPreferences integerForKey:@"BindPort"] delay:NO withDelegate:self];
+    [fPortCheckActivityIndicator startAnimating];
+    [fCheckPortButton setEnabled:NO];
 }
 
 - (void)portCheckerDidFinishProbing:(PortChecker*)c
@@ -242,6 +230,14 @@
 
 - (void)saveButtonClicked
 {
+
+}
+
+- (void)closeButtonClicked
+{
+    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.controller setGlobalUploadSpeedLimit:[[fUploadSpeedLimitField text] intValue]];
+    [self.controller setGlobalDownloadSpeedLimit:[[fDownloadSpeedLimitField text] intValue]];
     tr_session *fHandle = [self.controller rawSession];
     NSUserDefaults *fDefaults = [NSUserDefaults standardUserDefaults];
     
@@ -255,16 +251,11 @@
         [fDefaults setBool:[fEnableBackgroundDownloadingSwitch isOn] forKey:@"BackgroundDownloading"];
     }
     
-	[fDefaults synchronize]; 
+    [fDefaults setInteger:[fBindPortTextField text].intValue forKey:@"BindPort"];
+    
+    [fDefaults synchronize];
     
     [self performSelector:@selector(loadPreferences) withObject:nil afterDelay:0.0f];
-}
-
-- (void)closeButtonClicked
-{
-    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
-    [self.controller setGlobalUploadSpeedLimit:[[fUploadSpeedLimitField text] intValue]];
-    [self.controller setGlobalDownloadSpeedLimit:[[fDownloadSpeedLimitField text] intValue]];
 }
 
 - (void)viewDidLoad {
@@ -305,10 +296,6 @@
 
 - (IBAction)checkPortButtonClicked:(id)sender
 {
-    int bind_port = [[fBindPortTextField text] intValue];
-    if (bind_port != [self.originalPreferences integerForKey:@"BindPort"]) {
-        [[[UIAlertView alloc] initWithTitle:@"Cannot check port" message:@"Bind port may have been modified. Please save before port test." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
-    }
 }
 
 - (IBAction)enableBackgroundDownloadSwitchChanged:(id)sender
@@ -369,6 +356,40 @@
         int limit = [[textField text] intValue];
         [self.controller setGlobalDownloadSpeedLimit:limit];
     }
+}
+
+- (void)keyboardWillShow:(NSNotification *)note {
+    NSLog(@"Keyboard will show");
+    
+    UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
+    [keyboardDoneButtonView sizeToFit];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                   style:UIBarButtonItemStyleBordered target:self
+                                                                  action:@selector(doneClicked:)];
+    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
+    fBindPortTextField.inputAccessoryView = keyboardDoneButtonView;
+    fUploadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
+    fDownloadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    NSLog(@"Keyboard will show");
+    
+    UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
+    [keyboardDoneButtonView sizeToFit];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                   style:UIBarButtonItemStyleBordered target:self
+                                                                  action:@selector(doneClicked:)];
+    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
+    fBindPortTextField.inputAccessoryView = keyboardDoneButtonView;
+    fUploadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
+    fDownloadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
+}
+
+- (IBAction)doneClicked:(id)sender
+{
+    NSLog(@"Done Clicked.");
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
