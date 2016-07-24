@@ -35,7 +35,6 @@
 @synthesize selectedIndexPaths;
 @synthesize activityItem;
 @synthesize audio;
-@synthesize recorder;
 @synthesize pref;
 @synthesize bannerView;
 
@@ -68,9 +67,8 @@
         if([fDefaults boolForKey:@"BackgroundDownloading"])
         {
             // play audio
-            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
+            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
             [[AVAudioSession sharedInstance] setActive: YES error: nil];
-            [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
             [self.audio play];
         }
     }
@@ -574,10 +572,13 @@
 - (void)playAudio:(NSNotification *)notif
 {
     // load audio
+    NSError *error;
     NSURL *audioURL = [[NSBundle mainBundle] URLForResource:@"phone" withExtension:@"mp3"];
-    self.audio = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:nil];
+    self.audio = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:&error];
     self.audio.numberOfLoops = -1;
     [self.audio setVolume:0.0];
+    
+    NSLog(@"%@", error.localizedDescription);
     
     // only play if enabled
     NSNumber *value = notif.object;
@@ -587,17 +588,17 @@
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
         [[AVAudioSession sharedInstance] setActive: YES error: nil];
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+        [self.audio setDelegate:self];
+        [self.audio prepareToPlay];
         [self.audio play];
-        
+        NSLog(@"Going to play");
         
     }
     else
     {
         // stop audio
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-        [[AVAudioSession sharedInstance] setActive: NO error: nil];
-        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
         [self.audio stop];
+        NSLog(@"Not going to play");
     }
 }
 

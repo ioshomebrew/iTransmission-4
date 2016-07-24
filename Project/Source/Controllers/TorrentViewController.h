@@ -18,7 +18,7 @@
 @class TorrentCell;
 @class PrefViewController;
 
-@interface TorrentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
+@interface TorrentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate, AVAudioPlayerDelegate>
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -27,8 +27,7 @@
 @property (nonatomic, retain) NSArray *normalToolbarItems;
 @property (nonatomic, retain) UIBarButtonItem *activityItem;
 @property (nonatomic, retain) NSMutableArray *selectedIndexPaths;
-@property (nonatomic, retain) AVAudioPlayer *audio;
-@property (nonatomic, retain) AVAudioRecorder *recorder;
+@property (strong, nonatomic) AVAudioPlayer *audio;
 @property (nonatomic, retain) PrefViewController *pref;
 @property(nonatomic, weak) IBOutlet GADBannerView *bannerView;
 @property (nonatomic, retain) Controller *controller;
