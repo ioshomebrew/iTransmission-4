@@ -51,6 +51,10 @@
 		3A4483961D0A1AE300786CD3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483951D0A1AE300786CD3 /* StoreKit.framework */; };
 		3A4483981D0A1B0000786CD3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483971D0A1B0000786CD3 /* MediaPlayer.framework */; };
 		3AE8C5BA1D14DB98006B78A3 /* phone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AE8C5B91D14DB98006B78A3 /* phone.mp3 */; };
+		3AEB70E31D4738A400F39D15 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E21D4738A400F39D15 /* GLKit.framework */; };
+		3AEB70E51D4738AF00F39D15 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E41D4738AF00F39D15 /* OpenGLES.framework */; };
+		3AEB70E71D4738B500F39D15 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E61D4738B500F39D15 /* CoreMotion.framework */; };
+		3AEB70E91D4738C400F39D15 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E81D4738C400F39D15 /* CoreVideo.framework */; };
 		895A738C18D9CB6F00561CD6 /* DiscoveredTorrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A730F18D9CB6E00561CD6 /* DiscoveredTorrentCell.m */; };
 		895A738D18D9CB6F00561CD6 /* FileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A731118D9CB6E00561CD6 /* FileListCell.m */; };
 		895A738E18D9CB6F00561CD6 /* FlexibleLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A731318D9CB6E00561CD6 /* FlexibleLabelCell.m */; };
@@ -195,6 +199,10 @@
 		3A887B831D14E6BE0041327D /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3A887B8E1D14F5F70041327D /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = control; path = DEBIAN/control; sourceTree = "<group>"; };
 		3AE8C5B91D14DB98006B78A3 /* phone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = phone.mp3; sourceTree = "<group>"; };
+		3AEB70E21D4738A400F39D15 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		3AEB70E41D4738AF00F39D15 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		3AEB70E61D4738B500F39D15 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		3AEB70E81D4738C400F39D15 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7437B171125B4B6500B456EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		74861F521259DB06005FDE74 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7EDBAD5613CA984B0047AB4B /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -347,6 +355,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AEB70E91D4738C400F39D15 /* CoreVideo.framework in Frameworks */,
+				3AEB70E71D4738B500F39D15 /* CoreMotion.framework in Frameworks */,
+				3AEB70E51D4738AF00F39D15 /* OpenGLES.framework in Frameworks */,
+				3AEB70E31D4738A400F39D15 /* GLKit.framework in Frameworks */,
 				3A4483981D0A1B0000786CD3 /* MediaPlayer.framework in Frameworks */,
 				3A4483961D0A1AE300786CD3 /* StoreKit.framework in Frameworks */,
 				3A4483941D0A1AD500786CD3 /* MessageUI.framework in Frameworks */,
@@ -397,6 +409,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AEB70E81D4738C400F39D15 /* CoreVideo.framework */,
+				3AEB70E61D4738B500F39D15 /* CoreMotion.framework */,
+				3AEB70E41D4738AF00F39D15 /* OpenGLES.framework */,
+				3AEB70E21D4738A400F39D15 /* GLKit.framework */,
 				3A4483971D0A1B0000786CD3 /* MediaPlayer.framework */,
 				3A4483951D0A1AE300786CD3 /* StoreKit.framework */,
 				3A4483931D0A1AD500786CD3 /* MessageUI.framework */,
