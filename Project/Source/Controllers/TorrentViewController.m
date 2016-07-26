@@ -333,6 +333,7 @@
     self.bannerView.rootViewController = self;
     
     GADRequest *request = [GADRequest request];
+    request.testDevices = @[ kGADSimulatorID ];
     [self.bannerView loadRequest:request];
     
     self.activityItemView.backgroundColor = [UIColor clearColor];
