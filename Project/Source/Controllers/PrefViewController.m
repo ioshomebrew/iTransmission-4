@@ -97,15 +97,6 @@
         [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:TRUE];
     }
     
-    if (textField == fUploadSpeedLimitField) {
-        int limit = [[textField text] intValue];
-        [self.controller setGlobalUploadSpeedLimit:limit];
-    }
-    if (textField == fDownloadSpeedLimitField) {
-        int limit = [[textField text] intValue];
-        [self.controller setGlobalDownloadSpeedLimit:limit];
-    }
-    
     return YES;
 }
 
@@ -275,6 +266,12 @@
     tr_sessionSetPeerPort(fHandle, [fBindPortTextField text].intValue);
     
     [fDefaults synchronize];
+    
+    int limit = [[fUploadSpeedLimitField text] intValue];
+    [self.controller setGlobalUploadSpeedLimit:limit];
+    
+    limit = [[fDownloadSpeedLimitField text] intValue];
+    [self.controller setGlobalDownloadSpeedLimit:limit];
     
     [self performSelector:@selector(loadPreferences) withObject:nil afterDelay:0.0f];
 }
