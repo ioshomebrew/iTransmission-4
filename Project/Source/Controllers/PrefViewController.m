@@ -75,24 +75,12 @@
     
 }
 
+- (void) textFieldDidBeginEditing:(UITextField *)textField {
+
+}
+
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    /*
-    UIView *cellContentView = [textField superview];
-    UITableViewCell *cell = (UITableViewCell*)[cellContentView superview];
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    self.indexPathToScroll = indexPath;
-    [self.tableView scrollToRowAtIndexPath:self.indexPathToScroll atScrollPosition:UITableViewScrollPositionTop animated:YES];
-     */
-    
-    CGPoint pointInTable = [textField.superview convertPoint:textField.frame.origin toView:self.tableView];
-    CGPoint contentOffset = self.tableView.contentOffset;
-    
-    contentOffset.y = (pointInTable.y - textField.inputAccessoryView.frame.size.height);
-    
-    NSLog(@"contentOffset is: %@", NSStringFromCGPoint(contentOffset));
-    
-    [self.tableView setContentOffset:contentOffset animated:YES];
     
     return YES;
 }
@@ -234,7 +222,7 @@
 
 - (void)switchChanged:(id)sender
 {
-    [self.navigationItem.rightBarButtonItem setEnabled:YES];
+
 }
 
 - (void)portCheckButtonClicked
@@ -324,6 +312,14 @@
     
     [self loadPreferences];
 
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return UITableViewAutomaticDimension;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return UITableViewAutomaticDimension;
 }
 
 - (void)loadPreferences

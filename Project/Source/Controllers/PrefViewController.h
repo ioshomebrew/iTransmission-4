@@ -13,7 +13,7 @@
 @class GradientButton;
 @class PortChecker;
 @class Controller;
-@interface PrefViewController :UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
+@interface PrefViewController :UITableViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
     UITableView *fTableView;
     
     IBOutlet UITableViewCell *fAutoPortMapCell;
