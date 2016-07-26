@@ -737,6 +737,7 @@ static void signal_handler(int sig) {
     [fDefaults synchronize];
     tr_sessionSetSpeedLimit_KBps(fLib, TR_UP, (unsigned int)[fDefaults integerForKey:@"UploadLimit"]);
     NSLog(@"tr_sessionIsSpeedLimited(TR_UP): %d", tr_sessionIsSpeedLimited(fLib, TR_UP));
+    NSLog(@"tr_sessionGetSpeedLimit_KBps(TR_UP): %d", tr_sessionGetSpeedLimit_KBps(fLib, TR_UP));
 }
 
 - (void)setGlobalDownloadSpeedLimit:(NSInteger)kbytes
@@ -745,6 +746,7 @@ static void signal_handler(int sig) {
     [fDefaults synchronize];
     tr_sessionSetSpeedLimit_KBps(fLib, TR_DOWN, (unsigned int)[fDefaults integerForKey:@"DownloadLimit"]);
     NSLog(@"tr_sessionIsSpeedLimited(TR_DOWN): %d", tr_sessionIsSpeedLimited(fLib, TR_DOWN));
+    NSLog(@"tr_sessionGetSpeedLimit_KBps(TR_DOWN): %d", tr_sessionGetSpeedLimit_KBps(fLib, TR_DOWN));
 }
 
 - (void)setGlobalUploadSpeedLimitEnabled:(BOOL)enabled

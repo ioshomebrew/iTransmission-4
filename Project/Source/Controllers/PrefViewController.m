@@ -77,11 +77,47 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    /*
     UIView *cellContentView = [textField superview];
     UITableViewCell *cell = (UITableViewCell*)[cellContentView superview];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     self.indexPathToScroll = indexPath;
-    [self.tableView scrollToRowAtIndexPath:self.indexPathToScroll atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    [self.tableView scrollToRowAtIndexPath:self.indexPathToScroll atScrollPosition:UITableViewScrollPositionTop animated:YES];
+     */
+    
+    CGPoint pointInTable = [textField.superview convertPoint:textField.frame.origin toView:self.tableView];
+    CGPoint contentOffset = self.tableView.contentOffset;
+    
+    contentOffset.y = (pointInTable.y - textField.inputAccessoryView.frame.size.height);
+    
+    NSLog(@"contentOffset is: %@", NSStringFromCGPoint(contentOffset));
+    
+    [self.tableView setContentOffset:contentOffset animated:YES];
+    
+    return YES;
+}
+
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    
+    if ([textField.superview.superview isKindOfClass:[UITableViewCell class]])
+    {
+        UITableViewCell *cell = (UITableViewCell*)textField.superview.superview;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:TRUE];
+    }
+    
+    if (textField == fUploadSpeedLimitField) {
+        int limit = [[textField text] intValue];
+        [self.controller setGlobalUploadSpeedLimit:limit];
+    }
+    if (textField == fDownloadSpeedLimitField) {
+        int limit = [[textField text] intValue];
+        [self.controller setGlobalDownloadSpeedLimit:limit];
+    }
+    
     return YES;
 }
 
@@ -180,7 +216,7 @@
         case 3:
         {
             switch (indexPath.row) {
-                case 0: return fDownloadSpeedLimitEnabledCell;
+                case 0: return fUploadSpeedLimitEnabledCell;
                 case 1: return fUploadSpeedLimitCell;
                 
             }
@@ -188,7 +224,7 @@
         case 4:
         {
             switch (indexPath.row) {
-                case 0: return fUploadSpeedLimitEnabledCell;
+                case 0: return fDownloadSpeedLimitEnabledCell;
                 case 1: return fDownloadSpeedLimitCell;
             }
         }
@@ -226,11 +262,6 @@
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Port check" message:msg delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
 	[alert show];
-}
-
-- (void)saveButtonClicked
-{
-
 }
 
 - (void)closeButtonClicked
@@ -284,6 +315,9 @@
     [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
     [keyboardDoneButtonView sizeToFit];
     
+    fBindPortTextField.delegate = self;
+    fUploadSpeedLimitField.delegate = self;
+    fDownloadSpeedLimitField.delegate = self;
     fBindPortTextField.inputAccessoryView = keyboardDoneButtonView;
     fUploadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
     fDownloadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
@@ -354,43 +388,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if (textField == fUploadSpeedLimitField) {
-        int limit = [[textField text] intValue];
-        [self.controller setGlobalUploadSpeedLimit:limit];
-    }
-    if (textField == fDownloadSpeedLimitField) {
-        int limit = [[textField text] intValue];
-        [self.controller setGlobalDownloadSpeedLimit:limit];
-    }
-}
-
-- (void)keyboardWillShow:(NSNotification *)note {
-    NSLog(@"Keyboard will show");
-    
-    UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
-    [keyboardDoneButtonView sizeToFit];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                   style:UIBarButtonItemStyleBordered target:self
-                                                                  action:@selector(doneClicked:)];
-    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
-    [keyboardDoneButtonView sizeToFit];
-    
-    fBindPortTextField.inputAccessoryView = keyboardDoneButtonView;
-    fUploadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
-    fDownloadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    NSLog(@"Keyboard will show");
 }
 
 - (IBAction)doneClicked:(id)sender

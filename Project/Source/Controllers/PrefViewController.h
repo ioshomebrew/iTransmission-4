@@ -70,14 +70,8 @@
 @property (nonatomic, assign) Controller *controller;
 
 - (void)closeButtonClicked;
-- (void)saveButtonClicked;
 - (void)portCheckButtonClicked;
 - (void)keyboardDoneButton:(id)sender;
-
-- (void)keyboardWillHide:(NSNotification*)notif;
-- (void)keyboardDidHide:(NSNotification*)notif;
-- (void)keyboardWillShow:(NSNotification*)notif;
-- (void)keyboardDidShow:(NSNotification*)notif;
 
 - (void)loadPreferences;
 
