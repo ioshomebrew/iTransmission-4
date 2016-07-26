@@ -765,7 +765,6 @@
 						CreatedOnToolsVersion = 7.3.1;
 					};
 					8981243218884D2900DB955B = {
-						DevelopmentTeam = 734RX4L58H;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;

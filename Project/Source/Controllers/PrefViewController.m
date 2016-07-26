@@ -276,6 +276,18 @@
     [fUploadSpeedLimitEnabledSwitch setOn:[self.controller globalUploadSpeedLimitEnabled]];
     [fDownloadSpeedLimitEnabledSwitch setOn:[self.controller globalDownloadSpeedLimitEnabled]];
     
+    UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
+    [keyboardDoneButtonView sizeToFit];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                   style:UIBarButtonItemStyleBordered target:self
+                                                                  action:@selector(doneClicked:)];
+    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
+    [keyboardDoneButtonView sizeToFit];
+    
+    fBindPortTextField.inputAccessoryView = keyboardDoneButtonView;
+    fUploadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
+    fDownloadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
+    
     [self loadPreferences];
 
 }
@@ -369,6 +381,8 @@
                                                                    style:UIBarButtonItemStyleBordered target:self
                                                                   action:@selector(doneClicked:)];
     [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
+    [keyboardDoneButtonView sizeToFit];
+    
     fBindPortTextField.inputAccessoryView = keyboardDoneButtonView;
     fUploadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
     fDownloadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
@@ -377,21 +391,15 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     NSLog(@"Keyboard will show");
-    
-    UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
-    [keyboardDoneButtonView sizeToFit];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                   style:UIBarButtonItemStyleBordered target:self
-                                                                  action:@selector(doneClicked:)];
-    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
-    fBindPortTextField.inputAccessoryView = keyboardDoneButtonView;
-    fUploadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
-    fDownloadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
 }
 
 - (IBAction)doneClicked:(id)sender
 {
     NSLog(@"Done Clicked.");
+    
+    [fBindPortTextField resignFirstResponder];
+    [fUploadSpeedLimitField resignFirstResponder];
+    [fDownloadSpeedLimitField resignFirstResponder];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
