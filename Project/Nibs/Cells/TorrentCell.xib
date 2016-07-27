@@ -72,7 +72,6 @@
                     <constraint firstItem="9" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="12" id="wjv-mS-QVL"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <gestureRecognizers/>
             <connections>
                 <outlet property="controlButton" destination="14" id="15"/>
