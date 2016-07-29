@@ -74,5 +74,6 @@ Credits
 - [ioshomebrew](https://github.com/ioshomebrew)
 - [fopino](https://github.com/fopino)
 - [heavenly-awker](https://github.com/heavenly-awker)
+- [Bilibili](https://github.com/Bilibili/ijkplayer)
 
 Mail me if I missed somebody.

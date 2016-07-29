@@ -240,6 +240,25 @@ function do_transmission {
 	popd
 }
 
+function do_ijkplayer {
+    if [ ! -e "ijkplayer-ios" ]
+    then
+        git clone https://github.com/Bilibili/ijkplayer.git ijkplayer-ios
+    fi
+
+    cd ijkplayer-ios
+
+#do_export
+
+    ./init-ios.sh
+
+    cd ios
+    ./compile-ffmpeg.sh clean
+    ./compile-ffmpeg.sh all
+
+    cd ..
+}
+
 do_loadenv
 
 while getopts ":o:a:ne" opt; do
@@ -268,9 +287,10 @@ while getopts ":o:a:ne" opt; do
 done
 
 mkdir -p ${TEMP_DIR}
-do_openssl
-do_curl
-do_libevent
-do_transmission
+#do_openssl
+#do_curl
+#do_libevent
+#do_transmission
+do_ijkplayer
 
 done

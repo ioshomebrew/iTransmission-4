@@ -38,6 +38,10 @@
 		3A1C03B01D0CE2AE005EB2A5 /* ALAlertBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C03AD1D0CE2AE005EB2A5 /* ALAlertBanner.m */; };
 		3A1C03B11D0CE2AE005EB2A5 /* ALAlertBannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C03AF1D0CE2AE005EB2A5 /* ALAlertBannerManager.m */; };
 		3A3DCF921D150A8800F84299 /* postinst in Resources */ = {isa = PBXBuildFile; fileRef = 3A3DCF911D150A8800F84299 /* postinst */; };
+		3A3E0B371D4BCED5003FC827 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3E0B361D4BCED5003FC827 /* libbz2.tbd */; };
+		3A3E0B391D4BCEDD003FC827 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3E0B381D4BCEDD003FC827 /* libz.tbd */; };
+		3A3E0B3B1D4BCEEF003FC827 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3E0B3A1D4BCEEF003FC827 /* MobileCoreServices.framework */; };
+		3A3E0B3D1D4BCF08003FC827 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3E0B3C1D4BCF08003FC827 /* VideoToolbox.framework */; };
 		3A4483821D0A12E500786CD3 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483811D0A12E500786CD3 /* GoogleMobileAds.framework */; };
 		3A4483841D0A190A00786CD3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483831D0A190A00786CD3 /* AudioToolbox.framework */; };
 		3A4483861D0A199000786CD3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483851D0A199000786CD3 /* CoreMedia.framework */; };
@@ -184,6 +188,10 @@
 		3A1C03AE1D0CE2AE005EB2A5 /* ALAlertBannerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAlertBannerManager.h; sourceTree = "<group>"; };
 		3A1C03AF1D0CE2AE005EB2A5 /* ALAlertBannerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAlertBannerManager.m; sourceTree = "<group>"; };
 		3A3DCF911D150A8800F84299 /* postinst */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = postinst; path = DEBIAN/postinst; sourceTree = "<group>"; };
+		3A3E0B361D4BCED5003FC827 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		3A3E0B381D4BCEDD003FC827 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		3A3E0B3A1D4BCEEF003FC827 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		3A3E0B3C1D4BCF08003FC827 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		3A4483811D0A12E500786CD3 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		3A4483831D0A190A00786CD3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3A4483851D0A199000786CD3 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -355,6 +363,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A3E0B3D1D4BCF08003FC827 /* VideoToolbox.framework in Frameworks */,
+				3A3E0B3B1D4BCEEF003FC827 /* MobileCoreServices.framework in Frameworks */,
+				3A3E0B391D4BCEDD003FC827 /* libz.tbd in Frameworks */,
+				3A3E0B371D4BCED5003FC827 /* libbz2.tbd in Frameworks */,
 				3AEB70E91D4738C400F39D15 /* CoreVideo.framework in Frameworks */,
 				3AEB70E71D4738B500F39D15 /* CoreMotion.framework in Frameworks */,
 				3AEB70E51D4738AF00F39D15 /* OpenGLES.framework in Frameworks */,
@@ -409,6 +421,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A3E0B3C1D4BCF08003FC827 /* VideoToolbox.framework */,
+				3A3E0B3A1D4BCEEF003FC827 /* MobileCoreServices.framework */,
+				3A3E0B381D4BCEDD003FC827 /* libz.tbd */,
+				3A3E0B361D4BCED5003FC827 /* libbz2.tbd */,
 				3AEB70E81D4738C400F39D15 /* CoreVideo.framework */,
 				3AEB70E61D4738B500F39D15 /* CoreMotion.framework */,
 				3AEB70E41D4738AF00F39D15 /* OpenGLES.framework */,
