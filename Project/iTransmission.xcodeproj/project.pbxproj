@@ -37,7 +37,6 @@
 		23ACED151D04F99A00B76404 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23ACED141D04F99A00B76404 /* Launch Screen.storyboard */; };
 		3A1C03B01D0CE2AE005EB2A5 /* ALAlertBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C03AD1D0CE2AE005EB2A5 /* ALAlertBanner.m */; };
 		3A1C03B11D0CE2AE005EB2A5 /* ALAlertBannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C03AF1D0CE2AE005EB2A5 /* ALAlertBannerManager.m */; };
-		3A3DCF921D150A8800F84299 /* postinst in Resources */ = {isa = PBXBuildFile; fileRef = 3A3DCF911D150A8800F84299 /* postinst */; };
 		3A3E0B371D4BCED5003FC827 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3E0B361D4BCED5003FC827 /* libbz2.tbd */; };
 		3A3E0B391D4BCEDD003FC827 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3E0B381D4BCEDD003FC827 /* libz.tbd */; };
 		3A3E0B3B1D4BCEEF003FC827 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3E0B3A1D4BCEEF003FC827 /* MobileCoreServices.framework */; };
@@ -55,6 +54,7 @@
 		3A4483961D0A1AE300786CD3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483951D0A1AE300786CD3 /* StoreKit.framework */; };
 		3A4483981D0A1B0000786CD3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483971D0A1B0000786CD3 /* MediaPlayer.framework */; };
 		3A65BF971D4BDD38007B00EF /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A65BF961D4BDD38007B00EF /* IJKMediaFramework.framework */; };
+		3A7D2FA31D4D6B8F00876250 /* IJKMediaFramework.framework in Resources */ = {isa = PBXBuildFile; fileRef = 3A7D2FA21D4D6B8F00876250 /* IJKMediaFramework.framework */; };
 		3AE8C5BA1D14DB98006B78A3 /* phone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AE8C5B91D14DB98006B78A3 /* phone.mp3 */; };
 		3AEB70E31D4738A400F39D15 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E21D4738A400F39D15 /* GLKit.framework */; };
 		3AEB70E51D4738AF00F39D15 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E41D4738AF00F39D15 /* OpenGLES.framework */; };
@@ -221,6 +221,7 @@
 		3A4483971D0A1B0000786CD3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3A65BF8D1D4BDCDC007B00EF /* IJKMediaDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IJKMediaDemo.xcodeproj; path = "ijkplayer-ios/ios/IJKMediaDemo/IJKMediaDemo.xcodeproj"; sourceTree = "<group>"; };
 		3A65BF961D4BDD38007B00EF /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IJKMediaFramework.framework; path = "ijkplayer-ios/ios/IJKMediaPlayer/build/Debug-iphoneos/IJKMediaFramework.framework"; sourceTree = "<group>"; };
+		3A7D2FA21D4D6B8F00876250 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
 		3A887B831D14E6BE0041327D /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3A887B8E1D14F5F70041327D /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = control; path = DEBIAN/control; sourceTree = "<group>"; };
 		3AE8C5B91D14DB98006B78A3 /* phone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = phone.mp3; sourceTree = "<group>"; };
@@ -424,6 +425,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3A7D2FA21D4D6B8F00876250 /* IJKMediaFramework.framework */,
 				3A65BF8D1D4BDCDC007B00EF /* IJKMediaDemo.xcodeproj */,
 				3A887B8D1D14F5D30041327D /* DEBIAN */,
 				3A887B831D14E6BE0041327D /* Entitlements.plist */,
@@ -795,6 +797,16 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		3A7D2F9A1D4D342500876250 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		8981243218884D2900DB955B /* iTransmission */ = {
 			isa = PBXNativeTarget;
@@ -803,6 +815,7 @@
 				8981243318884D2900DB955B /* Resources */,
 				8981246E18884D2900DB955B /* Sources */,
 				8981249E18884D2900DB955B /* Frameworks */,
+				3A7D2F9A1D4D342500876250 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -826,6 +839,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 					};
 					8981243218884D2900DB955B = {
+						DevelopmentTeam = 734RX4L58H;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -943,9 +957,9 @@
 				895A74F918D9CB8A00561CD6 /* BandwidthController.xib in Resources */,
 				895A74FE18D9CB8A00561CD6 /* PrefViewController.xib in Resources */,
 				895A750118D9CB8A00561CD6 /* TorrentViewController_iPad.xib in Resources */,
+				3A7D2FA31D4D6B8F00876250 /* IJKMediaFramework.framework in Resources */,
 				895A750718D9CF9B00561CD6 /* Images.xcassets in Resources */,
 				895A749818D9CB7E00561CD6 /* cell-background.png in Resources */,
-				3A3DCF921D150A8800F84299 /* postinst in Resources */,
 				895A749518D9CB7E00561CD6 /* blackArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -964,7 +978,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/mkdir -p $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R $CONFIGURATION_BUILD_DIR/iTransmission.app $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R DEBIAN $CONFIGURATION_BUILD_DIR\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app.dSYM\n/opt/local/bin/dpkg-deb -b -Zgzip $CONFIGURATION_BUILD_DIR\n/bin/cp -R $CONFIGURATION_BUILD_DIR/Applications/iTransmission.app $CONFIGURATION_BUILD_DIR/iTransmission.app";
+			shellScript = "/bin/mkdir -p $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R $CONFIGURATION_BUILD_DIR/iTransmission.app $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R DEBIAN $CONFIGURATION_BUILD_DIR\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app.dSYM\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/IJKMediaDemo.app\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/IJKMediaDemo.app.dSYM\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/IJKMediaFramework.framework\n/opt/local/bin/dpkg-deb -b -Zgzip $CONFIGURATION_BUILD_DIR\n/bin/cp -R $CONFIGURATION_BUILD_DIR/Applications/iTransmission.app $CONFIGURATION_BUILD_DIR/iTransmission.app";
 		};
 		7471DD03126F27D300CB0653 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1193,7 +1207,10 @@
 				GCC_PREFIX_HEADER = "Other Sources/iTransmission_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/include/**";
+				HEADER_SEARCH_PATHS = (
+					"../Compilation/out/$(CURRENT_ARCH)/include/**",
+					"../Compilation/ijkplayer-ios/ios/IJKMediaDemo/IJKMediaDemo/**",
+				);
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
@@ -1246,7 +1263,10 @@
 				GCC_PREFIX_HEADER = "Other Sources/iTransmission_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/include/**";
+				HEADER_SEARCH_PATHS = (
+					"../Compilation/out/$(CURRENT_ARCH)/include/**",
+					"../Compilation/ijkplayer-ios/ios/IJKMediaDemo/IJKMediaDemo/**",
+				);
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
@@ -1300,7 +1320,10 @@
 				GCC_PREFIX_HEADER = "Other Sources/iTransmission_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/include/**";
+				HEADER_SEARCH_PATHS = (
+					"../Compilation/out/$(CURRENT_ARCH)/include/**",
+					"../Compilation/ijkplayer-ios/ios/IJKMediaDemo/IJKMediaDemo/**",
+				);
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";

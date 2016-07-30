@@ -263,7 +263,12 @@ function do_libb64
 {
     pushd ${TEMP_DIR}
 
-    pushd libb64-1.2
+    if [ ! -e "libb64-git" ]
+    then
+        git clone git://git.code.sf.net/p/libb64/git libb64-git
+    fi
+
+    pushd libb64-git
 
     do_export
 
@@ -309,11 +314,9 @@ while getopts ":o:a:ne" opt; do
 done
 
 mkdir -p ${TEMP_DIR}
-do_ijkplayer
+#do_ijkplayer
 do_openssl
 do_curl
 do_libevent
 do_transmission
 do_libb64
-
-done

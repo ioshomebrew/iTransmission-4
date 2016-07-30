@@ -155,7 +155,8 @@
         self.docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:p]];
         self.docController.delegate = self;
         FileListCell *cell = (FileListCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-        [self.docController presentOpenInMenuFromRect:CGRectMake(0.0, 0.0, cell.contentView.frame.size.width, 20.0) inView:cell.contentView animated:YES];
+        //[self.docController presentOpenInMenuFromRect:CGRectMake(0.0, 0.0, cell.contentView.frame.size.width, 20.0) inView:cell.contentView animated:YES];
+        [self.docController presentPreviewAnimated:YES];
     }else {
         if (![self.torrent canChangeDownloadCheckForFiles:node.indexes]) {
             NSLog(@"[torrent canChangeDownloadCheckForFiles] returned false");
@@ -174,6 +175,11 @@
         
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
+    
+}
+
+- (void)playVideo:(NSString *)url
+{
     
 }
 
