@@ -250,8 +250,6 @@ static void signal_handler(int sig) {
 	tr_variantDictAddBool(&settings, TR_KEY_blocklist_enabled, [fDefaults boolForKey: @"Blocklist"]);
 	tr_variantDictAddBool(&settings, TR_KEY_dht_enabled, [fDefaults boolForKey: @"DHTGlobal"]);
 	tr_variantDictAddStr(&settings, TR_KEY_download_dir, [[self defaultDownloadDir] cStringUsingEncoding:NSASCIIStringEncoding]);
-	tr_variantDictAddStr(&settings, TR_KEY_download_dir, [[[fDefaults stringForKey: @"DownloadFolder"]
-															  stringByExpandingTildeInPath] UTF8String]);
 	tr_variantDictAddStr(&settings, TR_KEY_incomplete_dir, [[[fDefaults stringForKey: @"IncompleteDownloadFolder"]
 																stringByExpandingTildeInPath] UTF8String]);
 	tr_variantDictAddBool(&settings, TR_KEY_incomplete_dir_enabled, [fDefaults boolForKey: @"UseIncompleteDownloadFolder"]);
@@ -301,7 +299,7 @@ static void signal_handler(int sig) {
                           [NSLocalizedString(@"GB", "Memory size - gigabytes") UTF8String],
                           [NSLocalizedString(@"TB", "Memory size - terabytes") UTF8String]);
 	
-	fLib = tr_sessionInit("macosx", [[self configDir] cStringUsingEncoding:NSASCIIStringEncoding], YES, &settings);
+	fLib = tr_sessionInit([[self configDir] cStringUsingEncoding:NSASCIIStringEncoding], YES, &settings);
 	tr_variantFree(&settings);
     
     NSString *webDir = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"web"];
@@ -395,29 +393,11 @@ static void signal_handler(int sig) {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     return documentsDirectory;
-    
-    // I want iTunes backup & restore features. 
-//    NSError *error = nil;
-//#if TARGET_IPHONE_SIMULATOR
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    return documentsDirectory;
-//#else
-//    NSString *documentsDirectoryOutsideSandbox = @"/var/mobile/iTransmission/";
-//    if ([[NSFileManager defaultManager] createDirectoryAtPath:documentsDirectoryOutsideSandbox withIntermediateDirectories:YES attributes:nil error:&error]) {
-//        return documentsDirectoryOutsideSandbox;
-//    }
-//    else {
-//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//        NSString *documentsDirectory = [paths objectAtIndex:0];
-//        return documentsDirectory;
-//    }
-//#endif
 }
 
 - (NSString*)defaultDownloadDir
 {
-    return [[self documentsDirectory] stringByAppendingPathComponent:@"torrents"];
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"downloads"];
 }
 
 - (NSString*)transferPlist

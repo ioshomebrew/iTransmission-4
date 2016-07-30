@@ -109,7 +109,7 @@ function do_openssl {
 	if [[ "${ARCH}" == "x86_64" ]]; then
 		./Configure darwin64-x86_64-cc --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
 	else
-		./Configure iphoneos-cross --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
+		./Configure iphoneos-cross enable-base64 --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
 	fi
 	
 	# Patch for iOS, taken from https://github.com/st3fan/ios-openssl/blame/master/build.sh
@@ -151,7 +151,7 @@ function do_curl {
 	
 	do_export
 
-	./configure --prefix="${BUILD_DIR}" ${COMMON_OPTIONS} --with-random=/dev/urandom --with-ssl --with-zlib LDFLAGS="${LDFLAGS}" || do_abort "$FUNCNAME: configure failed "
+	./configure --prefix="${BUILD_DIR}" ${COMMON_OPTIONS} --with-random=/dev/urandom --with-ssl --with-zlib --disable-ldap --without-libidn LDFLAGS="${LDFLAGS}" || do_abort "$FUNCNAME: configure failed "
 	
 	make -j ${PARALLEL_NUM} || do_abort "$FUNCNAME: make failed "
 	make install || do_abort "$FUNCNAME: install failed "
@@ -259,6 +259,28 @@ function do_ijkplayer {
     cd ..
 }
 
+function do_libb64
+{
+    pushd ${TEMP_DIR}
+
+    pushd libb64-1.2
+
+    do_export
+
+    make clean
+    make
+
+    pushd src
+    cp libb64.a ../../../out/${ARCH}/lib
+    popd
+    pushd include
+    cp -R b64 ../../../out/${ARCH}/include
+    popd
+
+    popd
+    popd
+}
+
 do_loadenv
 
 while getopts ":o:a:ne" opt; do
@@ -287,10 +309,11 @@ while getopts ":o:a:ne" opt; do
 done
 
 mkdir -p ${TEMP_DIR}
-#do_openssl
-#do_curl
-#do_libevent
-#do_transmission
 do_ijkplayer
+do_openssl
+do_curl
+do_libevent
+do_transmission
+do_libb64
 
 done

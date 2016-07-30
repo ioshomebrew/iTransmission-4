@@ -54,6 +54,7 @@
 		3A4483941D0A1AD500786CD3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483931D0A1AD500786CD3 /* MessageUI.framework */; };
 		3A4483961D0A1AE300786CD3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483951D0A1AE300786CD3 /* StoreKit.framework */; };
 		3A4483981D0A1B0000786CD3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483971D0A1B0000786CD3 /* MediaPlayer.framework */; };
+		3A65BF971D4BDD38007B00EF /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A65BF961D4BDD38007B00EF /* IJKMediaFramework.framework */; };
 		3AE8C5BA1D14DB98006B78A3 /* phone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AE8C5B91D14DB98006B78A3 /* phone.mp3 */; };
 		3AEB70E31D4738A400F39D15 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E21D4738A400F39D15 /* GLKit.framework */; };
 		3AEB70E51D4738AF00F39D15 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E41D4738AF00F39D15 /* OpenGLES.framework */; };
@@ -161,6 +162,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3A65BF921D4BDCDD007B00EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A65BF8D1D4BDCDC007B00EF /* IJKMediaDemo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E6903EFC17EAF70200CFD954;
+			remoteInfo = IJKMediaDemo;
+		};
+		3A65BF981D4BDD48007B00EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A65BF8D1D4BDCDC007B00EF /* IJKMediaDemo.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E6903EFB17EAF70200CFD954;
+			remoteInfo = IJKMediaDemo;
+		};
 		3A887B8A1D14F4230041327D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -204,6 +219,8 @@
 		3A4483931D0A1AD500786CD3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3A4483951D0A1AE300786CD3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3A4483971D0A1B0000786CD3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3A65BF8D1D4BDCDC007B00EF /* IJKMediaDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IJKMediaDemo.xcodeproj; path = "ijkplayer-ios/ios/IJKMediaDemo/IJKMediaDemo.xcodeproj"; sourceTree = "<group>"; };
+		3A65BF961D4BDD38007B00EF /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IJKMediaFramework.framework; path = "ijkplayer-ios/ios/IJKMediaPlayer/build/Debug-iphoneos/IJKMediaFramework.framework"; sourceTree = "<group>"; };
 		3A887B831D14E6BE0041327D /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3A887B8E1D14F5F70041327D /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = control; path = DEBIAN/control; sourceTree = "<group>"; };
 		3AE8C5B91D14DB98006B78A3 /* phone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = phone.mp3; sourceTree = "<group>"; };
@@ -363,6 +380,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A65BF971D4BDD38007B00EF /* IJKMediaFramework.framework in Frameworks */,
 				3A3E0B3D1D4BCF08003FC827 /* VideoToolbox.framework in Frameworks */,
 				3A3E0B3B1D4BCEEF003FC827 /* MobileCoreServices.framework in Frameworks */,
 				3A3E0B391D4BCEDD003FC827 /* libz.tbd in Frameworks */,
@@ -406,6 +424,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3A65BF8D1D4BDCDC007B00EF /* IJKMediaDemo.xcodeproj */,
 				3A887B8D1D14F5D30041327D /* DEBIAN */,
 				3A887B831D14E6BE0041327D /* Entitlements.plist */,
 				895A74E318D9CB8900561CD6 /* Nibs */,
@@ -421,6 +440,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A65BF961D4BDD38007B00EF /* IJKMediaFramework.framework */,
 				3A3E0B3C1D4BCF08003FC827 /* VideoToolbox.framework */,
 				3A3E0B3A1D4BCEEF003FC827 /* MobileCoreServices.framework */,
 				3A3E0B381D4BCEDD003FC827 /* libz.tbd */,
@@ -463,6 +483,14 @@
 				3A1C03AF1D0CE2AE005EB2A5 /* ALAlertBannerManager.m */,
 			);
 			path = ALAlertBanner;
+			sourceTree = "<group>";
+		};
+		3A65BF8E1D4BDCDC007B00EF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A65BF931D4BDCDD007B00EF /* IJKMediaDemo.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		3A887B8D1D14F5D30041327D /* DEBIAN */ = {
@@ -779,6 +807,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3A65BF991D4BDD48007B00EF /* PBXTargetDependency */,
 			);
 			name = iTransmission;
 			productName = iTransmission;
@@ -825,6 +854,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3A65BF8E1D4BDCDC007B00EF /* Products */;
+					ProjectRef = 3A65BF8D1D4BDCDC007B00EF /* IJKMediaDemo.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8981243218884D2900DB955B /* iTransmission */,
@@ -833,6 +868,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3A65BF931D4BDCDD007B00EF /* IJKMediaDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = IJKMediaDemo.app;
+			remoteRef = 3A65BF921D4BDCDD007B00EF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8981243318884D2900DB955B /* Resources */ = {
@@ -982,6 +1027,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3A65BF991D4BDD48007B00EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = IJKMediaDemo;
+			targetProxy = 3A65BF981D4BDD48007B00EF /* PBXContainerItemProxy */;
+		};
 		3A887B8B1D14F4230041327D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8981243218884D2900DB955B /* iTransmission */;
@@ -1134,6 +1184,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Source",
+					"$(PROJECT_DIR)/ijkplayer-ios/ios/IJKMediaPlayer/build/Debug-iphoneos",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
@@ -1142,11 +1193,11 @@
 				GCC_PREFIX_HEADER = "Other Sources/iTransmission_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
+				HEADER_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/include/**";
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "Libraries/lib/**";
+				LIBRARY_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/lib/**";
 				OTHER_LDFLAGS = (
 					"-ltransmission",
 					"-levent",
@@ -1160,13 +1211,14 @@
 					"-liconv",
 					"-fobjc-arc",
 					"-lutp",
+					"-lb64",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ioshomebrew.itransmission;
 				PRODUCT_NAME = iTransmission;
 				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
+				USER_HEADER_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/include/**";
 			};
 			name = Debug;
 		};
@@ -1187,17 +1239,18 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Source",
+					"$(PROJECT_DIR)/ijkplayer-ios/ios/IJKMediaPlayer/build/Debug-iphoneos",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Other Sources/iTransmission_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
+				HEADER_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/include/**";
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "Libraries/lib/**";
+				LIBRARY_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/lib/**";
 				OTHER_LDFLAGS = (
 					"-ltransmission",
 					"-levent",
@@ -1211,13 +1264,14 @@
 					"-liconv",
 					"-fobjc-arc",
 					"-lutp",
+					"-lb64",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ioshomebrew.itransmission;
 				PRODUCT_NAME = iTransmission;
 				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
+				USER_HEADER_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/include/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1239,17 +1293,18 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Source",
+					"$(PROJECT_DIR)/ijkplayer-ios/ios/IJKMediaPlayer/build/Debug-iphoneos",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Other Sources/iTransmission_Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
+				HEADER_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/include/**";
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "Libraries/lib/**";
+				LIBRARY_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/lib/**";
 				OTHER_LDFLAGS = (
 					"-ltransmission",
 					"-levent",
@@ -1263,13 +1318,14 @@
 					"-liconv",
 					"-fobjc-arc",
 					"-lutp",
+					"-lb64",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ioshomebrew.itransmission;
 				PRODUCT_NAME = iTransmission;
 				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"Libraries/include/${CURRENT_ARCH}\"/**";
+				USER_HEADER_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/include/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;
