@@ -17,6 +17,8 @@
 @synthesize torrent = fTorrent;
 @synthesize tableView = fTableView;
 @synthesize docController = _docController;
+@synthesize path;
+@synthesize actionIndexPath;
 
 - (id)initWithTorrent:(Torrent*)t
 {
@@ -152,11 +154,78 @@
     NSLog(@"Path : %@",p);
     if ([[NSFileManager defaultManager] fileExistsAtPath:p]) {
         NSLog(@"OpenClicked");
-        self.docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:p]];
-        self.docController.delegate = self;
+        
+        NSString *msg = @"Would you like to use in-document viewer (beta) for this file?";
         FileListCell *cell = (FileListCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-        //[self.docController presentOpenInMenuFromRect:CGRectMake(0.0, 0.0, cell.contentView.frame.size.width, 20.0) inView:cell.contentView animated:YES];
-        [self.docController presentPreviewAnimated:YES];
+        switch ([self fileType:p]) {
+            case TYPE_VIDEO:
+            {
+                NSLog(@"Type video");
+                if([UIAlertController class])
+                {
+                    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:msg message:nil preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [self playVideo:p];
+                    }];
+                    [actionSheet addAction:yesAction];
+                    UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+                    {
+                        self.docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:p]];
+                        self.docController.delegate = self;
+                        [self.docController presentOpenInMenuFromRect:CGRectMake(0.0, 0.0, cell.contentView.frame.size.width, 20.0) inView:cell.contentView animated:YES];
+                    }];
+                    [actionSheet addAction:noAction];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                    [actionSheet addAction:cancelAction];
+                    [self presentViewController:actionSheet animated:YES completion:nil];
+                }
+                else
+                {
+                    self.path = p;
+                    self.actionIndexPath = indexPath;
+                    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Yes", @"No", nil];
+                    [actionSheet showFromRect:CGRectMake(0.0, 0.0, cell.contentView.frame.size.width, 20.0) inView:cell.contentView animated:YES];
+                }
+            }
+                break;
+                
+                case TYPE_AUDIO:
+            {
+                NSLog(@"Type audio");
+            }
+                break;
+                
+                case TYPE_PICTURE:
+            {
+                NSLog(@"Type picture");
+            }
+                break;
+                
+                case TYPE_TXT:
+            {
+                NSLog(@"Type txt");
+            }
+                break;
+                
+                case TYPE_PDF:
+            {
+                NSLog(@"Type pdf");
+            }
+                break;
+                
+                case TYPE_NULL:
+            {
+                NSLog(@"Unknown type");
+                self.docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:p]];
+                self.docController.delegate = self;
+                [self.docController presentOpenInMenuFromRect:CGRectMake(0.0, 0.0, cell.contentView.frame.size.width, 20.0) inView:cell.contentView animated:YES];
+            }
+                break;
+                
+            default:
+                break;
+        }
+
     }else {
         if (![self.torrent canChangeDownloadCheckForFiles:node.indexes]) {
             NSLog(@"[torrent canChangeDownloadCheckForFiles] returned false");
@@ -175,12 +244,119 @@
         
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
-    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+        {
+            NSLog(@"Yes");
+            switch ([self fileType:self.path]) {
+                case TYPE_VIDEO:
+                {
+                    NSLog(@"Type video");
+                    [self playVideo:self.path];
+                }
+                    break;
+                    
+                    case TYPE_AUDIO:
+                {
+                    NSLog(@"Type audio");
+                    [self playAudio:self.path];
+                }
+                    break;
+                    
+                    case TYPE_PICTURE:
+                {
+                    NSLog(@"Type picture");
+                }
+                    break;
+                    
+                    case TYPE_TXT:
+                {
+                    NSLog(@"Type txt");
+                }
+                    break;
+                    
+                    case TYPE_PDF:
+                {
+                    NSLog(@"Type pdf");
+                }
+                    break;
+                default:
+                    break;
+            }
+        }
+        break;
+            
+        case 1:
+        {
+            NSLog(@"No");
+            FileListCell *cell = (FileListCell*)[self.tableView cellForRowAtIndexPath:self.actionIndexPath];
+            self.docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:self.path]];
+            self.docController.delegate = self;
+            [self.docController presentOpenInMenuFromRect:CGRectMake(0.0, 0.0, cell.contentView.frame.size.width, 20.0) inView:cell.contentView animated:YES];
+        }
+        break;
+        
+        default:
+            break;
+    }
 }
 
 - (void)playVideo:(NSString *)url
 {
+    NSLog(@"Play video: %@", url);
+}
+
+- (FileType)fileType:(NSString *)url
+{
+    NSArray *audioTypes = [NSArray arrayWithObjects:@"mp3", @"aac", @"adts", @"ac3", @"aif", @"aiff", @"aifc", @"caf", @"m4a", @"snd", @"au", @"sd2", @"wav", nil];
+    NSArray *videoTypes = [NSArray arrayWithObjects:@"avi", @"mp4", @"fla", @"wmv", @"mkv", @"mov", @"mpg", @"m4v", nil];
+    NSArray *imageTypes = [NSArray arrayWithObjects:@"tiff", @"jpeg", @"jpg", @"gif", @"png", @"dib", @"ico", @"cur", @"xbm", nil];
+    NSString *extension = [url pathExtension];
     
+    // check for music
+    for(int i = 0; i < [audioTypes count]; i++)
+    {
+        if([audioTypes[i] compare:extension options:NSCaseInsensitiveSearch] == NSOrderedSame)
+        {
+            return TYPE_AUDIO;
+        }
+    }
+    
+    // check for video
+    for(int i = 0; i < [videoTypes count]; i++)
+    {
+        if([videoTypes[i] compare:extension options:NSCaseInsensitiveSearch] == NSOrderedSame)
+        {
+            return TYPE_VIDEO;
+        }
+    }
+    
+    // check for image
+    for(int i = 0; i < [videoTypes count]; i++)
+    {
+        if([imageTypes[i] compare:extension options:NSCaseInsensitiveSearch] == NSOrderedSame)
+        {
+            return TYPE_PICTURE;
+        }
+    }
+    
+    // check for pdf
+    if([extension compare:@"pdf" options:NSCaseInsensitiveSearch] == NSOrderedSame)
+    {
+        return TYPE_PDF;
+    }
+    
+    // check for txt
+    if([extension compare:@"txt" options:NSCaseInsensitiveSearch] == NSOrderedSame)
+    {
+        return TYPE_TXT;
+    }
+    
+    return TYPE_NULL;
 }
 
 - (void)updateUI
@@ -201,6 +377,52 @@
 
 #pragma mark -
 #pragma mark UIDocumentInteractionControllerDelegate methods
+
+- (void) documentInteractionControllerWillPresentOpenInMenu:(UIDocumentInteractionController *)controller
+{
+    NSLog(@"Test");
+    // check for filetype
+    switch ([self fileType:[controller.URL absoluteString]]) {
+        case TYPE_VIDEO:
+        {
+            NSLog(@"Type video");
+        }
+        break;
+        
+        case TYPE_AUDIO:
+        {
+            NSLog(@"Type audio");
+        }
+        break;
+            
+        case TYPE_PICTURE:
+        {
+            NSLog(@"Type picture");
+        }
+        break;
+            
+        case TYPE_TXT:
+        {
+            NSLog(@"Type txt");
+        }
+        break;
+            
+        case TYPE_PDF:
+        {
+            NSLog(@"Type pdf");
+        }
+        break;
+            
+        case TYPE_NULL:
+        {
+            NSLog(@"Unknown type");
+        }
+        break;
+            
+        default:
+            break;
+    }
+}
 
 - (void) documentInteractionController:(UIDocumentInteractionController *)controller willBeginSendingToApplication:(NSString *)application {
 	

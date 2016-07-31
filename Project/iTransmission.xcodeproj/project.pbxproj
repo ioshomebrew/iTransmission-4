@@ -55,6 +55,15 @@
 		3A4483981D0A1B0000786CD3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4483971D0A1B0000786CD3 /* MediaPlayer.framework */; };
 		3A65BF971D4BDD38007B00EF /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A65BF961D4BDD38007B00EF /* IJKMediaFramework.framework */; };
 		3A7D2FA31D4D6B8F00876250 /* IJKMediaFramework.framework in Resources */ = {isa = PBXBuildFile; fileRef = 3A7D2FA21D4D6B8F00876250 /* IJKMediaFramework.framework */; };
+		3A7D2FAD1D4D9C7F00876250 /* IJKMoviePlayerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A7D2FAA1D4D9C7F00876250 /* IJKMoviePlayerViewController.h */; };
+		3A7D2FAE1D4D9C7F00876250 /* IJKMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2FAB1D4D9C7F00876250 /* IJKMoviePlayerViewController.m */; };
+		3A7D2FAF1D4D9C7F00876250 /* IJKMoviePlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A7D2FAC1D4D9C7F00876250 /* IJKMoviePlayerViewController.xib */; };
+		3A7D2FB31D4D9CA000876250 /* IJKCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A7D2FB01D4D9CA000876250 /* IJKCommon.h */; };
+		3A7D2FB41D4D9CA000876250 /* IJKDemoHistory.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A7D2FB11D4D9CA000876250 /* IJKDemoHistory.h */; };
+		3A7D2FB51D4D9CA000876250 /* IJKDemoHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2FB21D4D9CA000876250 /* IJKDemoHistory.m */; };
+		3A7D2FB71D4D9CEE00876250 /* MoviePlayerImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A7D2FB61D4D9CEE00876250 /* MoviePlayerImages.xcassets */; };
+		3A7D2FBA1D4D9D4600876250 /* IJKMediaControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A7D2FB81D4D9D4600876250 /* IJKMediaControl.h */; };
+		3A7D2FBB1D4D9D4600876250 /* IJKMediaControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2FB91D4D9D4600876250 /* IJKMediaControl.m */; };
 		3AE8C5BA1D14DB98006B78A3 /* phone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AE8C5B91D14DB98006B78A3 /* phone.mp3 */; };
 		3AEB70E31D4738A400F39D15 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E21D4738A400F39D15 /* GLKit.framework */; };
 		3AEB70E51D4738AF00F39D15 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E41D4738AF00F39D15 /* OpenGLES.framework */; };
@@ -222,6 +231,15 @@
 		3A65BF8D1D4BDCDC007B00EF /* IJKMediaDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IJKMediaDemo.xcodeproj; path = "ijkplayer-ios/ios/IJKMediaDemo/IJKMediaDemo.xcodeproj"; sourceTree = "<group>"; };
 		3A65BF961D4BDD38007B00EF /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IJKMediaFramework.framework; path = "ijkplayer-ios/ios/IJKMediaPlayer/build/Debug-iphoneos/IJKMediaFramework.framework"; sourceTree = "<group>"; };
 		3A7D2FA21D4D6B8F00876250 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		3A7D2FAA1D4D9C7F00876250 /* IJKMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKMoviePlayerViewController.h; sourceTree = "<group>"; };
+		3A7D2FAB1D4D9C7F00876250 /* IJKMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKMoviePlayerViewController.m; sourceTree = "<group>"; };
+		3A7D2FAC1D4D9C7F00876250 /* IJKMoviePlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IJKMoviePlayerViewController.xib; sourceTree = "<group>"; };
+		3A7D2FB01D4D9CA000876250 /* IJKCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKCommon.h; sourceTree = "<group>"; };
+		3A7D2FB11D4D9CA000876250 /* IJKDemoHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKDemoHistory.h; sourceTree = "<group>"; };
+		3A7D2FB21D4D9CA000876250 /* IJKDemoHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKDemoHistory.m; sourceTree = "<group>"; };
+		3A7D2FB61D4D9CEE00876250 /* MoviePlayerImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MoviePlayerImages.xcassets; sourceTree = "<group>"; };
+		3A7D2FB81D4D9D4600876250 /* IJKMediaControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKMediaControl.h; sourceTree = "<group>"; };
+		3A7D2FB91D4D9D4600876250 /* IJKMediaControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKMediaControl.m; sourceTree = "<group>"; };
 		3A887B831D14E6BE0041327D /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3A887B8E1D14F5F70041327D /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = control; path = DEBIAN/control; sourceTree = "<group>"; };
 		3AE8C5B91D14DB98006B78A3 /* phone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = phone.mp3; sourceTree = "<group>"; };
@@ -568,6 +586,14 @@
 		895A732618D9CB6E00561CD6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3A7D2FB81D4D9D4600876250 /* IJKMediaControl.h */,
+				3A7D2FB91D4D9D4600876250 /* IJKMediaControl.m */,
+				3A7D2FB01D4D9CA000876250 /* IJKCommon.h */,
+				3A7D2FB11D4D9CA000876250 /* IJKDemoHistory.h */,
+				3A7D2FB21D4D9CA000876250 /* IJKDemoHistory.m */,
+				3A7D2FAA1D4D9C7F00876250 /* IJKMoviePlayerViewController.h */,
+				3A7D2FAB1D4D9C7F00876250 /* IJKMoviePlayerViewController.m */,
+				3A7D2FAC1D4D9C7F00876250 /* IJKMoviePlayerViewController.xib */,
 				895A732718D9CB6E00561CD6 /* BandwidthController.h */,
 				895A732818D9CB6E00561CD6 /* BandwidthController.m */,
 				895A732918D9CB6E00561CD6 /* Controller.h */,
@@ -695,6 +721,7 @@
 		895A73C518D9CB7D00561CD6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3A7D2FB61D4D9CEE00876250 /* MoviePlayerImages.xcassets */,
 				3AE8C5B91D14DB98006B78A3 /* phone.mp3 */,
 				895A740418D9CB7E00561CD6 /* Photo Components */,
 				895A741F18D9CB7E00561CD6 /* Regex */,
@@ -802,6 +829,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A7D2FB31D4D9CA000876250 /* IJKCommon.h in Headers */,
+				3A7D2FAD1D4D9C7F00876250 /* IJKMoviePlayerViewController.h in Headers */,
+				3A7D2FBA1D4D9D4600876250 /* IJKMediaControl.h in Headers */,
+				3A7D2FB41D4D9CA000876250 /* IJKDemoHistory.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -902,6 +933,7 @@
 				895A74F618D9CB8A00561CD6 /* FileListCell.xib in Resources */,
 				895A74A118D9CB7E00561CD6 /* gear-icon@2x.png in Resources */,
 				895A74A318D9CB7E00561CD6 /* grayArrow@2x.png in Resources */,
+				3A7D2FB71D4D9CEE00876250 /* MoviePlayerImages.xcassets in Resources */,
 				895A74F818D9CB8A00561CD6 /* TrackerCell.xib in Resources */,
 				895A73A918D9CB6F00561CD6 /* bannerNotify.png in Resources */,
 				23ACED151D04F99A00B76404 /* Launch Screen.storyboard in Resources */,
@@ -952,6 +984,7 @@
 				895A749B18D9CB7E00561CD6 /* donedown.png in Resources */,
 				895A73AA18D9CB6F00561CD6 /* bannerNotify@2x.png in Resources */,
 				895A74AD18D9CB7E00561CD6 /* url_ex in Resources */,
+				3A7D2FAF1D4D9C7F00876250 /* IJKMoviePlayerViewController.xib in Resources */,
 				895A74A418D9CB7E00561CD6 /* GreenDot.png in Resources */,
 				895A73C018D9CB6F00561CD6 /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
 				895A74F918D9CB8A00561CD6 /* BandwidthController.xib in Resources */,
@@ -1003,10 +1036,12 @@
 				895A739518D9CB6F00561CD6 /* TrackerCell.m in Sources */,
 				895A738F18D9CB6F00561CD6 /* NSDate+Helper.m in Sources */,
 				895A739F18D9CB6F00561CD6 /* TrackersViewController.m in Sources */,
+				3A7D2FBB1D4D9D4600876250 /* IJKMediaControl.m in Sources */,
 				895A73BB18D9CB6F00561CD6 /* SVWebViewController.m in Sources */,
 				895A739E18D9CB6F00561CD6 /* TorrentViewController.m in Sources */,
 				895A739918D9CB6F00561CD6 /* DetailViewController.m in Sources */,
 				895A738D18D9CB6F00561CD6 /* FileListCell.m in Sources */,
+				3A7D2FAE1D4D9C7F00876250 /* IJKMoviePlayerViewController.m in Sources */,
 				895A73AE18D9CB6F00561CD6 /* Torrent.m in Sources */,
 				895A739418D9CB6F00561CD6 /* TorrentCell.m in Sources */,
 				895A73B018D9CB6F00561CD6 /* FileListNode.m in Sources */,
@@ -1033,6 +1068,7 @@
 				895A73B718D9CB6F00561CD6 /* TransparentClickArea.m in Sources */,
 				3A1C03B11D0CE2AE005EB2A5 /* ALAlertBannerManager.m in Sources */,
 				895A739718D9CB6F00561CD6 /* BandwidthController.m in Sources */,
+				3A7D2FB51D4D9CA000876250 /* IJKDemoHistory.m in Sources */,
 				895A73B518D9CB6F00561CD6 /* ClipboardLabel.m in Sources */,
 				895A73C218D9CB6F00561CD6 /* SVWebViewControllerActivitySafari.m in Sources */,
 			);

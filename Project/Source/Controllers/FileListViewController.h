@@ -12,8 +12,18 @@
 #import "CheckboxControl.h"
 @class IJKMediaControl;
 
+typedef enum FileType
+{
+    TYPE_VIDEO,
+    TYPE_AUDIO,
+    TYPE_PICTURE,
+    TYPE_TXT,
+    TYPE_PDF,
+    TYPE_NULL,
+} FileType;
+
 @class Torrent, FileListCell;
-@interface FileListViewController : UIViewController <CheckboxControlDelegate,UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate>
+@interface FileListViewController : UIViewController <CheckboxControlDelegate,UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate, UIActionSheetDelegate>
 {
     Torrent *fTorrent;
     UITableView *fTableView;
@@ -23,9 +33,12 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) UIDocumentInteractionController *docController;
 @property (nonatomic, retain) NSTimer *updateTimer;
+@property (nonatomic, retain) NSString *path;
+@property (nonatomic, retain) NSIndexPath *actionIndexPath;
 
 - (id)initWithTorrent:(Torrent*)t;
 - (void)updateCell:(FileListCell*)cell;
+- (FileType)fileType:(NSString*)url;
 - (void)playVideo:(NSString*)url;
 - (void)playAudio:(NSString*)url;
 
