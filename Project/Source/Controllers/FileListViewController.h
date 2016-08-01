@@ -10,6 +10,7 @@
 #import <IJKMediaFramework/IJKMediaFramework.h>
 #import "IJKMoviePlayerViewController.h"
 #import "CheckboxControl.h"
+#import "AudioPlayer.h"
 @class IJKMediaControl;
 
 typedef enum FileType

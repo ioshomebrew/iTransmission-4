@@ -64,6 +64,9 @@
 		3A7D2FB71D4D9CEE00876250 /* MoviePlayerImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A7D2FB61D4D9CEE00876250 /* MoviePlayerImages.xcassets */; };
 		3A7D2FBA1D4D9D4600876250 /* IJKMediaControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A7D2FB81D4D9D4600876250 /* IJKMediaControl.h */; };
 		3A7D2FBB1D4D9D4600876250 /* IJKMediaControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2FB91D4D9D4600876250 /* IJKMediaControl.m */; };
+		3A7D2FC11D4EB6C500876250 /* AudioPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A7D2FBE1D4EB6C500876250 /* AudioPlayer.h */; };
+		3A7D2FC21D4EB6C500876250 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2FBF1D4EB6C500876250 /* AudioPlayer.m */; };
+		3A7D2FC31D4EB6C500876250 /* AudioPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A7D2FC01D4EB6C500876250 /* AudioPlayer.xib */; };
 		3AE8C5BA1D14DB98006B78A3 /* phone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AE8C5B91D14DB98006B78A3 /* phone.mp3 */; };
 		3AEB70E31D4738A400F39D15 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E21D4738A400F39D15 /* GLKit.framework */; };
 		3AEB70E51D4738AF00F39D15 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E41D4738AF00F39D15 /* OpenGLES.framework */; };
@@ -240,6 +243,9 @@
 		3A7D2FB61D4D9CEE00876250 /* MoviePlayerImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MoviePlayerImages.xcassets; sourceTree = "<group>"; };
 		3A7D2FB81D4D9D4600876250 /* IJKMediaControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKMediaControl.h; sourceTree = "<group>"; };
 		3A7D2FB91D4D9D4600876250 /* IJKMediaControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKMediaControl.m; sourceTree = "<group>"; };
+		3A7D2FBE1D4EB6C500876250 /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
+		3A7D2FBF1D4EB6C500876250 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
+		3A7D2FC01D4EB6C500876250 /* AudioPlayer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AudioPlayer.xib; path = ../../Source/Controllers/AudioPlayer.xib; sourceTree = "<group>"; };
 		3A887B831D14E6BE0041327D /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3A887B8E1D14F5F70041327D /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = control; path = DEBIAN/control; sourceTree = "<group>"; };
 		3AE8C5B91D14DB98006B78A3 /* phone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = phone.mp3; sourceTree = "<group>"; };
@@ -608,6 +614,8 @@
 				895A733618D9CB6E00561CD6 /* TorrentViewController.m */,
 				895A733718D9CB6E00561CD6 /* TrackersViewController.h */,
 				895A733818D9CB6E00561CD6 /* TrackersViewController.m */,
+				3A7D2FBE1D4EB6C500876250 /* AudioPlayer.h */,
+				3A7D2FBF1D4EB6C500876250 /* AudioPlayer.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -807,6 +815,7 @@
 		895A74E818D9CB8A00561CD6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3A7D2FC01D4EB6C500876250 /* AudioPlayer.xib */,
 				895A74E918D9CB8A00561CD6 /* BandwidthController.xib */,
 				895A74EA18D9CB8A00561CD6 /* DetailViewController.xib */,
 				895A74EB18D9CB8A00561CD6 /* DiscoveredTorrentCell.xib */,
@@ -831,6 +840,7 @@
 			files = (
 				3A7D2FB31D4D9CA000876250 /* IJKCommon.h in Headers */,
 				3A7D2FAD1D4D9C7F00876250 /* IJKMoviePlayerViewController.h in Headers */,
+				3A7D2FC11D4EB6C500876250 /* AudioPlayer.h in Headers */,
 				3A7D2FBA1D4D9D4600876250 /* IJKMediaControl.h in Headers */,
 				3A7D2FB41D4D9CA000876250 /* IJKDemoHistory.h in Headers */,
 			);
@@ -942,6 +952,7 @@
 				895A74A918D9CB7E00561CD6 /* whiteArrow.png in Resources */,
 				895A74AA18D9CB7E00561CD6 /* whiteArrow@2x.png in Resources */,
 				895A73C118D9CB6F00561CD6 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */,
+				3A7D2FC31D4EB6C500876250 /* AudioPlayer.xib in Resources */,
 				895A73BA18D9CB6F00561CD6 /* SVWebViewController.bundle in Resources */,
 				895A74F718D9CB8A00561CD6 /* TorrentCell.xib in Resources */,
 				3AE8C5BA1D14DB98006B78A3 /* phone.mp3 in Resources */,
@@ -1055,6 +1066,7 @@
 				895A73AF18D9CB6F00561CD6 /* TorrentFetcher.m in Sources */,
 				895A74E218D9CB8500561CD6 /* main.m in Sources */,
 				3A1C03B01D0CE2AE005EB2A5 /* ALAlertBanner.m in Sources */,
+				3A7D2FC21D4EB6C500876250 /* AudioPlayer.m in Sources */,
 				895A739C18D9CB6F00561CD6 /* PrefViewController.m in Sources */,
 				895A739318D9CB6F00561CD6 /* TDBadgedCell.m in Sources */,
 				895A73B118D9CB6F00561CD6 /* TrackerNode.m in Sources */,

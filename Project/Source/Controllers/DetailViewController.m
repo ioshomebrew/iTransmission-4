@@ -229,8 +229,6 @@
     [fTorrentSeedersLabel setText:[NSString stringWithFormat:@"%d", totalSeeder]];
     [fTorrentPeersLabel setText:[NSString stringWithFormat:@"%d", totalPeers]];
     
-    [fCreatedOnLabel setText:[NSDate stringForDisplayFromDate:[fTorrent dateCreated]]];
-    
 	if ([fTorrent icon])
 		[fIconView setImage:[fTorrent icon]];
 	else 
