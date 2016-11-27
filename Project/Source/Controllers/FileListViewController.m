@@ -163,6 +163,7 @@
                 NSLog(@"Type video");
                 if([UIAlertController class])
                 {
+                    self.path = p;
                     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:msg message:nil preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         [self playVideo:p];
@@ -194,6 +195,7 @@
                 NSLog(@"Type audio");
                 if([UIAlertController class])
                 {
+                    self.path = p;
                     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:msg message:nil preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         [self playAudio:p];
@@ -223,18 +225,93 @@
                 case TYPE_PICTURE:
             {
                 NSLog(@"Type picture");
+                if([UIAlertController class])
+                {
+                    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:msg message:nil preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [self viewDocument:p];
+                    }];
+                    [actionSheet addAction:yesAction];
+                    UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+                                               {
+                                                   self.docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:p]];
+                                                   self.docController.delegate = self;
+                                                   [self.docController presentOpenInMenuFromRect:CGRectMake(0.0, 0.0, cell.contentView.frame.size.width, 20.0) inView:cell.contentView animated:YES];
+                                               }];
+                    [actionSheet addAction:noAction];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                    [actionSheet addAction:cancelAction];
+                    [self presentViewController:actionSheet animated:YES completion:nil];
+                }
+                else
+                {
+                    self.path = p;
+                    self.actionIndexPath = indexPath;
+                    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Yes", @"No", nil];
+                    [actionSheet showFromRect:CGRectMake(0.0, 0.0, cell.contentView.frame.size.width, 20.0) inView:cell.contentView animated:YES];
+                }
             }
                 break;
                 
                 case TYPE_TXT:
             {
                 NSLog(@"Type txt");
+                if([UIAlertController class])
+                {
+                    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:msg message:nil preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [self viewDocument:p];
+                    }];
+                    [actionSheet addAction:yesAction];
+                    UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+                                               {
+                                                   self.docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:p]];
+                                                   self.docController.delegate = self;
+                                                   [self.docController presentOpenInMenuFromRect:CGRectMake(0.0, 0.0, cell.contentView.frame.size.width, 20.0) inView:cell.contentView animated:YES];
+                                               }];
+                    [actionSheet addAction:noAction];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                    [actionSheet addAction:cancelAction];
+                    [self presentViewController:actionSheet animated:YES completion:nil];
+                }
+                else
+                {
+                    self.path = p;
+                    self.actionIndexPath = indexPath;
+                    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Yes", @"No", nil];
+                    [actionSheet showFromRect:CGRectMake(0.0, 0.0, cell.contentView.frame.size.width, 20.0) inView:cell.contentView animated:YES];
+                }
             }
                 break;
                 
                 case TYPE_PDF:
             {
                 NSLog(@"Type pdf");
+                if([UIAlertController class])
+                {
+                    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:msg message:nil preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [self viewDocument:p];
+                    }];
+                    [actionSheet addAction:yesAction];
+                    UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+                                               {
+                                                   self.docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:p]];
+                                                   self.docController.delegate = self;
+                                                   [self.docController presentOpenInMenuFromRect:CGRectMake(0.0, 0.0, cell.contentView.frame.size.width, 20.0) inView:cell.contentView animated:YES];
+                                               }];
+                    [actionSheet addAction:noAction];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                    [actionSheet addAction:cancelAction];
+                    [self presentViewController:actionSheet animated:YES completion:nil];
+                }
+                else
+                {
+                    self.path = p;
+                    self.actionIndexPath = indexPath;
+                    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Yes", @"No", nil];
+                    [actionSheet showFromRect:CGRectMake(0.0, 0.0, cell.contentView.frame.size.width, 20.0) inView:cell.contentView animated:YES];
+                }
             }
                 break;
                 
@@ -295,18 +372,21 @@
                     case TYPE_PICTURE:
                 {
                     NSLog(@"Type picture");
+                    [self viewDocument:self.path];
                 }
                     break;
                     
                     case TYPE_TXT:
                 {
                     NSLog(@"Type txt");
+                    [self viewDocument:self.path];
                 }
                     break;
                     
                     case TYPE_PDF:
                 {
                     NSLog(@"Type pdf");
+                    [self viewDocument:self.path];
                 }
                     break;
                 default:
@@ -332,18 +412,49 @@
 
 - (void)playVideo:(NSString *)url
 {
-    NSLog(@"Play video: %@", url);
-    [IJKVideoViewController presentFromViewController:self withTitle:[NSString stringWithFormat:@"File: %@", url] URL:[NSURL fileURLWithPath:url] completion:^{
-    }];
+    // play ad
+    [AdColony playVideoAdForZone:@"vzb444f4ad8b5b422891" withDelegate:self];
+}
 
+- (void)onAdColonyAdFinishedWithInfo:(AdColonyAdInfo *)info
+{
+    if([info.zoneID isEqual:@"vzb444f4ad8b5b422891"])
+    {
+        NSLog(@"Play video: %@", self.path);
+        [IJKVideoViewController presentFromViewController:self withTitle:[NSString stringWithFormat:@"File: %@", self.path] URL:[NSURL fileURLWithPath:self.path] completion:^{
+        }];
+    }
+    else
+    {
+        NSLog(@"Play audio: %@", self.path);
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            AudioPlayer *player = [[AudioPlayer alloc] initWithNibName:@"AudioPlayer_iPad" bundle:nil file:self.path torrent:self.torrent];
+            UINavigationController *playerNav = [[UINavigationController alloc] initWithRootViewController:player];
+            playerNav.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self presentViewController:playerNav animated:YES completion:nil];
+        }
+        else
+        {
+            AudioPlayer *player = [[AudioPlayer alloc] initWithNibName:@"AudioPlayer" bundle:nil file:self.path torrent:self.torrent];
+            UINavigationController *playerNav = [[UINavigationController alloc] initWithRootViewController:player];
+            playerNav.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self presentViewController:playerNav animated:YES completion:nil];
+        }
+    }
 }
 
 - (void)playAudio:(NSString *)url
 {
-    AudioPlayer *player = [[AudioPlayer alloc] initWithNibName:@"AudioPlayer" bundle:nil file:url];
-    UINavigationController *playerNav = [[UINavigationController alloc] initWithRootViewController:player];
-    playerNav.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:playerNav animated:YES completion:nil];
+    // play ad
+    [AdColony playVideoAdForZone:@"vz5e3d3445e37049d9b8" withDelegate:self];
+}
+
+- (void)viewDocument:(NSString *)url
+{
+    self.docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:url]];
+    self.docController.delegate = self;
+    [self.docController presentPreviewAnimated:YES];
 }
 
 - (FileType)fileType:(NSString *)url

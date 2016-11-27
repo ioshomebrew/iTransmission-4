@@ -10,7 +10,7 @@
                 <outlet property="activityCounterBadge" destination="49" id="53"/>
                 <outlet property="activityIndicator" destination="50" id="52"/>
                 <outlet property="activityItemView" destination="48" id="55"/>
-                <outlet property="bannerView" destination="e1A-8s-d2n" id="7vE-An-u12"/>
+                <outlet property="bannerView" destination="GS5-Ju-8N8" id="bFq-nZ-i3H"/>
                 <outlet property="tableView" destination="xt2-8x-Lcj" id="NxD-eu-y6f"/>
                 <outlet property="view" destination="2i5-mK-z49" id="loR-pJ-vx9"/>
             </connections>
@@ -39,13 +39,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <view contentMode="scaleToFill" id="e1A-8s-d2n" customClass="GADBannerView">
-                    <rect key="frame" x="0.0" y="473" width="320" height="50"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="xt2-8x-Lcj">
-                    <rect key="frame" x="0.0" y="63" width="320" height="412"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="473"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -54,6 +49,11 @@
                         <outlet property="delegate" destination="-1" id="gHt-K4-379"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" id="GS5-Ju-8N8" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="473" width="320" height="51"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

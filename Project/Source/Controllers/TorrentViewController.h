@@ -11,6 +11,7 @@
 #import "SVWebViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
+#import <AdColony/AdColony.h>
 
 @class Controller;
 @class TDBadgeView;
@@ -18,7 +19,7 @@
 @class TorrentCell;
 @class PrefViewController;
 
-@interface TorrentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate, AVAudioPlayerDelegate>
+@interface TorrentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate, AVAudioPlayerDelegate, AdColonyDelegate>
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;

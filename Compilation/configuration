@@ -2,7 +2,7 @@
 
 #########################
 #Space-seperated list of archs e.g export ARCHS=("armv7 armv7s arm64 i386 x86_64")
-export ARCH=arm64
+export ARCH=x86_64
 export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
 export DEVFOLDER="/Applications/Xcode.app/Contents/Developer"
 # an SDK prior to 6.0 is required if the target ARCH is armv6

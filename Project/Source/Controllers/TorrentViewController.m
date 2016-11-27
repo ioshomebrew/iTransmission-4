@@ -71,6 +71,9 @@
             [[AVAudioSession sharedInstance] setActive: YES error: nil];
             [self.audio play];
         }
+        
+        // init vid ads
+        [AdColony configureWithAppID:@"app667d2b5de8924f57a8" zoneIDs:[[NSArray alloc] initWithObjects:@"vzb444f4ad8b5b422891", @"vz5e3d3445e37049d9b8", nil] delegate:self logging:NO];
     }
     return self;
 }
@@ -322,7 +325,7 @@
 	else {
 		[cell.controlButton setEnabled:YES];
 	}
-	cell.lowerDetailLabel.text = [t statusString];	
+	cell.lowerDetailLabel.text = [t statusString];
 }
 
 - (void)viewDidLoad {

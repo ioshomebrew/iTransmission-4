@@ -67,11 +67,19 @@
 		3A7D2FC11D4EB6C500876250 /* AudioPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A7D2FBE1D4EB6C500876250 /* AudioPlayer.h */; };
 		3A7D2FC21D4EB6C500876250 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2FBF1D4EB6C500876250 /* AudioPlayer.m */; };
 		3A7D2FC31D4EB6C500876250 /* AudioPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A7D2FC01D4EB6C500876250 /* AudioPlayer.xib */; };
+		3AA004981D53108B00A36525 /* AudioPlayer_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA004961D52649200A36525 /* AudioPlayer_iPad.xib */; };
+		3AA0049C1D55501E00A36525 /* AdColony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA0049B1D55501E00A36525 /* AdColony.framework */; };
+		3AA0049E1D55521B00A36525 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA0049D1D55521B00A36525 /* WebKit.framework */; };
+		3AA004A01D55522600A36525 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA0049F1D55522600A36525 /* Social.framework */; };
 		3AE8C5BA1D14DB98006B78A3 /* phone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AE8C5B91D14DB98006B78A3 /* phone.mp3 */; };
 		3AEB70E31D4738A400F39D15 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E21D4738A400F39D15 /* GLKit.framework */; };
 		3AEB70E51D4738AF00F39D15 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E41D4738AF00F39D15 /* OpenGLES.framework */; };
 		3AEB70E71D4738B500F39D15 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E61D4738B500F39D15 /* CoreMotion.framework */; };
 		3AEB70E91D4738C400F39D15 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB70E81D4738C400F39D15 /* CoreVideo.framework */; };
+		3AFD54781D5853C900414505 /* AdColonyAdapter1.5 in Resources */ = {isa = PBXBuildFile; fileRef = 3AFD54771D5853C900414505 /* AdColonyAdapter1.5 */; };
+		3AFD547C1D5853E300414505 /* GADMAdapterAdColonyExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AFD54791D5853E300414505 /* GADMAdapterAdColonyExtras.h */; };
+		3AFD547D1D5853E300414505 /* GADMAdapterAdColonyInitializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AFD547A1D5853E300414505 /* GADMAdapterAdColonyInitializer.h */; };
+		3AFD547E1D5853E300414505 /* libAdapterSDKAdColony.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFD547B1D5853E300414505 /* libAdapterSDKAdColony.a */; };
 		895A738C18D9CB6F00561CD6 /* DiscoveredTorrentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A730F18D9CB6E00561CD6 /* DiscoveredTorrentCell.m */; };
 		895A738D18D9CB6F00561CD6 /* FileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A731118D9CB6E00561CD6 /* FileListCell.m */; };
 		895A738E18D9CB6F00561CD6 /* FlexibleLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A731318D9CB6E00561CD6 /* FlexibleLabelCell.m */; };
@@ -248,11 +256,19 @@
 		3A7D2FC01D4EB6C500876250 /* AudioPlayer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AudioPlayer.xib; path = ../../Source/Controllers/AudioPlayer.xib; sourceTree = "<group>"; };
 		3A887B831D14E6BE0041327D /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3A887B8E1D14F5F70041327D /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = control; path = DEBIAN/control; sourceTree = "<group>"; };
+		3AA004961D52649200A36525 /* AudioPlayer_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AudioPlayer_iPad.xib; path = ../../Source/Controllers/AudioPlayer_iPad.xib; sourceTree = "<group>"; };
+		3AA0049B1D55501E00A36525 /* AdColony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AdColony.framework; sourceTree = "<group>"; };
+		3AA0049D1D55521B00A36525 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		3AA0049F1D55522600A36525 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3AE8C5B91D14DB98006B78A3 /* phone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = phone.mp3; sourceTree = "<group>"; };
 		3AEB70E21D4738A400F39D15 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		3AEB70E41D4738AF00F39D15 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		3AEB70E61D4738B500F39D15 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3AEB70E81D4738C400F39D15 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		3AFD54771D5853C900414505 /* AdColonyAdapter1.5 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AdColonyAdapter1.5; path = Source/AdColonyAdapter1.5; sourceTree = SOURCE_ROOT; };
+		3AFD54791D5853E300414505 /* GADMAdapterAdColonyExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADMAdapterAdColonyExtras.h; path = Source/AdColonyAdapter1.5/GADMAdapterAdColonyExtras.h; sourceTree = "<group>"; };
+		3AFD547A1D5853E300414505 /* GADMAdapterAdColonyInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADMAdapterAdColonyInitializer.h; path = Source/AdColonyAdapter1.5/GADMAdapterAdColonyInitializer.h; sourceTree = "<group>"; };
+		3AFD547B1D5853E300414505 /* libAdapterSDKAdColony.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAdapterSDKAdColony.a; path = Source/AdColonyAdapter1.5/libAdapterSDKAdColony.a; sourceTree = "<group>"; };
 		7437B171125B4B6500B456EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		74861F521259DB06005FDE74 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7EDBAD5613CA984B0047AB4B /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -405,6 +421,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AA004A01D55522600A36525 /* Social.framework in Frameworks */,
+				3AA0049E1D55521B00A36525 /* WebKit.framework in Frameworks */,
 				3A65BF971D4BDD38007B00EF /* IJKMediaFramework.framework in Frameworks */,
 				3A3E0B3D1D4BCF08003FC827 /* VideoToolbox.framework in Frameworks */,
 				3A3E0B3B1D4BCEEF003FC827 /* MobileCoreServices.framework in Frameworks */,
@@ -425,9 +443,11 @@
 				3A4483881D0A19B900786CD3 /* SafariServices.framework in Frameworks */,
 				3A4483861D0A199000786CD3 /* CoreMedia.framework in Frameworks */,
 				3A4483841D0A190A00786CD3 /* AudioToolbox.framework in Frameworks */,
+				3AFD547E1D5853E300414505 /* libAdapterSDKAdColony.a in Frameworks */,
 				897DEFE418DEF01100E12909 /* AVFoundation.framework in Frameworks */,
 				898124A318884D2900DB955B /* CoreGraphics.framework in Frameworks */,
 				898124A418884D2900DB955B /* Foundation.framework in Frameworks */,
+				3AA0049C1D55501E00A36525 /* AdColony.framework in Frameworks */,
 				898124A518884D2900DB955B /* UIKit.framework in Frameworks */,
 				898124A618884D2900DB955B /* QuartzCore.framework in Frameworks */,
 				3A4483821D0A12E500786CD3 /* GoogleMobileAds.framework in Frameworks */,
@@ -449,6 +469,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3AA0049B1D55501E00A36525 /* AdColony.framework */,
 				3A7D2FA21D4D6B8F00876250 /* IJKMediaFramework.framework */,
 				3A65BF8D1D4BDCDC007B00EF /* IJKMediaDemo.xcodeproj */,
 				3A887B8D1D14F5D30041327D /* DEBIAN */,
@@ -466,6 +487,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AFD54791D5853E300414505 /* GADMAdapterAdColonyExtras.h */,
+				3AFD547A1D5853E300414505 /* GADMAdapterAdColonyInitializer.h */,
+				3AFD547B1D5853E300414505 /* libAdapterSDKAdColony.a */,
+				3AA0049F1D55522600A36525 /* Social.framework */,
+				3AA0049D1D55521B00A36525 /* WebKit.framework */,
 				3A65BF961D4BDD38007B00EF /* IJKMediaFramework.framework */,
 				3A3E0B3C1D4BCF08003FC827 /* VideoToolbox.framework */,
 				3A3E0B3A1D4BCEEF003FC827 /* MobileCoreServices.framework */,
@@ -613,6 +639,7 @@
 				895A733518D9CB6E00561CD6 /* TorrentViewController.h */,
 				895A733618D9CB6E00561CD6 /* TorrentViewController.m */,
 				895A733718D9CB6E00561CD6 /* TrackersViewController.h */,
+				3AFD54771D5853C900414505 /* AdColonyAdapter1.5 */,
 				895A733818D9CB6E00561CD6 /* TrackersViewController.m */,
 				3A7D2FBE1D4EB6C500876250 /* AudioPlayer.h */,
 				3A7D2FBF1D4EB6C500876250 /* AudioPlayer.m */,
@@ -816,6 +843,7 @@
 			isa = PBXGroup;
 			children = (
 				3A7D2FC01D4EB6C500876250 /* AudioPlayer.xib */,
+				3AA004961D52649200A36525 /* AudioPlayer_iPad.xib */,
 				895A74E918D9CB8A00561CD6 /* BandwidthController.xib */,
 				895A74EA18D9CB8A00561CD6 /* DetailViewController.xib */,
 				895A74EB18D9CB8A00561CD6 /* DiscoveredTorrentCell.xib */,
@@ -840,7 +868,9 @@
 			files = (
 				3A7D2FB31D4D9CA000876250 /* IJKCommon.h in Headers */,
 				3A7D2FAD1D4D9C7F00876250 /* IJKMoviePlayerViewController.h in Headers */,
+				3AFD547D1D5853E300414505 /* GADMAdapterAdColonyInitializer.h in Headers */,
 				3A7D2FC11D4EB6C500876250 /* AudioPlayer.h in Headers */,
+				3AFD547C1D5853E300414505 /* GADMAdapterAdColonyExtras.h in Headers */,
 				3A7D2FBA1D4D9D4600876250 /* IJKMediaControl.h in Headers */,
 				3A7D2FB41D4D9CA000876250 /* IJKDemoHistory.h in Headers */,
 			);
@@ -939,6 +969,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AA004981D53108B00A36525 /* AudioPlayer_iPad.xib in Resources */,
 				895A749718D9CB7E00561CD6 /* blueArrow@2x.png in Resources */,
 				895A74F618D9CB8A00561CD6 /* FileListCell.xib in Resources */,
 				895A74A118D9CB7E00561CD6 /* gear-icon@2x.png in Resources */,
@@ -962,6 +993,7 @@
 				895A73AB18D9CB6F00561CD6 /* bannerSuccess.png in Resources */,
 				895A749618D9CB7E00561CD6 /* blueArrow.png in Resources */,
 				895A74A218D9CB7E00561CD6 /* grayArrow.png in Resources */,
+				3AFD54781D5853C900414505 /* AdColonyAdapter1.5 in Resources */,
 				895A74AC18D9CB7E00561CD6 /* magnet_ex in Resources */,
 				895A74A618D9CB7E00561CD6 /* play_icon-ios7@2x.png in Resources */,
 				895A749E18D9CB7E00561CD6 /* FavIcon.png in Resources */,
@@ -1022,7 +1054,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/mkdir -p $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R $CONFIGURATION_BUILD_DIR/iTransmission.app $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R DEBIAN $CONFIGURATION_BUILD_DIR\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app.dSYM\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/IJKMediaDemo.app\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/IJKMediaDemo.app.dSYM\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/IJKMediaFramework.framework\n/opt/local/bin/dpkg-deb -b -Zgzip $CONFIGURATION_BUILD_DIR\n/bin/cp -R $CONFIGURATION_BUILD_DIR/Applications/iTransmission.app $CONFIGURATION_BUILD_DIR/iTransmission.app";
+			shellScript = "/bin/mkdir -p $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R $CONFIGURATION_BUILD_DIR/iTransmission.app $CONFIGURATION_BUILD_DIR/Applications\n/bin/cp -R DEBIAN $CONFIGURATION_BUILD_DIR\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/iTransmission.app.dSYM\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/IJKMediaDemo.app\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/IJKMediaDemo.app.dSYM\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/IJKMediaFramework.framework\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/Applications/iTransmission.app/AudioPlayer_iPad~ipad.nib\n/bin/rm -rf $CONFIGURATION_BUILD_DIR/Applications/iTransmission.app/AudioPlayer_iPad~iphone.nib\n/opt/local/bin/dpkg-deb -b -Zgzip $CONFIGURATION_BUILD_DIR\n/bin/cp -R $CONFIGURATION_BUILD_DIR/Applications/iTransmission.app $CONFIGURATION_BUILD_DIR/iTransmission.app";
+			showEnvVarsInLog = 0;
 		};
 		7471DD03126F27D300CB0653 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1247,6 +1280,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Source",
 					"$(PROJECT_DIR)/ijkplayer-ios/ios/IJKMediaPlayer/build/Debug-iphoneos",
+					"$(PROJECT_DIR)",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
@@ -1262,7 +1296,10 @@
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/lib/**";
+				LIBRARY_SEARCH_PATHS = (
+					"../Compilation/out/$(CURRENT_ARCH)/lib/**",
+					"$(PROJECT_DIR)/Source/AdColonyAdapter1.5",
+				);
 				OTHER_LDFLAGS = (
 					"-ltransmission",
 					"-levent",
@@ -1277,6 +1314,7 @@
 					"-fobjc-arc",
 					"-lutp",
 					"-lb64",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ioshomebrew.itransmission;
 				PRODUCT_NAME = iTransmission;
@@ -1305,6 +1343,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Source",
 					"$(PROJECT_DIR)/ijkplayer-ios/ios/IJKMediaPlayer/build/Debug-iphoneos",
+					"$(PROJECT_DIR)",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1318,7 +1357,10 @@
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/lib/**";
+				LIBRARY_SEARCH_PATHS = (
+					"../Compilation/out/$(CURRENT_ARCH)/lib/**",
+					"$(PROJECT_DIR)/Source/AdColonyAdapter1.5",
+				);
 				OTHER_LDFLAGS = (
 					"-ltransmission",
 					"-levent",
@@ -1333,6 +1375,7 @@
 					"-fobjc-arc",
 					"-lutp",
 					"-lb64",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ioshomebrew.itransmission;
 				PRODUCT_NAME = iTransmission;
@@ -1362,6 +1405,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Source",
 					"$(PROJECT_DIR)/ijkplayer-ios/ios/IJKMediaPlayer/build/Debug-iphoneos",
+					"$(PROJECT_DIR)",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1375,7 +1419,10 @@
 				INFOPLIST_FILE = "Other Sources/iTransmission-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_DEPENDENCY_INFO_FILE = "";
-				LIBRARY_SEARCH_PATHS = "../Compilation/out/$(CURRENT_ARCH)/lib/**";
+				LIBRARY_SEARCH_PATHS = (
+					"../Compilation/out/$(CURRENT_ARCH)/lib/**",
+					"$(PROJECT_DIR)/Source/AdColonyAdapter1.5",
+				);
 				OTHER_LDFLAGS = (
 					"-ltransmission",
 					"-levent",
@@ -1390,6 +1437,7 @@
 					"-fobjc-arc",
 					"-lutp",
 					"-lb64",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ioshomebrew.itransmission;
 				PRODUCT_NAME = iTransmission;
