@@ -8,6 +8,7 @@
 
 #import "PDColoredProgressView.h"
 
+/*
 static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth,
 								 float ovalHeight)
 {
@@ -53,7 +54,9 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 	// but leaves the path, since the path is not part of the graphics state.
 	CGContextRestoreGState(context);
 }
+ */
 
+/*
 static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloat colors[], int numberOfColors, CGFloat locations[]) {
 	CGContextSaveGState(context);
 	
@@ -72,6 +75,7 @@ static void fillRectWithLinearGradient(CGContextRef context, CGRect rect, CGFloa
 	CGColorSpaceRelease(space);
 	CGGradientRelease(gradient);
 }
+ */
 
 @implementation PDColoredProgressView
 @synthesize progress = _progress;

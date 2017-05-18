@@ -1,0 +1,42 @@
+PODS:
+  - Fabric (1.6.11)
+  - Firebase/Core (3.16.0):
+    - FirebaseAnalytics (= 3.8.0)
+    - FirebaseCore (= 3.6.0)
+  - FirebaseAnalytics (3.8.0):
+    - FirebaseCore (~> 3.6)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.6.0):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.10):
+    - FirebaseCore (~> 3.6)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - LGSideMenuController (2.1.0)
+  - TwitterCore (1.15.3):
+    - Fabric
+  - TwitterKit (1.15.3):
+    - TwitterCore (= 1.15.3)
+
+DEPENDENCIES:
+  - Fabric
+  - Firebase/Core
+  - LGSideMenuController
+  - TwitterKit
+
+SPEC CHECKSUMS:
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  Firebase: 21bf4a89d3f01bfbe11adc3a5d934a4a3d3a5fd6
+  FirebaseAnalytics: 920e46455f27b0a52a80907a6d9b73ee4bd1c635
+  FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
+  FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  LGSideMenuController: 60877ccce8abde59ce2d086031817d5a85ea7882
+  TwitterCore: cce24b3c798993ccde72787ea79ea9a478b284e4
+  TwitterKit: 43600f2d2848c227739efea5b2939585e69339c3
+
+PODFILE CHECKSUM: 686dff3ebcee9902bfe81f908f47f8918256f285
+
+COCOAPODS: 1.1.1

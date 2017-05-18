@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Controller.h"
 
 int main(int argc, char *argv[]) {
     // disable sigpipe (prevents crashes)
     signal(SIGPIPE, SIG_IGN);
     
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, nil);
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([Controller class]));
     }
 }

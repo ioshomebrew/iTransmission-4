@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ALAlertBanner.h"
-#import "SVWebViewController.h"
+//#import "SVWebViewController.h"
+#import "WebViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #import <AdColony/AdColony.h>
@@ -18,8 +19,9 @@
 @class Torrent;
 @class TorrentCell;
 @class PrefViewController;
+@class LeftMenuController;
 
-@interface TorrentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate, AVAudioPlayerDelegate, AdColonyDelegate>
+@interface TorrentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate, AdColonyDelegate>
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -33,16 +35,10 @@
 @property(nonatomic, weak) IBOutlet GADBannerView *bannerView;
 @property (nonatomic, retain) Controller *controller;
 @property (nonatomic, retain) NSTimer *updateTimer;
+@property (nonatomic, retain) LeftMenuController *leftMenu;
 
-- (void)addButtonClicked:(id)sender;
-- (void)prefButtonClicked:(id)sender;
-
-- (void)addFromURLClicked;
 - (void)addFromURLWithExistingURL:(NSString*)url message:(NSString*)msg;
-- (void)addFromMagnetClicked;
 - (void)addFromMagnetWithExistingMagnet:(NSString*)magnet message:(NSString*)msg;
-- (void)addFromWebClicked;
-- (void)activityCounterDidChange:(NSNotification*)notif;
 - (void)newTorrentAdded:(NSNotification*)notif;
 - (void)removedTorrents:(NSNotification*)notif;
 - (void)playAudio:(NSNotification*)notif;

@@ -75,5 +75,6 @@ Credits
 - [fopino](https://github.com/fopino)
 - [heavenly-awker](https://github.com/heavenly-awker)
 - [Bilibili](https://github.com/Bilibili/ijkplayer)
+- [Friend-LGA](https://github.com/Friend-LGA/LGSideMenuController)
 
 Mail me if I missed somebody.

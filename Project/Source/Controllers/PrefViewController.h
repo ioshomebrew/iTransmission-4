@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "Controller.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
+#import <TwitterKit/TwitterKit.h>
 
 @class GradientButton;
 @class PortChecker;
 @class Controller;
-@interface PrefViewController :UITableViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
+@interface PrefViewController :UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, FBSDKSharingDelegate> {
     UITableView *fTableView;
     
     IBOutlet UITableViewCell *fAutoPortMapCell;
@@ -28,15 +32,11 @@
     
     IBOutlet UILabel *fMaximumConnectionsLabel;
     IBOutlet UITableViewCell *fMaximumConnectionsLabelCell;
-    
-    IBOutlet UITableViewCell *fMaximumConnectionsSliderCell;
-    IBOutlet UISlider *fMaximumConnectionsSlider;
+    IBOutlet UITextField *fMaximumConnectionsTextField;
     
     IBOutlet UITableViewCell *fConnectionsPerTorrentLabelCell;
     IBOutlet UILabel *fConnectionsPerTorrentLabel;
-    
-    IBOutlet UITableViewCell *fConnectionsPerTorrentSliderCell;
-    IBOutlet UISlider *fConnectionsPerTorrentSlider;
+    IBOutlet UITextField *fConnectionsPerTorrentTextField;
     
     IBOutlet UITableViewCell *fDownloadSpeedLimitCell;
     IBOutlet UITextField *fDownloadSpeedLimitField;
@@ -50,8 +50,7 @@
     IBOutlet UITableViewCell *fDownloadSpeedLimitEnabledCell;
     IBOutlet UISwitch *fDownloadSpeedLimitEnabledSwitch;
     
-    IBOutlet UITableViewCell *fOverrideSpeedLimitsCell;
-    IBOutlet UISwitch *fOverrideSpeedLimitSwitch;
+    IBOutlet UITableViewCell *fShareCell;
     
     UIColor *fTextFieldTextColor;
     
@@ -68,6 +67,9 @@
 @property (nonatomic, retain) NSDictionary *originalPreferences;
 @property (nonatomic, retain) NSIndexPath *indexPathToScroll;
 @property (nonatomic, assign) Controller *controller;
+@property (nonatomic, retain) IBOutlet GADBannerView *bannerView;
+@property (nonatomic, strong) TorrentViewController *torrentView;
+@property (nonatomic, strong) SideMenuController *sideMenu;
 
 - (void)closeButtonClicked;
 - (void)portCheckButtonClicked;
@@ -75,15 +77,15 @@
 
 - (void)loadPreferences;
 
-- (IBAction)switchChanged:(id)sender;
 - (IBAction)checkPortButtonClicked:(id)sender;
 - (IBAction)enableBackgroundDownloadSwitchChanged:(id)sender;
 
-- (IBAction)maximumConnectionsSliderValueChanged:(id)sender;
-- (IBAction)connectionsPerTorrentSliderValueChanged:(id)sender;
 - (IBAction)uploadSpeedLimitEnabledValueChanged:(id)sender;
 - (IBAction)downloadSpeedLimitEnabledValueChanged:(id)sender;
-- (IBAction)overrideGlobalLimitsEnabledValueChanged:(id)sender;
+- (IBAction)connectionsPerTorrentChanged:(id)sender;
+- (IBAction)maximumConnectionsPerTorrentChanged:(id)sender;
 
+- (IBAction)facebookShare:(id)sender;
+- (IBAction)tweet:(id)sender;
 
 @end

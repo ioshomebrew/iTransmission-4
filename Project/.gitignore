@@ -1,1 +1,14 @@
 ijkplayer-ios
+Pods/
+AccountKit.framework/
+AccountKitStrings.bundle/
+AdColony.framework/
+Bolts.framework/
+FacebookSDKStrings.bundle
+FBAudienceNetwork.framework/
+FBNotifications.framework/
+FBSDKCoreKit.framework/
+FBSDKLoginKit.framework/
+FBSDKMessengerShareKit.framework/
+FBSDKPlacesKit.framework/
+FBSDKShareKit.framework/

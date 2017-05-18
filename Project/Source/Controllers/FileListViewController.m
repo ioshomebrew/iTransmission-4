@@ -20,14 +20,10 @@
 @synthesize path;
 @synthesize actionIndexPath;
 
-- (id)initWithTorrent:(Torrent*)t
+- (void)initWithTorrent:(Torrent*)t
 {
-    self = [super initWithNibName:@"FileListViewController" bundle:nil];
-    if (self) {
-        fTorrent = t;
-        self.title = @"Files";
-    }
-    return self;
+    fTorrent = t;
+    self.title = @"Files";
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,6 +39,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // init admob
+    self.bannerView.adUnitID = @"ca-app-pub-5972525945446192/3390380060";
+    self.bannerView.rootViewController = self;
+    GADRequest *request = [GADRequest request];
+    request.testDevices = @[ kGADSimulatorID ];
+    [self.bannerView loadRequest:request];
+    
     [self.torrent updateFileStat];
 }
 

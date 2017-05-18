@@ -21,6 +21,9 @@
 #import "libtransmission/variant.h"
 #import "libtransmission/version.h"
 #include <stdlib.h> // setenv()
+#import <Firebase/Firebase.h>
+#import <Fabric/Fabric.h>
+#import <TwitterKit/TwitterKit.h>
 
 #define APP_NAME "iTrans"
 
@@ -42,6 +45,7 @@ static void pumpLogMessages()
     tr_logFreeQueue( list );
 }
 
+/*
 static void signal_handler(int sig) {
     if (sig == SIGUSR1) {
         NSLog(@"Possibly entering background.");
@@ -50,6 +54,7 @@ static void signal_handler(int sig) {
     }
     return;
 }
+ */
 
 @implementation Controller
 
@@ -65,15 +70,30 @@ static void signal_handler(int sig) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.torrentViewController = [[TorrentViewController alloc] initWithNibName:@"TorrentViewController" bundle:nil];
+    // launch firebase
+    [FIRApp configure];
+    
+    // launch twitterkit
+    [Fabric with:@[[Twitter class]]];
+    
+    // story board and LGSideMenu Controller
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_Storyboard" bundle:nil];
+    UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"navigation"];
+    
+    // init torrent view controller
+    self.torrentViewController = [storyboard instantiateViewControllerWithIdentifier:@"torrent_view"];
     self.torrentViewController.controller = self;
-    self.navController = [[UINavigationController alloc] initWithRootViewController:self.torrentViewController];
-    self.navController.toolbarHidden = NO;
     
-    self.installedApps = [self findRelatedApps];
+    [navigationController setViewControllers:@[self.torrentViewController]];
     
-    self.window.rootViewController = self.navController;
-    [self.window makeKeyAndVisible];
+    // init side menu controller
+    SideMenuController *sideMenu = [storyboard instantiateInitialViewController];
+    sideMenu.rootViewController = navigationController;
+    
+    // send transmission to side menu
+    [sideMenu setTransmission:self torrentView:self.torrentViewController];
+    
+    self.window.rootViewController = sideMenu;
     
     // enable notifications on iOS 9
     [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
@@ -84,8 +104,11 @@ static void signal_handler(int sig) {
                                                        settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|
                                                        UIUserNotificationTypeSound categories:nil]];
     }
-    
     application.applicationIconBadgeNumber = 0;
+    
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
+     
     
     [self fixDocumentsDirectory];
 	[self transmissionInitialize];
@@ -155,6 +178,7 @@ static void signal_handler(int sig) {
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    
     if ([[url scheme] isEqualToString:@"magnet"]) {
         [self addTorrentFromManget:[url absoluteString]];
         return YES;

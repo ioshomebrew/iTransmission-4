@@ -37,46 +37,7 @@
 @synthesize audio;
 @synthesize pref;
 @synthesize bannerView;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonClicked:)];
-        UIBarButtonItem *flexSpaceOne = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		UIBarButtonItem *flexSpaceTwo = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		UIBarButtonItem *prefButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gear-icon"] style:UIBarButtonItemStylePlain target:self action:@selector(prefButtonClicked:)];
-		
-        self.normalToolbarItems = [NSArray arrayWithObjects:addButton, flexSpaceOne, flexSpaceTwo, prefButton, nil];
-        self.toolbarItems = self.normalToolbarItems;
-        
-		self.title = @"Transfers";
-		self.controller = (Controller*)[[UIApplication sharedApplication] delegate];
-		
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removedTorrents:) name:NotificationTorrentsRemoved object:self.controller];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activityCounterDidChange:) name:NotificationActivityCounterChanged object:self.controller];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newTorrentAdded:) name:NotificationNewTorrentAdded object:self.controller];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAudio:) name:@"AudioPrefChanged" object:self.pref];
-        
-        // load audio
-        NSURL *audioURL = [[NSBundle mainBundle] URLForResource:@"phone" withExtension:@"mp3"];
-        self.audio = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:nil];
-        self.audio.numberOfLoops = -1;
-        [self.audio setVolume:0.0];
-        
-        // only play if enabled
-        NSUserDefaults *fDefaults = [NSUserDefaults standardUserDefaults];
-        if([fDefaults boolForKey:@"BackgroundDownloading"])
-        {
-            // play audio
-            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-            [[AVAudioSession sharedInstance] setActive: YES error: nil];
-            [self.audio play];
-        }
-        
-        // init vid ads
-        [AdColony configureWithAppID:@"app667d2b5de8924f57a8" zoneIDs:[[NSArray alloc] initWithObjects:@"vzb444f4ad8b5b422891", @"vz5e3d3445e37049d9b8", nil] delegate:self logging:NO];
-    }
-    return self;
-}
+@synthesize leftMenu;
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
@@ -90,7 +51,10 @@
 - (void)tableView:(UITableView *)ftableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (self.tableView.editing == NO) {
-		DetailViewController *detailController = [[DetailViewController alloc] initWithTorrent:[self.controller torrentAtIndex:indexPath.row] controller:self.controller];
+		//DetailViewController *detailController = [[DetailViewController alloc] initWithTorrent:[self.controller torrentAtIndex:indexPath.row] controller:self.controller];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_Storyboard" bundle:nil];
+        DetailViewController *detailController = [storyboard instantiateViewControllerWithIdentifier:@"detail_view"];
+        [detailController initWithTorrent:[self.controller torrentAtIndex:indexPath.row] controller:self.controller];
 		[self.navigationController pushViewController:detailController animated:YES];
 		[ftableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
@@ -103,6 +67,7 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
 	if (self.tableView.editing == NO) {
 	}
 	else {
@@ -110,6 +75,7 @@
 		TorrentCell *cell = (TorrentCell*)[self.tableView cellForRowAtIndexPath:indexPath];
 		[cell.controlButton setEnabled:YES];
 	}
+     */
 }
 
 - (UITableViewCell *)tableView:(UITableView *)ftableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,10 +84,7 @@
     
     TorrentCell *cell = (TorrentCell*)[ftableView dequeueReusableCellWithIdentifier:TorrentCellIdentifier];
     
-    if (!cell) {
-        cell = [TorrentCell cellFromNib];
-		[cell.controlButton addTarget:self action:@selector(controlButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-	}
+    [cell.controlButton addTarget:self action:@selector(controlButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     Torrent *t = [self.controller torrentAtIndex:index];
     [self setupCell:cell forTorrent:t];
@@ -170,112 +133,6 @@
             actionSheet.popoverPresentationController.sourceView = self.tableView;
         }
         [self presentViewController:actionSheet animated:YES completion:nil];
-    }
-    else
-    {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes and remove data" otherButtonTitles:@"Yes but keep data", nil];
-        actionSheet.tag = REMOVE_COMFIRM_TAG;
-        [actionSheet showFromToolbar:self.navigationController.toolbar];
-    }
-}
-
-- (void)addButtonClicked:(id)sender
-{
-    // detect if uialertcontroller works
-    if([UIAlertController class])
-    {
-        UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"Add from …" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *webAction = [UIAlertAction actionWithTitle:@"Web" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self addFromWebClicked];
-        }];
-        [sheet addAction:webAction];
-        
-        UIAlertAction *magnetAction = [UIAlertAction actionWithTitle:@"Magnet" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self addFromMagnetClicked];
-        }];
-        [sheet addAction:magnetAction];
-        
-        UIAlertAction *URLAction = [UIAlertAction actionWithTitle:@"URL" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self addFromURLClicked];
-        }];
-        [sheet addAction:URLAction];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-        [sheet addAction:cancelAction];
-        
-        if (sheet.popoverPresentationController != nil) {
-            sheet.popoverPresentationController.barButtonItem = (UIBarButtonItem *)sender;
-        }
-        [self presentViewController:sheet animated:YES completion:nil];
-    }
-    else
-    {
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Add from..." delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-        [sheet addButtonWithTitle:@"Web"];
-        [sheet addButtonWithTitle:@"Magnet"];
-        [sheet addButtonWithTitle:@"URL"];
-        [sheet addButtonWithTitle:@"Cancel"];
-        [sheet setCancelButtonIndex:3];
-        [sheet setTag:ADD_TAG];
-        [sheet showFromToolbar:self.navigationController.toolbar];
-    }
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (actionSheet.tag) {
-        case ADD_TAG: {
-            switch (buttonIndex) {
-                case 0:
-                {
-                    [self addFromWebClicked];
-                    break;
-                }
-                case 1: {
-                    [self addFromMagnetClicked];
-                    break;
-                }
-                case 2: {
-                    [self addFromURLClicked];
-                }
-                default:
-                    return;
-            }
-            break;
-        }
-        case REMOVE_COMFIRM_TAG: {
-            if (buttonIndex == actionSheet.cancelButtonIndex) {
-                self.selectedIndexPaths = [NSMutableArray array];
-            }
-            else {
-                NSMutableArray *torrents = [NSMutableArray arrayWithCapacity:[self.selectedIndexPaths count]];
-                for (NSIndexPath *indexPath in self.selectedIndexPaths) {
-                    Torrent *t = [self.controller torrentAtIndex:indexPath.row];
-                    [torrents addObject:t];
-                }
-                [self.controller removeTorrents:torrents trashData:(buttonIndex == [actionSheet destructiveButtonIndex])];
-                self.selectedIndexPaths = [NSMutableArray array];
-                [self.tableView reloadData];
-            }
-        }
-    }
-}
-
-- (void)prefButtonClicked:(id)sender
-{
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-    {
-        PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil];
-        UINavigationController *prefNav = [[UINavigationController alloc] initWithRootViewController:prefViewController];
-        prefNav.modalPresentationStyle = UIModalPresentationFullScreen;
-        [self presentViewController:prefNav animated:YES completion:nil];
-    }
-    else
-    {
-        PrefViewController *prefViewController = [[PrefViewController alloc] initWithNibName:@"PrefViewController" bundle:nil];
-        UINavigationController *prefNav = [[UINavigationController alloc] initWithRootViewController:prefViewController];
-        prefNav.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentViewController:prefNav animated:YES completion:nil];
     }
 }
 
@@ -330,19 +187,42 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // transmission init
+    self.controller = (Controller*)[[UIApplication sharedApplication] delegate];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removedTorrents:) name:NotificationTorrentsRemoved object:self.controller];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activityCounterDidChange:) name:NotificationActivityCounterChanged object:self.controller];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newTorrentAdded:) name:NotificationNewTorrentAdded object:self.controller];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAudio:) name:@"AudioPrefChanged" object:self.pref];
+    
+    // load audio
+    NSURL *audioURL = [[NSBundle mainBundle] URLForResource:@"phone" withExtension:@"mp3"];
+    self.audio = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:nil];
+    self.audio.numberOfLoops = -1;
+    [self.audio setVolume:0.0];
+    
+    // only play if enabled
+    NSUserDefaults *fDefaults = [NSUserDefaults standardUserDefaults];
+    if([fDefaults boolForKey:@"BackgroundDownloading"])
+    {
+        // play audio
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+        [[AVAudioSession sharedInstance] setActive: YES error: nil];
+        [self.audio play];
+    }
+    
+    // init vid ads
+    [AdColony configureWithAppID:@"app667d2b5de8924f57a8" zoneIDs:[[NSArray alloc] initWithObjects:@"vzb444f4ad8b5b422891", @"vz5e3d3445e37049d9b8", nil] delegate:self logging:NO];
 		
     // init admob
     self.bannerView.adUnitID = @"ca-app-pub-5972525945446192/5283882861";
     self.bannerView.rootViewController = self;
-    
     GADRequest *request = [GADRequest request];
     request.testDevices = @[ kGADSimulatorID ];
     [self.bannerView loadRequest:request];
     
-    self.activityItemView.backgroundColor = [UIColor clearColor];
-    self.activityItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityItemView];
-	
-    [self.activityCounterBadge setBadgeColor:[UIColor colorWithRed:0.82 green:0.0 blue:0.082 alpha:1.000]];
+    [self.navigationController setToolbarHidden:YES animated:NO];
 }
 
 - (void)resumeButtonClicked:(id)sender
@@ -397,12 +277,6 @@
         }
         [self presentViewController:actionSheet animated:YES completion:nil];
     }
-    else
-    {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes and remove data" otherButtonTitles:@"Yes but keep data", nil];
-        actionSheet.tag = REMOVE_COMFIRM_TAG;
-        [actionSheet showFromToolbar:self.navigationController.toolbar];
-    }
 }
 
 - (void)removeTorrentsTrashData:(BOOL)trashData {
@@ -444,11 +318,6 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-}
-
-- (void)addFromURLClicked
-{
-    [self addFromURLWithExistingURL:@"" message:@"Please enter the existing torrent's URL"];
 }
 
 - (void)addFromURLWithExistingURL:(NSString*)url message:(NSString*)msg
@@ -604,19 +473,6 @@
         [self.audio stop];
         NSLog(@"Not going to play");
     }
-}
-
-- (void)addFromMagnetClicked
-{
-    [self addFromMagnetWithExistingMagnet:@"" message:@"Please enter the magnet link below. "];
-}
-
-- (void)addFromWebClicked
-{
-    NSString *URL = @"https://google.com";
-	//SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:URL];
-    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:URL controller:self.controller navigationController:self.navigationController];
-	[self.navigationController pushViewController:webViewController animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated

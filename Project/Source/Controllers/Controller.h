@@ -29,8 +29,11 @@
 
 
 #import <UIKit/UIKit.h>
+#import "SideMenuController.h"
 #import "TorrentFetcher.h"
 #import "libtransmission/transmission.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <TwitterKit/TwitterKit.h>
 #include <dlfcn.h>
 #define SBSERVPATH "/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices"
 

@@ -14,16 +14,12 @@
 
 @implementation TrackersViewController
 
-- (id)initWithTorrent:(Torrent*)t {
-    self = [super initWithNibName:@"TrackersViewController" bundle:nil];
-    if (self) {
-        fTorrent = t;
-        self.title = @"Trackers";
-        SelectedItems = [[NSMutableArray alloc] init];
-        Trackers = [[NSMutableArray alloc] init];
-        [self reloadTrackers];
-    }
-    return self;
+- (void)initWithTorrent:(Torrent*)t {
+    fTorrent = t;
+    self.title = @"Trackers";
+    SelectedItems = [[NSMutableArray alloc] init];
+    Trackers = [[NSMutableArray alloc] init];
+    [self reloadTrackers];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,6 +41,14 @@
     [removeButton setEnabled:NO];
     [self setToolbarItems:[NSArray arrayWithObjects:emptyButton, addButton, emptyButton, removeButton, emptyButton, nil]];
     [super viewDidLoad];
+    
+    /* init admob
+    self.bannerView.adUnitID = @"ca-app-pub-5972525945446192/3835764869";
+    self.bannerView.rootViewController = self;
+    GADRequest *request = [GADRequest request];
+    request.testDevices = @[ kGADSimulatorID ];
+    [self.bannerView loadRequest:request];
+     */
 }
 
 - (void)reloadTrackers {
@@ -201,8 +205,8 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"Count: %lu", (unsigned long)[Trackers count]);
     switch (section) {
-            NSLog(@"Count: %lu", (unsigned long)[Trackers count]);
         case 0:
             return [Trackers count];
             break;

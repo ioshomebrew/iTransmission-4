@@ -19,18 +19,7 @@
 @synthesize portChecker = fPortChecker;
 @synthesize indexPathToScroll = fIndexPathToScroll;
 @synthesize controller = fController;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        self.title = @"Preferences";
-        
-        UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeButtonClicked)];
-        
-        [self.navigationItem setLeftBarButtonItem:closeButton];
-        
-    }
-    return self;
-}
+@synthesize bannerView;
 
 - (void)resizeToFit {
 	// Needs adjustment for portrait orientation!
@@ -138,9 +127,10 @@
     switch (section) {
         case 0: return 2;
         case 1: return 1;
-            case 2: return 4;
+            case 2: return 2;
             case 3: return 2;
             case 4: return 2;
+        case 5: return 1;
     }
     return 0;
 }
@@ -153,6 +143,7 @@
         case 2: return @"Connections";
             case 3: return @"Upload";
             case 4: return @"Download";
+        case 5: return @"Share";
     }
     return nil;
 }
@@ -187,9 +178,7 @@
         {
             switch (indexPath.row) {
                 case 0: return fMaximumConnectionsLabelCell;
-                case 1: return fMaximumConnectionsSliderCell;
-                case 2: return fConnectionsPerTorrentLabelCell;
-                case 3: return fConnectionsPerTorrentSliderCell;
+                case 1: return fConnectionsPerTorrentLabelCell;
             }
         }
         case 3:
@@ -207,13 +196,14 @@
                 case 1: return fDownloadSpeedLimitCell;
             }
         }
+        case 5:
+        {
+            switch (indexPath.row) {
+                case 0: return fShareCell;
+            }
+        }
     }
     return nil;
-}
-
-- (void)switchChanged:(id)sender
-{
-
 }
 
 - (void)portCheckButtonClicked
@@ -245,7 +235,11 @@
 
 - (void)closeButtonClicked
 {
-    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
+    // go back to main screen
+    UINavigationController *navigationController = (UINavigationController *)self.sideMenu.rootViewController;
+    [navigationController setViewControllers:@[self.torrentView]];
+    
+    //[self dismissViewControllerAnimated:YES completion:nil];
     [self.controller setGlobalUploadSpeedLimit:[[fUploadSpeedLimitField text] intValue]];
     [self.controller setGlobalDownloadSpeedLimit:[[fDownloadSpeedLimitField text] intValue]];
     tr_session *fHandle = [self.controller rawSession];
@@ -276,17 +270,32 @@
     [self performSelector:@selector(loadPreferences) withObject:nil afterDelay:0.0f];
 }
 
+- (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results
+{
+}
+
+- (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error
+{
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // init admob
+    self.bannerView.adUnitID = @"ca-app-pub-5972525945446192/8130606866";
+    self.bannerView.rootViewController = self;
+    
+    GADRequest *request = [GADRequest request];
+    request.testDevices = @[ kGADSimulatorID ];
+    [self.bannerView loadRequest:request];
+    
     self.tableView.allowsSelection = NO;
 	[fCheckPortButton addTarget:self action:@selector(portCheckButtonClicked) forControlEvents:UIControlEventTouchUpInside];
 	
     self.controller = (Controller*)[[UIApplication sharedApplication] delegate];
     
-    [fConnectionsPerTorrentSlider setValue:[self.controller connectionsPerTorrent]];
-    [fConnectionsPerTorrentLabel setText:[NSString stringWithFormat:@"%ld", (long)[self.controller connectionsPerTorrent]]];
-    [fMaximumConnectionsSlider setValue:[self.controller globalMaximumConnections]];
-    [fMaximumConnectionsLabel setText:[NSString stringWithFormat:@"%ld", (long)[self.controller globalMaximumConnections]]];
+    [fConnectionsPerTorrentTextField setText:[NSString stringWithFormat:@"%ld", (long)[self.controller connectionsPerTorrent]]];
+    [fMaximumConnectionsTextField setText:[NSString stringWithFormat:@"%ld", (long)[self.controller globalMaximumConnections]]];
     [fUploadSpeedLimitField setText:[NSString stringWithFormat:@"%ld", (long)[self.controller globalUploadSpeedLimit]]];
     [fDownloadSpeedLimitField setText:[NSString stringWithFormat:@"%ld", (long)[self.controller globalDownloadSpeedLimit]]];
     [fUploadSpeedLimitEnabledSwitch setOn:[self.controller globalUploadSpeedLimitEnabled]];
@@ -295,7 +304,7 @@
     UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
     [keyboardDoneButtonView sizeToFit];
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                   style:UIBarButtonItemStyleBordered target:self
+                                                                   style:UIBarButtonItemStylePlain target:self
                                                                   action:@selector(doneClicked:)];
     [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
     [keyboardDoneButtonView sizeToFit];
@@ -303,9 +312,15 @@
     fBindPortTextField.delegate = self;
     fUploadSpeedLimitField.delegate = self;
     fDownloadSpeedLimitField.delegate = self;
+    fConnectionsPerTorrentTextField.delegate = self;
+    fMaximumConnectionsTextField.delegate = self;
     fBindPortTextField.inputAccessoryView = keyboardDoneButtonView;
     fUploadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
     fDownloadSpeedLimitField.inputAccessoryView = keyboardDoneButtonView;
+    fConnectionsPerTorrentTextField.inputAccessoryView = keyboardDoneButtonView;
+    fMaximumConnectionsTextField.inputAccessoryView = keyboardDoneButtonView;
+    
+    [self.navigationController setToolbarHidden:YES animated:NO];
     
     [self loadPreferences];
 
@@ -347,20 +362,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"AudioPrefChanged" object:value];
 }
 
-- (IBAction)maximumConnectionsSliderValueChanged:(id)sender
-{
-    int intValue = round([fMaximumConnectionsSlider value]);
-    [fMaximumConnectionsLabel setText:[NSString stringWithFormat:@"%d", intValue]];
-    [self.controller setGlobalMaximumConnections:intValue];
-}
-
-- (IBAction)connectionsPerTorrentSliderValueChanged:(id)sender
-{
-    int intValue = round([fConnectionsPerTorrentSlider value]);
-    [fConnectionsPerTorrentLabel setText:[NSString stringWithFormat:@"%d", intValue]];
-    [self.controller setConnectionsPerTorrent:intValue];
-}
-
 - (IBAction)uploadSpeedLimitEnabledValueChanged:(id)sender
 {
     BOOL enabled = [fUploadSpeedLimitEnabledSwitch isOn];
@@ -373,9 +374,16 @@
     [self.controller setGlobalDownloadSpeedLimitEnabled:enabled];
 }
 
-- (IBAction)overrideGlobalLimitsEnabledValueChanged:(id)sender
+- (IBAction)connectionsPerTorrentChanged:(id)sender
 {
+    int intValue = [[fConnectionsPerTorrentTextField text] intValue];
+    [self.controller setConnectionsPerTorrent:intValue];
+}
 
+- (IBAction)maximumConnectionsPerTorrentChanged:(id)sender
+{
+    int intValue = [[fMaximumConnectionsTextField text] intValue];
+    [self.controller setConnectionsPerTorrent:intValue];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -385,11 +393,59 @@
 
 - (IBAction)doneClicked:(id)sender
 {
-    NSLog(@"Done Clicked.");
-    
     [fBindPortTextField resignFirstResponder];
     [fUploadSpeedLimitField resignFirstResponder];
     [fDownloadSpeedLimitField resignFirstResponder];
+    
+    [self closeButtonClicked];
+}
+
+- (IBAction)facebookShare:(id)sender
+{
+    FBSDKShareLinkContent* content = [[FBSDKShareLinkContent alloc] init];
+    content.contentURL = [NSURL URLWithString: @"https://github.com/ioshomebrew/iTransmission-4"];
+    content.contentTitle = @"Download iTransmission";
+    content.contentDescription = @"iTransmission is a bittorrent client for iOS based on libtransmission";
+    
+    FBSDKShareDialog *dialog = [[FBSDKShareDialog alloc] init];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"fbauth2://"]]){
+        dialog.mode = FBSDKShareDialogModeNative;
+    }
+    else {
+        dialog.mode = FBSDKShareDialogModeBrowser; //or FBSDKShareDialogModeAutomatic
+    }
+    dialog.shareContent = content;
+    dialog.delegate = self;
+    dialog.fromViewController = self;
+    [dialog show];
+}
+
+- (IBAction)tweet:(id)sender
+{
+    // log into twitter
+    [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
+        if (session) {
+            NSLog(@"signed in as %@", [session userName]);
+        } else {
+            NSLog(@"error: %@", [error localizedDescription]);
+        }
+    }];
+    
+    // tweet
+    TWTRComposer *composer = [[TWTRComposer alloc] init];
+    
+    [composer setText:@"Check out iTransmission https://github.com/ioshomebrew/iTransmission-4"];
+    
+    // Called from a UIViewController
+    [composer showFromViewController:self completion:^(TWTRComposerResult result) {
+        if (result == TWTRComposerResultCancelled) {
+            NSLog(@"Tweet composition cancelled");
+        }
+        else {
+            NSLog(@"Sending Tweet!");
+        }
+    }];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

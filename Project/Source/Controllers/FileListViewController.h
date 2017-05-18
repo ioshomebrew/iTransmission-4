@@ -33,12 +33,13 @@ typedef enum FileType
 }
 @property (nonatomic, readonly) Torrent *torrent;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) IBOutlet GADBannerView *bannerView;
 @property (nonatomic, retain) UIDocumentInteractionController *docController;
 @property (nonatomic, retain) NSTimer *updateTimer;
 @property (nonatomic, retain) NSString *path;
 @property (nonatomic, retain) NSIndexPath *actionIndexPath;
 
-- (id)initWithTorrent:(Torrent*)t;
+- (void)initWithTorrent:(Torrent*)t;
 - (void)updateCell:(FileListCell*)cell;
 - (FileType)fileType:(NSString*)url;
 - (void)playVideo:(NSString*)url;

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 #import "TrackerCell.h"
 #import "Torrent.h"
 #import "TrackerNode.h"
@@ -23,11 +24,12 @@
     NSMutableArray *SelectedItems;
 }
 @property (nonatomic, readonly) Torrent *torrent;
+@property (nonatomic, retain) IBOutlet GADBannerView *bannerView;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) UIDocumentInteractionController *docController;
 @property (nonatomic, retain) NSTimer *updateTimer;
 
-- (id)initWithTorrent:(Torrent*)t;
+- (void)initWithTorrent:(Torrent*)t;
 
 - (void)updateCell:(TrackerCell*)cell;
 - (void)editButtonTouched;

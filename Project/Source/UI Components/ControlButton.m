@@ -46,19 +46,19 @@
 
 - (void)setResumeStyle
 {
-    UIImage *image = [UIImage imageNamed:@"play_icon-ios7@2x.png"];
+    UIImage *image = [UIImage imageNamed:@"play_icon.png"];
     [self setImage:image forState:UIControlStateNormal];
 }
 
 - (void)setPauseStyle
 {
-    UIImage *image = [UIImage imageNamed:@"pause_icon-ios7@2x.png"];
+    UIImage *image = [UIImage imageNamed:@"pause_icon.png"];
     [self setImage:image forState:UIControlStateNormal];
 }
 
 - (void)_initViews
 {
-    UIImage *image = [UIImage imageNamed:@"pause_icon-ios7@2x.png"];
+    UIImage *image = [UIImage imageNamed:@"pause_icon.png"];
     [self setImage:image forState:UIControlStateNormal];
 }
 

@@ -76,29 +76,26 @@
 @synthesize selectedIndexPath = fSelectedIndexPath;
 @synthesize controller;
 
-- (id)initWithTorrent:(Torrent*)t controller:(Controller*)c {
-    if ((self = [super initWithNibName:@"DetailViewController" bundle:nil])) {
-        self.title = @"Details";
-		fTorrent = t;
-		controller = c;
+- (void)initWithTorrent:(Torrent*)t controller:(Controller*)c {
+    self.title = @"Details";
+    fTorrent = t;
+    controller = c;
 		
-		self.startButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(startButtonClicked:)];
-		self.pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseButtonClicked:)];
-		self.removeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeButtonClicked:)];
+    self.startButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(startButtonClicked:)];
+    self.pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseButtonClicked:)];
+    self.removeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeButtonClicked:)];
         
-        self.bandwidthButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bandwidth-icon"] style:UIBarButtonItemStylePlain target:self action:@selector(bandwidthButtonClicked:)];
+    self.bandwidthButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bandwidth-icon"] style:UIBarButtonItemStylePlain target:self action:@selector(bandwidthButtonClicked:)];
         
-		self.refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateUI)];
+    self.refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateUI)];
 
-		UIBarButtonItem *flexSpaceOne = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		UIBarButtonItem *flexSpaceTwo = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		UIBarButtonItem *flexSpaceThree = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		UIBarButtonItem *flexSpaceFour = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *flexSpaceOne = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *flexSpaceTwo = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *flexSpaceThree = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *flexSpaceFour = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 		
-		self.toolbarItems = [NSArray arrayWithObjects:self.startButton, flexSpaceOne, self.pauseButton, flexSpaceTwo, self.refreshButton, flexSpaceThree, self.bandwidthButton, flexSpaceFour, self.removeButton, nil];
-		displayedError = NO;
-	}
-    return self;
+    self.toolbarItems = [NSArray arrayWithObjects:self.startButton, flexSpaceOne, self.pauseButton, flexSpaceTwo, self.refreshButton, flexSpaceThree, self.bandwidthButton, flexSpaceFour, self.removeButton, nil];
+    displayedError = NO;
 }
 
 - (void)bandwidthButtonClicked:(id)sender
@@ -138,13 +135,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_Storyboard" bundle:nil];
 	if (indexPath.section == MORE_SECTION) {
         if (indexPath.row == FILES_ROW) {
-            FileListViewController *c = [[FileListViewController alloc] initWithTorrent:self.torrent];
+            FileListViewController *c = [storyboard instantiateViewControllerWithIdentifier:@"file_view"];
+            [c initWithTorrent:fTorrent];
             [self.navigationController pushViewController:c animated:YES];
         } else if (indexPath.row == TRACKERS_ROW) {
-                TrackersViewController *c = [[TrackersViewController alloc] initWithTorrent:self.torrent];
-                [self.navigationController pushViewController:c animated:YES];
+            TrackersViewController *cb = [storyboard instantiateViewControllerWithIdentifier:@"trackers_view"];
+            [cb initWithTorrent:fTorrent];
+            [self.navigationController pushViewController:cb animated:YES];
         }
 		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
@@ -189,6 +189,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self.tableView setAllowsSelection:YES];
+    
+    // init admob
+    self.bannerView.adUnitID = @"ca-app-pub-5972525945446192/3390380060";
+    self.bannerView.rootViewController = self;
 	
 	[fTitleLabel setText:[fTorrent name]];
     

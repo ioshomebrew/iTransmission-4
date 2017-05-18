@@ -2,15 +2,31 @@
 
 # original script taken from iTransmission project
 # (https://github.com/ccp0101/iTransmission/blob/master/make_depend/build.sh)
- 
-. configuration
+
+#########################
+#Space-seperated list of archs e.g export ARCHS=("armv7 armv7s arm64 i386 x86_64")
+export ARCH=x86_64
+export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
+export DEVFOLDER="/Applications/Xcode.app/Contents/Developer"
+# an SDK prior to 6.0 is required if the target ARCH is armv6
+SDK_VERSION=“10.3”
+PARALLEL_NUM=4
+
+CURL_VERSION=7.54.0
+ZLIB_VERSION=1.2.11
+LIBEVENT_VERSION="2.1.8-stable"
+OPENSSL_VERSION=1.0.2k
+TRANSMISSION_VERSION=2.92
+#########################
+
+if [ -z ${ARCH} ]; then ARCH="system"; fi
 
 export TEMP_DIR="$PWD/temp"
 export PATCH_DIR="$PWD/patches"
 export DEPENDENCY_DIR="$PWD/dependency"
 export BUILD_FILTER="ssl,curl,trans,libev"
 export TOOL_DIR="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin"
-export Min_IPHONE_OS=7.0
+export Min_IPHONE_OS=8.0
 
 function do_abort {
 	echo $1 >&2
@@ -105,9 +121,9 @@ function do_openssl {
 	
 	pushd ${PACKAGE_NAME}
 	
-	do_export
+do_export
 	if [[ "${ARCH}" == "x86_64" ]]; then
-		./Configure darwin64-x86_64-cc --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
+./Configure darwin64-x86_64-cc --prefix=${BUILD_DIR} --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
 	else
 		./Configure iphoneos-cross enable-base64 --openssldir=${BUILD_DIR} || do_abort "$FUNCNAME: configure failed "
 	fi
@@ -124,7 +140,8 @@ function do_openssl {
 		perl bn_prime.pl >bn_prime.h
 		popd
 	fi
-	
+
+    make clean
 	make -j ${PARALLEL_NUM} || do_abort "$FUNCNAME: make failed "
 	make install || do_abort "$FUNCNAME: install failed "
 	
@@ -134,12 +151,38 @@ function do_openssl {
 	popd
 }
 
+function do_zlib {
+    export PACKAGE_NAME="zlib-${ZLIB_VERSION}"
+    pushd ${TEMP_DIR}
+    if [ ! -e "${PACKAGE_NAME}.tar.gz" ]
+    then
+        /usr/bin/curl -O -L "http://zlib.net/${PACKAGE_NAME}.tar.gz" || do_abort "$FUNCNAME: fetch failed "
+    fi
+
+    if [[ -z $DONT_OVERWRITE ]]; then
+        rm -rf "${PACKAGE_NAME}"
+        tar zxvf "${PACKAGE_NAME}.tar.gz" || do_abort "$FUNCNAME: unpack failed "
+    fi
+
+    pushd ${PACKAGE_NAME}
+
+    do_export
+
+    ./configure --prefix="${BUILD_DIR}" --static
+
+    make -j ${PARALLEL_NUM} || do_abort "$FUNCNAME: make failed "
+    make install || do_abort "$FUNCNAME: install failed "
+
+    popd
+    popd
+}
+
 function do_curl {
 	export PACKAGE_NAME="curl-${CURL_VERSION}"
 	pushd ${TEMP_DIR}
 	if [ ! -e "${PACKAGE_NAME}.tar.gz" ]
 	then
-	  /usr/bin/curl -O -L "http://www.execve.net/curl/${PACKAGE_NAME}.tar.gz" || do_abort "$FUNCNAME: fetch failed "
+        /usr/bin/curl -O -L "https://curl.haxx.se/download/${PACKAGE_NAME}.tar.gz" || do_abort "$FUNCNAME: fetch failed "
 	fi
 	
 	if [[ -z $DONT_OVERWRITE ]]; then
@@ -179,7 +222,7 @@ function do_libevent {
 	# libevent patch to hardcode google public dns servers for iOS
 	# as there is no /etc/resolv.conf in iOS
 	# (TODO... it properly.. XD)
-	patch -N < ${PATCH_DIR}/libevent-nameservers.patch
+#patch -N < ${PATCH_DIR}/libevent-nameservers.patch
 	
 	do_export
 
@@ -201,7 +244,7 @@ function do_transmission {
 	pushd ${TEMP_DIR}
 	if [ ! -e "${PACKAGE_NAME}.tar.xz" ]
 	then
-	  /usr/bin/curl -O -L "http://download.transmissionbt.com/files/${PACKAGE_NAME}.tar.xz" || do_abort "$FUNCNAME: fetch failed "
+	  /usr/bin/curl -O -L "https://github.com/transmission/transmission-releases/raw/master/${PACKAGE_NAME}.tar.xz" || do_abort "$FUNCNAME: fetch failed "
 	fi
 	
 	if [[ -z $DONT_OVERWRITE ]]; then
@@ -238,25 +281,6 @@ function do_transmission {
 	
 	popd
 	popd
-}
-
-function do_ijkplayer {
-    if [ ! -e "ijkplayer-ios" ]
-    then
-        git clone https://github.com/Bilibili/ijkplayer.git ijkplayer-ios
-    fi
-
-    cd ijkplayer-ios
-
-#do_export
-
-    ./init-ios.sh
-
-    cd ios
-    ./compile-ffmpeg.sh clean
-    ./compile-ffmpeg.sh all
-
-    cd ..
 }
 
 function do_libb64
@@ -314,9 +338,9 @@ while getopts ":o:a:ne" opt; do
 done
 
 mkdir -p ${TEMP_DIR}
-#do_ijkplayer
 do_openssl
+do_zlib
 do_curl
 do_libevent
 do_transmission
-do_libb64
+#do_libb64
