@@ -26,7 +26,7 @@ export PATCH_DIR="$PWD/patches"
 export DEPENDENCY_DIR="$PWD/dependency"
 export BUILD_FILTER="ssl,curl,trans,libev"
 export TOOL_DIR="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin"
-export Min_IPHONE_OS=8.0
+export Min_IPHONE_OS=9.0
 
 function do_abort {
 	echo $1 >&2
